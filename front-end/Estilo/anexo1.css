@@ -1,0 +1,153 @@
+html{
+  --bgs: #f1f1f1;
+  --black: black;
+}
+
+/* LOGIN */
+
+div.conteudo{
+  text-align: center;
+  margin: 0 auto;
+  position: relative;
+  min-height: 100vh;
+  /* display: table; */
+}
+
+div.container{
+  width: 100%;
+  height: 70vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center
+}
+
+div#login{
+  width: 300px;
+  height: 300px;
+  /* border: 1px solid var(--black); */
+  background-color: var(--bgs);
+}
+
+div#login button{
+  margin-top: 20px;
+}
+
+.propa{
+  padding-top: 40px;
+  font-size: 11px;
+}
+.propa a:link{
+  color: blue;
+}
+.propa a:visited{
+  color: blue;
+}
+
+
+/* */
+/* CRIAR */
+/* */
+
+div.wrapper-criar{
+  display: table;
+}
+div.conteudo-criar{
+  display: table-row;
+}
+
+div.criacao{
+  display: table-cell;
+  /* border: 1px solid black; */
+  padding: 0px 80px 80px 80px;
+}
+
+/* */
+/* PUBLICAR */
+/* */
+div#container-post{
+  height: auto;
+}
+
+div#posta{
+  height: 400px;
+  width: 450px;
+}
+
+form#frmCriarPost input{
+  width: 60%;
+  font-size: 1.25em;
+  border: none;
+  border-bottom: 1px solid var(--black);
+  outline: none;
+  margin-bottom: 10px;
+}
+
+textarea#mytextarea{
+  font-size: 15px;
+  border: none;
+  border-left: 1px solid var(--black);
+  border-right: 1px solid var(--black);
+  resize: none;
+  outline: none;
+  width: 99%;
+  height: 100%;
+  overflow: hidden;
+}
+
+ul#tools li{
+  display: inline;
+  padding-left: 3px;
+  padding-right: 3px;
+  border-right: 1px solid var(--black);
+}
+
+ul#tools{
+  background-color: var(--bgs);
+}
+
+/**/
+/* QUEM SOMOS */
+/**/
+div#who-wrapper {
+  min-height: 100%;
+}
+div#who-wrapper #who-container{
+  width: 100%;
+  display: flex;
+}
+div#who-wrapper #who-container .who{
+  flex: 1;
+  padding: 25px;
+  margin: 10px;
+  border-radius: 10px;
+  background-color: var(--bgs);
+}
+
+/* */
+/* CONTA */
+/* */
+div#wrapper-conta{
+  margin: auto;
+  width: 80%;
+}
+div#wrapper-conta #container-conta{
+  display: flex;
+}
+div.detalhes{
+  flex: 1;
+}
+div.detalhes #d1{
+  border-right: 1px solid var(--black);
+}
+div.detalhes .foto{
+  background-color: var(--bgs);
+  border: 1px solid var(--black);
+  border-radius: 80%;
+  height: 150px;
+  width: 30%;
+  margin: auto;
+}
+div.manage-posts h2{
+  text-align: left;
+}

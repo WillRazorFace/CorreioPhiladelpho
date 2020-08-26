@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang = "en">
+<head meta charset = "utf-8">
+	<meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+	<script type = "text/javascript" lang = "javascript" src = "Script/script.js"></script>
+	<script src='https://cdn.tiny.cloud/1/hpicj44e515yat8a4lbpcbo5i8cbv4p2s48jqxktuffzn4cc/tinymce/5/tinymce.min.js' referrerpolicy="origin"></script>
+	<script src="https://kit.fontawesome.com/8f2a036adf.js" crossorigin="anonymous"></script>
+	<link type = "text/css" media = "screen" href = "Estilo/main.css" rel = "stylesheet"/>
+	<link href="https://fonts.googleapis.com/css?family=Noto+Serif&display=swap" rel="stylesheet">
+	<title>Correio Philadelphiano</title>
+</head>
+<body>
+	<header id = "titulo">
+		<h1><a href = "index.html">CORREIO PHILADELPHIANO</a></h1>
+		<h4>Um jornal a serviço do estudante</h4>
+			<div id = "divMenu">
+					<nav id = "menu">
+							<ul class = "topnav">
+									<li class = "sensa"><a href = "porcario.html">SENSACIONALISTA</a></li>
+									<li class = "nope"><a href = "porcario.html">VESTIBULAR</a></li>
+									<li class = "nope"><a href = "porcario.html">DIVULGAÇÃO CIENTÍFICA</a></li>
+									<li class = "nope"><a href = "porcario.html">EVENTOS</a></li>
+									<li class = "nope"><a href = "porcario.html">FÓRUM</a></li>
+									<li style = "float: right;"><span onclick = "openNav()" class = "drop">MENU</span></li>
+									<div id="mySidenav" class="sidenav">
+									  <a href = "javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+									  <a href = "#">Conta</a>
+									  <a href = "login.html">Login</a>
+									  <a href = "criarConta.html">Criar uma conta</a>
+									  <a href = "criarPost.html">Publicar</a>
+									</div>
+							</ul>
+						</nav>
+			</div>
+</header>
+<div class = "wrapper" id = "wrapper-index">
+  <div class = "container">
+    <div id = "meio">
+      <h2 class = "title">Vestibular</h2>
+      <div class = "card" id = "1">
+        <h3 class = "materia-titulo">Começou as inscrições para o ENEM</h3>
+        <h5 class = "materia-subTitulo">Publicado por anon, 20 de Março, 2020</h5>
+        <div class = "materia-img">
+          <img src = "incel.jpg"></img>
+        </div>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <div class = "materia-comments">
+          <ul>
+            <li><a href = "#">Comentários</a></li>
+            <li><a href = "#">Compartilhar</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <footer id = "rodapé">
+        <div class = "footer">
+          <div class = "footer-content">
+            <div class = "footer-section about">
+              <h2>CORREIO PHILADELPHIANO</h2>
+              <p>O Correio é um site desenvolvido pelos alunos da Etec Philadelpho Gouvêa Netto para divulgar ciência aos jovens de forma
+              mais responsiva, bem como divulgar os eventos da escola.</p>
+              <div class = "contact">
+                <span><i class = "fas fa-phone"></i> &nbsp; (17)99617-4868</span>
+                <span><i class = "fas fa-envelope"></i> &nbsp; comper.mane@gmail.com</span>
+              </div>
+            </div>
+            <div class = "footer-section links">
+              <h3>Links Rápidos</h3>
+              <br>
+              <ul>
+                <li><a href = "http://philadelpho.com.br">Site da escola</a></li>
+                <li><a href = "quem_somos.html">Quem somos</a></li>
+                <li><a href = "#">Termos e condições</a></li>
+              </ul>
+            </div>
+            <div class = "footer-section contact">
+              <h3>Feedback</h3>
+              <br>
+              <form id = "frmFeedback" action = "index.html" method = "post">
+                <input type = "email" name = "emailFeed" placeholder = "Email" required>
+                <input type = "text" name = "opiniiaoFeed" placeholder = "Opiniões, perguntas, críticas..." required>
+                <button type = "submit" class = "normal">Enviar</button>
+              </form>
+            </div>
+          </div>
+          <div class = "footer-bottom">
+            <i class="fas fa-code"></i> com <i class="far fa-heart"></i> por T2C project
+          </div>
+        </div>
+      </footer>
+
+  </body>
+  </html>
