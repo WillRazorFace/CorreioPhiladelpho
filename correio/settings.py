@@ -150,3 +150,12 @@ CKEDITOR_UPLOAD_PATH = 'ckeditor/'
 # Estilos a serem usados pelo crispy
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+# Mensagens
+MESSAGE_TAGS = {
+    constants.ERROR: 'alert-danger',
+    constants.WARNING: 'alert-warning',
+    constants.DEBUG: 'alert-info',
+    constants.SUCCESS: 'alert-success',
+    constants.INFO: 'alert-info',
+}
