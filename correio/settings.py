@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'ckeditor',
     'ckeditor_uploader',
+    'crispy_forms',
     'usuarios',
 ]
 
@@ -145,3 +146,7 @@ MEDIA_URL = 'media/'
 # Upload da mídia de comentários e posts
 
 CKEDITOR_UPLOAD_PATH = 'ckeditor/'
+
+# Estilos a serem usados pelo crispy
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
