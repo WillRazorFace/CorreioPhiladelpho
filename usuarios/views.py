@@ -1,3 +1,7 @@
 from django.shortcuts import render
+from .forms import LoginForm
 
-# Create your views here.
+def entrar(request):
+    form = LoginForm()
+
+    return render(request, 'usuarios/entrar.html', {'form': form})

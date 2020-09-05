@@ -1,0 +1,48 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include 'parciais/_head.html' %}
+
+    <title>Entrar | CP</title>
+</head>
+
+<body>
+    <main class="mt-4 mb-4 d-flex justify-content-center">
+        <div class="row">
+            <div class="card auth-card">
+                <div class="card-header">
+                    <h3>Entrar</h3>
+                </div>
+
+                <div class="card-body">
+                    <form method="POST" action="">
+                        {% csrf_token %}
+
+                        {% for hidden_field in form.hidden_fields %}
+                            {{ hidden_field|as_crispy_field }}
+                        {% endfor %}
+
+                        <div class="form-group">
+                            {{ form.email|as_crispy_field }}
+                        </div>
+
+                        <div class="form-group">
+                            {{ form.password|as_crispy_field }}
+                        </div>
+                        
+                        <button type="submit" class="btn btn-danger btn-block btn-lg mb-3">Entrar</button>
+                    </form>
+                </div>
+
+                <div class="card-footer">
+                    <p class="change-form-p text-center">Ainda não é cadastrado? <a href="">Clique aqui</a></p>
+                    <p class="change-form-p text-center">Esqueceu sua senha? <a href="">Clique aqui</a></p>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
