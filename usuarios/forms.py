@@ -43,7 +43,10 @@ class LoginForm(forms.ModelForm):
         dados_limpos = self.cleaned_data
 
         email = dados_limpos.get('email')
-        senha = dados_limpos.get('password')
+        
+        # Validando o email
+        if not validate_email(email):
+            self.add_error('email', 'Insira um e-mail válido')
 
     class Meta:
         model = Usuario
@@ -97,14 +100,12 @@ class CadastroForm(forms.ModelForm):
 
     def clean(self, *args, **kwargs):
         dados_limpos = self.cleaned_data
-        dados_crus = self.data
 
         nome = dados_limpos.get('nome')
         sobrenome = dados_limpos.get('sobrenome')
         email = dados_limpos.get('email')
         senha = dados_limpos.get('password')
         senha_confirmacao = dados_limpos.get('password_confirmacao')
-        foto = dados_crus.get('foto')
 
         # Validando o nome
         if checar_caracteres_especiais_e_numeros(nome):
