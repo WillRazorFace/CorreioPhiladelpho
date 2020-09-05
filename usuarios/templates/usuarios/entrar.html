@@ -8,7 +8,7 @@
     <title>Entrar | CP</title>
 </head>
 
-<body>
+<body class="text-center">
     <main class="mt-4 mb-4 d-flex justify-content-center">
         <div class="row">
             <div class="card auth-card">
@@ -17,6 +17,7 @@
                 </div>
 
                 <div class="card-body">
+                    {% include 'parciais/_messages.html' %}
                     <form method="POST" action="">
                         {% csrf_token %}
 
@@ -37,8 +38,8 @@
                 </div>
 
                 <div class="card-footer">
-                    <p class="change-form-p text-center">Ainda não é cadastrado? <a href="">Clique aqui</a></p>
-                    <p class="change-form-p text-center">Esqueceu sua senha? <a href="">Clique aqui</a></p>
+                    <p class="change-form-p">Ainda não é cadastrado? <a href="{% url 'registrar' %}">Clique aqui</a></p>
+                    <p class="change-form-p">Esqueceu sua senha? <a href="">Clique aqui</a></p>
                 </div>
             </div>
         </div>

@@ -2,6 +2,8 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from .models import Usuario
 from django import forms
 from crispy_forms.helper import FormHelper
+from utils.validadores import checar_caracteres_especiais_e_numeros
+from email_validator import validate_email
 
 
 class FormCriarUsuario(UserCreationForm):
@@ -36,6 +38,12 @@ class LoginForm(forms.ModelForm):
         widget=forms.PasswordInput(attrs={'class': 'text-center', 'placeholder': 'Senha'}),
         max_length=50,
     )
+
+    def clean(self, *args, **kwargs):
+        dados_limpos = self.cleaned_data
+
+        email = dados_limpos.get('email')
+        senha = dados_limpos.get('password')
 
     class Meta:
         model = Usuario
@@ -87,6 +95,41 @@ class CadastroForm(forms.ModelForm):
         initial=True,
     )
 
+    def clean(self, *args, **kwargs):
+        dados_limpos = self.cleaned_data
+        dados_crus = self.data
+
+        nome = dados_limpos.get('nome')
+        sobrenome = dados_limpos.get('sobrenome')
+        email = dados_limpos.get('email')
+        senha = dados_limpos.get('password')
+        senha_confirmacao = dados_limpos.get('password_confirmacao')
+        foto = dados_crus.get('foto')
+
+        # Validando o nome
+        if checar_caracteres_especiais_e_numeros(nome):
+            self.add_error('nome', 'Seu nome não pode conter caracteres especiais nem números')
+
+        # Validando o sobrenome
+        if checar_caracteres_especiais_e_numeros(sobrenome):
+            self.add_error('sobrenome', 'Seu nome não pode conter caracteres especiais nem números')
+        elif sobrenome == nome:
+            self.add_error('sobrenome', 'Seu sobrenome não pode ser igual a seu nome.')
+
+        # Validando o e-mail
+        try:
+            checagem_email = Usuario.objects.get(email=email)
+        except Usuario.DoesNotExist:
+            checagem_email = False
+
+        if not validate_email(email):
+            self.add_error('email', 'Insira um e-mail válido')
+        elif checagem_email:
+            self.add_error('email', 'Este endereço de e-mail já foi cadastrado')
+
+        # Validando a senha
+        if senha != senha_confirmacao:
+            self.add_error('password_confirmacao', 'As senhas não coincidem')
     class Meta:
         model = Usuario
         fields = ('nome', 'sobrenome', 'email', 'password', 'foto', 'newsletter')

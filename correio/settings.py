@@ -141,7 +141,7 @@ AUTH_USER_MODEL = 'usuarios.Usuario'
 
 # Diretório de mídias
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = 'media/'
+MEDIA_URL = '/media/'
 
 # Upload da mídia de comentários e posts
 
