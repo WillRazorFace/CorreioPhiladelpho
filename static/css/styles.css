@@ -1,0 +1,10 @@
+.cor-padrao{
+    background-color: #a90e10 !important;
+}
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
