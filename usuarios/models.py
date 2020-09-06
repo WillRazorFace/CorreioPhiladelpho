@@ -4,6 +4,7 @@ from django.contrib.auth.models import PermissionsMixin
 from django.utils.translation import gettext_lazy as _
 from django.utils import timezone
 from .managers import GerenciadorDeUsuario
+from utils.imagens import redimensionar
 
 
 class Usuario(AbstractBaseUser, PermissionsMixin):
@@ -25,6 +26,12 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self) -> str:
         return f'{self.nome} {self.sobrenome} - {self.email}'
+
+    def save(self, *args, **kwargs) -> None:
+        super().save(*args, **kwargs)
+
+        if self.foto:
+            redimensionar(self.foto.name, 600)
 
     class Meta:
         verbose_name = 'Usuário'

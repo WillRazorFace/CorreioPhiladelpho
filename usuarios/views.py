@@ -7,6 +7,9 @@ from usuarios.models import Usuario
 def entrar(request):
     form = LoginForm()
 
+    if request.user.is_authenticated:
+        return redirect('index')
+
     if request.method != 'POST':
         return render(request, 'usuarios/entrar.html', {'form': form})
 
@@ -23,6 +26,7 @@ def entrar(request):
             return render(request, 'usuarios/entrar.html', {'form': form})
 
         login(request, user=usuario)
+        messages.success(request, f'Bem-vindo, {usuario.nome}')
         return redirect('index')
     else:
         return render(request, 'usuarios/entrar.html', {'form': form})
@@ -30,11 +34,16 @@ def entrar(request):
 def registrar(request):
     form = CadastroForm()
 
+    if request.user.is_authenticated:
+        messages.error(request, 'Faça logout para criar uma conta')
+
+        return redirect('index')
+
     if request.method != 'POST':
         return render(request, 'usuarios/criar.html', {'form': form})
-    
+
     form = CadastroForm(data=request.POST, files=request.FILES or None)
-    senha = form.cleaned_data.get('password')
+    senha = request.POST.get('password')
 
     if form.is_valid():
         novo_usuario = form.save(commit=False)
