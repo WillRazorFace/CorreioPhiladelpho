@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include 'parciais/_head.html' %}
+
+    <title>{% block Título %}{% endblock %} | CP</title>
+</head>
+<body>
+    {% include 'parciais/_navbar.html' %}
+    
+    <main class="mt-4 mb-4">
+        {% include 'parciais/_messages.html' %}
+
+        {% block Conteúdo %}
+        {% endblock %}
+    </main>
+
+    {% include 'parciais/_footer.html' %}
+</body>
+</html>
