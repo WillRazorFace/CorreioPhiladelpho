@@ -36,14 +36,21 @@
             <h5>Envie-nos seu feedback</h5>
 
             <form class="input-group" method="POST" action="">
+              {% csrf_token %}
                 <div class="row">
+                    {% if not request.user.is_authenticated %}
                     <div class="form-group col-md-10 mt-md-10 mt-0">
                         {{ form.email|as_crispy_field}}
                     </div>
-                    
+
                     <div class="form-group col-md-10 mt-md-10 mt-0">
                         {{ form.feedback|as_crispy_field }}
                     </div>
+                    {% else %}
+                    <div class="form-group col-md-12 mt-md-10 mt-0">
+                      {{ form.feedback|as_crispy_field }}
+                    </div>
+                    {% endif %}
 
                     <button type="submit" class="btn btn-danger btn-lg ml-3 mt-0">Enviar</button>
                 </div>

@@ -38,6 +38,16 @@
                 </div>
             </li>
         </ul>
+        {% else %}
+        <ul class="nav navbar-nav flex-row justify-content-md-center justify-content-start flex-nowrap">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'entrar' %}">Entrar</a> 
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'registrar' %}">Cadastrar-se</a>
+            </li>
+        </ul>
         {% endif %}
 
         <form class="form-inline" method="GET" action="">
