@@ -48,3 +48,8 @@ def registrar(request):
 
     messages.warning(request, 'Confirme seu e-mail para interagir com a plataforma. As instruções foram enviadas a você.')
     return redirect('index')
+
+def sair(request):
+    logout(request)
+
+    return redirect('index')
