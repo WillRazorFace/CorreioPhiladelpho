@@ -39,10 +39,6 @@ class Post(models.Model):
             # Se a slug já existir 4 caracteres aleatórios, dentre números e letras, serão concatenados ao final da original
             if Post.objects.filter(slug=self.slug).exists():
                 self.slug = f"{self.slug}-{''.join(random.choice(string.ascii_lowercase + string.digits) for i in range(4))}"
-        else:
-            # Se a slug já existir 4 caracteres aleatórios, dentre números e letras, serão concatenados ao final da original
-            if Post.objects.filter(slug=self.slug).exists():
-                self.slug = f"{self.slug}-{''.join(random.choice(string.ascii_lowercase + string.digits) for i in range(4))}"
 
         super().save(*args, **kwargs)
 

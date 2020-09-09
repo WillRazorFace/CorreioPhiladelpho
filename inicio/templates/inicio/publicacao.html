@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block Título %}{{ post.titulo}}{% endblock %}
+
+{% block Adicional %}
+<div class="banner-post" style="background-image: url({{ post.foto.url }});">
+    <div class="banner-conteudo">
+        <div class="banner-texto">
+            <h1>{{ post.titulo }}</h1>
+            <p>{{ post.subtitulo }}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block Conteúdo %}
+
+
+    <div class="row pt-5">
+        <div class="col-xl">
+
+        </div>
+
+        <div class="col-xl-6 text-center">
+            <p class="text-muted">
+                <i class="fas fa-user fa-2x mr-3">
+                    <small class="info">{{ post.usuario.nome }}</small>
+                </i>
+    
+                <i class="fas fa-calendar-day fa-2x mr-3">
+                    <small class="info">{{ post.data|naturalday|capfirst }}</small>
+                </i>
+    
+                <i class="fas fa-caret-square-down fa-2x mt-2">
+                    <small class="info">{{ post.categoria }}</small>
+                </i>
+            </p>
+        </div>
+
+        <div class="col-xl"></div>
+    </div>
+
+    <hr class="horizontal-divisor">
+
+    <div class="row pt-5">
+        <div class="col-xl"></div>
+
+        <div class="col-xl-8 justify-content-center align-items-center">
+            {{ post.conteudo|safe }}
+        </div>
+
+        <div class="col-xl"></div>
+    </div>
+{% endblock %}

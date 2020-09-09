@@ -1,3 +1,4 @@
+/* Aplica as cores padrões do site */
 .cor-padrao{
     background-color: #a90e10 !important;
     border-color: #a90e10;
@@ -22,6 +23,7 @@
     text-shadow: 2px 0 0 black, -2px 0 0 black, 0 2px 0 black, 0 -2px 0 black, 1px 1px black, -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black;
 }
 
+/* Div para imagem de destaque com zoom*/
 .imagem-destaque{
     overflow: hidden;
 }
@@ -46,11 +48,105 @@
     transform: scale(1.1);
 }
 
+/* Div para imagem de post com zoom*/
+.imagem-post{
+    overflow: hidden;
+}
+
+.imagem-post img{
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+    -moz-transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+}
+
+.imagem-post:hover img{
+    cursor: pointer;
+    -moz-transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+/* Divisor de Publicações Recentes|Destaques (Index)*/
 .divisor{
     display: inline-block;
     width: 1px;
     background-color: grey;
     margin: 0 10px;
+}
+
+/* Link para publicação estilizado */
+.pub-link{
+    color: #a90e10;
+    text-decoration: none;
+}
+
+.pub-link:link{
+    color: #a90e10;
+    text-decoration: none;
+}
+
+.pub-link:visited{
+    color: #5e0809;
+    text-decoration: none;
+}
+
+.pub-link:hover{
+    color: #bd0f12;
+    text-decoration: none;
+}
+
+/* Banner das publicações */
+.banner-post{
+    width:100%;
+    height:80vh;
+    background-size:cover;
+    position: relative;
+    overflow: hidden;
+}
+
+.banner-conteudo {
+    position: absolute;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.banner-texto{
+    text-align: center;
+}
+
+
+.banner-texto h1{
+    font-size:80px;
+    color:#fff;
+    text-shadow: 4px 5px 7px black;
+}
+
+.banner-texto p{
+    font-size:40px;
+    color:rgb(238, 238, 238);
+    text-shadow: 4px 5px 7px black;
+}
+
+.info{
+    font-size: 20px;
+}
+
+/* Divisor horizontal */
+.horizontal-divisor{
+    border-top: 3px solid #bbb;
+    border-radius: 5px;
+}
+
+*{
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
 }
 
 footer {
