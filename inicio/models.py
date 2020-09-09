@@ -3,7 +3,9 @@ from usuarios.models import Usuario
 from django.utils import timezone
 from ckeditor.fields import RichTextField
 from utils.imagens import redimensionar
-
+import random
+import string
+from django.utils.text import slugify
 
 class Categoria(models.Model):
     nome = models.CharField(max_length=100, verbose_name='Nome')
@@ -25,11 +27,23 @@ class Post(models.Model):
     data = models.DateTimeField(default=timezone.now, verbose_name='Data de Postagem')
     categoria = models.ForeignKey(to=Categoria, on_delete=models.SET_NULL, null=True, verbose_name='Categoria')
     destaque = models.BooleanField(default=False, verbose_name='Destaque')
+    slug = models.SlugField(max_length=300, unique=True, blank=True, verbose_name='Slug')
 
     def __str__(self) -> str:
         return self.titulo
 
     def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.titulo)
+
+            # Se a slug já existir 4 caracteres aleatórios, dentre números e letras, serão concatenados ao final da original
+            if Post.objects.filter(slug=self.slug).exists():
+                self.slug = f"{self.slug}-{''.join(random.choice(string.ascii_lowercase + string.digits) for i in range(4))}"
+        else:
+            # Se a slug já existir 4 caracteres aleatórios, dentre números e letras, serão concatenados ao final da original
+            if Post.objects.filter(slug=self.slug).exists():
+                self.slug = f"{self.slug}-{''.join(random.choice(string.ascii_lowercase + string.digits) for i in range(4))}"
+
         super().save(*args, **kwargs)
 
         if self.foto:

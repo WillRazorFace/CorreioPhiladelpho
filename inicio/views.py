@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from .forms import FeedbackFormNaoLogado, FeedbackFormLogado
 from .models import Post
@@ -32,3 +32,14 @@ def index(request):
 
             messages.success(request, 'Agradecemos seu feedback.')
             return redirect('index')
+
+def publicacao(request, slug: str):
+    if request.method == 'GET':
+        if request.user.is_authenticated:
+            form = FeedbackFormLogado()
+        else:
+            form = FeedbackFormNaoLogado()
+        
+        post = get_object_or_404(Post, slug=slug)
+
+        return render(request, 'inicio/publicacao.html', {'post': post, 'form': form})

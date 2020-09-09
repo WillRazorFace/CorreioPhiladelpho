@@ -11,12 +11,16 @@
             <div class="card mt-3 card-pub">
                 <div class="card-horizontal">
                     <div class="card-body">
-                        <h5 class="card-title">{{ post.titulo }}</h5>
+                        <h5 class="card-title"><a href="{% url 'publicacao' post.slug %}" title="Ir para publicação" class="pub-link">{{ post.titulo }}</a></h5>
                         <p class="card-text">{{ post.subtitulo }}</p>
                     </div>
 
                     <div class="img-square-wrapper">
-                        <img class="" src="{{ post.foto.url }}" width="300px" height="180px" alt="Imagem da Publicação">
+                        <div class="imagem-post">
+                            <a href="{% url 'publicacao' post.slug %}" title="Ir para publicação" style="text-decoration: none; color:black;">
+                                <img class="" src="{{ post.foto.url }}" width="300px" height="180px" alt="Imagem da Publicação">
+                            </a>
+                        </div>
                     </div>
                 </div>
                 
