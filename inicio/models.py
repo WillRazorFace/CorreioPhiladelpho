@@ -24,6 +24,7 @@ class Post(models.Model):
     foto = models.ImageField(upload_to='posts/%Y/%m/%d', blank=True, null=True, verbose_name='Imagem')
     data = models.DateTimeField(default=timezone.now, verbose_name='Data de Postagem')
     categoria = models.ForeignKey(to=Categoria, on_delete=models.SET_NULL, null=True, verbose_name='Categoria')
+    destaque = models.BooleanField(default=False, verbose_name='Destaque')
 
     def __str__(self) -> str:
         return self.titulo
@@ -32,7 +33,7 @@ class Post(models.Model):
         super().save(*args, **kwargs)
 
         if self.foto:
-            redimensionar(self.foto.name, 1000)
+            redimensionar(self.foto.name, 800)
 
     class Meta:
         verbose_name = 'Publicação'

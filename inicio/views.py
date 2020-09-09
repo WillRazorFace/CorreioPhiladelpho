@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import FeedbackFormNaoLogado, FeedbackFormLogado
+from .models import Post
 
 def index(request):
     if request.method == 'GET':
@@ -9,7 +10,10 @@ def index(request):
         else:
             form = FeedbackFormNaoLogado()
 
-        return render(request, 'inicio/index.html', {'form': form})
+        destaques = Post.objects.prefetch_related('categoria').filter(destaque=True).order_by('-id')
+        posts = Post.objects.prefetch_related('categoria').all().order_by('-id')
+
+        return render(request, 'inicio/index.html', {'form': form, 'posts': posts, 'destaques': destaques})
     elif request.method == 'POST':
         if request.user.is_authenticated:
             form = FeedbackFormLogado(data=request.POST)

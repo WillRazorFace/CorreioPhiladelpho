@@ -4,9 +4,64 @@
     color: #fff;
 }
 
+.card-horizontal{
+    display: flex;
+    flex: 1 1 auto;
+}
+
+.card-pub{
+    width: 50rem;
+}
+
+.card-destaque{
+    width: 200px;
+}
+
+.text-destaque{
+    color: white;
+    text-shadow: 2px 0 0 black, -2px 0 0 black, 0 2px 0 black, 0 -2px 0 black, 1px 1px black, -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black;
+}
+
+.imagem-destaque{
+    overflow: hidden;
+}
+
+.imagem-destaque img{
+    border-radius: 10px;
+    border-style: outset;
+    border-color: black;
+    border-width: 2px;
+    width: 200px;
+    max-width: 100%;
+    -moz-transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+}
+
+.imagem-destaque:hover img{
+    border-radius: 20px;
+    cursor: pointer;
+    -moz-transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+.divisor{
+    display: inline-block;
+    width: 1px;
+    background-color: grey;
+    margin: 0 10px;
+}
+
 footer {
-    position: fixed;
+    position: relative;
     left: 0;
     bottom: 0;
     width: 100%;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
 }

@@ -39,14 +39,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
     'ckeditor',
     'ckeditor_uploader',
     'crispy_forms',
+    'debug_toolbar',
     'inicio',
     'usuarios',
 ]
 
 MIDDLEWARE = [
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -75,7 +78,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'correio.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
@@ -151,6 +153,11 @@ CKEDITOR_UPLOAD_PATH = 'ckeditor/'
 # Estilos a serem usados pelo crispy
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+# Debug-toolbar
+INTERNAL_IPS = [
+    '127.0.0.1',
+]
 
 # Mensagens
 MESSAGE_TAGS = {
