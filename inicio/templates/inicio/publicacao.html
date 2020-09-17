@@ -5,24 +5,18 @@
 
 {% block Adicional %}
 <div class="banner-post" style="background-image: url({{ post.foto.url }});">
-    <div class="banner-conteudo">
-        <div class="banner-texto">
-            <h1>{{ post.titulo }}</h1>
-            <p>{{ post.subtitulo }}</p>
-        </div>
-    </div>
+    <h1>{{ post.titulo }}</h1>
+    <p>{{ post.subtitulo }}</p>
 </div>
 {% endblock %}
 
 {% block Conteúdo %}
-
-
     <div class="row pt-5">
         <div class="col-xl">
 
         </div>
 
-        <div class="col-xl-6 text-center">
+        <div class="col-xl-7 text-center">
             <p class="text-muted">
                 <i class="fas fa-user fa-2x mr-3">
                     <small class="info">{{ post.usuario.nome }}</small>

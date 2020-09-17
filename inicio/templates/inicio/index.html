@@ -4,45 +4,64 @@
 
 {% block Conteúdo %}
     <div class="row">
-        <div class="container col-sm">
-            <h3>Publicações Recentes</h3>
+        <div class="container col-9">
+            <div class="head-block mb-3">
+                <h3>Publicações Recentes</h3>
+            </div>
 
             {% for post in posts %}
-            <div class="card mt-3 card-pub">
-                <div class="card-horizontal">
-                    <div class="card-body">
-                        <h5 class="card-title"><a href="{% url 'publicacao' post.slug %}" title="Ir para publicação" class="pub-link">{{ post.titulo }}</a></h5>
-                        <p class="card-text">{{ post.subtitulo }}</p>
+            <div class="card mb-3" style="width: 100%;">
+                <div class="row no-gutters pub">
+                    <div class="col-md-4 imagem-post">
+                        <img class="img-fluid" src="{{ post.foto.url }}" width="300px" height="180px" alt="Imagem da Publicação">
                     </div>
-
-                    <div class="img-square-wrapper">
-                        <div class="imagem-post">
-                            <a href="{% url 'publicacao' post.slug %}" title="Ir para publicação" style="text-decoration: none; color:black;">
-                                <img class="" src="{{ post.foto.url }}" width="300px" height="180px" alt="Imagem da Publicação">
-                            </a>
+                    
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title"><a href="{% url 'publicacao' post.slug %}" title="Ir para publicação" class="pub-link">{{ post.titulo }}</a></h5>
+                            <p class="card-text">{{ post.subtitulo }}</p>
                         </div>
                     </div>
                 </div>
                 
                 <div class="card-footer">
-                    <p class="card-text">
-                        {{ post.categoria }}<br/>
-                        {{ post.data}}<br/>
-                        {{ post.comments.all }}
-                    </p>
+                    <div class="row">
+                        <div class="col-10">
+                            <p class="card-text">
+                                {{ post.categoria }}<br/>
+                                {{ post.data}}<br/>
+                                {{ post.comments.all }}
+                            </p>
+                        </div>
+                    
+                        <div class="col-2">
+                            <a href="{% url 'publicacao' post.slug %}" class="btn btn-danger cor-padrao">Ler mais</a>
+                        </div>
+                    </div>
                 </div>
             </div>
+            
+            <!-- Gambiarra -->
             {% endfor %}
         </div>
 
         <div class="divisor col-xs-2"></div>
 
-        <div class="container col-sm">
-            <h3>Destaques</h3>
+        <div class="container col">
+            <div class="head-block mb-3">
+                <h3>Destaques</h3>
+            </div>
 
             {% for destaque in destaques %}
-            <div class="imagem-destaque mb-3">
-                <img title="{{ destaque.titulo }}" src="{{ destaque.foto.url }}" alt="Imagem do destaque">
+            <div class="card mb-3" style="width: 100%;">
+                <div class="imagem-destaque mb-3">
+                    <img title="{{ destaque.titulo}}" class="card-img-top" src="{{ destaque.foto.url }}" alt="Imagem do destaque">
+                </div>
+
+                <div class="card-body text-center">
+                    <h5 class="card-title">{{ destaque.titulo }}</h5>
+                    <a href="{% url 'publicacao' destaque.slug %}" class="btn btn-block btn-danger cor-padrao">Ler mais</a>
+                </div>
             </div>
             {% endfor %}
         </div>
