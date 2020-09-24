@@ -12,6 +12,10 @@ html{
 
 	color: var(--text);
 	font-family: 'Noto Serif', serif;
+	font-size: 62.5%;
+	
+	width: 100vw;
+	height: 100vh;
 }
 
 body{
@@ -24,9 +28,21 @@ html, body{
 	width: 100%;
 }
 
+header{
+	width: 100%;
+	max-width: 100%;
+}
+
+header h1{
+	font-size: 4rem;
+}
+header h4{
+	font-size: 2rem;
+}
 header ul li{
 	display: inline;
 	color: var(--text);
+	font-size: 1.6rem;
 }
 
 header ul li a:link, a:visited{
@@ -35,9 +51,8 @@ header ul li a:link, a:visited{
 }
 
 header li.nope{
-	/* border-right: 1px solid #c0c0c0; */
-	padding-left: 15px;
-	padding-right: 15px;
+	padding-left: 1.5rem;
+	padding-right: 1.5rem;
 }
 
 header ul{
@@ -109,7 +124,7 @@ span.drop:hover{
 .sidenav a {
   padding: 8px 8px 8px 32px;
   text-decoration: none;
-  font-size: 25px;
+  font-size: 2.5rem;
   color: white;
   display: block;
   transition: 0.3s;
@@ -128,7 +143,6 @@ span.drop:hover{
   margin-left: 50px;
 }
 
-/* CLASSES */
 
 .sensa{
 	border-left: 1px solid #c0c0c0;
@@ -140,10 +154,12 @@ span.drop:hover{
 .title{
 	text-align: left;
 	padding-left: 10px;
-	font-size: 2rem;
+	font-size: 20rem;
 }
 
 #wrapper-index{
+	width: 100%;
+	max-width: 100%;
 	min-height: 100%;
 	display: flex;
 	flex-direction: row;
@@ -152,6 +168,7 @@ span.drop:hover{
 #container-main{
 	display: flex;
 	flex-direction: column;
+	max-width: 980px;
 	height: 90%;
 	width: 60%;
 }
@@ -169,15 +186,16 @@ span.drop:hover{
 /* ESTRUTURA DOS CARDS */
 .card{
 	height: 25vh;
+	min-width: 100%;
 	width: 100%;
 	display: flex;
 	text-align: left;
-	margin-top: 10px;
+	margin-top: 1px;
 }
 .card h3, .card h4{
 	margin-top: 0.3em;
 	margin-bottom: 0;
-	margin-left: 10px;
+	margin-left: 1rem;
 }
 .card p{
 	margin-left: 10px;
@@ -193,12 +211,14 @@ span.drop:hover{
 }
 .abstract{
 	height: 100%;
-	width: 80%;
+	width: 100vw;
 	background-color: var(--card);
 }
-.abstract:hover{
-	transform: translateY(-10%);
-	box-shadow: 0px 6px 6px var(--shadow);
+.abstract .materia-categoria, .abstract .materia-titulo{
+	font-size: 2rem;
+}
+.abstract .materia-info, .abstract .materia-resumo{
+	font-size: 1.5rem;
 }
 .image img{
 	width: 180px;
@@ -207,15 +227,17 @@ span.drop:hover{
 }
 
 /* ESTRUTURA DOS POPULARES */
+#container-second h3{
+	font-size: 2.4rem;
+}
 .pop{
 	width: 100%;
 	height: 20%;
 	display: flex;
 	flex-direction: row;
-	/* justify-content: center; */
 	background-color: var(--white);
 	margin-top: 30px;
-	
+	font-size: 1.6rem;
 }
 .number{
 	width: 20%;
@@ -244,12 +266,14 @@ span.drop:hover{
 	position: absolute;
 	height: 300px;
 	width: 100%;
+	max-width: 100%;
 	padding-top: 10px;
 	font-family: 'Noto Serif', serif;
 }
 
 #rodapé .footer .footer-content{
-	height: 275px;
+	height: 100%;
+	max-height: 275px;
 	display: flex;
 }
 
@@ -267,12 +291,21 @@ span.drop:hover{
 
 #rodapé .footer .footer-content .about .contact span{
 	display: block;
-	font-size: 1.1em;
+	font-size: 1.6rem;
 	margin-bottom: 8px;
 }
 
+#rodapé .footer .footer-content .about{
+	font-size: 1.8rem;
+}
+#rodapé .footer .footer-content .links{
+	font-size: 1.4rem;
+}
+#rodapé .footer .footer-content .contact{
+	font-size: 1.4rem;
+}
 #rodapé .footer .footer-bottom{
-	/* position: absolute; */
+	font-size: 1.3rem;
 	height: 25px;
 	text-align: right;
 	bottom: 0;
@@ -380,7 +413,8 @@ label:active:after {
 
 /* width */
 ::-webkit-scrollbar {
-    width: 5px;
+	width: 5px;
+	height: 5px;
 }
   
   /* Track */

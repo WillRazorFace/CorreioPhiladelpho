@@ -1,0 +1,32 @@
+@media (max-width: 780px){
+    html{
+        font-size: 45%;
+    }
+    .image img{
+        width: 130px;
+        height: 115px;
+    }
+    .toggle{
+        visibility: hidden;
+    }
+    .card{
+        flex-direction: column;
+    }
+    .image img{
+        width: 100%;
+    }
+    #container-main{
+        width: 70%;
+    }
+    #container-second{
+        visibility: hidden;
+    }
+}
+@media (max-width: 480px){
+    html{
+        font-size: 60%;
+    }
+    .wrapper-index{
+        flex-direction: column;
+    }
+}
