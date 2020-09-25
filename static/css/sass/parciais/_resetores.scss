@@ -1,0 +1,39 @@
+$cor-padrao-claro: #a90e10;
+$cor-padrao-escuro: #5e0809;
+
+@mixin box-shadow() {
+    box-shadow: 1px 2px 3px rgba(0, 0, 0, .7);
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Roboto', sans-serif;
+
+    li{
+        list-style: none;
+    }
+
+    a{
+        text-decoration: none;
+    }
+
+    img{
+        display: block;
+        width: 100%;
+    }
+}
+
+.container{
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-areas:
+        "navegacao"
+        "conteudo"
+        "rodape"
+    ;
+}
