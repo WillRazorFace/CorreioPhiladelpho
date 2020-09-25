@@ -77,3 +77,79 @@ $cor-padrao-escuro: #5e0809;
         }
     }
 }
+
+// Media Queries
+
+@include query(laptop){
+
+}
+
+@include query(tablet){
+    .barra-de-navegacao{
+        grid-template-areas:
+            "logo toggle"
+            "links links"
+        ;
+        padding: 20px 0 20px 0;
+    
+        &.colapsavel{
+            padding: 20px 0 0 0;
+        }
+    
+        .logo-cp{
+            grid-area: logo;
+            max-width: 200px;
+            padding: 0 0 0 20px;
+        }
+    
+        .toggle-botao{
+            grid-area: toggle;
+            display: block;
+            margin-left: auto;
+            margin-right: 20px;
+        }
+    
+        .menu{
+            grid-area: links;
+            margin-left: 0;
+            display: grid;
+            grid-template-rows: 1fr 1fr 1fr 1fr;
+            text-align: center;
+            display: none;
+    
+            &.colapsavel{
+                margin-top: 20px;
+                display: block;
+            }
+    
+            li{
+                border-bottom: 1px solid $cor-padrao-escuro;
+                margin-left: 0;
+    
+                & + li{
+                    margin-left: 0;
+                }
+    
+                &:first-child{
+                    border-top: 1px solid $cor-padrao-escuro;
+                }
+    
+                &:last-child{
+                    border-bottom: 0;
+                }
+    
+                a{
+                    font-size: 2rem;
+                }
+            }
+        }
+    }
+}
+
+@include query(smartphone){
+
+}
+
+@include query(tela-grande){
+    
+}

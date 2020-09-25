@@ -32,7 +32,7 @@ $cor-padrao-escuro-5: #8d0c0e;
     .feedback{
         display: grid;
         grid-gap: 10px;
-        max-width: 70%;
+        max-width: 90%;
         grid-template-areas:
             "email"
             "feedback"
@@ -85,4 +85,68 @@ $cor-padrao-escuro-5: #8d0c0e;
             }
         }
     }
+}
+
+// Media Queries
+
+@include query(laptop){
+
+}
+
+@include query(tablet){
+        .rodape{
+        grid-template-columns: auto;
+        grid-template-areas:
+            "resumo"
+            "links"
+            "feedback"
+        ;
+        align-items: center;
+        justify-content: center;
+        padding: 20px 0 20px 0;
+        grid-gap: 0;
+
+        .resumo{
+            border-bottom: 1px solid $cor-padrao-escuro;
+            padding: 0 0 10px 0;
+            padding: 0 20px 10px 20px;
+        }
+
+        .links{
+            margin-top: 10px;
+            border-bottom: 1px solid $cor-padrao-escuro;
+            padding: 0 0 10px 0;
+        }
+
+        .feedback{
+            margin-top: 10px;
+        }
+
+        h5{
+            text-align: center;
+        }
+
+        p{
+            text-align: center;
+            font-size: 1.25rem;
+        }
+
+        li{
+            text-align: center;
+            font-size: 1.25rem;
+        }
+
+        .feedback{
+            padding: 0 20px 0 20px;
+            max-width: 100%;
+        }
+    }
+}
+
+@include query(smartphone){
+
+}
+
+@include query(tela-grande){
+    
 }
