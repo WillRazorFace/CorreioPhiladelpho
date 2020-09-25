@@ -1,0 +1,14 @@
+@mixin query($breakpoint) {
+    @if $breakpoint == smartphone{
+        @media only screen and (max-width: 600px){ @content };
+    }
+    @if $breakpoint == tablet{
+        @media only screen and (max-width: 900px){ @content };
+    }
+    @if $breakpoint == laptop{
+        @media only screen and (max-width: 1200px){ @content };
+    }
+    @if $breakpoint == tela-grande{
+        @media only screen and (min-width: 1800px){ @content };
+    }
+}
