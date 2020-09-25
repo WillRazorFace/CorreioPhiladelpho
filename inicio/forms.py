@@ -19,7 +19,7 @@ class FeedbackFormNaoLogado(forms.ModelForm):
 
     feedback = forms.CharField(
         required=True,
-        widget=forms.Textarea(attrs={'placeholder': 'Deixe-nos saber sua opinião', 'rows': '3', 'cols': '10'}),
+        widget=forms.Textarea(attrs={'placeholder': 'Deixe-nos saber sua opinião', 'rows': '5'}),
         max_length=5000,
     )
 
@@ -37,7 +37,7 @@ class FeedbackFormLogado(forms.ModelForm):
 
     feedback = forms.CharField(
         required=True,
-        widget=forms.Textarea(attrs={'placeholder': 'Deixe-nos saber sua opinião', 'rows': '3', 'cols': '10'}),
+        widget=forms.Textarea(attrs={'placeholder': 'Deixe-nos saber sua opinião', 'rows': '5', 'style': 'margin-top: 10px'}),
         max_length=5000,
     )
 

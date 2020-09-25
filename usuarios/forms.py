@@ -1,138 +1,93 @@
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from .models import Usuario
-from django import forms
-from crispy_forms.helper import FormHelper
-from utils.validadores import checar_caracteres_especiais_e_numeros
-from email_validator import validate_email
+{% extends 'base.html' %}
+{% load static %}
+{% block Título %}Página Inicial{% endblock %}
 
+{% block Conteúdo %}
+    <div class="row">
+        <div class="container col-sm">
+            <div class="head-block mb-3">
+                <h3>Publicações Recentes</h3>
+            </div>
 
-class FormCriarUsuario(UserCreationForm):
-
-    class Meta(UserCreationForm):
-        model = Usuario
-        fields = ('nome', 'sobrenome', 'email', 'foto', 'password')
-
-
-class FormMudarUsuario(UserChangeForm):
-
-    class Meta:
-        model = Usuario
-        fields = ('nome', 'sobrenome', 'email', 'foto', 'password')
-
-
-class LoginForm(forms.ModelForm):
-    # Form para o login do usuário
-    def __init__(self, *args, **kwargs):
-        super(LoginForm, self).__init__(*args, **kwargs)
-        self.helper = FormHelper()
-        self.helper.form_show_labels = False
-    
-    email = forms.EmailField(
-        required=True,
-        widget=forms.EmailInput(attrs={'class': 'text-center', 'placeholder': 'Endereço de e-mail'}),
-        max_length=100,
-    )
-
-    password = forms.CharField(
-        required=True,
-        widget=forms.PasswordInput(attrs={'class': 'text-center', 'placeholder': 'Senha'}),
-        max_length=50,
-    )
-
-    def clean(self, *args, **kwargs):
-        dados_limpos = self.cleaned_data
-
-        email = dados_limpos.get('email')
+            {% for post in posts %}
+            <div class="col-md-7 px-3">
+                <div class="card-block px-6">
+                  <h4 class="card-title">Horizontal Card with Carousel - Bootstrap 4 </h4>
+                  <p class="card-text">
+                    The Carousel code can be replaced with an img src, no problem. The added CSS brings shadow to the card and some adjustments to the prev/next buttons and the indicators is rounded now. As in Bootstrap 3
+                  </p>
+                  <p class="card-text">Made for usage, commonly searched for. Fork, like and use it. Just move the carousel div above the col containing the text for left alignment of images</p>
+                  <br>
+                  <a href="#" class="mt-auto btn btn-primary  ">Read More</a>
+                </div>
+              </div>
+              <!-- Carousel start -->
+              <div class="col-md-5">
+                <div id="CarouselTest" class="carousel slide" data-ride="carousel">
+                  <ol class="carousel-indicators">
+                    <li data-target="#CarouselTest" data-slide-to="0" class="active"></li>
+                    <li data-target="#CarouselTest" data-slide-to="1"></li>
+                    <li data-target="#CarouselTest" data-slide-to="2"></li>
         
-        # Validando o email
-        if not validate_email(email):
-            self.add_error('email', 'Insira um e-mail válido')
+                  </ol>
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <img class="d-block" src="https://picsum.photos/450/300?image=1072" alt="">
+                    </div>
+                    <div class="carousel-item">
+                      <img class="d-block" src="https://picsum.photos/450/300?image=855" alt="">
+                    </div>
+                    <div class="carousel-item">
+                      <img class="d-block" src="https://picsum.photos/450/300?image=355" alt="">
+                    </div>
+                    <a class="carousel-control-prev" href="#CarouselTest" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+                    <a class="carousel-control-next" href="#CarouselTest" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+                  </div>
+                </div>
+              </div>
+              <!-- End of carousel -->
+            </div>
+          </div>
+          <!-- End of card -->
+          
+            <div class="card mb-3" style="max-width: 50rem;">
+                <div class="row no-gutters">
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ post.titulo }}</h5>
+                            <p class="card-text">{{ post.subtitulo }}</p>
+                        </div>
+                    </div>
 
-    class Meta:
-        model = Usuario
-        fields = ('email', 'password')
+                    <div class="col-md-4">
+                        <a href="{% url 'publicacao' post.slug %}" title="Ir para publicação" style="text-decoration: none; color:black;">
+                            <img class="" src="{{ post.foto.url }}" width="300px" height="180px" alt="Imagem da Publicação">
+                        </a>
+                    </div>
+                </div>
 
-class CadastroForm(forms.ModelForm):
-    # Form para o cadastro do usuário
-    def __init__(self, *args, **kwargs):
-        super(CadastroForm, self).__init__(*args, **kwargs)
-        self.helper = FormHelper()
-        self.helper.form_show_labels = False
+                <div class="card-footer">
+                    <p class="card-text">
+                        {{ post.categoria }}<br/>
+                        {{ post.data}}<br/>
+                        {{ post.comments.all }}
+                    </p>
+                </div>
+            </div>
 
-    nome = forms.CharField(
-        required=True,
-        widget=forms.TextInput(attrs={'class': 'text-center', 'placeholder': 'Nome'}),
-        max_length=40,
-    )
+            <div class="card mt-3 card-pub">
+                <div class="card-horizontal">
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="{% url 'publicacao' post.slug %}" title="Ir para publicação" class="pub-link">{{ post.titulo }}</a></h5>
+                        <p class="card-text">{{ post.subtitulo }}</p>
+                    </div>
 
-    sobrenome = forms.CharField(
-        required=True,
-        widget=forms.TextInput(attrs={'class': 'text-center', 'placeholder': 'Sobrenome'}),
-        max_length=40,
-    )
-
-    email = forms.EmailField(
-        required=True,
-        widget=forms.EmailInput(attrs={'class': 'text-center', 'placeholder': 'Endereço de e-mail'}),
-        max_length=100,
-    )
-
-    password = forms.CharField(
-        required=True,
-        widget=forms.PasswordInput(attrs={'class': 'text-center', 'placeholder': 'Senha'})
-    )
-
-    password_confirmacao = forms.CharField(
-        required=True,
-        widget=forms.PasswordInput(attrs={'class': 'text-center', 'placeholder': 'Confirme sua senha'}),
-    )
-
-    foto = forms.ImageField(
-        required=False,
-        widget=forms.FileInput(attrs={'class': 'text-center'}),
-        help_text='Foto que será exibida em seu perfil',
-    )
-
-    newsletter = forms.BooleanField(
-        required=False,
-        initial=True,
-    )
-
-    def clean(self, *args, **kwargs):
-        dados_limpos = self.cleaned_data
-
-        nome = dados_limpos.get('nome')
-        sobrenome = dados_limpos.get('sobrenome')
-        email = dados_limpos.get('email')
-        senha = dados_limpos.get('password')
-        senha_confirmacao = dados_limpos.get('password_confirmacao')
-
-        # Validando o nome
-        if checar_caracteres_especiais_e_numeros(nome):
-            self.add_error('nome', 'Seu nome não pode conter caracteres especiais nem números')
-
-        # Validando o sobrenome
-        if checar_caracteres_especiais_e_numeros(sobrenome):
-            self.add_error('sobrenome', 'Seu nome não pode conter caracteres especiais nem números')
-        elif sobrenome == nome:
-            self.add_error('sobrenome', 'Seu sobrenome não pode ser igual a seu nome.')
-
-        # Validando o e-mail
-        try:
-            checagem_email = Usuario.objects.get(email=email)
-        except Usuario.DoesNotExist:
-            checagem_email = False
-
-        if not validate_email(email):
-            self.add_error('email', 'Insira um e-mail válido')
-        elif checagem_email:
-            self.add_error('email', 'Este endereço de e-mail já foi cadastrado')
-
-        # Validando a senha
-        if senha != senha_confirmacao:
-            self.add_error('password_confirmacao', 'As senhas não coincidem')
-    class Meta:
-        model = Usuario
-        fields = ('nome', 'sobrenome', 'email', 'password', 'foto', 'newsletter')
-
-
+                    <div class="img-square-wrapper">
+                        <div class="imagem-post">
+                            <a href="{% url 'publicacao' post.slug %}" title="Ir para publicação" style="text-decoration: no
