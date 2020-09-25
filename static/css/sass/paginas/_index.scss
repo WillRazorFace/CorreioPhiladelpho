@@ -17,7 +17,7 @@ $cor-padrao-escuro-5: #8d0c0e;
     display: grid;
     grid-template-columns: auto 300px;
     grid-template-areas:
-        "publicacoes destaques"
+        "publicacoes populares"
     ;
     grid-gap: 20px;
     margin: 0 70px;
@@ -27,7 +27,7 @@ $cor-padrao-escuro-5: #8d0c0e;
     }
 
     .popular{
-        grid-area: destaques;
+        grid-area: populares;
     }
 
     .secao-bloco{
@@ -138,6 +138,7 @@ $cor-padrao-escuro-5: #8d0c0e;
             grid-area: info;
             font-style: italic;
             line-height: 1.6;
+            color: rgba(0, 0, 0, .7);
         }
 
         .pub-botao{
@@ -185,6 +186,7 @@ $cor-padrao-escuro-5: #8d0c0e;
 
         .popular-titulo{
             grid-area: texto;
+            text-align: center;
             margin-top: 20px;
             font-size: 0.55rem;
         }
@@ -263,4 +265,77 @@ $cor-padrao-escuro-5: #8d0c0e;
             }
         }
     }
+}
+
+// Media Queries
+
+@include query(laptop){
+    .conteudo-index{
+        grid-template-columns: auto;
+        grid-template-areas:
+            "publicacoes publicacoes"
+            "populares populares"
+        ;
+        margin: 0 10px;
+
+        .populares-wrapper{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 20px;
+        }
+    }
+}
+
+@include query(tablet){
+    .conteudo-index{
+        .pub-card{
+            grid-template-columns: 100%;
+            grid-template-areas:
+                "imagem"
+                "info"
+                "texto"
+                "botao"
+            ;
+
+            .pub-img{
+                width: 100%;
+            }
+
+            .pub-info{
+                margin-top: 20px;
+                text-align: center;
+            }
+
+            .pub-texto{
+                h1{
+                    margin-left: 0;
+                    text-align: center;
+                }
+
+                p{
+                    margin-left: 0;
+                    text-align: center;
+                }
+            }
+
+            .pub-botao{
+                max-height: 50px !important;
+                margin: 20px 0 0 0;
+                text-align: center;
+            }
+        }
+
+        .populares-wrapper{
+            grid-template-columns: auto;
+            grid-gap: 0;
+        }
+    }
+}
+
+@include query(smartphone){
+
+}
+
+@include query(tela-grande){
+    
 }
