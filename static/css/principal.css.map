@@ -7,7 +7,8 @@
         "sass/parciais/_resetores.scss",
         "sass/parciais/_header.scss",
         "sass/parciais/_footer.scss",
-        "sass/paginas/_index.scss"
+        "sass/paginas/_index.scss",
+        "sass/paginas/_publicacao.scss"
     ],
     "names": [],
     "file": "principal.css"
