@@ -11,15 +11,16 @@
         {% include 'parciais/_navbar.html' %}
         
         {% block Adicional %}{% endblock %}
-
-        <main class="container mt-4 mb-4">
+        
             {% include 'parciais/_messages.html' %}
-            
-            {% block Conteúdo %}
-            {% endblock %}
-        </main>
+
+        {% block Conteúdo %}
+        {% endblock %}
 
         {% include 'parciais/_footer.html' %}
+
+        <script type="text/javascript" src="js/scripts.js"></script>
+        <script src="https://use.fontawesome.com/f222674066.js"></script>
     </div>
 </body>
 

@@ -10,10 +10,10 @@ def index(request):
         else:
             form = FeedbackFormNaoLogado()
 
-        destaques = Post.objects.prefetch_related('categoria').filter(destaque=True).order_by('-id')
+        populares = Post.objects.prefetch_related('categoria').filter(destaque=True).order_by('-id')
         posts = Post.objects.prefetch_related('categoria').all().order_by('-id')
 
-        return render(request, 'inicio/index.html', {'form': form, 'posts': posts, 'destaques': destaques})
+        return render(request, 'inicio/index.html', {'form': form, 'posts': posts, 'populares': populares})
     elif request.method == 'POST':
         if request.user.is_authenticated:
             form = FeedbackFormLogado(data=request.POST)

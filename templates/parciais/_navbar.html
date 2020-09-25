@@ -1,21 +1,21 @@
 {% load static %}
-<header class="barra-de-navegacao" id="nav">
-    <div class="logo-cp">
-        <a href="#">
-            <img src="{% static '/img/logo-cp.svg' %}" alt="Correio Philadelpho">
-        </a>
-    </div>
+    <header class="barra-de-navegacao" id="nav">
+        <div class="logo-cp">
+            <a href="{% url 'index' %}">
+                <img src="{% static '/img/logo-cp.svg' %}" alt="Correio Philadelpho">
+            </a>
+        </div>
 
-    <div class="toggle-botao" onclick="mostrarMenu(this)">
-        <div class="barra-1" id="1"></div>
-        <div class="barra-2"></div>
-        <div class="barra-3"></div>
-    </div>
+        <div class="toggle-botao" onclick="mostrarMenu(this)">
+            <div class="barra-1" id="1"></div>
+            <div class="barra-2"></div>
+            <div class="barra-3"></div>
+        </div>
 
-    <ul id="menu" class="menu">
-        <li><a href="#" title="Entrar"><i class="fa fa-user" aria-hidden="true"></i> Painel de Usuário</a></li>
-        <li><a href="#" title="Divulgação Científica"><i class="fa fa-book" aria-hidden="true"></i> Divulgação Científica</a></li>
-        <li><a href="#" title="Eventos"><i class="fa fa-calendar-o" aria-hidden="true"></i> Eventos</a></li>
-        <li><a href="#" title="Modo Escuro"><i class="fa fa-moon-o" aria-hidden="true"></i> Modo Escuro</a></li>
-    </ul>
-</header>
+        <ul id="menu" class="menu">
+            <li><a href="#" title="Entrar"><i class="fa fa-user" aria-hidden="true"></i> Painel de Usuário</a></li>
+            <li><a href="#" title="Divulgação Científica"><i class="fa fa-book" aria-hidden="true"></i> Divulgação Científica</a></li>
+            <li><a href="#" title="Eventos"><i class="fa fa-calendar-o" aria-hidden="true"></i> Eventos</a></li>
+            <li><a href="#" title="Modo Escuro"><i class="fa fa-moon-o" aria-hidden="true"></i> Modo Escuro</a></li>
+        </ul>
+    </header>

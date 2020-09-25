@@ -1,43 +1,40 @@
 {% load crispy_forms_tags %}
 {% load static %}
-<footer class="rodape">
-      <div>
-            <h5>Correio Philadelpho</h5>
-            
-            <p>O Correio é desenvolvido pelos alunos da Etec Philadelpho Gouvêa Netto para divulgar
-               ciência aos jovens de forma mais responsiva, bem como divulgar os eventos da escola.</p>
-      </div>
+    <footer class="rodape">
+        <div>
+                <h5>Correio Philadelpho</h5>
+                
+                <p>O Correio é desenvolvido pelos alunos da Etec Philadelpho Gouvêa Netto para divulgar
+                ciência aos jovens de forma mais responsiva, bem como divulgar os eventos da escola.</p>
+        </div>
 
-  <div>
-      <h5>Veja também</h5>
+    <div>
+        <h5>Veja também</h5>
 
-      <ul>
-            <li>Site do Philadelpho</li>
-            <li>Quem somos</li>
-            <li>Termos e condições</li>
-      </ul>
-  </div>
+        <ul>
+                <li>Site do Philadelpho</li>
+                <li>Quem somos</li>
+                <li>Termos e condições</li>
+        </ul>
+    </div>
 
-  <div>
-      <h5>Envie-nos seu feedback</h5>
-        {% if not request.user.is_authenticated %}
-        <form class="feedback" method="POST" action="">
-            {% csrf_token %}
-            
-            {{ form.email|as_crispy_field }}
-            {{ form.feedback|as_crispy_field }}
-            <button type="submit" class="feedback-botao">Enviar</button>
-        </form>
-        {% else %}
-        <form class="feedback" method="POST" action="">
-            {% csrf_token %}
+    <div>
+        <h5>Envie-nos seu feedback</h5>
+            {% if not request.user.is_authenticated %}
+            <form class="feedback" method="POST" action="">
+                {% csrf_token %}
+                
+                {{ form.email|as_crispy_field }}
+                {{ form.feedback|as_crispy_field }}
+                <button type="submit" class="feedback-botao">Enviar</button>
+            </form>
+            {% else %}
+            <form class="feedback" method="POST" action="">
+                {% csrf_token %}
 
-            {{ form.feedback|as_crispy_field }}
-            <button type="submit" class="feedback-botao">Enviar</button>
-        </form>
-        {% endif %}
-  </div>
-</footer>
-
-<script type="text/javascript" src="{% static '/js/jquery.js' %}"></script>
-<script type="text/javascript" src="{% static '/js/bootstrap.bundle.js' %}"></script>
+                {{ form.feedback|as_crispy_field }}
+                <button type="submit" class="feedback-botao">Enviar</button>
+            </form>
+            {% endif %}
+    </div>
+    </footer>
