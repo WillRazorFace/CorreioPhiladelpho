@@ -2,6 +2,7 @@ from django.db import models
 from usuarios.models import Usuario
 from django.utils import timezone
 from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField
 from utils.imagens import redimensionar
 import random
 import string
@@ -22,7 +23,7 @@ class Post(models.Model):
     usuario = models.ForeignKey(to=Usuario, on_delete=models.SET_NULL, null=True, verbose_name='Usuário')
     titulo = models.CharField(max_length=100, verbose_name='Título')
     subtitulo = models.CharField(max_length=300, verbose_name='Sub-título')
-    conteudo = RichTextField(verbose_name='Conteúdo')
+    conteudo = RichTextUploadingField(verbose_name='Conteúdo')
     foto = models.ImageField(upload_to='posts/%Y/%m/%d', blank=True, null=True, verbose_name='Imagem')
     data = models.DateTimeField(default=timezone.now, verbose_name='Data de Postagem')
     categoria = models.ForeignKey(to=Categoria, on_delete=models.SET_NULL, null=True, verbose_name='Categoria')
@@ -53,7 +54,7 @@ class Post(models.Model):
 class Comentario(models.Model):
     usuario = models.ForeignKey(to=Usuario, on_delete=models.SET_NULL, null=True, verbose_name='Usuário')
     post = models.ForeignKey(to=Post, on_delete=models.CASCADE, verbose_name='Postagem')
-    conteudo = RichTextField(verbose_name='Conteúdo')
+    conteudo = RichTextUploadingField(verbose_name='Conteúdo')
     data = models.DateTimeField(default=timezone.now, verbose_name='Data do comentário')
 
     def __str__(self) -> str:
