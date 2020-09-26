@@ -3,6 +3,14 @@ $cor-padrao-claro-4: #c11012;
 $cor-padrao-claro-6: #ed2123;
 $cor-padrao-escuro-5: #8d0c0e;
 
+@mixin box-shadow() {
+    box-shadow: 1px 2px 3px rgba(0, 0, 0, .7);
+}
+
+@mixin box-shadow-card(){
+    box-shadow: 1px 2px 10px rgba(0, 0, 0, .7);
+}
+
 @import 'parciais/mediaQueries';
 
 @import 'parciais/resetores';

@@ -1,0 +1,53 @@
+.conteudo-pub{
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-areas:
+        "hero"
+        "publicacao"
+    ;
+}
+
+.pub-hero{
+    background-size: cover;
+    min-height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    h1{
+        text-align: center;
+        font-size:70px;
+        color:#fff;
+        text-shadow: 4px 5px 7px black;
+    }
+
+    p{
+        text-align: center;
+        font-size:30px;
+        color:rgb(238, 238, 238);
+        text-shadow: 4px 5px 7px black;
+    }
+}
+
+.pub-post{
+    position: relative;
+    margin: 0 auto;
+    top: -50px;
+    height: 2000px;
+    width: 200px;
+    background: $cor-padrao-escuro;
+}
+
+.pub-hero-container{
+    text-align: center;
+    
+    width: 100%;
+    height: auto;
+    margin-top: 150px;
+    color: white;
+
+    h1{
+        font-size: 4rem;
+    }
+}
