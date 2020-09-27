@@ -2,93 +2,92 @@
 <html lang = "en">
 <head meta charset = "utf-8">
 	<link type = "text/css" media = "screen" href = "Estilo/main.css" rel = "stylesheet"/>
-	<link type = "text/css" media = "screen" href = "Estilo/anexo1.css" rel = "stylesheet"/>  
+	<link type = "text/css" media = "screen" href = "Estilo/anexo.css" rel = "stylesheet"/>  
 	<link href="https://fonts.googleapis.com/css?family=Noto+Serif&display=swap" rel="stylesheet">
 	<script src = "https://kit.fontawesome.com/8f2a036adf.js" crossorigin="anonymous"></script>
 	<title>TESTE TCC</title>
 </head>
 <body>
 	<header id = "titulo">
-		<h1><a href = "index.html">CORREIO PHILADELPHIANO</a></h1>
+		<h1><a href = "index.html">CORREIO DO PHILADELPHO</a></h1>
 		<h4>Um jornal a serviço do estudante</h4>
 			<div id = "divMenu">
-					<nav id = "menu">
-							<ul class = "topnav">
-								<li class = "sensa"><a href = "sensacionalista.html">SENSACIONALISTA</a></li>
-								<li class = "nope"><a href = "vestibular.html">VESTIBULAR</a></li>
-								<li class = "nope"><a href = "divulgacao.html">DIVULGAÇÃO CIENTÍFICA</a></li>
-								<li class = "nope"><a href = "eventos.html">EVENTOS</a></li>
-								<li class = "nope"><a href = "porcario.html">FÓRUM</a></li>
-								<li style = "float: right;"><span onclick = "openNav()" class = "drop">MENU</span></li>
-								<div id="mySidenav" class="sidenav">
-									<a href = "javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-									<a href = "conta.html">Conta</a>
-									<a href = "login.html">Login</a>
-									<a href = "criarConta.html">Criar uma conta</a>
-									<a href = "criarPost.html">Publicar</a>
-								</div>
-							</ul>
-					</nav>
+				<nav id = "menu">
+					<ul class = "topnav">
+						<li class = "nope"><a href = "vestibular.html">VESTIBULAR</a></li>
+						<li class = "nope"><a href = "divulgacao.html">DIVULGAÇÃO CIENTÍFICA</a></li>
+						<li class = "nope"><a href = "eventos.html">EVENTOS</a></li>
+						<li style = "float: right;"><span onclick = "openNav()" class = "drop">MENU</span></li>
+						<div id="mySidenav" class="sidenav">
+							<a href = "javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+							<a href = "conta.html">Conta</a>
+							<a href = "login.html">Login</a>
+							<a href = "criarConta.html">Criar uma conta</a>
+							<a href = "criarPost.html">Publicar</a>
+						</div>
+					</ul>
+				</nav>
 			</div>
 		</header>
 
-	<div class = "wrapper" id = "login-wrapper">
+	
+<div class = "wrapper" id = "login-wrapper">
     <div class = "conteudo" id = "login-conteudo">
 		<div class="toggle">
 			<input id="switch" type="checkbox" name="theme">
 			<label for="switch">Toggle</label>
-		</div>
+		</div>	
       <div class = "container" id = "login-container">
-			<div id = "login">
-        	<h2>Login</h2>
-	        <form class = "frmLogin">
-	            <input type = "text" id = "user" placeholder = "Usuário" required autofocus>
-				</br>
-	            <input type = "password" id = "pass" placeholder = "Senha" required>
-	        </form>
-	        <button class = "normal" type="submit" name="enviar" onclick = "validate()">ENVIAR</button>
-	        <button class = "normal" type="reset" name="limpar" onclick = "clear()">LIMPAR</button>
-				<p class = "propa">Não possui uma conta?<a href = "criarConta.html"> Cadastre-se agora.</a></p>
-			</div>
-      </div>
-    </div>
-		<footer id = "rodapé">
-			<div class = "footer">
-				<div class = "footer-content">
-					<div class = "footer-section about">
-						<h2>CORREIO PHILADELPHIANO</h2>
-						<p>O Correio é um site desenvolvido pelos alunos da Etec Philadelpho Gouvêa Netto para divulgar ciência aos jovens de forma
-						mais responsiva, bem como divulgar os eventos da escola.</p>
-						<div class = "contact">
-							<span><i class = "fas fa-phone"></i> &nbsp; (17)99617-4868</span>
-							<span><i class = "fas fa-envelope"></i> &nbsp; comper.mane@gmail.com</span>
-						</div>
-					</div>
-					<div class = "footer-section links">
-						<h3>Links Rápidos</h3>
-						<br>
-						<ul>
-							<li><a href = "http://philadelpho.com.br">Site da escola</a></li>
-							<li><a href = "quem_somos.html">Quem somos</a></li>
-							<li><a href = "#">Termos e condições</a></li>
-						</ul>
-					</div>
-					<div class = "footer-section contact">
-						<h3>Feedback</h3>
-						<br>
-						<form id = "frmFeedback" action = "index.html" method = "post">
-							<input type = "email" name = "emailFeed" placeholder = "Email" required>
-							<input type = "text" name = "opiniiaoFeed" placeholder = "Opiniões, perguntas, críticas..." required>
-							<button type = "submit" class = "normal">Enviar</button>
-						</form>
-					</div>
-				</div>
-				<div class = "footer-bottom">
-					<i class="fas fa-code"></i> com <i class="far fa-heart"></i> por T2C project
-				</div>
-			</div>
-		</footer>
+		<div id = "login">
+       	<h2>Login</h2>
+        <form class = "frmLogin">
+            <input type = "text" id = "user" placeholder = "Usuário" required autofocus>
+			</br>
+            <input type = "password" id = "pass" placeholder = "Senha" required>
+        </form>
+        <button class = "normal" type="submit" name="enviar" onclick = "validate()">ENVIAR</button>
+        <button class = "normal" type="reset" name="limpar" onclick = "clear()">LIMPAR</button>
+			<p class = "propa">Não possui uma conta?<a href = "criarConta.html"> Cadastre-se agora.</a></p>
+		</div>
+    	</div>
 	</div>
-	<script type = "text/javascript" lang = "javascript" src = "Script/script.js"></script>
+</div>
+<footer id = "rodapé">
+	<div class = "footer">
+		<div class = "footer-content">
+			<div class = "footer-section about">
+				<h2>CORREIO PHILADELPHIANO</h2>
+				<p>O Correio é um site desenvolvido pelos alunos da Etec Philadelpho Gouvêa Netto para divulgar ciência aos jovens de forma
+				mais responsiva, bem como divulgar os eventos da escola.</p>
+				<div class = "contact">
+					<span><i class = "fas fa-phone"></i> &nbsp; (17)99617-4868</span>
+					<span><i class = "fas fa-envelope"></i> &nbsp; comper.mane@gmail.com</span>
+				</div>
+			</div>
+			<div class = "footer-section links">
+				<h3>Links Rápidos</h3>
+				<br>
+				<ul>
+					<li><a href = "http://philadelpho.com.br">Site da escola</a></li>
+					<li><a href = "quem_somos.html">Quem somos</a></li>
+					<li><a href = "#">Termos e condições</a></li>
+				</ul>
+			</div>
+			<div class = "footer-section contact">
+				<h3>Feedback</h3>
+				<br>
+				<form id = "frmFeedback" action = "index.html" method = "post">
+					<input type = "email" name = "emailFeed" placeholder = "Email" required>
+					<input type = "text" name = "opiniiaoFeed" placeholder = "Opiniões, perguntas, críticas..." required>
+					<button type = "submit" class = "normal">Enviar</button>
+				</form>
+			</div>
+		</div>
+		<div class = "footer-bottom">
+			<i class="fas fa-code"></i> com <i class="far fa-heart"></i> por T2C project
+		</div>
+		</div>
+</footer>
+<script type = "text/javascript" lang = "javascript" src = "Script/script.js"></script>
 </body>
 </html>
