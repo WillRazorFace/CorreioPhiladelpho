@@ -16,6 +16,8 @@ $cor-padrao-escuro-5: #8d0c0e;
     box-shadow: 1px 2px 10px rgba(0, 0, 0, .7);
 }
 
+@import 'dependencias/rfs.scss';
+
 @import 'parciais/mediaQueries';
 
 @import 'parciais/resetores';
