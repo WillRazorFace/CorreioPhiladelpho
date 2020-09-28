@@ -29,7 +29,7 @@
                 display: block;
                 padding: 10px;
                 color: rgba(255, 255, 255, 0.6);
-                font-size: 1.125rem;
+                @include font-size(1);
                 transition: .3s ease;
 
                 &:hover{
@@ -137,7 +137,7 @@
                 }
     
                 a{
-                    font-size: 2rem;
+                    @include font-size(1.25rem);
                 }
             }
         }

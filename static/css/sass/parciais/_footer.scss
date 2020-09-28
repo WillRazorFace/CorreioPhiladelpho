@@ -7,22 +7,22 @@
         "resumo" "links" "feedback"
     ;
     color: white;
-    padding: 20px;
+    @include padding(1.25rem);
     background: linear-gradient(135deg, $cor-padrao-claro, #ed2123);
 
     p{
-        margin-top: 10px;
-        font-size: 1.125rem;
+        @include margin-top(0.625rem);
+        @include font-size(1.125rem);
     }
 
     h5{
-        font-size: 1.5rem;
+        @include font-size(1.5rem);
         font-weight: 700;
     }
 
     li{
-        margin-top: 10px;
-        font-size: 1rem;
+        @include margin-top(0.625rem);
+        @include font-size(1rem);
     }
 
     .feedback{
@@ -37,27 +37,27 @@
         input{
             grid-area: email;
             font-family: 'Roboto', sans-serif;
-            margin-top: 10px;
+            @include margin-top(0.625rem);
             outline: none;
             width: 100%;
-            font-size: 1.1rem;
+            @include font-size(1.1rem);
             text-align: center;
-            border-radius: 10px;
-            padding: 10px;
+            @include rfs(0.625rem, border-radius);
+            @include padding(0.625rem);
             border: 1px solid #aaa;
             font-weight: 400;
         }
     
         textarea{
             grid-area: feedback;
-            padding: 10px;
+            @include padding(0.625rem);
             font-family: 'Roboto', sans-serif;
             text-align: center;
             resize: none;
             width: 100%;
             outline: none;
-            font-size: 1.1rem;
-            border-radius: 10px;
+            @include font-size(1.1rem);
+            @include rfs(0.625rem, border-radius);
             border: 1px solid #aaa;
             font-weight: 400;
         }
@@ -65,18 +65,18 @@
         .feedback-botao{
             display: inline-block;
             text-align: center;
-            padding: 10px;
+            @include padding(0.625rem);
             outline: inherit;
             border: 0;
             cursor: pointer;
-            font-size: 1.1rem;
+            @include font-size(1.1rem);
             color: white;
             background: $cor-padrao-escuro-5 !important;
-            border-radius: 10px;
+            @include rfs(0.625rem, border-radius);
             transition: 0.3s ease;
 
             &:hover{
-                font-size: 1.2rem;
+                @include font-size(1.2rem);
                 background: $cor-padrao-escuro !important;
             }
         }
@@ -99,23 +99,26 @@
         ;
         align-items: center;
         justify-content: center;
-        padding: 20px 0 20px 0;
+        @include padding-top(1.25rem);
+        @include padding-bottom(1.25rem);
         grid-gap: 0;
 
         .resumo{
             border-bottom: 1px solid $cor-padrao-escuro;
-            padding: 0 0 10px 0;
-            padding: 0 20px 10px 20px;
+            @include padding-bottom(0.625rem);
+            @include padding-right(1.25rem);
+            @include padding-bottom(0.625rem);
+            @include padding-left(1.25rem);
         }
 
         .links{
-            margin-top: 10px;
+            @include margin-top(0.625rem);
             border-bottom: 1px solid $cor-padrao-escuro;
-            padding: 0 0 10px 0;
+            @include padding-bottom(0.625rem);
         }
 
         .feedback{
-            margin-top: 10px;
+            @include margin-top(0.625rem);
         }
 
         h5{
@@ -124,16 +127,17 @@
 
         p{
             text-align: center;
-            font-size: 1.25rem;
+            @include font-size(1.25rem);
         }
 
         li{
             text-align: center;
-            font-size: 1.25rem;
+            @include font-size(1.25rem);
         }
 
         .feedback{
-            padding: 0 20px 0 20px;
+            @include padding-right(1.25rem);
+            @include padding-left(1.25rem);
             max-width: 100%;
         }
     }
