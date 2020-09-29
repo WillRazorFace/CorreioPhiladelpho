@@ -70,3 +70,21 @@ $verde-sucesso: #0da14b;
     @include margin-top(2rem);
     @include margin-bottom(1rem);
 }
+
+// Media Queries
+
+@include query(laptop){
+
+}
+
+@include query(tablet){
+    .modal{
+        width: 600px;
+    }
+}
+
+@include query(smartphone){
+    .modal{
+        width: 300px;
+    }
+}
