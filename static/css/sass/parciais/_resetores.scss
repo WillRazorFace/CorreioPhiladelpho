@@ -28,7 +28,9 @@ body{
     grid-template-columns: auto;
     grid-template-areas:
         "navegacao"
+        "avisos-navegacao"
         "conteudo"
+        "avisos-rodape"
         "rodape"
     ;
 }

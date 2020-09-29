@@ -1,7 +1,20 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from .forms import FeedbackFormNaoLogado, FeedbackFormLogado
-from .models import Post
+from .models import Post, Feedback
+from django.shortcuts import HttpResponse
+
+def salvar_feedback(request):
+    if request.method == "POST":
+        email = request.POST.get('email') or request.user.email
+        feedback = request.POST.get('feedback')
+
+        if request.user.is_authenticated:
+            Feedback.objects.create(usuario=request.user,email=email, feedback=feedback)
+        else:
+            Feedback.objects.create(email=email, feedback=feedback)
+
+        return HttpResponse('Olá')
 
 def index(request):
     if request.method == 'GET':
@@ -14,24 +27,6 @@ def index(request):
         posts = Post.objects.prefetch_related('categoria').all().order_by('-id')
 
         return render(request, 'inicio/index.html', {'form': form, 'posts': posts, 'populares': populares})
-    elif request.method == 'POST':
-        if request.user.is_authenticated:
-            form = FeedbackFormLogado(data=request.POST)
-
-            feedback = form.save(commit=False)
-            feedback.email = request.user.email
-            feedback.usuario = request.user
-            feedback.save()
-
-            messages.success(request, 'Agradecemos seu feedback.')
-            return redirect('index')
-        else:
-            form = FeedbackFormNaoLogado(data=request.POST)
-
-            form.save()
-
-            messages.success(request, 'Agradecemos seu feedback.')
-            return redirect('index')
 
 def publicacao(request, slug: str):
     if request.method == 'GET':

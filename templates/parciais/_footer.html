@@ -7,34 +7,39 @@
                 <p>O Correio é desenvolvido pelos alunos da Etec Philadelpho Gouvêa Netto para divulgar
                 ciência aos jovens de forma mais responsiva, bem como divulgar os eventos da escola.</p>
         </div>
+    
+        <div class="links">
+            <h5>Veja também</h5>
 
-    <div class="links">
-        <h5>Veja também</h5>
+            <ul>
+                    <li>Site do Philadelpho</li>
+                    <li>Quem somos</li>
+                    <li>Termos e condições</li>
+            </ul>
+        </div>
 
-        <ul>
-                <li>Site do Philadelpho</li>
-                <li>Quem somos</li>
-                <li>Termos e condições</li>
-        </ul>
-    </div>
+        <div class="feedback">
+            <h5>Envie-nos seu feedback</h5>
+                {% if not request.user.is_authenticated %}
+                <form id="form-feedback" class="feedback" method="POST" action="">
+                    {% csrf_token %}
+                    
+                    {{ form.email|as_crispy_field }}
+                    {{ form.feedback|as_crispy_field }}
+                    <button type="submit" class="feedback-botao">Enviar</button>
+                </form>
+                {% else %}
+                <form id="form-feedback" class="feedback" method="POST" action="">
+                    {% csrf_token %}
 
-    <div class="feedback">
-        <h5>Envie-nos seu feedback</h5>
-            {% if not request.user.is_authenticated %}
-            <form class="feedback" method="POST" action="">
-                {% csrf_token %}
-                
-                {{ form.email|as_crispy_field }}
-                {{ form.feedback|as_crispy_field }}
-                <button type="submit" class="feedback-botao">Enviar</button>
-            </form>
-            {% else %}
-            <form class="feedback" method="POST" action="">
-                {% csrf_token %}
-
-                {{ form.feedback|as_crispy_field }}
-                <button type="submit" class="feedback-botao">Enviar</button>
-            </form>
-            {% endif %}
-    </div>
+                    {{ form.feedback|as_crispy_field }}
+                    <button type="submit" class="feedback-botao">Enviar</button>
+                </form>
+                {% endif %}
+        </div>
     </footer>
+
+    <script>
+        var FEEDBACK_URL = '{% url "feedback" %}';
+        var CSRFTOKEN = '{{ csrf_token }}'
+    </script>
