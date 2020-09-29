@@ -5,6 +5,7 @@
 	<script src = 'https://cdn.tiny.cloud/1/hpicj44e515yat8a4lbpcbo5i8cbv4p2s48jqxktuffzn4cc/tinymce/5/tinymce.min.js' referrerpolicy="origin"></script>
 	<script src = "https://kit.fontawesome.com/8f2a036adf.js" crossorigin="anonymous"></script>
 	<link type = "text/css" media = "screen" href = "Estilo/main.css" rel = "stylesheet"/>
+	<link type = "text/css" media = "screen" href = "Estilo/carousel.css" rel = "stylesheet"/>
 	<link href="https://fonts.googleapis.com/css?family=Noto+Serif&display=swap" rel="stylesheet">
 	<title>Correio do Philadelpho - Início</title>
 </head>
@@ -13,29 +14,51 @@
 		<h1><a href = "index.html">CORREIO DO PHILADELPHO</a></h1>
 		<h4>Um jornal a serviço do estudante</h4>
 			<div id = "divMenu">
-					<nav id = "menu">
-							<ul class = "topnav">
-									<!-- <li class = "sensa"><a href = "sensacionalista.html">SENSACIONALISTA</a></li> -->
-									<li class = "nope"><a href = "vestibular.html">VESTIBULAR</a></li>
-									<li class = "nope"><a href = "porcario.html">DIVULGAÇÃO CIENTÍFICA</a></li>
-									<li class = "nope"><a href = "porcario.html">EVENTOS</a></li>
-									<!-- <li class = "nope"><a href = "porcario.html">FÓRUM</a></li> -->
-									<li style = "float: right;"><span onclick = "openNav()" class = "drop" id = "dropID">MENU</span></li>
-									<div id="mySidenav" class="sidenav">
-									  <a href = "javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-									  <a href = "conta.html">Conta</a>
-									  <a href = "login.html">Login</a>
-									  <a href = "criarConta.html">Criar uma conta</a>
-									  <a href = "criarPost.html">Publicar</a>
-									</div>
-							</ul>
-					</nav>
+				<nav id = "menu">
+					<ul class = "topnav">
+						<li class = "nope"><a href = "vestibular.html">VESTIBULAR</a></li>
+						<li class = "nope"><a href = "porcario.html">DIVULGAÇÃO CIENTÍFICA</a></li>
+						<li class = "nope"><a href = "porcario.html">EVENTOS</a></li>
+						<li style = "float: right;"><span onclick = "openNav()" class = "drop" id = "dropID">MENU</span></li>
+						<div id="mySidenav" class="sidenav">
+							<a href = "javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+							<a href = "conta.html">Conta</a>
+							<a href = "login.html">Login</a>
+							<a href = "criarConta.html">Criar uma conta</a>
+							<a href = "criarPost.html">Publicar</a>
+						</div>
+					</ul>
+				</nav>
 			</div>
 	</header>
 
 	<div class="toggle">
 		<input id="switch" type="checkbox" name="theme">
 		<label for="switch">Toggle</label>
+	</div>
+
+	<div class = "wrapper-first">
+		<div class = "container-first">
+			<div class = "secoes" id = "introducao">
+				<div id = "categorias">
+					<div class="categoria">
+						<img src = "Imagens/maths.jpg">
+					</div>
+					<div class= "categoria">
+						<img src = "Imagens/maths.jpg">
+					</div>
+					<div class="categoria">
+						<img src = "Imagens/maths.jpg">
+					</div>
+					<div class="categoria">
+						<img src = "Imagens/mlAi.jpg">
+					</div>
+					<div class="categoria">
+						<img src = "Imagens/knowledge.jpg">
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 
 	<div id = "wrapper-index">
@@ -218,5 +241,6 @@
 			</div>
 		</footer>
 	<script type = "text/javascript" lang = "javascript" src = "Script/script.js"></script>
+	<script type = "text/javascript" lang = "javascript" src = "Script/carousel.js"></script>
 </body>
 </html>

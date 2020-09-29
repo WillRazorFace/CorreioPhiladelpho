@@ -10,7 +10,6 @@ div.conteudo{
   margin: 0 auto;
   position: relative;
   min-height: 100vh;
-  /* display: table; */
 }
 
 div.container{
@@ -25,7 +24,6 @@ div.container{
 div#login{
   width: 300px;
   height: 300px;
-  /* border: 1px solid var(--black); */
   background-color: var(--bgs);
 }
 
@@ -58,7 +56,6 @@ div.conteudo-criar{
 
 div.criacao{
   display: table-cell;
-  /* border: 1px solid black; */
   padding: 0px 80px 80px 80px;
 }
 

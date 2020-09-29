@@ -1,62 +1,64 @@
 <!doctype html>
 <html lang = "en">
 <head meta charset = "utf-8">
-	<script type = "text/javascript" lang = "javascript" src = "script.js"></script>
 	<script src='https://cdn.tiny.cloud/1/hpicj44e515yat8a4lbpcbo5i8cbv4p2s48jqxktuffzn4cc/tinymce/5/tinymce.min.js' referrerpolicy="origin"></script>
-  <script>
-    tinymce.init({
-      selector: '#mytextarea',
+  	<script>
+    	tinymce.init({
+      	selector: '#mytextarea',
 			resize: false,
 			contextmenu: "link image"
-    });
-  </script>
+    	});
+  	</script>
 	<script src="https://kit.fontawesome.com/8f2a036adf.js" crossorigin="anonymous"></script>
 	<link type = "text/css" media = "screen" href = "Estilo/main.css" rel = "stylesheet"/>
-  <link type = "text/css" media = "screen" href = "Estilo/anexo1.css" rel = "stylesheet"/>
+  	<link type = "text/css" media = "screen" href = "Estilo/anexo.css" rel = "stylesheet"/>
 	<link href="https://fonts.googleapis.com/css?family=Noto+Serif&display=swap" rel="stylesheet"/>
 	<title>Correio Philadelphiano</title>
 </head>
 <body>
-
 	<header id = "titulo">
-		<h1><a href = "index.html">CORREIO PHILADELPHIANO</a></h1>
+		<h1><a href = "index.html">CORREIO DO PHIALDELPHO</a></h1>
 		<h4>Um jornal a serviço do estudante</h4>
 			<div id = "divMenu">
 				<nav id = "menu">
 					<ul class = "topnav">
-						<li class = "sensa"><a href = "porcario.html">SENSACIONALISTA</a></li>
-						<li class = "nope"><a href = "porcario.html">VESTIBULAR</a></li>
-						<li class = "nope"><a href = "porcario.html">DIVULGAÇÃO CIENTÍFICA</a></li>
-						<li class = "nope"><a href = "porcario.html">EVENTOS</a></li>
-						<li class = "nope"><a href = "porcario.html">FÓRUM</a></li>
+						<li class = "nope"><a href = "#">DIVULGAÇÃO CIENTÍFICA</a></li>
+						<li class = "nope"><a href = "#">EVENTOS</a></li>
+						<li class = "nope"><a href = "#">FÓRUM</a></li>
 						<li style = "float: right;"><span onclick = "openNav()" class = "drop">MENU</span></li>
 					    <div id = "mySidenav" class="sidenav">
-		            <a href = "javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-				        <a href = "#">Conta</a>
-		            <a href = "Conta/login.html">Login</a>
-					      <a href = "Conta/criar.html">Criar uma conta</a>
-							  <a href = "#">Publicar</a>
-						  </div>
+		            		<a href = "javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+				        	<a href = "#">Conta</a>
+		            		<a href = "login.html">Login</a>
+					    	<a href = "criar.html">Criar uma conta</a>
+							<a href = "#">Publicar</a>
+						</div>
 					</ul>
 				</nav>
 			</div>
 	</header>
 
-  <div class = "wrapper-post">
-      <div class = "conteudo" id = "conteudo-post">
-        <div class = "container" id = "container-post">
-					<div id = "posta">
-          	<h2>Criar um post</h2>
-          	<form id = "frmCriarPost">
-            	<input type = "text" name ="titulo-post" placeholder = "Digite o título da postagem" required>
-          	</form>
-          	<textarea id = "mytextarea" form = "frmCriarPost"  cols = "66" name = "content"  placeholder = "Digite aqui o conteúdo da postagem" required ></textarea>
-						<button form = "frmCriarPost" class = "normal" style = "margin-top: 10px;">Publicar</button>
-					</div>
-        </div>
-      </div>
-  </div>
-    <footer id = "rodapé">
+	<div class="toggle">
+		<input id="switch" type="checkbox" name="theme">
+		<label for="switch">Toggle</label>
+	</div>
+
+
+  	<div class = "wrapper-post">
+      	<div class = "conteudo" id = "conteudo-post">
+        	<div class = "container" id = "container-post">
+				<div id = "posta">
+          			<h2>Criar um post</h2>
+          			<form id = "frmCriarPost">
+            			<input type = "text" name ="titulo-post" placeholder = "Digite o título da postagem" required>
+          			</form>
+          			<textarea id = "mytextarea" form = "frmCriarPost"  cols = "66" name = "content"  placeholder = "Digite aqui o conteúdo da postagem" required ></textarea>
+					<button form = "frmCriarPost" class = "normal" style = "margin-top: 10px;">Publicar</button>
+				</div>
+        	</div>
+      	</div>
+  	</div>
+	<footer id = "rodapé">
 			<div class = "footer">
 				<div class = "footer-content">
 					<div class = "footer-section about">
@@ -91,4 +93,7 @@
 					&lt;/&gt; com <i class="far fa-heart"></i> por T2C project
 				</div>
 			</div>
-  	</footer>
+	</footer>
+	<script type = "text/javascript" lang = "javascript" src = "script.js"></script>
+</body>
+</html>
