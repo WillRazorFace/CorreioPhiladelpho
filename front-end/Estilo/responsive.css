@@ -1,25 +1,46 @@
+@media (max-width: 1024px){
+    html{
+        font-size: 70%;
+    }
+}
+
 @media (max-width: 780px){
     html{
-        font-size: 45%;
+        font-size: 50%;
     }
-    .image img{
-        width: 130px;
-        height: 115px;
-    }
-    .toggle{
-        visibility: hidden;
-    }
+    /* ESTRUTURA DOS CARDS + MAIN */
     .card{
+        margin-top: 10px;
         flex-direction: column;
+        height: 40vh;
+        width: 60%;
     }
     .image img{
         width: 100%;
+        height: 40%;
     }
     #container-main{
-        width: 70%;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
     }
     #container-second{
-        visibility: hidden;
+        display: none;
+    }
+    .abstract{
+        width: 100%;
+    }
+    /* ESTRUTURA DO CAROUSSEL */
+    .wrapper-first .container-first{
+        height: 100%;
+    }
+    .categoria{
+        height: 270px;
+    }
+    /* ESTRUTURA DO FOOTER */
+    .footer-section .contact{
+        display: none;
+    
     }
 }
 @media (max-width: 480px){

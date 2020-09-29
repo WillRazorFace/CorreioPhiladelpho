@@ -23,9 +23,9 @@ body{
     justify-content: center;
     align-items: center;
 }
-.container-first{
+/* .container-first{
     height: 100%;
-}
+} */
 #botoes{
     background-color: var(--white);
     border: 1px solid var(--black);
