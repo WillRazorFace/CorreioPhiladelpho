@@ -29,7 +29,7 @@
                 display: block;
                 padding: 10px;
                 color: rgba(255, 255, 255, 0.6);
-                @include font-size(1);
+                @include font-size(1rem);
                 transition: .3s ease;
 
                 &:hover{
@@ -145,7 +145,32 @@
 }
 
 @include query(smartphone){
+    .barra-de-navegacao{
+        .toggle-botao{
+            .barra-1{
+                margin-top: 15px;
+            }
 
+            .barra-1, .barra-2, .barra-3{
+                width: 30px;
+                height: 5px;
+            }
+        }
+
+        .toggle-fechar{
+            .barra-1{
+                transform: rotate(-45deg) translate(-10px, 6px);
+            }
+    
+            .barra-2{
+                opacity: 0;
+            }
+    
+            .barra-3{
+                transform: rotate(45deg) translate(-10px, -6px);
+            }
+        }
+    }
 }
 
 @include query(tela-grande){

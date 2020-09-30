@@ -1,3 +1,5 @@
+// Menu Hambúrguer na barra de navegação
+
 function mostrarMenu(element){
     element.classList.toggle("toggle-fechar");
 
@@ -17,6 +19,8 @@ function mostrarMenu(element){
     }
 }
 
+// Pegar cookie CSRF_TOKEN
+
 function getCookie(name) {
     let cookieValue = null;
     if (document.cookie && document.cookie !== '') {
@@ -33,7 +37,9 @@ function getCookie(name) {
     return cookieValue;
 }
 
-document.querySelector('#form-feedback').addEventListener('submit', enviarFeedback);
+// Envio de feedback Ajax
+
+document.querySelector('#form-feedback').addEventListener('submit', (enviarFeedback));
 
 function enviarFeedback(event){
     event.preventDefault();
@@ -53,12 +59,30 @@ function enviarFeedback(event){
 
         modal.style.display = "grid";
 
-        document.querySelector('#modal-feedback-botao').addEventListener('click', fechar_modal);
+        document.querySelector('#modal-feedback-botao').addEventListener('click', () => {
+            let modal = document.getElementById("feedback-modal-sucesso");
+
+            modal.style.display = "none";
+        });
     })
 }
 
-function fechar_modal(event){
-    let modal = document.getElementById("feedback-modal-sucesso");
+const modoEscuro = document.querySelector("#modo-escuro-switch");
+const modoEscuroStorage = localStorage.getItem("modoEscuro");
 
-    modal.style.display = "none";
+if (modoEscuroStorage){
+    document.body.classList.add('modo-escuro');
+
+    modoEscuro.checked = true;
 }
+
+modoEscuro.addEventListener('click', () => {
+    document.body.classList.toggle('modo-escuro');
+
+    if (document.body.classList.contains('modo-escuro')){
+        localStorage.setItem("modoEscuro", true);
+        return;
+    }
+
+    localStorage.removeItem("modoEscuro");
+})
