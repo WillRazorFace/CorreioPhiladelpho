@@ -50,7 +50,10 @@
 // Media Queries
 
 @include query(laptop){
-
+    .pub-post{
+        width: 85%;
+        top: -1.875rem;
+    }
 }
 
 @include query(tablet){
