@@ -34,8 +34,8 @@
 .pub-post{
     position: relative;
     margin: 0 auto;
-    top: -70px;
-    border-radius: 10px;
+    top: -4.375rem;
+    @include rfs(0.625rem, border-radius);
     min-height: 700px;
     background: white;
     width: 70%;
@@ -44,4 +44,34 @@
 
 .conteudo{
     @include padding(4.375rem);
+    min-height: 100%;
+}
+
+// Media Queries
+
+@include query(laptop){
+
+}
+
+@include query(tablet){
+    .pub-post{
+        top: -1.875rem;
+        width: 90%;
+    }
+
+    .conteudo{
+        @include padding(2.5rem);
+    }
+}
+
+@include query(smartphone){
+    .pub-post{
+        top: 0;
+        width: 100%;
+        box-shadow: none;
+    }
+
+    .conteudo{
+        @include padding(1.25rem);
+    }
 }
