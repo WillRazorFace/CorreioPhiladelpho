@@ -90,7 +90,7 @@
 }
 
 @include query(tablet){
-        .rodape{
+    .rodape{
         grid-template-columns: auto;
         grid-template-areas:
             "resumo"
@@ -99,6 +99,7 @@
         ;
         align-items: center;
         justify-content: center;
+        padding: 0;
         @include padding-top(1.25rem);
         @include padding-bottom(1.25rem);
         grid-gap: 0;
