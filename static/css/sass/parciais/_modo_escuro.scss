@@ -4,6 +4,18 @@
 
     .barra-de-navegacao{
         background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.6));
+
+        @include query(smartphone){
+            .menu{
+                li{
+                    border-bottom: 2px solid #222121;
+                    
+                    &:first-child{
+                        border-top: 2px solid #222121;
+                    }
+                }
+            }
+        }
     }
 
     .secao-bloco{
@@ -12,6 +24,16 @@
 
     .rodape{
         background: rgba(0, 0, 0, .7);
+
+        @include query(tablet){
+            .resumo{
+                border-bottom: 2px solid #222121;
+            }
+
+            .links{
+                border-bottom: 2px solid #222121;
+            }
+        }
 
         .feedback{
             .feedback-botao{
@@ -54,6 +76,10 @@
 
     .modal{
         background: darkslategray;
+    }
+
+    .pub-post{
+        background: #222020;
     }
 }
 
