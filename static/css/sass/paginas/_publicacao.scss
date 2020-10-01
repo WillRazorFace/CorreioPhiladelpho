@@ -55,8 +55,10 @@
 
 @include query(tablet){
     .pub-post{
-        top: -1.875rem;
-        width: 90%;
+        top: 0;
+        width: 100%;
+        box-shadow: none;
+        border-radius: 0;
     }
 
     .conteudo{
@@ -65,12 +67,6 @@
 }
 
 @include query(smartphone){
-    .pub-post{
-        top: 0;
-        width: 100%;
-        box-shadow: none;
-    }
-
     .conteudo{
         @include padding(1.25rem);
     }
