@@ -1,6 +1,7 @@
 .modo-escuro{
     background: rgba(0, 0, 0, .8);
     color: white;
+    transition: 0.3s ease;
 
     .barra-de-navegacao{
         background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.6));
