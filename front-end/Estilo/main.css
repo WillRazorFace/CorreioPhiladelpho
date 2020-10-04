@@ -23,55 +23,46 @@ html, body{
 	width: 100%;
 }
 
-header ul li{
-	display: inline;
-	color: var(--text);
-}
-
-header ul li a:link, a:visited{
-	text-decoration: none;
-	color: var(--text);
-}
-
-header li.nope{
-	/* border-right: 1px solid #c0c0c0; */
-	padding-left: 15px;
-	padding-right: 15px;
-}
-
-header ul{
-	padding: 13px;
-	margin: 0px;
-	list-style: none;
-	margin-right: auto;
-	margin-left: auto;
-	padding-bottom: 15px;
-}
-
-/* ESTILO DO NAV + TIULO */
-
-#divMenu{
-	padding: 14px 16px;
-}
-
-.topnav li a:hover{
-	background-color: var(--text);
-	color: var(--white);
-	transition-duration: 300ms;
-}
-
-#titulo h1, #titulo h2, #titulo h3, #titulo h4, #titulo h5{
+/* ESTRUTURA DO NAV + TITULO*/
+.titulo{
 	text-align: center;
-	font-family: 'Noto Serif', serif;
+	text-decoration: none;
+	color: var(--black);
 }
-#titulo h1 a:visited {
-	color: var(--text);
+h1 a:visited{
+	color: var(--black);
 }
-
-#titulo h1 a:link{
+h1 a:link{
 	text-decoration: none;
 }
+header .container-header{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin: auto;
+	width: 100%;
+	max-width: 100%;
+}
+header nav ul{
+	display: flex;
+}
+header nav ul li{
+	list-style: none;
+}
+header nav ul li a{
+	text-decoration: none;
+	color: var(--black);
+	font-size: 0.9rem;
+	padding: 2.4rem;
+}
+.menu, .logo{
+	display: none;
+}
+.logo svg path, .logo svg rect{
+	fill: var(--black);
+}
 
+/* SIDE NAV */
 .drop-content{
 	display: none;
 	position: absolute;
@@ -80,7 +71,6 @@ header ul{
 	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 	z-index: 1;
 }
-/* SIDE NAV */
 span.drop{
 	border: none;
 	background-color: var(--white);
@@ -266,11 +256,11 @@ span.drop:hover{
 }
 
 #rodapé .footer .footer-bottom{
-	height: 25px;
+	position: absolute;
 	text-align: right;
 	bottom: 0;
-	right: 15px;
-	margin-top: 20px;
+	right: 0;
+	/* margin-top: 20px; */
 	background: var(--bgs);
 }
 

@@ -17,7 +17,8 @@
     }
     .image img{
         width: 100%;
-        height: 40%;
+        height: 170px;
+        object-fit: cover;
     }
     #container-main{
         width: 100%;
@@ -40,14 +41,48 @@
     /* ESTRUTURA DO FOOTER */
     .footer-section .contact{
         display: none;
-    
     }
 }
-@media (max-width: 480px){
+@media (max-width: 425px){
     html{
         font-size: 60%;
     }
+    /* ESTRUTURA DO CAROUSSEL */
+    .categoria{
+        height: 200px;
+    }
+    /* NAV */
+    nav, .titulo{
+        display: none;
+    }
+    .menu, .logo{
+        display: inline;
+    }
+    .menu{
+        margin-right: 10px;
+    }
+    .logo{
+        margin-top: 10px;
+        margin-left: 10px;
+    }
+    /* CARDS */
     .wrapper-index{
         flex-direction: column;
     }
+    .card .image {
+        height: 80%;
+    }
+    .card .image img{
+        height: 130px;
+    }
+    /* FOOTER VIADO */
+    #rodapé{
+        height: 100%;
+    }
+    #rodapé .footer{
+        height: 100%;
+    }
+    #rodapé .footer .footer-content{
+        flex-direction: column;
+    }   
 }
