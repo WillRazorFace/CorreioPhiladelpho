@@ -312,16 +312,16 @@
                 text-align: center;
             }
         }
+    }
+}
 
+@include query(smartphone){
+    .conteudo-index{
         .populares-wrapper{
             grid-template-columns: auto;
             grid-gap: 0;
         }
     }
-}
-
-@include query(smartphone){
-
 }
 
 @include query(tela-grande){
