@@ -1,3 +1,30 @@
+// Botão para voltar ao topo da página
+
+.voltar-ao-topo{
+    width: 2.5rem;
+    line-height: 2.5rem;
+    overflow: hidden;
+    z-index: 999;
+    display: none;
+    cursor: pointer;
+    position: fixed;
+    bottom: 3.125rem;
+    right: 0;
+    background: #555;
+    color: #DDD;
+    text-align: center;
+    @include font-size(1.625rem);
+    text-decoration: none;
+    border-top-left-radius: 0.313rem;
+    border-bottom-left-radius: 0.313rem;
+    transition: all 0.3s;
+
+    &:hover{
+        transform: scale(1.1);
+        background: rgb(54, 53, 53);
+    }
+}
+
 .rodape{
     grid-area: rodape;
     display: grid;

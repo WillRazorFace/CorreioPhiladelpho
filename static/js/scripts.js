@@ -86,3 +86,17 @@ modoEscuro.addEventListener('click', () => {
 
     localStorage.removeItem("modoEscuro");
 })
+
+// Muda o display do botão para o topo para block se o usuário tiver dado scroll suficiente
+
+window.addEventListener("scroll", () => {
+    var botao_topo = document.querySelector("#voltar");
+
+    console.log(pageYOffset);
+
+    if (window.pageYOffset > 100) {
+        botao_topo.style.display = "block";
+    } else {
+        botao_topo.style.display = "none";
+    }
+})
