@@ -92,8 +92,6 @@ modoEscuro.addEventListener('click', () => {
 window.addEventListener("scroll", () => {
     var botao_topo = document.querySelector("#voltar");
 
-    console.log(pageYOffset);
-
     if (window.pageYOffset > 100) {
         botao_topo.style.display = "block";
     } else {
