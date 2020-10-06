@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block Título %}Pesquisar{% endblock %}
+
+{% block Conteúdo %}
+    <main class="conteudo-pesquisa">
+        <div class="wrapper-pesquisa">
+            <div class="caixa-de-pesquisa">
+               <input id="campo-de-pesquisa" type="text" class="input-pesquisa" placeholder="Digite para pesquisar">
+            </div>
+         </div>
+
+         <div id="conteudo-mutavel">
+                {% include 'inicio/parciais/_pesquisa-posts.html' %}
+         </div>
+    </main>
+{% endblock %}
+
+{% block javascript-adicional %}
+    <script>
+        var POSTS_BUSCA_URL = "{% url 'buscar-api' %}";
+    </script>
+    <script type="text/javascript" src="{% static '/js/parciais/pesquisa-ajax.js' %}"></script>
+{% endblock %}

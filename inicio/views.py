@@ -3,9 +3,49 @@ from django.contrib import messages
 from .forms import FeedbackFormNaoLogado, FeedbackFormLogado
 from .models import Post, Feedback
 from django.shortcuts import HttpResponse
+from django.http import JsonResponse
+from django.template.loader import render_to_string
 
+def buscar(request):
+    if request.method == 'GET':
+        if request.user.is_authenticated:
+            form = FeedbackFormLogado()
+        else:
+            form = FeedbackFormNaoLogado()
+    
+    print(request)
+    termo = request.GET.get("p")
+
+    if termo:
+        posts = Post.objects.filter(titulo__icontains=termo)
+        print(termo)
+    else:
+        posts = Post.objects.all()
+
+    return render(request, 'inicio/busca.html', {'form': form})
+
+# Fetch API
+def buscar_posts(request):
+    print(request)
+    termo = request.GET.get("p")
+
+    if termo:
+        posts = Post.objects.filter(titulo__icontains=termo)
+        print(posts)
+        print(termo)
+    else:
+        posts = None
+
+    html = render_to_string(
+        template_name='inicio/parciais/_pesquisa-posts.html',
+        context={'posts': posts}
+    )
+
+    return JsonResponse({'html': html}, safe=False)
+
+# Fetch API
 def salvar_feedback(request):
-    if request.method == "POST":
+    if request.method == 'POST':
         email = request.POST.get('email') or request.user.email
         feedback = request.POST.get('feedback')
 
@@ -14,7 +54,7 @@ def salvar_feedback(request):
         else:
             Feedback.objects.create(email=email, feedback=feedback)
 
-        return HttpResponse('Olá')
+        return HttpResponse('Enviado')
 
 def index(request):
     if request.method == 'GET':

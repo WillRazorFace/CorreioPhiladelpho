@@ -1,0 +1,11 @@
+<h1>Resultados para</h1>
+
+{% if posts %}
+    {% for post in posts %}
+        {{ post.titulo }}
+        {{ post.subtitulo }}
+        {{ post.data }}<br><br>
+    {% endfor %}
+{% else %}
+    <p>Nada encontrado</p>
+{% endif %}
