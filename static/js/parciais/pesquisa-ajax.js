@@ -1,8 +1,6 @@
 window.onload = function(){
     const campo_de_pesquisa = document.querySelector("#campo-de-pesquisa");
     const div_posts = document.querySelector("#conteudo-mutavel");
-    const comanda = document.querySelector("#comanda-mutavel");
-    const sem_resultados = document.querySelector("#resultado-mutavel");
 
     let funcao_programada = false;
     
@@ -11,7 +9,6 @@ window.onload = function(){
         .then((response) => {
             response.json().then(function (data){
                 div_posts.innerHTML = data["html"];
-                
             })
         })
     }
