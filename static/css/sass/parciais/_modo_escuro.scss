@@ -22,6 +22,10 @@
         background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.6)) !important;
     }
 
+    .resultados-termo{
+        background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.6)) !important;
+    }
+
     .voltar-ao-topo{
         color: #555;
         background: #ddd;
@@ -79,8 +83,48 @@
         }
     }
 
+    .pub-card-pesquisa{
+        background: rgba(0, 0, 0, .5) !important;
+
+        span{
+            color: gray;
+        }
+    }
+
+    .pub-link-pesquisa{
+        color: $cor-padrao-claro-6;
+
+        &:link{
+            color: $cor-padrao-claro-6;
+        }
+
+        &:hover{
+            color: $cor-padrao-claro-8;
+        }
+
+        &:visited{
+            color: $cor-padrao-claro-4;
+        }
+    }
+
     .popular-card{
         background: rgba(0, 0, 0, .5) !important;
+    }
+
+    .popular-link{
+        color: $cor-padrao-claro-6;
+
+        &:link{
+            color: $cor-padrao-claro-6;
+        }
+
+        &:hover{
+            color: $cor-padrao-claro-8;
+        }
+
+        &:visited{
+            color: $cor-padrao-claro-4;
+        }
     }
 
     .modal{
