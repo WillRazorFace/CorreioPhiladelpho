@@ -5,6 +5,7 @@ from .models import Post, Feedback
 from django.shortcuts import HttpResponse
 from django.http import JsonResponse
 from django.template.loader import render_to_string
+from django.db.models import Q
 
 def buscar(request):
     if request.method == 'GET':
@@ -22,7 +23,7 @@ def buscar_posts(request):
     termo = request.GET.get("p")
 
     if termo:
-        posts = Post.objects.filter(titulo__icontains=termo)
+        posts = Post.objects.filter(Q(titulo__icontains=termo) | Q(subtitulo__icontains=termo) | Q(conteudo__icontains=termo))
     else:
         posts = None
     
