@@ -1,4 +1,8 @@
-<h1>Resultados para</h1>
+{% if termo %}
+    <h1 id="comanda-mutavel">Resultados para "{{ termo }}"</h1>
+{% else %}
+    <h1 id="comanda-mutavel"></h1>
+{% endif %}
 
 {% if posts %}
     {% for post in posts %}
@@ -7,5 +11,5 @@
         {{ post.data }}<br><br>
     {% endfor %}
 {% else %}
-    <p>Nada encontrado</p>
+    <p id="resultado-mutavel">{{ resultado }}</p>
 {% endif %}

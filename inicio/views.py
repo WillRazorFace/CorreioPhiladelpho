@@ -13,34 +13,36 @@ def buscar(request):
         else:
             form = FeedbackFormNaoLogado()
     
-    print(request)
     termo = request.GET.get("p")
 
-    if termo:
-        posts = Post.objects.filter(titulo__icontains=termo)
-        print(termo)
-    else:
-        posts = Post.objects.all()
-
-    return render(request, 'inicio/busca.html', {'form': form})
+    return render(request, 'inicio/busca.html', {'form': form, 'termo': termo})
 
 # Fetch API
 def buscar_posts(request):
-    print(request)
     termo = request.GET.get("p")
 
     if termo:
         posts = Post.objects.filter(titulo__icontains=termo)
-        print(posts)
-        print(termo)
     else:
         posts = None
+    
+    if posts:
+        if posts.exists():
+            contexto = {'posts': posts, 'termo': termo}
+        else:
+            contexto = {'termo': termo, 'resultado': 'Nada encontrado'}
+    else:
+        if termo:
+            contexto = {'termo': termo, 'resultado': 'Nada encontrado'}
+        else:
+            contexto = {}
+
 
     html = render_to_string(
         template_name='inicio/parciais/_pesquisa-posts.html',
-        context={'posts': posts}
+        context=contexto,
     )
-
+    
     return JsonResponse({'html': html}, safe=False)
 
 # Fetch API

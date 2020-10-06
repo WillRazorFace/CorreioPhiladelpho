@@ -7,7 +7,11 @@
     <main class="conteudo-pesquisa">
         <div class="wrapper-pesquisa">
             <div class="caixa-de-pesquisa">
-               <input id="campo-de-pesquisa" type="text" class="input-pesquisa" placeholder="Digite para pesquisar">
+                {% if termo %}
+                    <input id="campo-de-pesquisa" type="text" value="{{ termo }}" class="input-pesquisa" placeholder="Digite para pesquisar">
+                {% else %}
+                    <input id="campo-de-pesquisa" type="text" class="input-pesquisa" placeholder="Digite para pesquisar">
+                {% endif %}
             </div>
          </div>
 
