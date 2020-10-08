@@ -6,19 +6,21 @@ from django.shortcuts import HttpResponse
 from django.http import JsonResponse
 from django.template.loader import render_to_string
 from django.db.models import Q
+from django.views.decorators.http import require_GET, require_POST
 
+@require_GET
 def buscar(request):
-    if request.method == 'GET':
-        if request.user.is_authenticated:
-            form = FeedbackFormLogado()
-        else:
-            form = FeedbackFormNaoLogado()
+    if request.user.is_authenticated:
+        form = FeedbackFormLogado()
+    else:
+        form = FeedbackFormNaoLogado()
     
     termo = request.GET.get("p")
 
     return render(request, 'inicio/busca.html', {'form': form, 'termo': termo})
 
 # Fetch API
+@require_GET
 def buscar_posts(request):
     termo = request.GET.get("p")
 
@@ -47,43 +49,43 @@ def buscar_posts(request):
     return JsonResponse({'html': html}, safe=False)
 
 # Fetch API
+@require_POST
 def salvar_feedback(request):
-    if request.method == 'POST':
-        email = request.POST.get('email') or request.user.email
-        feedback = request.POST.get('feedback')
+    email = request.POST.get('email') or request.user.email
+    feedback = request.POST.get('feedback')
 
-        if request.user.is_authenticated:
-            Feedback.objects.create(usuario=request.user,email=email, feedback=feedback)
-        else:
-            Feedback.objects.create(email=email, feedback=feedback)
+    if request.user.is_authenticated:
+        Feedback.objects.create(usuario=request.user,email=email, feedback=feedback)
+    else:
+        Feedback.objects.create(email=email, feedback=feedback)
 
-        return HttpResponse('Enviado')
+    return HttpResponse('Enviado')
 
+@require_GET
 def index(request):
-    if request.method == 'GET':
-        if request.user.is_authenticated:
-            form = FeedbackFormLogado()
-        else:
-            form = FeedbackFormNaoLogado()
+    if request.user.is_authenticated:
+        form = FeedbackFormLogado()
+    else:
+        form = FeedbackFormNaoLogado()
 
-        # Retorna as 5 publicações com mais acessos
-        populares = Post.objects.prefetch_related('categoria').order_by('-acessos')[:5]
-        
-        posts = Post.objects.prefetch_related('categoria').all().order_by('-id')
+    # Retorna as 5 publicações com mais acessos
+    populares = Post.objects.prefetch_related('categoria').order_by('-acessos')[:5]
 
-        return render(request, 'inicio/index.html', {'form': form, 'posts': posts, 'populares': populares})
+    posts = Post.objects.prefetch_related('categoria').all().order_by('-id')
 
+    return render(request, 'inicio/index.html', {'form': form, 'posts': posts, 'populares': populares})
+
+@require_GET
 def publicacao(request, slug: str):
-    if request.method == 'GET':
-        if request.user.is_authenticated:
-            form = FeedbackFormLogado()
-        else:
-            form = FeedbackFormNaoLogado()
+    if request.user.is_authenticated:
+        form = FeedbackFormLogado()
+    else:
+        form = FeedbackFormNaoLogado()
         
-        post = get_object_or_404(Post, slug=slug)
+    post = get_object_or_404(Post, slug=slug)
 
-        # Adiciona um ao contador de visualizações
-        post.acessos += 1
-        post.save()
+    # Adiciona um ao contador de visualizações
+    post.acessos += 1
+    post.save()
 
-        return render(request, 'inicio/publicacao.html', {'post': post, 'form': form})
+    return render(request, 'inicio/publicacao.html', {'post': post, 'form': form})
