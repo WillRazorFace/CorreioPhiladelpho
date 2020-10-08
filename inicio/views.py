@@ -80,4 +80,8 @@ def publicacao(request, slug: str):
         
         post = get_object_or_404(Post, slug=slug)
 
+        # Adiciona um ao contador de visualizações
+        post.acessos += 1
+        post.save()
+
         return render(request, 'inicio/publicacao.html', {'post': post, 'form': form})
