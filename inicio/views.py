@@ -66,7 +66,9 @@ def index(request):
         else:
             form = FeedbackFormNaoLogado()
 
-        populares = Post.objects.prefetch_related('categoria').filter(destaque=True).order_by('-id')
+        # Retorna as 5 publicações com mais acessos
+        populares = Post.objects.prefetch_related('categoria').order_by('-acessos')[:5]
+        
         posts = Post.objects.prefetch_related('categoria').all().order_by('-id')
 
         return render(request, 'inicio/index.html', {'form': form, 'posts': posts, 'populares': populares})
