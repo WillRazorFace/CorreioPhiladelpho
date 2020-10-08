@@ -23,8 +23,9 @@
                 </div>
 
                 <div class="pub-info">
-                    <span>{{ post.data|naturalday|capfirst }}</span><br/>
-                    <span>{{ post.categoria }}</span>
+                    <span>{{ post.data|naturalday|capfirst }}</span>
+                    <span id="visualizacoes"><i class="fa fa-eye" aria-hidden="true"></i> {{ post.acessos }}</span><br/>
+                    <span>{{ post.categoria }}</span><br/>
                 </div>
 
                 <div class="pub-botao"><a href="{% url 'publicacao' post.slug %}">Ler mais</a></div>
