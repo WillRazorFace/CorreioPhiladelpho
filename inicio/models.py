@@ -24,6 +24,7 @@ class Post(models.Model):
     titulo = models.CharField(max_length=100, verbose_name='Título')
     subtitulo = models.CharField(max_length=300, verbose_name='Sub-título')
     conteudo = RichTextUploadingField(verbose_name='Conteúdo')
+    acessos = models.IntegerField(verbose_name='Acessos', default=0)
     foto = models.ImageField(upload_to='posts/%Y/%m/%d', blank=True, null=True, verbose_name='Imagem')
     data = models.DateTimeField(default=timezone.now, verbose_name='Data de Postagem')
     categoria = models.ForeignKey(to=Categoria, on_delete=models.SET_NULL, null=True, verbose_name='Categoria')
