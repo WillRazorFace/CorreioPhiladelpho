@@ -28,7 +28,6 @@ class Post(models.Model):
     foto = models.ImageField(upload_to='posts/%Y/%m/%d', blank=True, null=True, verbose_name='Imagem')
     data = models.DateTimeField(default=timezone.now, verbose_name='Data de Postagem')
     categoria = models.ForeignKey(to=Categoria, on_delete=models.SET_NULL, null=True, verbose_name='Categoria')
-    destaque = models.BooleanField(default=False, verbose_name='Destaque')
     slug = models.SlugField(max_length=300, unique=True, blank=True, verbose_name='Slug')
 
     def __str__(self) -> str:
