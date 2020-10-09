@@ -67,6 +67,8 @@ function enviarFeedback(event){
     })
 }
 
+// Modo escuro
+
 const modoEscuro = document.querySelector("#modo-escuro-switch");
 const modoEscuroStorage = localStorage.getItem("modoEscuro");
 
