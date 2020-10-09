@@ -34,3 +34,12 @@ body{
         "rodape"
     ;
 }
+
+// Template de login e registro
+
+.container-autenticacao{
+    display: grid;
+    grid-template-columns: auto;
+    align-items: center;
+    justify-content: center;
+}
