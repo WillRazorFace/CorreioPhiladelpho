@@ -158,10 +158,6 @@ CKEDITOR_CONFIGS = {
     },
 }
 
-# Estilos a serem usados pelo crispy
-
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
-
 # Debug-toolbar
 INTERNAL_IPS = [
     '127.0.0.1',
