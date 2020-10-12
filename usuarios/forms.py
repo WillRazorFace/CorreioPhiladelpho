@@ -29,13 +29,13 @@ class LoginForm(forms.ModelForm):
     
     email = forms.EmailField(
         required=True,
-        widget=forms.EmailInput(attrs={'class': 'text-center', 'placeholder': 'Endereço de e-mail'}),
+        widget=forms.EmailInput(attrs={'placeholder': 'Endereço de e-mail'}),
         max_length=100,
     )
 
     password = forms.CharField(
         required=True,
-        widget=forms.PasswordInput(attrs={'class': 'text-center', 'placeholder': 'Senha'}),
+        widget=forms.PasswordInput(attrs={'placeholder': 'Senha'}),
         max_length=50,
     )
 
@@ -61,35 +61,35 @@ class CadastroForm(forms.ModelForm):
 
     nome = forms.CharField(
         required=True,
-        widget=forms.TextInput(attrs={'class': 'text-center', 'placeholder': 'Nome'}),
+        widget=forms.TextInput(attrs={'placeholder': 'Nome'}),
         max_length=40,
     )
 
     sobrenome = forms.CharField(
         required=True,
-        widget=forms.TextInput(attrs={'class': 'text-center', 'placeholder': 'Sobrenome'}),
+        widget=forms.TextInput(attrs={'placeholder': 'Sobrenome'}),
         max_length=40,
     )
 
     email = forms.EmailField(
         required=True,
-        widget=forms.EmailInput(attrs={'class': 'text-center', 'placeholder': 'Endereço de e-mail'}),
+        widget=forms.EmailInput(attrs={'placeholder': 'Endereço de e-mail'}),
         max_length=100,
     )
 
     password = forms.CharField(
         required=True,
-        widget=forms.PasswordInput(attrs={'class': 'text-center', 'placeholder': 'Senha'})
+        widget=forms.PasswordInput(attrs={'placeholder': 'Senha'})
     )
 
     password_confirmacao = forms.CharField(
         required=True,
-        widget=forms.PasswordInput(attrs={'class': 'text-center', 'placeholder': 'Confirme sua senha'}),
+        widget=forms.PasswordInput(attrs={'placeholder': 'Confirme sua senha'}),
     )
 
     foto = forms.ImageField(
         required=False,
-        widget=forms.FileInput(attrs={'class': 'text-center'}),
+        widget=forms.FileInput(attrs={'hidden': 'hidden'}),
         help_text='Foto que será exibida em seu perfil',
     )
 
