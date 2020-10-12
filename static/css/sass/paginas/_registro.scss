@@ -1,0 +1,189 @@
+.wrapper-registro{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-registro{
+    @include padding(1.25rem);
+    @include box-shadow-card();
+    @include rfs(0.313rem, border-radius);
+    background: white;
+    position: relative;
+
+    h1{
+        text-align: center;
+        @include margin(2.5rem 0 2.5rem 0);
+    }
+
+    input#id_foto{
+        padding: 0;
+        margin: 0;
+        border: 2px solid silver;
+        @include rfs(0.313rem, border-radius);
+    }
+
+    p{
+        @include margin-top(0.313rem);
+        @include font-size(0.875rem);
+        color: gray;
+        text-align: center;
+    }
+
+    .linha{
+        grid-gap: 0.625rem;
+    }
+    
+    .checkbox-custom{
+        @include margin(1rem 0 1rem 0);
+    }
+}
+
+
+.linha{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.input-custom{
+    @include margin-bottom(0.625rem);
+    transition: all 0.3s ease;
+
+    &:focus-within{
+        transform: scale(1.05, 1.05);
+    }
+
+    label{
+        color: #aaa;
+        display: block;
+        opacity: 1;
+        @include font-size(1.1rem);
+        transform: translateY(-1.5rem);
+        transform-origin: 0 0;
+        pointer-events: none;
+        transition: all 0.3s ease;
+    }
+
+    input{
+        box-shadow: none;
+        border-radius: 0px;
+        border-color: #ccc;
+        border-style: none none solid none;
+        width: 100%;
+        @include font-size(1rem);
+        transition: all 0.3s ease;
+        @include padding(0.125rem);
+
+        &::placeholder{
+            color: transparent;
+        }
+
+        &:focus{
+            box-shadow: none;
+            outline: none;
+            border-color: $cor-padrao-claro-6 !important;
+        }
+
+        &:not(:placeholder-shown){
+            border-color: grey;
+        }
+
+        &:focus + label,
+        &:not(:placeholder-shown) + label{
+            transform: translateY(-2.7rem) scale(0.8);
+            color: grey;
+        }
+    }
+}
+
+.logo-cp-auth{
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: -50px;
+
+    img{
+        width: 100px;
+        background: linear-gradient(135deg, $cor-padrao-claro-4, $cor-padrao-claro-6);
+        border-radius: 50%;
+        transition: all 0.3s ease;
+
+        &:hover{
+            background: $cor-padrao-claro;
+            transform: scale(1.05);
+        }
+    }
+}
+
+.auth-button{
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+    @include padding(0.625rem);
+    outline: inherit;
+    border: 0;
+    cursor: pointer;
+    @include font-size(1.1rem);
+    color: white;
+    background: $cor-padrao-claro-6;
+    transition: all 0.3s ease;
+    @include rfs(0.313rem, border-radius);
+
+    &:hover{
+        background: $cor-padrao-claro;
+        transform: scale(1.05);
+    }
+}
+
+// Input customizado de imagem
+
+.input-imagem-custom{
+    width: 100%;
+    background: #fafafa;
+    border: 1px solid grey;
+    @include rfs(0.313rem, border-radius);
+}
+
+.custom-file-input-button{
+    @include padding(0.625rem);
+    @include font-size(1rem);
+    font-family: 'Roboto', sans-serif;
+    color: white;
+    background: $cor-padrao-claro-6;
+    border: none;
+    border-right: 2px solid grey;
+    @include rfs(0.313rem 0 0 0.313rem, border-radius);
+    cursor: pointer;
+    transition: all 0.1s ease;
+
+    &:focus{
+        outline: none;
+    }
+
+    &:hover{
+        background: $cor-padrao-claro;
+    }
+}
+
+.custom-file-input-text{
+    @include padding(0.625rem);
+    color: grey;
+}
+
+// Checkbox customizado
+
+.checkbox-custom{
+    input[type=checkbox]{
+        &:checked + small{
+            color: black;
+        }
+    }
+
+    small{
+        @include font-size(1rem);
+        color: grey;
+    }
+}
