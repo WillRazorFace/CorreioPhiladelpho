@@ -33,29 +33,12 @@ def entrar(request):
 
 def registrar(request):
     form = CadastroForm()
+    pagina_anterior = request.GET.get('proximo')
 
-    if request.user.is_authenticated:
-        messages.error(request, 'Faça logout para criar uma conta')
-
-        return redirect('index')
-
-    if request.method != 'POST':
-        return render(request, 'usuarios/criar.html', {'form': form})
-
-    form = CadastroForm(data=request.POST, files=request.FILES or None)
-    senha = request.POST.get('password')
-
-    if form.is_valid():
-        print('válido')
-    else:
-        return render(request, 'usuarios/criar.html', {'form': form})
+    if not pagina_anterior:
+        pagina_anterior = '/'
     
-    email = form.cleaned_data.get('email')
-    authenticate(request, email=email, password=senha)
-
-    messages.warning(request, 'Confirme seu e-mail para interagir com a plataforma. As instruções foram enviadas a você.')
-    
-    return render(request, 'usuarios/criar.html', {'form': form})
+    return render(request, 'usuarios/criar.html', {'form': form, 'proximo': pagina_anterior})
 
 def sair(request):
     logout(request)

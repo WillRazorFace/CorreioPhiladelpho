@@ -122,6 +122,26 @@
     display: none;
 }
 
+.voltar-auth{
+    position: absolute;
+
+    a{
+        text-decoration: none;
+        color: inherit;
+    }
+
+    i{
+        cursor: pointer;
+        color: $cor-padrao-claro-6;
+        transition: all 0.3s ease;
+
+        &:hover{
+            color: $cor-padrao-claro;
+            transform: scale(1.2);
+        }
+    }
+}
+
 .auth-button{
     width: 100%;
     display: inline-block;
@@ -182,7 +202,7 @@
 .checkbox-custom{
     input[type=checkbox]{
         cursor: pointer;
-        
+
         &:checked + small{
             color: black;
         }
