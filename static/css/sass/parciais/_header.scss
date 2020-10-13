@@ -4,40 +4,38 @@
     width: 100%;
     padding: 20px;
     display: grid;
-    box-shadow: 1px 2px 3px rgba(0,0,0,0.7);
-    background: linear-gradient(135deg, $cor-padrao-claro, #ed2123);
+    border-bottom: 1px solid $cor-padrao-escuro;
     grid-template-areas:
         "logo links"
-    ;
-
+        ;
     .logo-cp{
         max-width: 150px;
-
+        svg rect, svg path{
+            fill: black
+        }
         a{
             color: white;
             text-decoration: none;
         }
     }
-
     .menu{
         margin-left: auto;
         display: flex;
         align-items: center;
-
+        
         li{
             a{
                 display: block;
                 padding: 10px;
-                color: rgba(255, 255, 255, 0.6);
+                color: black;
                 @include font-size(1rem);
                 transition: .3s ease;
 
                 &:hover{
-                    color: white;
+                    color: rgba(105, 105, 105, 0.5);
                 }
             }
         }
-
         li + li{
             margin-left: 10px;
         }
@@ -46,17 +44,14 @@
     .toggle-botao{
         display: none;
         cursor: pointer;
+        @include padding-top(0.5rem);
 
         .barra-1, .barra-2, .barra-3{
             width: 50px;
             height: 10px;
-            background: rgba(255, 255, 255, 0.6);
+            background: black;
             margin: 6px 0;
             transition: 0.3s;
-        }
-
-        &:hover > div{
-            background: white;
         }
     }
 
