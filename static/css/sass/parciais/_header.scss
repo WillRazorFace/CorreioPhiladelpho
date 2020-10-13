@@ -2,17 +2,20 @@
     grid-area: navegacao;
     margin: 0 auto;
     width: 100%;
-    background: linear-gradient(135deg, $cor-padrao-claro, #ed2123);
     padding: 20px;
     display: grid;
-    box-shadow: 1px 2px 3px rgba(0,0,0,0.7);
+    border-bottom: 1px solid black;
+    // box-shadow: 1px 2px 3px rgba(0,0,0,0.7);
+    // background: linear-gradient(135deg, $cor-padrao-claro, #ed2123);
     grid-template-areas:
         "logo links"
     ;
 
     .logo-cp{
         max-width: 150px;
-
+        svg path, svg rect{
+            fill: black;
+        }
         a{
             color: white;
             text-decoration: none;
@@ -28,9 +31,9 @@
             a{
                 display: block;
                 padding: 10px;
-                color: rgba(255, 255, 255, 0.6);
-                @include font-size(1rem);
+                color: black;
                 transition: .3s ease;
+                @include font-size(1rem);
 
                 &:hover{
                     color: white;
@@ -50,7 +53,7 @@
         .barra-1, .barra-2, .barra-3{
             width: 50px;
             height: 10px;
-            background: rgba(255, 255, 255, 0.6);
+            background-color: black;;
             margin: 6px 0;
             transition: 0.3s;
         }

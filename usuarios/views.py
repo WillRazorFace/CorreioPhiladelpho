@@ -46,9 +46,7 @@ def registrar(request):
     senha = request.POST.get('password')
 
     if form.is_valid():
-        novo_usuario = form.save(commit=False)
-        novo_usuario.set_password(senha)
-        novo_usuario.save()
+        print('válido')
     else:
         return render(request, 'usuarios/criar.html', {'form': form})
     
@@ -56,7 +54,8 @@ def registrar(request):
     authenticate(request, email=email, password=senha)
 
     messages.warning(request, 'Confirme seu e-mail para interagir com a plataforma. As instruções foram enviadas a você.')
-    return redirect('index')
+    
+    return render(request, 'usuarios/criar.html', {'form': form})
 
 def sair(request):
     logout(request)
