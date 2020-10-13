@@ -1,4 +1,5 @@
-# Ignorar o ambiente virtual. Utilize "requirements.txt" para a instalação das bibliotecas utilizadas.
+# Ignorar o ambiente virtual e arquivos ".pyc". Utilize "requirements.txt" para a instalação das bibliotecas utilizadas.
 venv/
 venv-linux/
+__pycache__/
 *.pyc
