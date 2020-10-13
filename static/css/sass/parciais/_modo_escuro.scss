@@ -131,8 +131,55 @@
         background: darkslategray;
     }
 
+    // Template de publicação
+
     .pub-post{
         background: #222020;
+    }
+
+    // Template de registro
+
+    .form-registro{
+        background: #222020;
+
+        input{
+            background: #222020;
+            color: white;
+        }
+
+        p{
+            color: #ddd;
+        }
+    }
+
+    .input-custom{
+        input{
+            &:focus + label,
+            &:not(:placeholder-shown) + label{
+                color: #aaa;
+            }
+        }
+    }
+
+    .input-imagem-custom{
+        background: rgba(0, 0, 0, 0.5);
+    }
+
+    .custom-file-input-text{
+        color: #aaa;
+    }
+
+    .checkbox-custom{
+        input[type=checkbox]{
+            &:checked + small{
+                color: #bbb;
+            }
+        }
+    
+        small{
+            @include font-size(1rem);
+            color: grey;
+        }
     }
 }
 
