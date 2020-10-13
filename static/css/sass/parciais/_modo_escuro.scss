@@ -4,7 +4,31 @@
     
     .barra-de-navegacao{
         background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.6));
+
+        .logo-cp{
+            svg rect, svg path{
+                fill: white
+            }
+        }
+
+        .menu{
+            li a{
+                color: white;   
+            }
+            .modo-escuro-container{
+                input:checked + label{
+                    background-color: #0077FF;
+                }
+            }
+        }
+
+        .toggle-botao{
+            .barra-1, .barra-2, .barra-3{
+                background-color: white;
+            }
+        }
     }
+
 
     @include query(tablet){
         .menu{
