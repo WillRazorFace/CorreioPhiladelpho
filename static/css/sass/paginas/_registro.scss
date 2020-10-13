@@ -181,6 +181,8 @@
 
 .checkbox-custom{
     input[type=checkbox]{
+        cursor: pointer;
+        
         &:checked + small{
             color: black;
         }
