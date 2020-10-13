@@ -118,6 +118,10 @@
     }
 }
 
+.logo-cp-auth-mobile{
+    display: none;
+}
+
 .auth-button{
     width: 100%;
     display: inline-block;
@@ -186,4 +190,65 @@
         @include font-size(1rem);
         color: grey;
     }
+}
+
+// Media queries
+
+@include query(laptop){
+
+}
+
+@include query(tablet){
+    .form-registro{
+        width: 70vw;
+    }
+
+    .input-imagem-custom{
+        text-align: center;
+    }
+
+    .custom-file-input-button{
+        width: 100%;
+        border-right: none;
+        border-bottom: 2px solid grey;
+    }
+}
+
+@include query(smartphone){
+    .wrapper-registro{
+        flex-direction: column;
+    }
+
+    .logo-cp-auth-mobile{
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        @include padding(0.625rem);
+        background: linear-gradient(135deg, $cor-padrao-claro-4, $cor-padrao-claro-6);
+
+        img{
+            width: 50px;
+
+            &:hover{
+                transform: scale(1.05);
+            }
+        }
+    }
+
+    .form-registro{
+        width: 100vw;
+        box-shadow: none;
+
+        .linha{
+            grid-template-columns: auto;
+        }
+    }
+
+    .logo-cp-auth{
+        display: none;
+    }
+}
+
+@include query(tela-grande){
+
 }

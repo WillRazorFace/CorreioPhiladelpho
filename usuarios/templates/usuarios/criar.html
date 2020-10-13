@@ -7,13 +7,17 @@
 
 {% block Conteúdo %}
     <main class="wrapper-registro">
+        <div class="logo-cp-auth-mobile">
+            <a href="{% url 'index' %}"><img src="{% static '/img/logo-cp-reduzido.svg' %}" alt=""></a>
+        </div>
+
         <div class="form-registro">
             <div class="logo-cp-auth">
                 <a href="{% url 'index' %}"><img src="{% static '/img/logo-cp-reduzido-sem-bordas.svg' %}" alt=""></a>
             </div>
 
-            <div class="voltr-auth">
-                <-
+            <div class="voltar-auth">
+                <i class="fa fa-arrow-left" aria-hidden="true"></i>
             </div>
 
             <h1>Registrar-se</h1>
