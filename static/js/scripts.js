@@ -45,25 +45,44 @@ function enviarFeedback(event){
     event.preventDefault();
 
     let formFeedback = new FormData(document.getElementById("form-feedback"));
-
-    formFeedback.append('csrfmiddlewaretoken', CSRFTOKEN);
+    let modal = document.getElementById("modal-feedback");
+    let modal_titulo = document.getElementById("modal-titulo");
+    let modal_icone = document.getElementById("modal-icone");
+    let modal_mensagem = document.getElementById("modal-mensagem");
+    let modal_botao = document.getElementById("modal-botao");
 
     fetch(FEEDBACK_URL, {
         method: "POST",
         body: formFeedback,
-    }).then((result) => {
-        let nav = document.getElementById("nav");
-        let modal = document.getElementById("feedback-modal-sucesso");
-        
-        document.getElementById("form-feedback").reset();
+        headers: {"X-CSRFToken": CSRFTOKEN},
+    }).then((resposta) => {
+        if(resposta.status == 201){
+            document.getElementById("form-feedback").reset();
 
-        modal.style.display = "grid";
+            modal.classList.add("modal-sucesso");
+            modal_titulo.innerHTML = "Feedback enviado";
+            modal_icone.classList.add("fa-paper-plane");
+            modal_mensagem.innerHTML = "Obrigado! Leremos o que você tem a dizer assim que possível."
 
-        document.querySelector('#modal-feedback-botao').addEventListener('click', () => {
-            let modal = document.getElementById("feedback-modal-sucesso");
+            modal.style.display = "grid";
 
-            modal.style.display = "none";
-        });
+            modal_botao.addEventListener("click", () => {
+                modal.style.display = "none";
+            })
+        } else {
+            document.getElementById("form-feedback").reset();
+
+            modal.classList.add("modal-erro");
+            modal_titulo.innerHTML = "Algo deu errado";
+            modal_icone.classList.add("fa-exclamation");
+            modal_mensagem.innerHTML = "Um erro aconteceu durante a requisição. Tente de novo."
+
+            modal.style.display = "grid";
+
+            modal_botao.addEventListener("click", () => {
+                modal.style.display = "none";
+            })
+        }
     })
 }
 

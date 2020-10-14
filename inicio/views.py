@@ -51,15 +51,22 @@ def buscar_posts(request):
 # Fetch API
 @require_POST
 def salvar_feedback(request):
-    email = request.POST.get('email') or request.user.email
-    feedback = request.POST.get('feedback')
-
     if request.user.is_authenticated:
-        Feedback.objects.create(usuario=request.user,email=email, feedback=feedback)
-    else:
-        Feedback.objects.create(email=email, feedback=feedback)
+        form = FeedbackFormLogado(data=request.POST)
 
-    return HttpResponse('Enviado')
+        if form.is_valid():
+            form.save()
+        else:
+            return HttpResponse(status=409)
+    else:
+        form = FeedbackFormNaoLogado(data=request.POST)
+
+        if form.is_valid():
+            form.save()
+        else:
+            return HttpResponse(status=409)
+
+    return HttpResponse(status=201)
 
 @require_GET
 def index(request):
