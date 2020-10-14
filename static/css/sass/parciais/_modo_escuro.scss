@@ -151,8 +151,18 @@
         }
     }
 
-    .modal{
-        background: darkslategray;
+    // Modais
+
+    .modal-sucesso{
+        .modal{
+            background: darkslategray;
+        }
+    }
+
+    .modal-erro{
+        .modal{
+            background: rgb(128, 1, 1);
+        }
     }
 
     // Template de publicação
