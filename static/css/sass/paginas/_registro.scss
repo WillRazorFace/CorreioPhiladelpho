@@ -276,6 +276,20 @@
         .linha{
             grid-template-columns: auto;
         }
+
+        input#id_email{
+            @include margin(0.625rem 0 0.625rem 0);
+
+            & + label{
+                transform: translateY(-2.125rem);
+            }
+
+            &:focus + label,
+            &:not(:placeholder-shown) + label{
+                transform: translateY(-3.325rem) scale(0.8);
+                color: grey;
+            }
+        }
     }
 
     .logo-cp-auth{

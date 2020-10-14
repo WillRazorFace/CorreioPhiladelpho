@@ -158,6 +158,9 @@ email_field.addEventListener("keyup", () => {
     } else {
         email_field.style.borderColor = "";
 
+        email_label.style.color = "";
+        email_label.style.fontWeight = "";
+
         invalido_email.innerHTML = "";
         invalido_email.style.display = "none";
     }
