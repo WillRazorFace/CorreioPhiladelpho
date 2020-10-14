@@ -1,5 +1,5 @@
 $verde-sucesso: #0da14b;
-$vermelho-erro: #db0a1f;
+$vermelho-erro: #ff0019;
 
 .modal-wrapper{
     height: 100vh;
@@ -63,7 +63,6 @@ $vermelho-erro: #db0a1f;
 }
 
 .modal-icone{
-    color: $verde-sucesso;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -74,6 +73,20 @@ $vermelho-erro: #db0a1f;
 .modal-sucesso{
     .modal-header{
         background: $verde-sucesso;
+    }
+
+    .modal-icone{
+        color: $verde-sucesso;
+    }
+}
+
+.modal-erro{
+    .modal-header{
+        background: $vermelho-erro;
+    }
+
+    .modal-icone{
+        color: $vermelho-erro;
     }
 }
 
