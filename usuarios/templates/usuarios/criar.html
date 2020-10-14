@@ -22,7 +22,7 @@
 
             <h1>Registrar-se</h1>
 
-            <form method="POST" action="" enctype="multipart/form-data">
+            <form method="POST" action="" enctype="multipart/form-data" id="form-registro">
                 {% csrf_token %}
 
                 {% for hidden_field in form.hidden_fields %}
@@ -98,10 +98,13 @@
 
 {% block javascript-adicional %}
     <script>
+        var URL_CRIAR_USUARIO = "{% url 'criar-usuario' %}";
         var URL_VALIDAR_NOME = "{% url 'validar-nome' %}";
         var URL_VALIDAR_SOBRENOME = "{% url 'validar-sobrenome' %}";
         var URL_VALIDAR_EMAIL = "{% url 'validar-email' %}";
         var URL_VALIDAR_SENHA = "{% url 'validar-senha' %}";
         var CSRFTOKEN = "{{ csrf_token }}";
+
+        var REDIRECIONAR = "{{ proximo }}";
     </script>
 {% endblock %}

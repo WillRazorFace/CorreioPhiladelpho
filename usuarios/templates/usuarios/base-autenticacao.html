@@ -16,5 +16,21 @@
             <script type="text/javascript" src="{% static '/js/parciais/autenticacao.js' %}"></script>
             {% block javascript-adicional %}{% endblock %}
         </div>
+
+        <div class="modal-wrapper" id="modal-registro">
+            <div class="modal">
+                <div class="modal-header">
+                    <h1 id="modal-titulo"></h1>
+                    <button id="modal-botao">x</button>
+                </div>
+
+                <div class="modal-icone">
+                    <i class="fa fa-4x" aria-hidden="true" id="modal-icone"></i>
+                </div>
+
+                <p id="modal-mensagem"></p>
+            </div>
+        </div>
+
     </body>
 </html>
