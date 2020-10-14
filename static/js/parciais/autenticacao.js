@@ -20,6 +20,55 @@ input_imagem.addEventListener("change", function() {
     }
 })
 
+// Chamada Ajax para criação de usuário
+
+document.getElementById("form-registro").addEventListener("submit", function(event){
+    event.preventDefault();
+
+    let formRegistro = new FormData(document.getElementById("form-registro"));
+    let modal = document.getElementById("modal-registro");
+    let modal_titulo = document.getElementById("modal-titulo");
+    let modal_icone = document.getElementById("modal-icone");
+    let modal_mensagem = document.getElementById("modal-mensagem");
+    let modal_botao = document.getElementById("modal-botao");
+
+    fetch(URL_CRIAR_USUARIO,{
+        method: "POST",
+        body: formRegistro,
+        headers: {"X-CSRFToken": CSRFTOKEN},
+    }).then((resposta) => {
+        if(resposta.status == 201){
+            document.getElementById("form-registro").reset();
+
+            modal.classList.add("modal-aviso");
+            modal_titulo.innerHTML = "Verifique seu e-mail";
+            modal_icone.classList.add("fa-envelope");
+            modal_mensagem.innerHTML = "Um link foi enviado ao seu e-mail para verificação. Após verificado, você poderá interagir com a plataforma."
+
+            modal.style.display = "grid";
+
+            modal_botao.style.display = "none";
+
+            setTimeout(() => {
+                window.location.href = REDIRECIONAR;
+            }, 7000);
+        } else {
+            document.getElementById("form-registro").reset();
+
+            modal.classList.add("modal-erro");
+            modal_titulo.innerHTML = "Algo deu errado";
+            modal_icone.classList.add("fa-exclamation");
+            modal_mensagem.innerHTML = "Um erro aconteceu durante a requisição. Tente de novo. Se o problema continuar, contate o suporte."
+
+            modal.style.display = "grid";
+
+            modal_botao.addEventListener("click", () => {
+                modal.style.display = "none";
+            })
+        }
+    })
+})
+
 // Validação de fields no form de registro
 
 const botao_submit = document.getElementById("botao-submit");
