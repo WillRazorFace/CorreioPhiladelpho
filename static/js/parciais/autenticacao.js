@@ -215,9 +215,9 @@ senha_field.addEventListener("keyup", () => {
 senha_confirmacao_field.addEventListener("keyup", () => {
     if (senha_confirmacao_field.value == senha_field.value){
         remover_erro(senha_confirmacao_field, senha_confirmacao_label, div_erro_senha_confirmacao);
-        manipular_botao('senha_confirmacao', true);
+        manipular_botao('senha_confirmacao', false);
     } else {
         dispor_erro(senha_confirmacao_field, senha_confirmacao_label, div_erro_senha_confirmacao, "As senhas devem ser idênticas");
-        manipular_botao('senha_confirmacao', false);
+        manipular_botao('senha_confirmacao', true);
     }
 })
