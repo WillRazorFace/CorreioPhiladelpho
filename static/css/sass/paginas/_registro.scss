@@ -170,6 +170,17 @@
         background: $cor-padrao-claro;
         transform: scale(1.05);
     }
+
+    &:disabled{
+        cursor: not-allowed;
+        background: rgba(0, 0, 0, 0.2);
+        color: grey;
+
+        &:hover{
+            background: rgba(0, 0, 0, 0.2);
+            transform: none;
+        }
+    }
 }
 
 // Input customizado de imagem
