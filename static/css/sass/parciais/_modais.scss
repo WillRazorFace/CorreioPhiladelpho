@@ -1,5 +1,6 @@
 $verde-sucesso: #0da14b;
 $vermelho-erro: #ff0019;
+$amarelo-aviso: #d6a512;
 
 .modal-wrapper{
     height: 100vh;
@@ -90,6 +91,15 @@ $vermelho-erro: #ff0019;
     }
 }
 
+.modal-aviso{
+    .modal-header{
+        background: $amarelo-aviso;
+    }
+
+    .modal-icone{
+        color: $amarelo-aviso;
+    }
+}
 // Media Queries
 
 @include query(laptop){
@@ -99,11 +109,13 @@ $vermelho-erro: #ff0019;
 @include query(tablet){
     .modal{
         width: 70vw;
+        height: auto;
     }
 }
 
 @include query(smartphone){
     .modal{
         width: 100vw;
+        border-radius: none !important;
     }
 }
