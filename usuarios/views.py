@@ -1,12 +1,12 @@
 from django.shortcuts import render, redirect
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.password_validation import MinimumLengthValidator, CommonPasswordValidator, NumericPasswordValidator
 from django.core.exceptions import ValidationError
 from django.contrib import messages
 from .forms import LoginForm, CadastroForm
 from usuarios.models import Usuario
-from django.views.decorators.http import require_GET, require_POST
+from django.views.decorators.http import require_GET, require_POST, require_http_methods
 from utils.validadores import checar_caracteres_especiais_e_numeros
 from json import loads
 import email_validator
@@ -45,8 +45,31 @@ def registrar(request):
 
     if not pagina_anterior:
         pagina_anterior = '/'
-    
+        
     return render(request, 'usuarios/criar.html', {'form': form, 'proximo': pagina_anterior})
+
+#Fetch API
+@require_POST
+def criar_usuario(request):
+    form = CadastroForm(data=request.POST, files=request.FILES or None)
+
+    if form.is_valid():
+        senha = form.cleaned_data.get('password')
+
+        novo_usuario = form.save(commit=False)
+        novo_usuario.set_password(senha)
+        novo_usuario.save()
+
+        email = form.cleaned_data.get('email')
+
+        usuario = authenticate(request, email=email, password=senha)
+        login(request, usuario)
+
+        messages.warning(request, 'Confirme seu e-mail para interagir com a plataforma. As instruções foram enviadas a você.')
+            
+        return HttpResponse(status=201)    
+
+    return HttpResponse(status=409)
 
 #Fetch API
 @require_POST
