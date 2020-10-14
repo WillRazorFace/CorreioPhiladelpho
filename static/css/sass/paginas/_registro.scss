@@ -11,7 +11,9 @@
     @include rfs(0.313rem, border-radius);
     background: white;
     position: relative;
-
+    min-width: 448px;
+    max-width: 448px;
+    
     h1{
         text-align: center;
         @include margin(2.5rem 0 2.5rem 0);
@@ -47,7 +49,7 @@
 }
 
 .input-custom{
-    @include margin-bottom(0.625rem);
+    @include margin-bottom(1.25rem);
     transition: all 0.3s ease;
 
     &:focus-within{
@@ -95,6 +97,14 @@
             color: grey;
         }
     }
+}
+
+.form-campo-invalido{
+    @include margin-bottom(0.625rem);
+    @include font-size(0.875rem);
+    color: rgb(226, 8, 8);
+    display: none;
+    font-weight: bold;
 }
 
 .logo-cp-auth{
@@ -222,7 +232,8 @@
 
 @include query(tablet){
     .form-registro{
-        width: 70vw;
+        max-width: 70vw;
+        min-width: 70vw;
     }
 
     .input-imagem-custom{
@@ -258,7 +269,8 @@
     }
 
     .form-registro{
-        width: 100vw;
+        min-width: 100vw;
+        max-width: 100vw;
         box-shadow: none;
 
         .linha{
