@@ -175,6 +175,11 @@ senha_field.addEventListener("keyup", () => {
 
         invalido_senha.innerHTML = "";
         invalido_senha.style.display = "none";
+
+        senha_confirmacao_field.style.borderColor = "";
+
+        invalido_senha_confirmacao.innerHTML= "";
+        invalido_senha_confirmacao.style.display = "none";
     }
 })
 
