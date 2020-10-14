@@ -20,217 +20,156 @@ input_imagem.addEventListener("change", function() {
     }
 })
 
+// Validação de fields no form de registro
+
+let funcao_programada = false;
+
+let chamada_ajax_validacao = function(url, field){
+    let promise = new Promise(function(resolve, reject){
+        fetch(url, {
+            method: "POST",
+            body: JSON.stringify({valor: field.value}),
+            headers: {"X-CSRFToken": CSRFTOKEN},
+        }).then((resposta) => {
+            resposta.json().then((dados) => {
+                resolve(dados);
+            })
+        })
+    })
+
+    return promise;
+}
+
+let dispor_erro = function(field, label, div_erro, erro){
+    field.style.borderColor = "red";
+    
+    label.style.color = "red";
+    label.style.fontWeight = "bold";
+
+    div_erro.innerHTML = erro;
+    div_erro.style.display = "block";
+}
+
+let remover_erro = function(field, label, div_erro){
+    field.style.borderColor = "";
+
+    label.style.color = "";
+    label.style.fontWeight = "";
+
+    div_erro.innerHTML = "";
+    div_erro.style.display = "";
+}
+
 const nome_field = document.getElementById("id_nome");
 const nome_label = document.getElementById("nome-label");
-const invalido_nome = document.getElementById("invalido-nome");
+const div_erro_nome = document.getElementById("invalido-nome");
 
 // Validação de nome
 
 nome_field.addEventListener("keyup", () => {
-    if(nome_field.value.length > 0){
-        fetch(URL_VALIDAR_NOME,{
-            method: "POST",
-            body:  JSON.stringify({'nome': nome_field.value}),
-            headers: {"X-CSRFToken": CSRFTOKEN},
-        }).then((resposta) => {
-            resposta.json().then((dados) => {
-                console.log(dados);
+    if (nome_field.value.length > 0){
+        if (funcao_programada){
+            clearTimeout(funcao_programada);
+        }
 
-                if(dados["status_nome"] == "inválido"){
-                    nome_field.style.borderColor = "red";
-
-                    nome_label.style.color = "red";
-                    nome_label.style.fontWeight = "bold";
-
-                    invalido_nome.innerHTML= dados["erro"];
-                    invalido_nome.style.display = "block";
-                } else if(dados["status_nome"] == "válido"){
-                    nome_field.style.borderColor = "";
-
-                    nome_label.style.color = "";
-                    nome_label.style.fontWeight = "";
-
-                    invalido_nome.innerHTML = "";
-                    invalido_nome.style.display = "none";
+        funcao_programada = setTimeout(function(){chamada_ajax_validacao(URL_VALIDAR_NOME, nome_field)
+            .then((resposta) => {
+                if(resposta["status"] == "inválido"){
+                    dispor_erro(nome_field, nome_label, div_erro_nome, resposta["erro"]);
+                } else if(resposta["status"] == "válido"){
+                    remover_erro(nome_field, nome_label, div_erro_nome);
                 }
             })
-        })
+        }, 500);
     } else {
-        nome_field.style.borderColor = "";
-
-        nome_label.style.color = "";
-        nome_label.style.fontWeight = "";
-
-        invalido_nome.innerHTML = "";
-        invalido_nome.style.display = "none";
+        remover_erro(nome_field, nome_label, div_erro_nome);
     }
 })
 
 const sobrenome_field = document.getElementById("id_sobrenome");
 const sobrenome_label = document.getElementById("sobrenome-label");
-const invalido_sobrenome = document.getElementById("invalido-sobrenome");
+const div_erro_sobrenome = document.getElementById("invalido-sobrenome");
 
 // Validação de sobrenome
 
 sobrenome_field.addEventListener("keyup", () => {
-    if(sobrenome_field.value.length > 0){
-        fetch(URL_VALIDAR_SOBRENOME,{
-            method: "POST",
-            body:  JSON.stringify({'sobrenome': sobrenome_field.value}),
-            headers: {"X-CSRFToken": CSRFTOKEN},
-        }).then((resposta) => {
-            resposta.json().then((dados) => {
-                console.log(dados);
+    if (sobrenome_field.value.length > 0){
+        if (funcao_programada){
+            clearTimeout(funcao_programada);
+        }
 
-                if(dados["status_sobrenome"] == "inválido"){
-                    sobrenome_field.style.borderColor = "red";
-
-                    sobrenome_label.style.color = "red";
-                    sobrenome_label.style.fontWeight = "bold";
-
-                    invalido_sobrenome.innerHTML= dados["erro"];
-                    invalido_sobrenome.style.display = "block";
-                } else if(sobrenome_field.value === nome_field.value){
-                    sobrenome_field.style.borderColor = "red";
-
-                    sobrenome_label.style.color = "red";
-                    sobrenome_label.style.fontWeight = "bold";
-
-                    invalido_sobrenome.innerHTML= "Seu sobrenome não deve ser igual a seu nome";
-                    invalido_sobrenome.style.display = "block";
-                } else if(dados["status_sobrenome"] == "válido"){
-                    sobrenome_field.style.borderColor = "";
-
-                    sobrenome_label.style.color = "";
-                    sobrenome_label.style.fontWeight = "";
-
-                    invalido_sobrenome.innerHTML = "";
-                    invalido_sobrenome.style.display = "none";
+        funcao_programada = setTimeout(function(){chamada_ajax_validacao(URL_VALIDAR_SOBRENOME, sobrenome_field)
+            .then((resposta) => {
+                if(resposta["status"] == "inválido"){
+                    dispor_erro(sobrenome_field, sobrenome_label, div_erro_sobrenome, resposta["erro"]);
+                } else if(resposta["status"] == "válido"){
+                    remover_erro(sobrenome_field, sobrenome_label, div_erro_sobrenome);
                 }
             })
-        })
+        }, 500);
     } else {
-        sobrenome_field.style.borderColor = "";
-
-        sobrenome_label.style.color = "";
-        sobrenome_label.style.fontWeight = "";
-
-        invalido_sobrenome.innerHTML = "";
-        invalido_sobrenome.style.display = "none";
+        remover_erro(sobrenome_field, sobrenome_label, div_erro_sobrenome);
     }
 })
 
 const email_field = document.getElementById("id_email");
 const email_label = document.getElementById("email-label");
-const invalido_email = document.getElementById("invalido-email");
+const div_erro_email = document.getElementById("invalido-email");
 
 // Validação de e-mail
 
 email_field.addEventListener("keyup", () => {
-    if(email_field.value.length > 0){
-        fetch(URL_VALIDAR_EMAIL,{
-            method: "POST",
-            body:  JSON.stringify({'email': email_field.value}),
-            headers: {"X-CSRFToken": CSRFTOKEN},
-        }).then((resposta) => {
-            resposta.json().then((dados) => {
-                console.log(dados);
+    if (email_field.value.length > 0){
+        if (funcao_programada){
+            clearTimeout(funcao_programada);
+        }
 
-                if(dados["status_email"] == "inválido"){
-                    email_field.style.borderColor = "red";
-
-                    email_label.style.color = "red";
-                    email_label.style.fontWeight = "bold";
-
-                    invalido_email.innerHTML= dados["erro"];
-                    invalido_email.style.display = "block";
-                } else if(dados["status_email"] == "válido") {
-                    email_field.style.borderColor = "";
-                    
-                    email_label.style.color = "";
-                    email_label.style.fontWeight = "";
-
-                    invalido_email.innerHTML = "";
-                    invalido_email.style.display = "none";
+        funcao_programada = setTimeout(function(){chamada_ajax_validacao(URL_VALIDAR_EMAIL, email_field)
+            .then((resposta) => {
+                if(resposta["status"] == "inválido"){
+                    dispor_erro(email_field, email_label, div_erro_email, resposta["erro"]);
+                } else if(resposta["status"] == "válido"){
+                    remover_erro(email_field, email_label, div_erro_email);
                 }
             })
-        })
+        }, 500);
     } else {
-        email_field.style.borderColor = "";
-
-        email_label.style.color = "";
-        email_label.style.fontWeight = "";
-
-        invalido_email.innerHTML = "";
-        invalido_email.style.display = "none";
+        remover_erro(email_field, email_label, div_erro_email);
     }
 })
 
 const senha_field = document.getElementById("id_password");
 const senha_label = document.getElementById("password-label");
-const invalido_senha = document.getElementById("invalido-password");
+const div_erro_senha = document.getElementById("invalido-password");
 
 const senha_confirmacao_field = document.getElementById("id_password_confirmacao");
 const senha_confirmacao_label = document.getElementById("password-confirmacao-label");
-const invalido_senha_confirmacao = document.getElementById("invalido-password-confirmacao");
+const div_erro_senha_confirmacao = document.getElementById("invalido-password-confirmacao");
 
 // Validação dos campos de senha
 
 senha_field.addEventListener("keyup", () => {
-    if(senha_field.value.length > 0){
-        fetch(URL_VALIDAR_SENHA,{
-            method: "POST",
-            body:  JSON.stringify({'senha': senha_field.value}),
-            headers: {"X-CSRFToken": CSRFTOKEN},
-        }).then((resposta) => {
-            resposta.json().then((dados) => {
-                console.log(dados);
+    if (senha_field.value.length > 0){
+        if (funcao_programada){
+            clearTimeout(funcao_programada);
+        }
 
-                if(dados["status_senha"] == "inválido"){
-                    senha_field.style.borderColor = "red";
-
-                    senha_label.style.color = "red";
-                    senha_label.style.fontWeight = "bold";
-
-                    invalido_senha.innerHTML= dados["erro"];
-                    invalido_senha.style.display = "block";
-                } else if(dados["status_senha"] == "válido") {
-                    senha_field.style.borderColor = "";
-
-                    senha_label.style.color = "";
-                    senha_label.style.fontWeight = "";
-
-                    invalido_senha.innerHTML = "";
-                    invalido_senha.style.display = "none";
+        funcao_programada = setTimeout(function(){chamada_ajax_validacao(URL_VALIDAR_SENHA, senha_field)
+            .then((resposta) => {
+                if(resposta["status"] == "inválido"){
+                    dispor_erro(senha_field, senha_label, div_erro_senha, resposta["erro"]);
+                } else if(resposta["status"] == "válido"){
+                    remover_erro(senha_field, senha_label, div_erro_senha);
                 }
 
                 if(senha_field.value != senha_confirmacao_field.value){
-                    senha_confirmacao_field.style.borderColor = "red";
-
-                    senha_confirmacao_label.style.color = "red";
-                    senha_confirmacao_label.style.fontWeight = "bold";
-
-                    invalido_senha_confirmacao.innerHTML= "As senhas devem ser idênticas";
-                    invalido_senha_confirmacao.style.display = "block";
+                    dispor_erro(senha_confirmacao_field, senha_confirmacao_label, div_erro_senha_confirmacao, "As senhas devem ser idênticas");
                 }
             })
-        })
+        }, 500);
     } else {
-        senha_field.style.borderColor = "";
-
-        senha_label.style.color = "";
-        senha_label.style.fontWeight = "";
-
-        invalido_senha.innerHTML = "";
-        invalido_senha.style.display = "none";
-        
-        senha_confirmacao_field.style.borderColor = "";
-
-        senha_confirmacao_label.style.color = "";
-        senha_confirmacao_label.style.fontWeight = "";
-
-        invalido_senha_confirmacao.innerHTML= "";
-        invalido_senha_confirmacao.style.display = "none";
+        remover_erro(senha_field, senha_label, div_erro_senha);
+        remover_erro(senha_confirmacao_field, senha_confirmacao_label, div_erro_senha_confirmacao);
     }
 })
 
@@ -238,20 +177,8 @@ senha_field.addEventListener("keyup", () => {
 
 senha_confirmacao_field.addEventListener("keyup", () => {
     if (senha_confirmacao_field.value == senha_field.value){
-        senha_confirmacao_field.style.borderColor = "";
-
-        senha_confirmacao_label.style.color = "";
-        senha_confirmacao_label.style.fontWeight = "";
-
-        invalido_senha_confirmacao.innerHTML= "";
-        invalido_senha_confirmacao.style.display = "none";
+        remover_erro(senha_confirmacao_field, senha_confirmacao_label, div_erro_senha_confirmacao);
     } else {
-        senha_confirmacao_field.style.borderColor = "red";
-
-        senha_confirmacao_label.style.color = "red";
-        senha_confirmacao_label.style.fontWeight = "bold";
-
-        invalido_senha_confirmacao.innerHTML= "As senhas devem ser idênticas";
-        invalido_senha_confirmacao.style.display = "block";
+        dispor_erro(senha_confirmacao_field, senha_confirmacao_label, div_erro_senha_confirmacao, "As senhas devem ser idênticas");
     }
 })

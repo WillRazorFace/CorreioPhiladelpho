@@ -51,39 +51,39 @@ def registrar(request):
 #Fetch API
 @require_POST
 def validacao_nome_registro(request):
-    nome = loads(request.body)['nome']
+    nome = loads(request.body)['valor']
     resposta = {}
 
     if checar_caracteres_especiais_e_numeros(nome):
         status = 400
-        resposta['status_nome'] = 'inválido'
+        resposta['status'] = 'inválido'
         resposta['erro'] = 'Seu nome não pode conter caracteres especiais nem números'
     else:
         status = 200
-        resposta['status_nome'] = 'válido'
+        resposta['status'] = 'válido'
 
     return JsonResponse(resposta, status=status)
 
 #Fetch API
 @require_POST
 def validacao_sobrenome_registro(request):
-    sobrenome = loads(request.body)['sobrenome']
+    sobrenome = loads(request.body)['valor']
     resposta = {}
 
     if checar_caracteres_especiais_e_numeros(sobrenome):
         status = 400
-        resposta['status_sobrenome'] = 'inválido'
+        resposta['status'] = 'inválido'
         resposta['erro'] = 'Seu sobrenome não pode conter caracteres especiais nem números'
     else:
         status = 200
-        resposta['status_sobrenome'] = 'válido'
+        resposta['status'] = 'válido'
 
     return JsonResponse(resposta, status=status)
 
 #Fetch API
 @require_POST
 def validacao_email_registro(request):
-    email = loads(request.body)['email']
+    email = loads(request.body)['valor']
     resposta = {}
 
     try:
@@ -93,29 +93,29 @@ def validacao_email_registro(request):
     
     try:
         valido = email_validator.validate_email(email)
-    except email_validator.EmailSyntaxError:
+    except email_validator.EmailSyntaxError as e:
         valido = False
     except:
         valido = False
     
     if not valido:
         status = 400
-        resposta['status_email'] = 'inválido'
+        resposta['status'] = 'inválido'
         resposta['erro'] = 'O e-mail digitado é inválido'
     elif existente:
         status = 409
-        resposta['status_email'] = 'inválido'
+        resposta['status'] = 'inválido'
         resposta['erro'] = 'Esse endereço já foi cadastrado'
     else:
         status = 200
-        resposta['status_email'] = 'válido'
+        resposta['status'] = 'válido'
 
     return JsonResponse(resposta, status=status)
 
 #Fetch API
 @require_POST
 def validacao_senha_registro(request):
-    senha = loads(request.body)['senha']
+    senha = loads(request.body)['valor']
     resposta = {}
 
     tamanho_minimo = MinimumLengthValidator(8)
@@ -142,19 +142,19 @@ def validacao_senha_registro(request):
 
     if not tamanho_minimo:
         status = 400
-        resposta['status_senha'] = 'inválido'
+        resposta['status'] = 'inválido'
         resposta['erro'] = 'Sua senha deve conter pelo menos 8 caracteres'
     elif not numerica:
         status = 400
-        resposta['status_senha'] = 'inválido'
+        resposta['status'] = 'inválido'
         resposta['erro'] = 'Sua senha não pode ser inteiramente numérica'
     elif not comum:
         status = 400
-        resposta['status_senha'] = 'inválido'
+        resposta['status'] = 'inválido'
         resposta['erro'] = 'Essa senha é muito comum. Tente outra.'
     else:
         status = 200
-        resposta['status_senha'] = 'válido'
+        resposta['status'] = 'válido'
 
     return JsonResponse(resposta, status=status)
 
