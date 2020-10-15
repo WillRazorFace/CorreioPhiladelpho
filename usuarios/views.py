@@ -11,15 +11,19 @@ from utils.validadores import checar_caracteres_especiais_e_numeros
 from json import loads
 import email_validator
 
+@require_GET
 def entrar(request):
     form = LoginForm()
+    pagina_anterior = request.GET.get('proximo')
 
-    if request.user.is_authenticated:
-        return redirect('index')
+    if not pagina_anterior:
+        pagina_anterior = '/'
 
-    if request.method != 'POST':
-        return render(request, 'usuarios/entrar.html', {'form': form})
+    return render(request, 'usuarios/entrar.html', {'form': form, 'proximo': pagina_anterior})
 
+#Fetch API
+@require_POST
+def fazer_login(request):
     form = LoginForm(data=request.POST or None)
 
     if form.is_valid():
@@ -28,15 +32,16 @@ def entrar(request):
 
         usuario = authenticate(request, email=email, password=senha)
 
-        if not usuario:
-            messages.error(request, 'E-mail ou senha inválidos')
-            return render(request, 'usuarios/entrar.html', {'form': form})
+        if usuario:
+            login(request, usuario)
 
-        login(request, user=usuario)
-        messages.success(request, f'Bem-vindo, {usuario.nome}')
-        return redirect('index')
-    else:
-        return render(request, 'usuarios/entrar.html', {'form': form})
+            messages.success(request, f'Bem-vindo, {usuario.nome}')
+
+            return HttpResponse(status=200)
+        else:
+            return HttpResponse(status=404)
+    
+    return HttpResponse(status=409)
 
 @require_GET
 def registrar(request):

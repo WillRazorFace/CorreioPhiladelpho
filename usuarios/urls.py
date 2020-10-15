@@ -3,6 +3,7 @@ from . import views
 
 urlpatterns = [
     path('criar-usuario', views.criar_usuario, name='criar-usuario'),
+    path('fazer-login', views.fazer_login, name='fazer-login'),
     path('entrar', views.entrar, name='entrar'),
     path('registrar', views.registrar, name='registrar'),
     path('registrar/validar-nome', views.validacao_nome_registro, name='validar-nome'),
