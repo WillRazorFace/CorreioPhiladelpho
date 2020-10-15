@@ -2053,4 +2053,21 @@ body {
             box-shadow: none;
   }
 }
+
+#header {
+  background-color: #6d031c;
+  color: #000;
+}
+
+#header a:link, #header a:visited {
+  color: #d2d2c9;
+}
+
+body {
+  background-color: #d2d2c9;
+}
+
+#content-main .module caption, .breadcrumbs, .submit-row input {
+  background-color: #6d031c;
+}
 /*# sourceMappingURL=principal.css.map */
