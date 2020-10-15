@@ -97,6 +97,8 @@
 {% endblock %}
 
 {% block javascript-adicional %}
+    <script src="{% static '/js/parciais/registro.js' %}"></script>
+
     <script>
         var URL_CRIAR_USUARIO = "{% url 'criar-usuario' %}";
         var URL_VALIDAR_NOME = "{% url 'validar-nome' %}";
