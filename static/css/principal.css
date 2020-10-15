@@ -413,7 +413,7 @@ body img {
 }
 
 .barra-de-navegacao .menu li a:hover {
-  color: white;
+  color: #d2d2c9;
 }
 
 .barra-de-navegacao .menu li + li {
@@ -2063,7 +2063,7 @@ body {
   color: #d2d2c9;
 }
 
-body {
+body.dashboard {
   background-color: #d2d2c9;
 }
 
