@@ -64,6 +64,7 @@
     }
 
     .rodape{
+        color: white;
         background: rgba(0, 0, 0, .7);
 
         @include query(tablet){

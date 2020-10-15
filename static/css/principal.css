@@ -54,6 +54,7 @@
 }
 
 .modo-escuro .rodape {
+  color: white;
   background: rgba(0, 0, 0, 0.7);
 }
 
@@ -567,9 +568,8 @@ body img {
   -ms-grid-columns: 2fr 1fr 2fr;
       grid-template-columns: 2fr 1fr 2fr;
       grid-template-areas: "resumo" "links" "feedback";
-  color: white;
-  padding: 1.25rem;
-  background: linear-gradient(135deg, #a90e10, #ed2123);
+  color: black;
+  background-color: #d2d2c9;
 }
 
 .rodape p {
@@ -591,6 +591,31 @@ body img {
 .rodape li {
   margin-top: 0.625rem;
   font-size: 1rem;
+}
+
+.rodape .resumo, .rodape .links, .rodape .feedback {
+  margin-top: calc(1.275rem + 0.3vw);
+  padding: 1.25rem;
+}
+
+@media (min-width: 1200px) {
+  .rodape .resumo, .rodape .links, .rodape .feedback {
+    margin-top: 1.5rem;
+  }
+}
+
+.rodape .resumo h5 {
+  font-size: calc(1.335rem + 1.02vw);
+}
+
+@media (min-width: 1200px) {
+  .rodape .resumo h5 {
+    font-size: 2.1rem;
+  }
+}
+
+.rodape .resumo p {
+  text-align: justify;
 }
 
 .rodape .feedback {
@@ -642,7 +667,7 @@ body img {
   cursor: pointer;
   font-size: 1.1rem;
   color: white;
-  background: #8d0c0e !important;
+  background: #6d031c !important;
   border-radius: 0.625rem;
   -webkit-transition: 0.3s ease;
   transition: 0.3s ease;
@@ -651,6 +676,12 @@ body img {
 .rodape .feedback .feedback-botao:hover {
   font-size: 1.2rem;
   background: #5e0809 !important;
+}
+
+.rodape .creditos {
+  position: relative;
+  bottom: 0;
+  margin-left: 1.25rem;
 }
 
 @media only screen and (max-width: 900px) {

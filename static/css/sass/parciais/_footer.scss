@@ -33,9 +33,8 @@
     grid-template-areas:
         "resumo" "links" "feedback"
     ;
-    color: white;
-    @include padding(1.25rem);
-    background: linear-gradient(135deg, $cor-padrao-claro, #ed2123);
+    color: black;
+    background-color: #d2d2c9;
 
     p{
         @include margin-top(0.625rem);
@@ -50,6 +49,19 @@
     li{
         @include margin-top(0.625rem);
         @include font-size(1rem);
+    }
+
+    .resumo, .links, .feedback{
+        @include margin-top(1.5rem);
+        @include padding(1.25rem);
+    }
+    .resumo{
+        h5{
+            @include font-size(2.1rem)
+        }
+        p{
+            text-align: justify;
+        }
     }
 
     .feedback{
@@ -98,7 +110,7 @@
             cursor: pointer;
             @include font-size(1.1rem);
             color: white;
-            background: $cor-padrao-escuro-5 !important;
+            background: #6d031c !important;
             @include rfs(0.625rem, border-radius);
             transition: 0.3s ease;
 
@@ -107,6 +119,11 @@
                 background: $cor-padrao-escuro !important;
             }
         }
+    }
+    .creditos{
+        position: relative;
+        bottom: 0;
+        @include margin-left(1.25rem)
     }
 }
 
