@@ -13,6 +13,9 @@ import email_validator
 
 @require_GET
 def entrar(request):
+    if request.user.is_authenticated:
+        return redirect('index')
+    
     form = LoginForm()
     pagina_anterior = request.GET.get('proximo')
 
@@ -45,6 +48,11 @@ def fazer_login(request):
 
 @require_GET
 def registrar(request):
+    if request.user.is_authenticated:
+        messages.warning(request, f'Você já está logado, {request.user.nome}. Faça logout se quiser criar uma conta.')
+
+        return redirect('index')
+
     form = CadastroForm()
     pagina_anterior = request.GET.get('proximo')
 
