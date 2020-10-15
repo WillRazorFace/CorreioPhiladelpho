@@ -41,9 +41,13 @@
             }
         }
     }
-
-    .secao-bloco{
-        background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.6)) !important;
+    .popular{
+        .secao-bloco{
+            background: rgba(0, 0, 0, .5) !important;
+            h3{
+                color: white
+            }
+        }
     }
 
     .resultados-termo{
@@ -285,14 +289,6 @@
         left: 0.125rem;
         border-radius: 50%;
         transition: transform 0.2s linear;
-    }
-
-    .fa-moon{
-        color: #f1c40f;
-    }
-
-    .fa-sun{
-        color: #f39c12;
     }
 }
 
