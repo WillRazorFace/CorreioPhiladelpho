@@ -45,3 +45,10 @@ body{
     width: 100vw;
     height: 100vh;
 }
+
+@include query(smartphone){
+    .container-autenticacao{
+        align-items: start;
+        background: white;
+    }
+}

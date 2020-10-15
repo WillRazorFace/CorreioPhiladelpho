@@ -177,6 +177,23 @@
         background: #222020;
     }
 
+    // Template de login
+    
+    .form-login{
+        background: #222020;
+
+        input{
+            background: #222020;
+            color: white;
+        } 
+    }
+
+    @include query(smartphone){
+        .container-autenticacao{
+            background: #222020;
+        }
+    }
+
     // Template de registro
 
     .form-registro{
