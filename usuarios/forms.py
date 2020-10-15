@@ -29,13 +29,13 @@ class LoginForm(forms.ModelForm):
     
     email = forms.EmailField(
         required=True,
-        widget=forms.EmailInput(attrs={'placeholder': 'Endereço de e-mail'}),
+        widget=forms.EmailInput(attrs={'placeholder': 'Endereço de e-mail', 'id': 'id_email_login'}),
         max_length=100,
     )
 
     password = forms.CharField(
         required=True,
-        widget=forms.PasswordInput(attrs={'placeholder': 'Senha'}),
+        widget=forms.PasswordInput(attrs={'placeholder': 'Senha', 'id': 'id_password_login'}),
         max_length=50,
     )
 
@@ -44,8 +44,13 @@ class LoginForm(forms.ModelForm):
 
         email = dados_limpos.get('email')
         
+        try:
+            valido = validate_email(email)
+        except Exception:
+            valido = False
+        
         # Validando o email
-        if not validate_email(email):
+        if not valido:
             self.add_error('email', 'Insira um e-mail válido')
 
     class Meta:
@@ -123,7 +128,12 @@ class CadastroForm(forms.ModelForm):
         except Usuario.DoesNotExist:
             checagem_email = False
 
-        if not validate_email(email):
+        try:
+            valido = validate_email(email)
+        except Exception:
+            valido = False
+
+        if not valido:
             self.add_error('email', 'Insira um e-mail válido')
         elif checagem_email:
             self.add_error('email', 'Este endereço de e-mail já foi cadastrado')
@@ -131,6 +141,7 @@ class CadastroForm(forms.ModelForm):
         # Validando a senha
         if senha != senha_confirmacao:
             self.add_error('password_confirmacao', 'As senhas não coincidem')
+    
     class Meta:
         model = Usuario
         fields = ('nome', 'sobrenome', 'email', 'password', 'foto', 'newsletter')
