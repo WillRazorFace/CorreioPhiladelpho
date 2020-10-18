@@ -8,69 +8,128 @@
     grid-template-areas:
         "logo links"
     ;
+}
 
-    .logo-cp{
-        max-width: 150px;
+.logo-cp{
+    max-width: 150px;
+
+    a{
+        color: white;
+        text-decoration: none;
+    }
+}
+
+.menu{
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+
+    li{
+        position: relative;
 
         a{
-            color: white;
-            text-decoration: none;
-        }
-    }
+            display: block;
+            padding: 10px;
+            color: rgba(255, 255, 255, 0.6);
+            @include font-size(1rem);
+            transition: .3s ease;
 
-    .menu{
-        margin-left: auto;
-        display: flex;
-        align-items: center;
-
-        li{
-            a{
-                display: block;
-                padding: 10px;
-                color: rgba(255, 255, 255, 0.6);
-                @include font-size(1rem);
-                transition: .3s ease;
-
-                &:hover{
-                    color: white;
-                }
+            &:hover{
+                color: white;
             }
         }
 
-        li + li{
-            margin-left: 10px;
+        &:hover ul{
+            display: block;
         }
     }
+}
 
-    .toggle-botao{
-        display: none;
+.dropdown{
+    border: 1px solid $cor-padrao-escuro;
+    position: absolute;
+    background: $cor-padrao-claro-6;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    display: none;
+    transition: 0.3s;
+
+    li + li{
+        border-top: 1px solid $cor-padrao-escuro;
+    }
+}
+
+.dropdown-pesquisa{
+    border: 1px solid $cor-padrao-escuro;
+    position: absolute;
+    background: $cor-padrao-claro-6;
+    left: 0;
+    text-align: center;
+    display: none;
+    transition: 0.3s;
+    width: 18rem;
+    flex-direction: column;
+    @include padding(0.625rem);
+
+    input{
+        font-family: 'Roboto', sans-serif;
+        @include font-size(0.875rem);
+        @include padding(0.313rem);
+        outline: none;
+        border: 1px solid #aaa;
+        @include rfs(0.313rem, border-radius);
+    }
+
+    button{
+        font-family: 'Roboto', sans-serif;
+        @include font-size(0.875rem);
+        @include padding(0.313rem);
+        outline: inherit;
+        border: none;
+        @include rfs(0.313rem, border-radius);
+        color: white;
+        background: #8d0c0e;
         cursor: pointer;
+        display: inline-block;
+        text-align: center;
+        transition: all 0.3s ease;
 
-        .barra-1, .barra-2, .barra-3{
-            width: 50px;
-            height: 10px;
-            background: rgba(255, 255, 255, 0.6);
-            margin: 6px 0;
-            transition: 0.3s;
-        }
-
-        &:hover > div{	
-            background: white;	
+        &:hover{
+            @include font-size(1rem);
+            background: $cor-padrao-escuro !important;
         }
     }
+}
 
-    .toggle-fechar{
-        .barra-1{
-            transform: rotate(-45deg) translate(-14px, 8px);
-        }
+.toggle-botao{
+    display: none;
+    cursor: pointer;
 
-        .barra-2{
-            opacity: 0;
-        }
+    .barra-1, .barra-2, .barra-3{
+        width: 50px;
+        height: 10px;
+        background: rgba(255, 255, 255, 0.6);
+        margin: 6px 0;
+        transition: 0.3s;
+    }
 
-        .barra-3{
-            transform: rotate(45deg) translate(-14px, -9px);
-        }
+    &:hover > div{	
+        background: white;	
+    }
+}
+
+.toggle-fechar{
+    .barra-1{
+        transform: rotate(-45deg) translate(-14px, 8px);
+    }
+
+    .barra-2{
+        opacity: 0;
+    }
+
+    .barra-3{
+        transform: rotate(45deg) translate(-14px, -9px);
     }
 }
 
@@ -139,6 +198,24 @@
                     @include font-size(1.25rem);
                 }
             }
+        }
+    }
+
+    .dropdown{
+        position: static;
+    }
+
+    .dropdown-pesquisa{
+        position: static;
+        width: 100%;
+        border: 2px solid $cor-padrao-escuro;
+
+        input{
+            width: 75%;
+        }
+
+        li{
+            border: none;
         }
     }
 }

@@ -6,6 +6,28 @@
         background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.6));
     }
 
+    .dropdown{
+        background: black;
+        border: 2px solid #222121;
+
+        li + li{
+            border-top: 2px solid #222121;
+        }
+    }
+
+    .dropdown-pesquisa{
+        background: black;
+        border: 2px solid #222121;
+
+        button{
+            background: linear-gradient(135deg, $cor-padrao-claro, $cor-padrao-claro-6) !important;
+
+            &:hover{
+                background: $cor-padrao-claro-8 !important;
+            }
+        }
+    }
+
 
     @include query(tablet){
         .barra-de-navegacao{
