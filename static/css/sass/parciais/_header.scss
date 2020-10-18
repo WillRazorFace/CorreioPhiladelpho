@@ -1,10 +1,10 @@
 .barra-de-navegacao{
     grid-area: navegacao;
-    margin: 0 auto;
     width: 100%;
-    padding: 20px;
+    @include padding(1.25rem);
     display: grid;
-    border-bottom: 1px solid $cor-padrao-escuro;
+    box-shadow: 1px 2px 3px rgba(0,0,0,0.7);
+    background: linear-gradient(135deg, $cor-padrao-claro, #ed2123);
     grid-template-areas:
         "logo links"
     ;
@@ -12,9 +12,6 @@
     .logo-cp{
         max-width: 150px;
 
-        svg rect, svg path{
-            fill: black
-        }
         a{
             color: white;
             text-decoration: none;
@@ -30,12 +27,12 @@
             a{
                 display: block;
                 padding: 10px;
-                color: black;
+                color: rgba(255, 255, 255, 0.6);
                 @include font-size(1rem);
                 transition: .3s ease;
 
                 &:hover{
-                    color: #d2d2c9;
+                    color: white;
                 }
             }
         }
@@ -52,11 +49,14 @@
         .barra-1, .barra-2, .barra-3{
             width: 50px;
             height: 10px;
-            background: black;
+            background: rgba(255, 255, 255, 0.6);
             margin: 6px 0;
             transition: 0.3s;
         }
 
+        &:hover > div{	
+            background: white;	
+        }
     }
 
     .toggle-fechar{

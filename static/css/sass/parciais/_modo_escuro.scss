@@ -4,50 +4,25 @@
     
     .barra-de-navegacao{
         background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.6));
-
-        .logo-cp{
-            svg rect, svg path{
-                fill: white
-            }
-        }
-
-        .menu{
-            li a{
-                color: white;   
-            }
-            .modo-escuro-container{
-                input:checked + label{
-                    background-color: #0077FF;
-                }
-            }
-        }
-
-        .toggle-botao{
-            .barra-1, .barra-2, .barra-3{
-                background-color: white;
-            }
-        }
     }
 
 
     @include query(tablet){
-        .menu{
-            li{
-                border-bottom: 2px solid #222121;
+        .barra-de-navegacao{
+            .menu{
+                li{
+                    border-bottom: 2px solid #222121;
 
-                &:first-child{
-                    border-top: 2px solid #222121;
+                    &:first-child{
+                        border-top: 2px solid #222121;
+                    }
                 }
             }
         }
     }
-    .popular{
-        .secao-bloco{
-            background: rgba(0, 0, 0, .5) !important;
-            h3{
-                color: white
-            }
-        }
+    
+    .secao-bloco{
+        background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.6)) !important;
     }
 
     .resultados-termo{
@@ -64,7 +39,6 @@
     }
 
     .rodape{
-        color: white;
         background: rgba(0, 0, 0, .7);
 
         @include query(tablet){
@@ -290,6 +264,14 @@
         left: 0.125rem;
         border-radius: 50%;
         transition: transform 0.2s linear;
+    }
+
+    .fa-moon{	
+        color: #f1c40f;	
+    }	
+
+    .fa-sun{	
+        color: #f39c12;	
     }
 }
 

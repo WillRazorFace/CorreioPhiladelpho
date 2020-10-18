@@ -3,6 +3,7 @@ body{
 }
 .conteudo-index{
     grid-area: conteudo;
+    @include padding(1.25rem);
     display: grid;
     grid-template-columns: auto 300px;
     grid-template-areas:
@@ -11,7 +12,6 @@ body{
     grid-gap: 20px;
     @include margin-left(4.375rem);
     @include margin-right(4.375rem);
-    @include padding(1.25rem);
 
     .publicacoes{
         grid-area: publicacoes;
@@ -19,19 +19,18 @@ body{
 
     .popular{
         grid-area: populares;
-        @include margin-top(0.87rem);
     }
 
     .secao-bloco{
         width: 100%;
         height: 2.5rem;
-        // background: linear-gradient(135deg, $cor-padrao-claro, #ed2123);
-        // @include box-shadow();
-        // @include rfs(0.625rem, border-radius);
+        background: linear-gradient(135deg, $cor-padrao-claro, #ed2123);
+        @include box-shadow();
+        @include rfs(0.625rem, border-radius);
         display: block;
 
         h3{
-            color: black;
+            color:white;
             text-align: center;
             font-weight: 400;
             @include font-size(1.75rem);
@@ -43,6 +42,7 @@ body{
         width: 100%;
         @include padding(1.25rem);
         background: white;
+        @include box-shadow-card;
         display: grid;
         grid-template-columns: 1fr 3fr;
         grid-template-areas:
@@ -50,9 +50,8 @@ body{
             "imagem texto"
             "imagem botao"
         ;
+        @include rfs(0.625rem, border-radius);
         @include margin-top(1.25rem);
-        // @include box-shadow-card();
-        // @include rfs(0.625rem, border-radius);
 
         .pub-img{
             grid-area: imagem;
@@ -117,7 +116,7 @@ body{
             grid-area: botao;
             margin-left: auto;
             display: inline-block;
-            background: #6d031c;
+            background: linear-gradient(135deg, $cor-padrao-claro, $cor-padrao-claro-6);
             @include rfs(0.313rem, border-radius);
             @include padding(0.625rem);
             cursor: pointer;
@@ -144,9 +143,9 @@ body{
             width: 100%;
             @include padding(1.25rem);
             background: white;
-            // @include box-shadow-card();
-            // @include margin-top(1.25rem);
-            // @include rfs(0.625rem, border-radius);
+            @include box-shadow-card();
+            @include margin-top(1.25rem);
+            @include rfs(0.625rem, border-radius);
             display: grid;
             grid-template-columns: auto;
             grid-template-areas:
@@ -199,7 +198,7 @@ body{
             display: inline-block;
             text-align: center;
             @include margin-top(1.25rem);
-            background: #6d031c;
+            background: linear-gradient(135deg, $cor-padrao-claro, $cor-padrao-claro-6);
             @include rfs(0.313rem, border-radius);
             @include padding(0.625rem);
             cursor: pointer;
