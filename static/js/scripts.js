@@ -1,7 +1,9 @@
 // Menu Hambúrguer na barra de navegação
 
-function mostrarMenu(element){
-    element.classList.toggle("toggle-fechar");
+const toggleBotao = document.getElementById("toggle-botao");
+
+toggleBotao.addEventListener("click", () => {
+    toggleBotao.classList.toggle("toggle-fechar");
 
     var menu = document.getElementById("menu");
     var barra = document.getElementById("nav");
@@ -17,7 +19,20 @@ function mostrarMenu(element){
     } else {
         barra.className = "barra-de-navegacao"
     }
-}
+})
+
+// Input de pesquisa na barra de navegação
+
+const pesquisaNav = document.getElementById("pesquisa-nav");
+const inputPesquisa = document.getElementById("input-pesquisa");
+
+pesquisaNav.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    if(inputPesquisa.value.length > 0){
+        document.location.href = "/buscar?p=" + inputPesquisa.value;
+    }
+})
 
 // Pegar cookie CSRF_TOKEN
 

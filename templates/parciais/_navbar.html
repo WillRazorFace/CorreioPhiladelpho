@@ -6,7 +6,7 @@
             </a>
         </div>
 
-        <div class="toggle-botao" onclick="mostrarMenu(this)">
+        <div id="toggle-botao" class="toggle-botao">
             <div class="barra-1" id="1"></div>
             <div class="barra-2"></div>
             <div class="barra-3"></div>
@@ -15,8 +15,10 @@
         <ul id="menu" class="menu">
             <li class="active"><a><i class="fa fa-search" aria-hidden="true"></a></i>
                 <ul class="dropdown-pesquisa">
-                        <input type="text">
-                        <button>Pesquisar</button>
+                    <form id="pesquisa-nav">
+                        <input type="text" maxlength="100" id="input-pesquisa" required>
+                        <button type="submit">Pesquisar</button>
+                    </form>
                 </ul>
             </li>
             <li><a href="#" title="Entrar"><i class="fa fa-user" aria-hidden="true"></i> Painel de Usuário</a>
