@@ -80,6 +80,7 @@
     text-align: center;
     display: none;
     transition: 0.3s;
+    z-index: 2;
 
     li + li{
         border-top: 1px solid $cor-padrao-escuro;
@@ -96,6 +97,7 @@
     transition: 0.3s;
     width: 18rem;
     flex-direction: column;
+    z-index: 2;
     @include padding(0.625rem);
 
     input{
@@ -105,6 +107,7 @@
         outline: none;
         border: 1px solid #aaa;
         @include rfs(0.313rem, border-radius);
+        text-align: center;
     }
 
     button{

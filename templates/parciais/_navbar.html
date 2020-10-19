@@ -16,15 +16,15 @@
             <li class="active"><a><i class="fa fa-search" aria-hidden="true"></a></i>
                 <ul class="dropdown-pesquisa">
                     <form id="pesquisa-nav">
-                        <input type="text" maxlength="100" id="input-pesquisa" required>
+                        <input type="text" maxlength="100" id="input-pesquisa" required placeholder="Digite para pesquisar">
                         <button type="submit">Pesquisar</button>
                     </form>
                 </ul>
             </li>
             <li><a href="#" title="Entrar"><i class="fa fa-user" aria-hidden="true"></i> Painel de Usuário</a>
                 <ul class="dropdown">
-                    <li><a href="{% url 'entrar' %}">Entrar</a></li>
-                    <li><a href="{% url 'registrar' %}">Registrar</a></li>
+                    <li><a href="{% url 'entrar' %}?proximo={{ request.path }}">Entrar</a></li>
+                    <li><a href="{% url 'registrar' %}?proximo={{ request.path }}">Registrar</a></li>
                 </ul>
             </li>
             <li><a href="#" title="Divulgação Científica"><i class="fa fa-book" aria-hidden="true"></i> Divulgação Científica</a></li>
