@@ -37,10 +37,12 @@
     background: linear-gradient(135deg, $cor-padrao-claro, #ed2123);
     @include padding(1.25rem);
 
-    .resumo, .links, .feedback{
-        @include margin-top(1.125rem);
-        @include margin-left(1.125rem)
-    }
+    // .resumo, .links, .feedback{
+    //     @include margin-top(1.125rem);
+    // }
+    // .resumo, .links{
+    //     @include margin-left(1.125rem);
+    // }
 
     .resumo{
         h5{
@@ -154,6 +156,10 @@
         @include padding-top(1.25rem);
         @include padding-bottom(1.25rem);
         grid-gap: 0;
+
+        .resumo, .links, .feedback{
+            @include margin-left(0);
+        }
 
         .resumo{
             border-bottom: 1px solid $cor-padrao-escuro;

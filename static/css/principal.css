@@ -691,11 +691,6 @@ body img {
   padding: 1.25rem;
 }
 
-.rodape .resumo, .rodape .links, .rodape .feedback {
-  margin-top: 1.125rem;
-  margin-left: 1.125rem;
-}
-
 .rodape .resumo h5 {
   font-size: calc(1.325rem + 0.9vw);
 }
@@ -814,6 +809,9 @@ body img {
     padding-top: 1.25rem;
     padding-bottom: 1.25rem;
     grid-gap: 0;
+  }
+  .rodape .resumo, .rodape .links, .rodape .feedback {
+    margin-left: 0;
   }
   .rodape .resumo {
     border-bottom: 1px solid #5e0809;
