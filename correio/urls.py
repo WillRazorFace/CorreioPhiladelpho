@@ -8,6 +8,7 @@ urlpatterns = [
     path('', include('inicio.urls'), name='inicio'),
     path('usuarios/', include('usuarios.urls'), name='usuarios'),
     path('ckeditor/', include('ckeditor_uploader.urls')),
+    path('sobre/', include('sobre.urls'), name='sobre'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
