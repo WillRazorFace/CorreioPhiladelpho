@@ -687,11 +687,38 @@ body img {
       grid-template-columns: 2fr 1fr 2fr;
       grid-template-areas: "resumo" "links" "feedback";
   color: white;
-  padding: 1.25rem;
   background: linear-gradient(135deg, #a90e10, #ed2123);
+  padding: 1.25rem;
+}
+
+.rodape .resumo, .rodape .links, .rodape .feedback {
+  margin-top: 1.125rem;
+  margin-left: 1.125rem;
+}
+
+.rodape .resumo h5 {
+  font-size: calc(1.325rem + 0.9vw);
+}
+
+@media (min-width: 1200px) {
+  .rodape .resumo h5 {
+    font-size: 2rem;
+  }
+}
+
+.rodape .links li a:visited {
+  text-decoration: none;
+  color: white;
+}
+
+.rodape .links li a:hover {
+  color: rgba(255, 255, 255, 0.6);
+  -webkit-transition: 00.3s;
+  transition: 00.3s;
 }
 
 .rodape p {
+  text-align: justify;
   margin-top: 0.625rem;
   font-size: 1.125rem;
 }

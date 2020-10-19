@@ -34,10 +34,34 @@
         "resumo" "links" "feedback"
     ;
     color: white;
-    @include padding(1.25rem);
     background: linear-gradient(135deg, $cor-padrao-claro, #ed2123);
+    @include padding(1.25rem);
+
+    .resumo, .links, .feedback{
+        @include margin-top(1.125rem);
+        @include margin-left(1.125rem)
+    }
+
+    .resumo{
+        h5{
+            @include font-size(2rem)
+        }
+    }
+
+    .links{
+
+        li a:visited{
+            text-decoration: none;
+            color: white;
+        }
+        li a:hover{
+            color:rgba(255, 255, 255, 0.6);
+            transition: 00.3s;
+        }
+    }
 
     p{
+        text-align: justify;
         @include margin-top(0.625rem);
         @include font-size(1.125rem);
     }
