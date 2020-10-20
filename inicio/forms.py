@@ -44,3 +44,20 @@ class FeedbackFormLogado(forms.ModelForm):
     class Meta:
         model = models.Feedback
         fields = ('feedback',)
+
+
+class ComentarioForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(ComentarioForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_show_labels = False
+
+    conteudo = forms.CharField(
+        required=True,
+        widget=forms.Textarea(attrs={'rows': '5', 'maxlength': '5000', 'placeholder': 'Digite para comentar'}),
+        max_length=5000,
+    )
+
+    class Meta:
+        model = models.Comentario
+        fields = ('conteudo',)
