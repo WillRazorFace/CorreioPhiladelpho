@@ -90,7 +90,7 @@ def publicacao(request, slug: str):
         form = FeedbackFormNaoLogado()
         
     post = get_object_or_404(Post, slug=slug)
-    comentarios = post.comentarios_principais
+    comentarios = post.comentarios.all
     form_comentario = ComentarioForm()
 
     # Adiciona um ao contador de visualizações

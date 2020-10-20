@@ -30,10 +30,6 @@ class Post(models.Model):
     categoria = models.ForeignKey(to=Categoria, on_delete=models.SET_NULL, null=True, verbose_name='Categoria')
     slug = models.SlugField(max_length=300, unique=True, blank=True, verbose_name='Slug')
 
-    @property
-    def comentarios_principais(self):
-        return self.comentarios.filter(comentario_pai__isnull=True)
-
     def __str__(self) -> str:
         return self.titulo
 
@@ -64,7 +60,7 @@ class Comentario(MPTTModel):
                                        blank=True, verbose_name='Em resposta a', related_name='respostas')
 
     def __str__(self) -> str:
-        return f'"{self.conteudo}"'
+        return f'"{self.conteudo}" - {self.post}'
 
     class MPTTMeta:
         order_insertion_by = ['data']

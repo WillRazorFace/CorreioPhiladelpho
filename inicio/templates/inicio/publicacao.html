@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load humanize %}
+{% load mptt_tags %}
 {% load static %}
 
 {% block Título %}{{ post.titulo}}{% endblock %}
@@ -24,20 +25,13 @@
                     {{ form_comentario.conteudo }}
 
                     {% if comentarios %}
-                    <ul class="comentarios">
-                        {% for comentario in comentarios %}
-                            <li class="comentario">
-                                {{ comentario.conteudo }}
-                                <ul class="respostas">
-                                    {% for resposta in comentario.respostas.all %}
-                                        <li>
-                                            {{ resposta.conteudo }}
-                                        </li>
-                                    {% endfor %}
-                                </ul>
-                            </div>
-                        {% endfor %}
-                    </ul>
+                        {% recursetree comentarios %}
+                            {{ node.conteudo }}
+
+                            {% if not node.is_leaf_node %}
+                                {{ children }}
+                            {% endif %}
+                        {% endrecursetree %}
                     {% else %}
                         <p>Ninguém comentou ainda</p>
                         <p>Seja o primeiro a comentar alguma coisa!</p>
