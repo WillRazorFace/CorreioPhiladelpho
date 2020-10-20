@@ -30,6 +30,10 @@ class Post(models.Model):
     categoria = models.ForeignKey(to=Categoria, on_delete=models.SET_NULL, null=True, verbose_name='Categoria')
     slug = models.SlugField(max_length=300, unique=True, blank=True, verbose_name='Slug')
 
+    @property
+    def comentarios_principais(self):
+        return self.comentarios.filter(comentario_pai__isnull=True)
+
     def __str__(self) -> str:
         return self.titulo
 
@@ -53,16 +57,19 @@ class Post(models.Model):
 
 class Comentario(models.Model):
     usuario = models.ForeignKey(to=Usuario, on_delete=models.SET_NULL, null=True, verbose_name='Usuário')
-    post = models.ForeignKey(to=Post, on_delete=models.CASCADE, verbose_name='Postagem')
-    conteudo = RichTextUploadingField(verbose_name='Conteúdo')
+    post = models.ForeignKey(to=Post, on_delete=models.CASCADE, verbose_name='Postagem', related_name='comentarios')
+    conteudo = models.TextField(verbose_name='Conteúdo', max_length=5000)
     data = models.DateTimeField(default=timezone.now, verbose_name='Data do comentário')
+    comentario_pai = models.ForeignKey('self', on_delete=models.CASCADE, null=True,
+                                       blank=True, verbose_name='Em resposta a', related_name='respostas')
 
     def __str__(self) -> str:
-        return f'{self.usuario} - {self.post} - {self.data}'
+        return f'"{self.conteudo}"'
 
     class Meta:
         verbose_name = 'Comentário'
         verbose_name_plural = 'Comentários'
+        ordering = ['data']
 
 
 class Feedback(models.Model):
