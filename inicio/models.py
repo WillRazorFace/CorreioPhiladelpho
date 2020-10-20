@@ -1,7 +1,7 @@
 from django.db import models
 from usuarios.models import Usuario
 from django.utils import timezone
-from ckeditor.fields import RichTextField
+from mptt.models import MPTTModel, TreeForeignKey
 from ckeditor_uploader.fields import RichTextUploadingField
 from utils.imagens import redimensionar
 import random
@@ -55,22 +55,20 @@ class Post(models.Model):
         verbose_name_plural = 'Publicações'
 
 
-class Comentario(models.Model):
+class Comentario(MPTTModel):
     usuario = models.ForeignKey(to=Usuario, on_delete=models.SET_NULL, null=True, verbose_name='Usuário')
     post = models.ForeignKey(to=Post, on_delete=models.CASCADE, verbose_name='Postagem', related_name='comentarios')
     conteudo = models.TextField(verbose_name='Conteúdo', max_length=5000)
     data = models.DateTimeField(default=timezone.now, verbose_name='Data do comentário')
-    comentario_pai = models.ForeignKey('self', on_delete=models.CASCADE, null=True,
+    comentario_pai = TreeForeignKey('self', on_delete=models.CASCADE, null=True,
                                        blank=True, verbose_name='Em resposta a', related_name='respostas')
 
     def __str__(self) -> str:
         return f'"{self.conteudo}"'
 
-    class Meta:
-        verbose_name = 'Comentário'
-        verbose_name_plural = 'Comentários'
-        ordering = ['data']
-
+    class MPTTMeta:
+        order_insertion_by = ['data']
+        parent_attr = 'comentario_pai'
 
 class Feedback(models.Model):
     usuario = models.ForeignKey(to=Usuario, on_delete=models.SET_NULL, null=True, verbose_name='Usuário')

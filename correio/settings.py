@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
     'crispy_forms',
     'debug_toolbar',
+    'mptt',
     'inicio',
     'usuarios',
     'sobre',
@@ -158,6 +159,10 @@ CKEDITOR_CONFIGS = {
         'width': 1000,
     },
 }
+
+# Identação dos models MPTT na área administrativa
+
+MPTT_ADMIN_LEVEL_INDENT = 20
 
 # Debug-toolbar
 INTERNAL_IPS = [

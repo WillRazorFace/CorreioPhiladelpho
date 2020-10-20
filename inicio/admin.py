@@ -1,4 +1,5 @@
 from django.contrib import admin
+from mptt.admin import MPTTModelAdmin
 from . import models
 
 
@@ -26,4 +27,4 @@ class ComentarioAdmin(admin.ModelAdmin):
 admin.site.register(models.Feedback, FeedbackAdmin)
 admin.site.register(models.Categoria, CategoriaAdmin)
 admin.site.register(models.Post, PostAdmin)
-admin.site.register(models.Comentario, ComentarioAdmin)
+admin.site.register(models.Comentario, MPTTModelAdmin)
