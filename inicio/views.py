@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
-from .forms import FeedbackFormNaoLogado, FeedbackFormLogado
+from .forms import FeedbackFormNaoLogado, FeedbackFormLogado, ComentarioForm
 from .models import Post, Feedback
 from django.shortcuts import HttpResponse
 from django.http import JsonResponse
@@ -90,9 +90,15 @@ def publicacao(request, slug: str):
         form = FeedbackFormNaoLogado()
         
     post = get_object_or_404(Post, slug=slug)
+    comentarios = post.comentarios_principais
+    form_comentario = ComentarioForm()
 
     # Adiciona um ao contador de visualizações
     post.acessos += 1
     post.save()
 
-    return render(request, 'inicio/publicacao.html', {'post': post, 'form': form})
+    return render(
+        request,
+        'inicio/publicacao.html',
+        {'post': post, 'comentarios': comentarios, 'form_comentario': form_comentario, 'form': form},
+    )
