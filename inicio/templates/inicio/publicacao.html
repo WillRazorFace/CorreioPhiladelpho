@@ -16,6 +16,33 @@
         <div class="pub-post">
             <div class="conteudo">
                 {{ post.conteudo|safe }}
+
+
+                <div class="divisao"></div>
+
+                <div class="comentarios-container">
+                    {{ form_comentario.conteudo }}
+
+                    {% if comentarios %}
+                    <ul class="comentarios">
+                        {% for comentario in comentarios %}
+                            <li class="comentario">
+                                {{ comentario.conteudo }}
+                                <ul class="respostas">
+                                    {% for resposta in comentario.respostas.all %}
+                                        <li>
+                                            {{ resposta.conteudo }}
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        {% endfor %}
+                    </ul>
+                    {% else %}
+                        <p>Ninguém comentou ainda</p>
+                        <p>Seja o primeiro a comentar alguma coisa!</p>
+                    {% endif %}
+                </div>
             </div>
         </div>
     </main>
