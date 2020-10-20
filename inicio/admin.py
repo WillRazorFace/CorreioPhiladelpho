@@ -18,8 +18,8 @@ class PostAdmin(admin.ModelAdmin):
 
 
 class ComentarioAdmin(admin.ModelAdmin):
-    list_display = ('usuario', 'post', 'data')
-    list_display_links = ('data',)
+    list_display = ('usuario', 'post', 'conteudo', 'data')
+    list_display_links = ('conteudo',)
 
 
 
