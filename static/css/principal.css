@@ -688,8 +688,6 @@ body img {
 }
 
 .rodape {
-  height: 350px;
-  margin-top: 200px;
   -ms-grid-row: 5;
   -ms-grid-column: 1;
   grid-area: rodape;
@@ -702,6 +700,13 @@ body img {
   color: white;
   background: linear-gradient(135deg, #a90e10, #ed2123);
   padding: 1.25rem;
+  margin-top: calc(2.375rem + 13.5vw);
+}
+
+@media (min-width: 1200px) {
+  .rodape {
+    margin-top: 12.5rem;
+  }
 }
 
 .rodape .resumo h5 {

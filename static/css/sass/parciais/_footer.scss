@@ -26,8 +26,6 @@
 }
 
 .rodape{
-    height: 350px;
-    margin-top: 200px;
     grid-area: rodape;
     display: grid;
     grid-gap: 20px;
@@ -38,6 +36,7 @@
     color: white;
     background: linear-gradient(135deg, $cor-padrao-claro, #ed2123);
     @include padding(1.25rem);
+    @include margin-top(200px);
 
     // .resumo, .links, .feedback{
     //     @include margin-top(1.125rem);
