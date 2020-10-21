@@ -1,0 +1,38 @@
+.wrapper-equipe{
+    min-height: 100%;
+
+    .container-equipe{
+        display: flex;
+        flex-direction: row;
+        justify-items: center;
+        align-items: center;
+        height: 70vh;
+        width: 100%;
+
+        .membro{
+            height: 20vh;
+            width: 300px;
+            flex: 1;
+            border-radius: 10px;
+            @include box-shadow-card;
+            @include rfs(0.625rem, border-radius);
+            @include margin(1.125rem);
+
+            .contato{
+                @include margin-top(0.5rem)
+            }
+            p, h3{
+                @include margin(0.25rem)
+            }
+            h3{
+                color: #8d0c0e;
+            }
+        }
+    }
+}
+
+@include query(tablet){
+    .container-equipe{
+        flex-direction: column;
+    }
+}
