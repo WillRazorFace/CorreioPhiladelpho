@@ -1,0 +1,24 @@
+.wrapper-termos{
+    min-height: 100%;
+    justify-items: center;
+    align-items: center;
+
+    .container-termos{
+        height: 100%;
+        @include margin(3rem);
+        @include box-shadow-card;
+        @include rfs(0.625rem, border-radius);
+
+        h2{
+            text-align: center;
+            @include margin-top(0.8rem);
+        }
+
+        p, h3{
+            text-align: justify;
+            @include margin-left(0.8rem);
+            @include margin-right(0.8rem);
+            @include margin-top(0.8rem);
+        }
+    }
+}
