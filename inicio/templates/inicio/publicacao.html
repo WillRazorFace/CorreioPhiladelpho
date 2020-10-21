@@ -8,30 +8,49 @@
 {% block Conteúdo %}
     <div class="barra-de-progresso" id="barra-de-progresso"></div>
 
-    <main class="conteudo-pub" id="conteudo-pub">
+    <main class="conteudo-pub">
         <div class="pub-hero" style="background-image: url({{ post.foto.url }});">
             <h1>{{ post.titulo }}</h1>
             <p>{{ post.subtitulo }}</p>
         </div>
 
         <div class="pub-post">
-            <div class="conteudo">
-                {{ post.conteudo|safe }}
-
+            <div class="conteudo-wrapper" id="conteudo-pub">
+                <div class="conteudo">
+                    {{ post.conteudo|safe }}
+                </div>
 
                 <div class="divisao"></div>
 
                 <div class="comentarios-container">
-                    {{ form_comentario.conteudo }}
+                    <form method="POST" action="" id="form-comentario" class="formulario-comentar">
+                        {% csrf_token %}
+                        
+                        {{ form_comentario.conteudo }}
+                    </form>
 
                     {% if comentarios %}
+                        <ul class="comentarios">
                         {% recursetree comentarios %}
-                            {{ node.conteudo }}
+                            <li>
+                                <div class="usuario">{{ node.usuario.nome}} {{ node.usuario.sobrenome }}</div>
+                                <div class="data">{{ node.data|naturalday }}</div>
 
+                                <div class="comentario">
+                                    {{ node.conteudo }}
+                                </div>
+
+                                <button class="botao-resposta" id="responder-{{ node.id }}" onclick="abrirFormulario('responder-{{ node.id }}')">Responder</button>
                             {% if not node.is_leaf_node %}
-                                {{ children }}
+                            <button class="ver-resp" id="mostrar-{{ node.id }}" onclick="abrir('respostas-de-{{ node.id }}')">Ver respostas</button>
+
+                            <ul class="respostas" id="respostas-de-{{ node.id }}">
+                                <li>{{ children }}</li>
+                            </ul>
                             {% endif %}
+                            </li>   
                         {% endrecursetree %}
+                        </ul>
                     {% else %}
                         <p>Ninguém comentou ainda</p>
                         <p>Seja o primeiro a comentar alguma coisa!</p>
@@ -44,4 +63,5 @@
 
 {% block javascript-adicional %}
     <script type="text/javascript" src="{% static '/js/parciais/barra-de-leitura.js' %}"></script>
+    <script type="text/javascript" src="{% static '/js/parciais/comentarios.js' %}"></script>
 {% endblock %}

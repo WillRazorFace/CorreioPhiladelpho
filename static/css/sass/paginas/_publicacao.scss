@@ -52,7 +52,7 @@
     @include box-shadow-pub();
 }
 
-.conteudo{
+.conteudo-wrapper{
     @include padding(4.375rem);
     min-height: 100%;
 }
@@ -93,6 +93,88 @@
     }
 }
 
+// Comentários
+
+.formulario-comentar{
+    @include margin-bottom(1rem);
+}
+
+.comentarios{
+    li{
+        @include margin-bottom(0.875rem);
+    }
+
+    .usuario, .data{
+        display: inline-block;
+    }
+    
+    .usuario{
+        font-weight: bold;
+    }
+    
+    .data{
+        color: #606060;
+    }
+    
+}
+
+.respostas{
+    display: none;
+    @include margin-left(2.5rem);
+}
+
+#resposta{
+    @include margin-top(0.125rem);
+}
+
+.mostrar-respostas{
+    display: none;
+
+    & + label{
+        background: red;
+    }
+
+    & + label:active,
+    &:checked + label {
+        background: forestgreen;
+    }
+}
+
+.ver-resp{
+    background: transparent;
+    display: block;
+    outline: none;
+    border: none;
+    font-family: 'Roboto', sans-serif;
+    @include font-size(1rem);
+    @include margin-top(0.375rem);
+    cursor: pointer;
+    color: $cor-padrao-claro;
+    font-weight: 400;
+
+    &:hover{
+        color: $cor-padrao-escuro;
+    }
+}
+
+.botao-resposta{
+    @include font-size(1rem);
+    @include padding(0.313rem);
+    @include margin-top(0.313rem);
+    border: none;
+    outline: inherit;
+    background: $cor-padrao-claro;
+    color: white;
+    @include rfs(0.313rem, border-radius);
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover{
+        background: $cor-padrao-claro-4;
+        @include font-size(1.1rem);
+    }
+}
+
 // Media Queries
 
 @include query(laptop){
@@ -110,13 +192,13 @@
         border-radius: 0;
     }
 
-    .conteudo{
+    .conteudo-wrapper{
         @include padding(2.5rem);
     }
 }
 
 @include query(smartphone){
-    .conteudo{
+    .conteudo-wrapper{
         @include padding(1.25rem);
     }
 }

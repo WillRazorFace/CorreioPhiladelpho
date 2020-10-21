@@ -1,5 +1,6 @@
 from . import models
 from django import forms
+from mptt.forms import TreeNodeChoiceField
 from crispy_forms.helper import FormHelper
 from email_validator import validate_email
 
@@ -52,6 +53,8 @@ class ComentarioForm(forms.ModelForm):
         self.helper = FormHelper()
         self.helper.form_show_labels = False
 
+    comentario_pai = TreeNodeChoiceField(queryset=models.Comentario.objects.all())
+
     conteudo = forms.CharField(
         required=True,
         widget=forms.Textarea(attrs={'rows': '5', 'maxlength': '5000', 'placeholder': 'Digite para comentar'}),
@@ -60,4 +63,4 @@ class ComentarioForm(forms.ModelForm):
 
     class Meta:
         model = models.Comentario
-        fields = ('conteudo',)
+        fields = ('conteudo', 'comentario_pai')
