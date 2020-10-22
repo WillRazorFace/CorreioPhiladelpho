@@ -451,6 +451,10 @@ body img {
   width: 45px;
 }
 
+.barra-de-navegacao .fa-moon {
+  color: white;
+}
+
 .logo-cp {
   max-width: 150px;
 }
