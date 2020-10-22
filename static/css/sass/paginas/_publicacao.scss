@@ -46,14 +46,13 @@
     margin: 0 auto;
     top: -4.375rem;
     @include rfs(0.625rem, border-radius);
-    min-height: 700px;
     background: white;
     width: 70%;
     @include box-shadow-pub();
+    @include padding(4.375rem);
 }
 
 .conteudo-wrapper{
-    @include padding(4.375rem);
     min-height: 100%;
 }
 
@@ -256,15 +255,12 @@
         width: 100%;
         box-shadow: none;
         border-radius: 0;
-    }
-
-    .conteudo-wrapper{
         @include padding(2.5rem);
     }
 }
 
 @include query(smartphone){
-    .conteudo-wrapper{
+    .pub-post{
         @include padding(1.25rem);
     }
 }
