@@ -46,6 +46,12 @@ function enviarResposta(event, comentario_pai){
     event.preventDefault();
 
     let formResposta = new FormData(event.target);
+    let modal = document.getElementById("modal-feedback");
+    let modal_titulo = document.getElementById("modal-titulo");
+    let modal_icone = document.getElementById("modal-icone");
+    let modal_mensagem = document.getElementById("modal-mensagem");
+    let modal_botao = document.getElementById("modal-botao");
+
     formResposta.append('usuario', USUARIO_ATUAL);
     formResposta.append('comentario_pai', comentario_pai);
     formResposta.append('tipo', 'resposta')
@@ -68,7 +74,18 @@ function enviarResposta(event, comentario_pai){
             );
             event.target.reset();
         } else {
+            event.target.reset();
 
+            modal.classList.add("modal-erro");
+            modal_titulo.innerHTML = "Algo deu errado";
+            modal_icone.classList.add("fa-exclamation");
+            modal_mensagem.innerHTML = "Um erro aconteceu durante a requisição. Tente de novo."
+
+            modal.style.display = "grid";
+
+            modal_botao.addEventListener("click", () => {
+                modal.style.display = "none";
+            })
         }
     })
 }
@@ -77,6 +94,12 @@ function enviarComentario(event, post){
     event.preventDefault();
 
     let formComentario = new FormData(event.target);
+    let modal = document.getElementById("modal-feedback");
+    let modal_titulo = document.getElementById("modal-titulo");
+    let modal_icone = document.getElementById("modal-icone");
+    let modal_mensagem = document.getElementById("modal-mensagem");
+    let modal_botao = document.getElementById("modal-botao");
+
     formComentario.append('usuario', USUARIO_ATUAL);
     formComentario.append('post', post);
     formComentario.append('tipo', 'comentario');
@@ -103,7 +126,18 @@ function enviarComentario(event, post){
                 document.getElementById("sem-comentarios").remove();
             }
         } else {
+            event.target.reset();
 
+            modal.classList.add("modal-erro");
+            modal_titulo.innerHTML = "Algo deu errado";
+            modal_icone.classList.add("fa-exclamation");
+            modal_mensagem.innerHTML = "Um erro aconteceu durante a requisição. Tente de novo."
+
+            modal.style.display = "grid";
+
+            modal_botao.addEventListener("click", () => {
+                modal.style.display = "none";
+            })
         }
     })
 }
