@@ -64,6 +64,21 @@
     @include margin(1.25rem 0);
 }
 
+.quantidade-comentarios{
+    @include font-size(1.5rem);
+    font-weight: bold;
+    @include margin-bottom(1.25rem);
+}
+
+.entre-ou-cadastrese{
+    @include margin-bottom(1.25rem);
+    width: 100%;
+    background: #181717;
+    color: white;
+    @include padding(1.25rem);
+    @include rfs(0.625rem, border-radius);
+}
+
 .comentarios-container{
     p{
         @include font-size(1.5rem);
@@ -94,6 +109,14 @@
 }
 
 // Comentários
+
+.pub-link-comentario{
+    color: $cor-padrao-claro-4;
+
+    &:hover{
+        color: red;
+    }
+}
 
 .formulario-comentar{
     @include margin-bottom(2.5rem);

@@ -21,8 +21,11 @@
                 </div>
 
                 <div class="divisao"></div>
+                
+                <p class="quantidade-comentarios">{{ comentarios.count }} Comentários</p>
 
                 <div class="comentarios-container">
+                    {% if request.user.is_authenticated %}
                     <form method="POST" action="" id="form-comentario" class="formulario-comentar" onsubmit="enviarComentario(event, {{ post.id}})">
                         {% csrf_token %}
 
@@ -30,6 +33,11 @@
 
                         <button type="submit" class="botao-comentar">Comentar</button>
                     </form>
+                    {% else %}
+                    <div class="entre-ou-cadastrese">
+                        <p><a class="pub-link-comentario" href="{% url 'entrar' %}?proximo={{ request.path }}">Entre</a> ou <a class="pub-link-comentario" href="{% url 'registrar' %}?proximo={{ request.path }}">cadastre-se</a> para comentar.</p>
+                    </div>
+                    {% endif %}
 
                     {% if comentarios %}
                         <ul class="comentarios">
@@ -42,7 +50,9 @@
                                     {{ node.conteudo }}
                                 </div>
 
+                                {% if request.user.is_authenticated %}
                                 <button class="botao-resposta" id="responder-{{ node.id }}" onclick="abrirFormulario({{ node.id }})">Responder</button>
+                                {% endif %}
                             {% if not node.is_leaf_node %}
                             <button class="ver-resp" id="mostrar-{{ node.id }}" onclick="abrir('respostas-de-{{ node.id }}')">Ver respostas</button>
 
