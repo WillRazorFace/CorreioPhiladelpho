@@ -29,6 +29,7 @@ class Post(models.Model):
     data = models.DateTimeField(default=timezone.now, verbose_name='Data de Postagem')
     categoria = models.ForeignKey(to=Categoria, on_delete=models.SET_NULL, null=True, verbose_name='Categoria')
     slug = models.SlugField(max_length=300, unique=True, blank=True, verbose_name='Slug')
+    curtidas = models.ManyToManyField(to=Usuario, related_name='posts_curtidos')
 
     def __str__(self) -> str:
         return self.titulo
