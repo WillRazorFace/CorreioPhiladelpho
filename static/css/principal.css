@@ -2578,6 +2578,10 @@ html, body {
   color: white;
 }
 
+caption a {
+  color: white !important;
+}
+
 .breadcrumbs {
   background: #8d0c0e !important;
   color: white !important;
@@ -2596,10 +2600,6 @@ html, body {
 .content img {
   height: 15px;
   width: 15px;
-}
-
-.content a {
-  color: black !important;
 }
 
 tbody a {
