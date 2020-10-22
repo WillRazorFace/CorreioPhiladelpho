@@ -37,8 +37,6 @@ function abrir(id){
 const formularioComentar = document.getElementById("id_conteudo");
 
 formularioComentar.addEventListener("click", () => {
-    console.log('sim');
-
     if(document.contains(document.getElementById("resposta"))){
         document.getElementById("resposta").remove();
     }
@@ -57,9 +55,21 @@ function enviarResposta(event, comentario_pai){
         body: formResposta,
         headers:  {"X-CSRFToken": CSRFTOKEN},
     }).then((resposta) => {
-        resposta.json().then((dados) => {
-            console.log('enviado');
-        })
+        if(resposta.status == 201){
+            event.target.insertAdjacentHTML(
+                "afterend",
+                '<div class="novo novo-resposta"> \
+                    <div class="usuario">Você</div> \
+                    <div class="data">agora mesmo</div> \
+                    <div class="comentario">\
+                        ' + formResposta.get('conteudo') + ' \
+                    </div> \
+                </div>'
+            );
+            event.target.reset();
+        } else {
+
+        }
     })
 }
 
@@ -76,8 +86,20 @@ function enviarComentario(event, post){
         body: formComentario,
         headers:  {"X-CSRFToken": CSRFTOKEN},
     }).then((resposta) => {
-        resposta.json().then((dados) => {
-            console.log('enviado');
-        })
+        if(resposta.status == 201){
+            event.target.insertAdjacentHTML(
+                "afterend",
+                '<div class="novo"> \
+                    <div class="usuario">Você</div> \
+                    <div class="data">agora mesmo</div> \
+                    <div class="comentario">\
+                        ' + formComentario.get('conteudo') + ' \
+                    </div> \
+                </div>'
+            );
+            event.target.reset();
+        } else {
+
+        }
     })
 }

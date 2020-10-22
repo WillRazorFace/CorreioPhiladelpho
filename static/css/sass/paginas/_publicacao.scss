@@ -192,6 +192,26 @@
     width: 100%;
 }
 
+.novo{
+    @include margin-bottom(0.875rem);
+
+    .usuario, .data{
+        display: inline-block;
+    }
+    
+    .usuario{
+        font-weight: bold;
+    }
+    
+    .data{
+        color: #606060;
+    }
+}
+
+.novo-resposta{
+    @include margin(0.625rem 0 0 2.5rem);
+}
+
 // Media Queries
 
 @include query(laptop){

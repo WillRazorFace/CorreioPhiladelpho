@@ -126,7 +126,6 @@ def salvar_comentario(request):
 
             return HttpResponse(status=201)
         
-        print(form.cleaned_data.get('post'))
         return HttpResponse(status=409)
     else:
         return HttpResponse(status=409)
