@@ -2597,6 +2597,11 @@ caption a {
   color: white !important;
 }
 
+.submit-row input {
+  background: linear-gradient(135deg, #a90e10, #ec181a) !important;
+  border-radius: 0.313rem;
+}
+
 .content img {
   height: 15px;
   width: 15px;

@@ -35,6 +35,11 @@ caption a{
     }
 }
 
+.submit-row input{
+    background: linear-gradient(135deg, #a90e10, #ec181a) !important;
+    @include rfs(0.313rem, border-radius);
+}
+
 .content{
     img{
         height: 15px;
