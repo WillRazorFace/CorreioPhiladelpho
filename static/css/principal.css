@@ -2574,9 +2574,40 @@ html, body {
   color: white;
 }
 
+.breadcrumbs {
+  background: #8d0c0e !important;
+  color: white !important;
+}
+
+.breadcrumbs a {
+  color: rgba(255, 255, 255, 0.6) !important;
+  -webkit-transition: 0.3s ease !important;
+  transition: 0.3s ease !important;
+}
+
+.breadcrumbs a:hover {
+  color: white !important;
+}
+
 .content img {
   height: 15px;
   width: 15px;
+}
+
+.content a {
+  color: black !important;
+}
+
+tbody a {
+  color: #8d0c0e !important;
+  -webkit-transition: 0.3s ease;
+  transition: 0.3s ease;
+}
+
+.sticky tr:hover, .current-model:hover {
+  background: #e6e6e6 !important;
+  -webkit-transition: 0.3s ease;
+  transition: 0.3s ease;
 }
 
 #changelist-search img {

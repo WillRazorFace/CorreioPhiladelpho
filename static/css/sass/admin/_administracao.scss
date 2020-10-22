@@ -8,7 +8,9 @@ html, body{
     #user-tools{
         a{
             color: rgba(255, 255, 255, 0.6) !important; 
+
             transition: 0.3s ease;
+
             &:hover{
                 color: white;
             }
@@ -16,9 +18,37 @@ html, body{
     }
 }
 
-.content img{
-    height: 15px;
-    width: 15px;
+.breadcrumbs {
+    background: #8d0c0e !important;
+    color: white !important;
+    a{
+        color: rgba(255, 255, 255, 0.6) !important; 
+        transition: 0.3s ease !important;
+
+        &:hover{
+            color: white !important;
+        }
+    }
+}
+
+.content{
+    img{
+        height: 15px;
+        width: 15px;
+    }
+    a{
+        color: black !important;
+    }
+}
+
+tbody a{
+    color: #8d0c0e !important;
+    transition: 0.3s ease;
+}   
+
+.sticky tr:hover, .current-model:hover{
+    background: rgb(230, 230, 230) !important;
+    transition: 0.3s ease;
 }
 
 #changelist-search img{
