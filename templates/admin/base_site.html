@@ -1,0 +1,20 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block extrastyle %}
+    {% include 'parciais/_head.html' %}
+{% endblock %}
+
+{% block title %}Administração | CP{% endblock %}
+
+{% block branding %}
+<h1 id="site-name">
+    <div class="logo-cp">
+      <a href = "{% url 'index' %}">
+        <img src = "{% static '/img/logo-cp.svg' %}" alt="Correio do Philadelpho">
+      </a>
+    </div>
+</h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}    
