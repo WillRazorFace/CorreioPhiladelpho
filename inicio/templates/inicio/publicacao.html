@@ -19,6 +19,7 @@
                 <div class="conteudo">
                     {{ post.conteudo|safe }}
 
+                    {% if request.user.is_authenticated %}
                     <div class="botao-curtir-wrapper">
                         {% if post in request.user.posts_curtidos.all %}
                         <div class="botao-curtir curtido" id="botao-curtir">
@@ -30,7 +31,7 @@
                         </div>
                         {% endif %}
                     </div>
-                    {{ request.user.posts_curtidos.all }}
+                    {% endif %}
                 </div>
             </div>
 
