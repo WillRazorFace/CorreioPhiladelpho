@@ -107,6 +107,34 @@
     }
 }
 
+.botao-curtir-wrapper{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.botao-curtir{
+    border: 2px solid green;
+    @include padding(0.625rem);
+    border-radius: 50%;
+
+    i{
+        transition: all 0.3s;
+        cursor: pointer;
+
+        &:hover{
+            transform: scale(1.2);
+        }
+    }
+}
+
+.curtido{
+    background: green;
+    
+    i{
+        color: white;
+    }
+}
+
 // Comentários
 
 .pub-link-comentario{

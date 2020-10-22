@@ -18,6 +18,19 @@
             <div class="conteudo-wrapper">
                 <div class="conteudo">
                     {{ post.conteudo|safe }}
+
+                    <div class="botao-curtir-wrapper">
+                        {% if post in request.user.posts_curtidos.all %}
+                        <div class="botao-curtir curtido" id="botao-curtir">
+                            <i title="Curtido" class="fa fa-thumbs-o-up fa-2x" aria-hidden="true"></i>
+                        </div>
+                        {% else %}
+                        <div class="botao-curtir" id="botao-curtir">
+                            <i title="Curtir" id="icone-curtir" class="fa fa-thumbs-o-up fa-2x" aria-hidden="true"></i>
+                        </div>
+                        {% endif %}
+                    </div>
+                    {{ request.user.posts_curtidos.all }}
                 </div>
             </div>
 
@@ -79,9 +92,12 @@
 {% block javascript-adicional %}
     <script>
         var URL_ENVIAR_COMENTARIO = "{% url 'comentario' %}";
+        var URL_CURTIR_POST = "{% url 'curtir-post' %}";
+        var POST_ATUAL = "{{ post.slug }}";
         var USUARIO_ATUAL = {{ request.user.id }};
     </script>
 
     <script type="text/javascript" src="{% static '/js/parciais/barra-de-leitura.js' %}"></script>
+    <script type="text/javascript" src="{% static '/js/parciais/like.js' %}"></script>
     <script type="text/javascript" src="{% static '/js/parciais/comentarios.js' %}"></script>
 {% endblock %}
