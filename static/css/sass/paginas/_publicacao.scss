@@ -109,6 +109,12 @@
     outline: none;
     border: 1px solid grey;
     font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    
+    &:hover{
+        transform: scale(1.1);
+    }
 }
 
 .comentarios{
