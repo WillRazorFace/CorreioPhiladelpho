@@ -100,6 +100,17 @@
     position: relative;
 }
 
+.fechar-formulario-comentario{
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 20px;
+    width: 20px;
+    outline: none;
+    border: 1px solid grey;
+    font-weight: bold;
+}
+
 .comentarios{
     li{
         @include margin-bottom(0.875rem);
