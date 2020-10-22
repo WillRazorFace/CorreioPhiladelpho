@@ -1,4 +1,5 @@
 from . import models
+from usuarios.models import Usuario
 from django import forms
 from mptt.forms import TreeNodeChoiceField
 from crispy_forms.helper import FormHelper
@@ -47,14 +48,14 @@ class FeedbackFormLogado(forms.ModelForm):
         fields = ('feedback',)
 
 
-class ComentarioForm(forms.ModelForm):
+class RespostaForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
-        super(ComentarioForm, self).__init__(*args, **kwargs)
+        super(RespostaForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_show_labels = False
 
     comentario_pai = TreeNodeChoiceField(queryset=models.Comentario.objects.all())
-
+    usuario = forms.ModelChoiceField(queryset=Usuario.objects.all())
     conteudo = forms.CharField(
         required=True,
         widget=forms.Textarea(attrs={'rows': '5', 'maxlength': '5000', 'placeholder': 'Digite para comentar'}),
@@ -63,4 +64,22 @@ class ComentarioForm(forms.ModelForm):
 
     class Meta:
         model = models.Comentario
-        fields = ('conteudo', 'comentario_pai')
+        fields = ('conteudo', 'comentario_pai', 'usuario')
+
+class ComentarioForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(ComentarioForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_show_labels = False
+
+    post = forms.ModelChoiceField(queryset=models.Post.objects.all())
+    usuario = forms.ModelChoiceField(queryset=Usuario.objects.all())
+    conteudo = forms.CharField(
+        required=True,
+        widget=forms.Textarea(attrs={'rows': '5', 'maxlength': '5000', 'placeholder': 'Digite para comentar'}),
+        max_length=5000,
+    )
+
+    class Meta:
+        model = models.Comentario
+        fields = ('conteudo', 'post', 'usuario')

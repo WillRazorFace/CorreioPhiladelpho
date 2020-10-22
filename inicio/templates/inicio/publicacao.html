@@ -23,7 +23,7 @@
                 <div class="divisao"></div>
 
                 <div class="comentarios-container">
-                    <form method="POST" action="" id="form-comentario" class="formulario-comentar">
+                    <form method="POST" action="" id="form-comentario" class="formulario-comentar" onsubmit="enviarComentario(event, {{ post.id}})">
                         {% csrf_token %}
 
                         {{ form_comentario.conteudo }}
@@ -64,6 +64,11 @@
 {% endblock %}
 
 {% block javascript-adicional %}
+    <script>
+        var URL_ENVIAR_COMENTARIO = "{% url 'comentario' %}";
+        var USUARIO_ATUAL = {{ request.user.id }};
+    </script>
+
     <script type="text/javascript" src="{% static '/js/parciais/barra-de-leitura.js' %}"></script>
     <script type="text/javascript" src="{% static '/js/parciais/comentarios.js' %}"></script>
 {% endblock %}

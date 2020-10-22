@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
-from .forms import FeedbackFormNaoLogado, FeedbackFormLogado, ComentarioForm
-from .models import Post, Feedback
+from .forms import FeedbackFormNaoLogado, FeedbackFormLogado, ComentarioForm, RespostaForm
+from .models import Post, Feedback, Comentario
 from django.shortcuts import HttpResponse
 from django.http import JsonResponse
 from django.template.loader import render_to_string
@@ -102,3 +102,31 @@ def publicacao(request, slug: str):
         'inicio/publicacao.html',
         {'post': post, 'comentarios': comentarios, 'form_comentario': form_comentario, 'form': form},
     )
+
+#Fetch API
+@require_POST
+def salvar_comentario(request):
+    if request.POST.get('tipo') == 'comentario':
+        form = ComentarioForm(data=request.POST)
+
+        if form.is_valid():
+            form.save()
+
+            return HttpResponse(status=201)
+        
+        return HttpResponse(status=409)
+    elif request.POST.get('tipo') == 'resposta':
+        # Trata da requisição se for uma resposta a outro comentário
+        form = RespostaForm(data=request.POST)
+
+        if form.is_valid():
+            resposta = form.save(commit=False)
+            resposta.post = form.cleaned_data.get('comentario_pai').post
+            resposta.save()
+
+            return HttpResponse(status=201)
+        
+        print(form.cleaned_data.get('post'))
+        return HttpResponse(status=409)
+    else:
+        return HttpResponse(status=409)
