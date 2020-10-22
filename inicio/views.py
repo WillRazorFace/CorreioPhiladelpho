@@ -7,6 +7,7 @@ from django.http import JsonResponse
 from django.template.loader import render_to_string
 from django.db.models import Q
 from django.views.decorators.http import require_GET, require_POST
+from json import loads
 
 @require_GET
 def buscar(request):
@@ -102,6 +103,24 @@ def publicacao(request, slug: str):
         'inicio/publicacao.html',
         {'post': post, 'comentarios': comentarios, 'form_comentario': form_comentario, 'form': form},
     )
+
+#Fetch API
+@require_POST
+def curtir_post(request):
+    try:
+        curtido = loads(request.body)['curtido']
+        post = get_object_or_404(Post, slug=loads(request.body)['post'])
+
+        if curtido == 'sim':
+            post.curtidas.add(request.user)
+
+            return HttpResponse(status=200)
+        elif curtido == 'não':
+            post.curtidas.remove(request.user)
+
+            return HttpResponse(status=200)
+    except KeyError:
+        return HttpResponse(status=409)
 
 #Fetch API
 @require_POST
