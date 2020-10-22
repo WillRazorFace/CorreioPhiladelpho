@@ -98,6 +98,10 @@ function enviarComentario(event, post){
                 </div>'
             );
             event.target.reset();
+
+            if(document.contains(document.getElementById("sem-comentarios"))){
+                document.getElementById("sem-comentarios").remove();
+            }
         } else {
 
         }

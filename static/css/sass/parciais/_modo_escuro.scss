@@ -183,6 +183,36 @@
         background: #222020;
     }
 
+    .formulario-comentar{
+        textarea{
+            background: #181717;
+            color: #aaa;
+
+            &:hover{
+                color: white;
+            }
+        }
+    }
+
+    #resposta{
+        textarea{
+            background: #181717;
+            color: #aaa;
+
+            &:hover{
+                color: white;
+            }
+        }
+    }
+
+    .ver-resp{
+        color: #ccc;
+
+        &:hover{
+            color: #aaa;
+        }
+    }
+
     // Template de login
     
     .form-login{
