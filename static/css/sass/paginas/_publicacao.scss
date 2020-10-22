@@ -96,7 +96,8 @@
 // Comentários
 
 .formulario-comentar{
-    @include margin-bottom(1rem);
+    @include margin-bottom(2.5rem);
+    position: relative;
 }
 
 .comentarios{
@@ -125,6 +126,7 @@
 
 #resposta{
     @include margin-top(0.125rem);
+    @include margin-left(2.5rem);
 }
 
 .mostrar-respostas{
@@ -157,7 +159,7 @@
     }
 }
 
-.botao-resposta{
+.botao-resposta, .botao-comentar{
     @include font-size(1rem);
     @include padding(0.313rem);
     @include margin-top(0.313rem);
@@ -173,6 +175,10 @@
         background: $cor-padrao-claro-4;
         @include font-size(1.1rem);
     }
+}
+
+.botao-comentar{
+    width: 100%;
 }
 
 // Media Queries

@@ -27,6 +27,8 @@
                         {% csrf_token %}
                         
                         {{ form_comentario.conteudo }}
+
+                        <button type="submit" class="botao-comentar">Comentar</button>
                     </form>
 
                     {% if comentarios %}
@@ -40,7 +42,7 @@
                                     {{ node.conteudo }}
                                 </div>
 
-                                <button class="botao-resposta" id="responder-{{ node.id }}" onclick="abrirFormulario('responder-{{ node.id }}')">Responder</button>
+                                <button class="botao-resposta" id="responder-{{ node.id }}" onclick="abrirFormulario('mostrar-{{ node.id }}')">Responder</button>
                             {% if not node.is_leaf_node %}
                             <button class="ver-resp" id="mostrar-{{ node.id }}" onclick="abrir('respostas-de-{{ node.id }}')">Ver respostas</button>
 

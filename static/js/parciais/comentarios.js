@@ -9,6 +9,8 @@ function abrirFormulario(id){
         "afterend",
         '<form method="POST" id="resposta" action="" id="form-comentario"> \
             <textarea name="conteudo" cols="40" rows="5" maxlength="5000" placeholder="Digite para responder" required="" id="id_conteudo"></textarea> \
+            \
+            <button type="submit" class="botao-comentar">Responder</button> \
         </form>'
     )
 }
