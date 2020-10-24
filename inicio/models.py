@@ -53,12 +53,13 @@ class Post(models.Model):
 
 
 class Comentario(MPTTModel):
-    usuario = models.ForeignKey(to=Usuario, on_delete=models.SET_NULL, null=True, verbose_name='Usuário')
+    usuario = models.ForeignKey(to=Usuario, on_delete=models.SET_NULL, null=True, verbose_name='Usuário', related_name='comentarios')
     post = models.ForeignKey(to=Post, on_delete=models.CASCADE, verbose_name='Postagem', related_name='comentarios')
     conteudo = models.TextField(verbose_name='Conteúdo', max_length=5000)
     data = models.DateTimeField(default=timezone.now, verbose_name='Data do comentário')
     comentario_pai = TreeForeignKey('self', on_delete=models.CASCADE, null=True,
                                        blank=True, verbose_name='Em resposta a', related_name='respostas')
+    aprovado = models.BooleanField(default=False, verbose_name='Aprovado')
 
     def __str__(self) -> str:
         return f'"{self.conteudo}" - {self.post}'
