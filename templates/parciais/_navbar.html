@@ -21,14 +21,29 @@
                     </form>
                 </ul>
             </li>
+            
+            {% if not request.user.is_authenticated %}
             <li><a href="#" title="Entrar"><i class="fa fa-user" aria-hidden="true"></i> Painel de Usuário</a>
                 <ul class="dropdown">
                     <li><a href="{% url 'entrar' %}?proximo={{ request.path }}">Entrar</a></li>
                     <li><a href="{% url 'registrar' %}?proximo={{ request.path }}">Registrar</a></li>
                 </ul>
             </li>
+            {% else %}
+            <li class="container-imagem-usuario">
+                <img src="{{ request.user.foto.url }}" alt="">
+
+                <ul class="dropdown">
+                    <li><a href="">Notificações</a></li>
+                    <li><a href="">Visualizar Perfil</a></li>
+                    <li><a href="{% url 'sair' %}?proximo={{ request.path }}">Sair</a></li>
+                </ul>
+            </li>
+            {% endif %}
+
             <li><a href="#" title="Divulgação Científica"><i class="fa fa-book" aria-hidden="true"></i> Divulgação Científica</a></li>
             <li><a href="#" title="Eventos"><i class="fa fa-calendar-o" aria-hidden="true"></i> Eventos</a></li>
+
             <div class="modo-escuro-container">
                 <input id="modo-escuro-switch" class="modo-escuro-toggle" type="checkbox"/>
                 <label for="modo-escuro-switch">
