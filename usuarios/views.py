@@ -195,6 +195,11 @@ def validacao_senha_registro(request):
     return JsonResponse(resposta, status=status)
 
 def sair(request):
+    pagina_anterior = request.GET.get('proximo')
+
+    if not pagina_anterior:
+        pagina_anterior = '/'
+    
     logout(request)
 
-    return redirect('index')
+    return redirect(pagina_anterior)
