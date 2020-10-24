@@ -9,6 +9,25 @@
         "logo links"
     ;
 
+    .container-imagem-usuario{
+        width: 30px;
+        height: 30px;
+
+        
+        &:hover{
+            .dropdown{
+                display: inline-block;
+            }
+        }
+
+        .dropdown{
+            width: fit-content;
+            display: none;
+            transition: 0.3s ease;
+        }
+        
+    }
+
     .modo-escuro-container{
         label::after{
             content: '';
