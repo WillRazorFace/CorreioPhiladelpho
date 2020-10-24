@@ -64,9 +64,10 @@ function enviarResposta(event, comentario_pai){
         if(resposta.status == 201){
             event.target.insertAdjacentHTML(
                 "afterend",
-                '<div class="novo novo-resposta"> \
+                '<div class="novo novo-resposta analise"> \
                     <div class="usuario">Você</div> \
                     <div class="data">agora mesmo</div> \
+                    <div class="usuario">(Enviado para análise)</div> \
                     <div class="comentario">\
                         ' + formResposta.get('conteudo') + ' \
                     </div> \
@@ -112,9 +113,10 @@ function enviarComentario(event, post){
         if(resposta.status == 201){
             event.target.insertAdjacentHTML(
                 "afterend",
-                '<div class="novo"> \
+                '<div class="novo analise"> \
                     <div class="usuario">Você</div> \
                     <div class="data">agora mesmo</div> \
+                    <div class="usuario">(Enviado para análise)</div> \
                     <div class="comentario">\
                         ' + formComentario.get('conteudo') + ' \
                     </div> \

@@ -36,7 +36,11 @@
             </div>
 
                 <div class="divisao"></div>
-                
+
+                {% if request.user.is_authenticated %}
+                <p class="analise-aviso">Seus comentários marcados como <b>"Em análise"</b> serão analisados pelos professores antes de serem liberados na seção de comentários. Só você pode vê-los.</p>
+                {% endif %}
+
                 <p class="quantidade-comentarios">{{ comentarios.count }} Comentários</p>
 
                 <div class="comentarios-container">
@@ -57,15 +61,22 @@
                     {% if comentarios %}
                         <ul class="comentarios">
                         {% recursetree comentarios %}
+                            {% if node.aprovado == False %}
+                            <li class="analise">
+                            {% else %}
                             <li>
+                            {% endif %}
                                 <div class="usuario">{{ node.usuario.nome}} {{ node.usuario.sobrenome }}</div>
                                 <div class="data">{{ node.data|naturalday }}</div>
+                                {% if node.aprovado == False %}
+                                <div class="usuario">(Em análise)</div>
+                                {% endif %}
 
                                 <div class="comentario">
                                     {{ node.conteudo }}
                                 </div>
 
-                                {% if request.user.is_authenticated %}
+                                {% if request.user.is_authenticated and node.aprovado == True %}
                                 <button class="botao-resposta" id="responder-{{ node.id }}" onclick="abrirFormulario({{ node.id }})">Responder</button>
                                 {% endif %}
                             {% if not node.is_leaf_node %}

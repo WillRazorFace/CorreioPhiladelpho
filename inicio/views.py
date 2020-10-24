@@ -85,24 +85,31 @@ def index(request):
 
 @require_GET
 def publicacao(request, slug: str):
+    post = get_object_or_404(Post, slug=slug)
+    comentarios = post.comentarios.prefetch_related('usuario').filter(aprovado=True)
+    form_comentario = ComentarioForm()
+
     if request.user.is_authenticated:
         form = FeedbackFormLogado()
+
+        comentarios = comentarios | post.comentarios.prefetch_related('usuario').filter(
+            usuario=request.user
+        ).filter(aprovado=False)
     else:
         form = FeedbackFormNaoLogado()
-        
-    post = get_object_or_404(Post, slug=slug)
-    comentarios = post.comentarios.prefetch_related('usuario').all
-    form_comentario = ComentarioForm()
 
     # Adiciona um ao contador de visualizações
     post.acessos += 1
     post.save()
 
-    return render(
-        request,
-        'inicio/publicacao.html',
-        {'post': post, 'comentarios': comentarios, 'form_comentario': form_comentario, 'form': form},
-    )
+    contexto = {
+        'post': post,
+        'comentarios': comentarios,
+        'form_comentario': form_comentario,
+        'form': form
+    }
+
+    return render(request, 'inicio/publicacao.html', contexto)
 
 #Fetch API
 @require_POST

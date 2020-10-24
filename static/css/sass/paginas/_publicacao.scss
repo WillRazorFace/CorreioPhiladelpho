@@ -137,6 +137,18 @@
 
 // Comentários
 
+.analise{
+    opacity: 80%;
+}
+
+.analise-aviso{
+    @include font-size(1rem);
+    font-style: italic;
+    @include margin-bottom(1.25rem);
+    text-align: center;
+    color: grey;
+}
+
 .pub-link-comentario{
     color: $cor-padrao-claro-4;
 
