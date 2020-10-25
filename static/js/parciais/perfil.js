@@ -165,6 +165,14 @@ window.onload = function(){
 
     secaoInformacoes();
 
+    infoSecaoMenu.addEventListener("click", () => {
+        secaoInformacoes();
+
+        infoSecaoMenu.classList.add("ativo");
+        comentariosSecaoMenu.classList.remove("ativo");
+        publicacoesSecaoMenu.classList.remove("ativo");
+    });
+
     comentariosSecaoMenu.addEventListener("click", () => {
         fetch(URL_DISPOR_SECAO_PERFIL, {
             method: "POST",
@@ -181,11 +189,19 @@ window.onload = function(){
         })
     });
 
-    infoSecaoMenu.addEventListener("click", () => {
-        secaoInformacoes();
+    publicacoesSecaoMenu.addEventListener("click", () => {
+        fetch(URL_DISPOR_SECAO_PERFIL, {
+            method: "POST",
+            body: JSON.stringify({secao: "pubs"}),
+            headers: {"X-CSRFToken": CSRFTOKEN},
+        }).then((resposta) => {
+            resposta.json().then((dados) => {
+                direitaMutavel.innerHTML = dados["html"];
 
-        infoSecaoMenu.classList.add("ativo");
-        comentariosSecaoMenu.classList.remove("ativo");
-        publicacoesSecaoMenu.classList.remove("ativo");
-    })
+                publicacoesSecaoMenu.classList.add("ativo");
+                infoSecaoMenu.classList.remove("ativo");
+                comentariosSecaoMenu.classList.remove("ativo");
+            })
+        })
+    });
 }

@@ -41,8 +41,8 @@
         </div>
     </div>
 {% elif secao == 'comentarios' %}
-    <ul class="comentarios-perfil">
         {% if comentarios %}
+        <ul class="comentarios-perfil">
             {% for comentario in comentarios %}
                 <li class="comentario-perfil">
                     <div class="publicacao"><a href="{% url 'publicacao' comentario.post.slug %}">{{ comentario.post }}</a></div>
@@ -57,7 +57,24 @@
                     </div>
                 </li>
             {% endfor %}
+        </ul>
         {% else %}
         {% endif %}
-    </ul>
+{% elif secao == 'pubs' %}
+    {% if usuario.posts_curtidos %}
+    <ul class="publicacoes-perfil">
+        {% for post in usuario.posts_curtidos.all %}
+            <li class="pub-curtida">
+                <a href="{% url 'publicacao' post.slug %}">{{ post.titulo }}</a>
+
+                <div>
+                    <span>{{ post.data|date:"D, d M, Y" }}</span>
+                    <span><i class="fa fa-eye" aria-hidden="true"></i> {{ post.acessos }}</span><br/>
+                    <span>{{ post.categoria }}</span>
+                </div>
+            </li>
+        {% endfor %}
+    </div>
+    {% else %}
+    {% endif %}
 {% endif %}

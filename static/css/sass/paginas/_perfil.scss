@@ -153,7 +153,7 @@
 
 // Seção de comentários
 
-.comentarios-perfil{
+.comentarios-perfil, .publicacoes-perfil{
     max-height: 350px;
     overflow: auto;
 
@@ -204,5 +204,33 @@
 
     .aprovado{
         color: #0da14b;
+    }
+}
+
+.publicacoes-perfil{
+    @include padding(0.625rem);
+}
+
+.pub-curtida{
+    @include padding(0.313rem);
+    @include box-shadow-card();
+    @include rfs(0.625rem, border-radius);
+    @include padding(0.625rem);
+
+    a{
+        @include font-size(1.25rem);
+        color: $cor-padrao-claro;
+        font-weight: bold;
+
+        &:hover{
+            color: $cor-padrao-escuro;
+        }
+    }
+
+    span{
+        grid-area: info;
+        font-style: italic;
+        line-height: 1.6;
+        color: rgba(0, 0, 0, .7);
     }
 }
