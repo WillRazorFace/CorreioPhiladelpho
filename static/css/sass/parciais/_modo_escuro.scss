@@ -283,6 +283,78 @@
             color: grey;
         }
     }
+
+    // Template de perfil
+
+    .perfil-detalhes{
+        background: #1a1818;
+    }
+
+    .detalhes-esquerda, .menu-mini-detalhes{
+        background: #222020;
+    }
+
+    .menu-mini-detalhes{
+        .ativo{
+            color: $cor-padrao-claro-6;
+            border-bottom-color: 2px solid $cor-padrao-claro-6;
+        }
+    }
+
+    .informacoes-perfil{
+        input{
+            background: #181717;
+            color: white;
+
+            &:disabled{
+                color: grey;
+            }
+        }
+
+        p{
+            font-weight: normal;
+        }
+
+        strong{
+            font-weight: normal;
+        }
+    }
+
+    .botao-alterar-perfil{
+        button{
+            background: $cor-padrao-claro-6;
+
+            &:hover{
+                background: $cor-padrao-claro;
+            }
+        }
+    }
+
+    .comentario-perfil{
+        .publicacao{
+            a{
+                color: $cor-padrao-claro-6;
+
+                &:hover{
+                    color: $cor-padrao-claro;
+                }
+            }
+        }
+    }
+
+    .pub-curtida{
+        a{
+            color: $cor-padrao-claro-6;
+
+            &:hover{
+                color: $cor-padrao-claro;
+            }
+        }
+
+        span{
+            color: grey;
+        }
+    }
 }
 
 // Switch para modo escuro
