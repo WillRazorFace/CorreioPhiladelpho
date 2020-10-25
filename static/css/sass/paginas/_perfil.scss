@@ -45,7 +45,7 @@
     display: flex;
     justify-content: center;
     @include padding(1.25rem);
-    box-shadow: 0 5px 5px -5px #333;
+    box-shadow: 0 5px 5px -5px rgba(0,0,0,0.7);
     @include rfs(1.25rem, border-top-right-radius);
 
     div{
@@ -157,6 +157,12 @@
     max-height: 350px;
     overflow: auto;
 
+    li + li {
+        @include margin-top(0.625rem);
+    }
+}
+
+.comentarios-perfil{
     li + li{
         @include margin-top(0.625rem);
         border-top: 2px solid grey;
