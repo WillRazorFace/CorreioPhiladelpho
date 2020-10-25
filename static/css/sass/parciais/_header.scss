@@ -9,6 +9,10 @@
         "logo links"
     ;
 
+    .painel-usuario-responsivo{
+        display: none !important;
+    }
+
     .container-imagem-usuario{
         width: 30px;
         height: 30px;
@@ -203,6 +207,15 @@
             padding: 20px 0 0 0;
         }
     
+        .painel-usuario-responsivo{
+            display: inline-block !important;
+            width: 100% !important;
+        }
+        
+        .container-imagem-usuario{
+            display: none !important;
+        }
+
         .logo-cp{
             grid-area: logo;
             max-width: 200px;

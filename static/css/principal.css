@@ -428,6 +428,10 @@ body img {
       grid-template-areas: "logo links";
 }
 
+.barra-de-navegacao .painel-usuario-responsivo {
+  display: none !important;
+}
+
 .barra-de-navegacao .container-imagem-usuario {
   width: 30px;
   height: 30px;
@@ -622,6 +626,13 @@ body img {
   }
   .barra-de-navegacao.colapsavel {
     padding: 20px 0 0 0;
+  }
+  .barra-de-navegacao .painel-usuario-responsivo {
+    display: inline-block !important;
+    width: 100% !important;
+  }
+  .barra-de-navegacao .container-imagem-usuario {
+    display: none !important;
   }
   .barra-de-navegacao .logo-cp {
     -ms-grid-row: 1;

@@ -30,6 +30,13 @@
                 </ul>
             </li>
             {% else %}
+            <li class="painel-usuario-responsivo"><a href="#" title="Entrar"><i class="fa fa-user" aria-hidden="true"></i> Painel de Usuário</a>
+                <ul class="dropdown">
+                    <li><a href="">Notificações</a></li>
+                    <li><a href="">Visualizar Perfil</a></li>
+                    <li><a href="{% url 'sair' %}?proximo={{ request.path }}">Sair</a></li>
+                </ul>
+            </li>
             <li class="container-imagem-usuario">
                 <img src="{{ request.user.foto.url }}" alt="">
 
