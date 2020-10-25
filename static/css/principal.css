@@ -441,6 +441,10 @@ body img {
   display: inline-block;
 }
 
+.barra-de-navegacao .container-imagem-usuario img {
+  border-radius: 50%;
+}
+
 .barra-de-navegacao .container-imagem-usuario .dropdown {
   width: -webkit-fit-content;
   width: -moz-fit-content;
