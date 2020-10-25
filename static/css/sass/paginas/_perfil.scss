@@ -8,7 +8,7 @@
     display: grid;
     grid-template-columns: 25% 75%;
     @include box-shadow-card();
-    width: 70%;
+    width: 70vw;
     @include rfs(1.25rem, border-radius);
     @include margin-top(1.5rem);
     background: #fafbfc;
@@ -239,4 +239,57 @@
         line-height: 1.6;
         color: rgba(0, 0, 0, .7);
     }
+}
+
+// Media Queries
+
+@include query(laptop){
+    .perfil-detalhes{
+        width: 85vw;
+    }
+}
+
+@include query(tablet){
+    .perfil-detalhes{
+        width: 100vw;
+        border-radius: 0;
+    }
+
+    .detalhes-esquerda{
+        border-radius: 0;
+    }
+
+    .menu-mini-detalhes{
+        border-radius: 0;
+    }
+}
+
+@include query(smartphone){
+    .perfil-detalhes{
+        grid-template-columns: auto;
+    }
+
+    .menu-mini-detalhes{
+        width: 100vw;
+        @include font-size(00.875rem);
+        text-align: center;
+
+        div + div{
+            margin-left: 0.5rem;
+        }
+    }
+
+    .perfil-direita-mutavel{
+        width: 100vw;
+    }
+
+    .comentario-perfil{
+        .data{
+            @include font-size(0.875rem);
+        }
+    }
+}
+
+@include query(tela-grande){
+
 }
