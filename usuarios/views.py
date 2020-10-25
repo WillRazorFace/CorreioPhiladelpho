@@ -1,12 +1,14 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse, HttpResponse
 from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.password_validation import MinimumLengthValidator, CommonPasswordValidator, NumericPasswordValidator
 from django.core.exceptions import ValidationError
 from django.contrib import messages
 from .forms import LoginForm, CadastroForm
 from usuarios.models import Usuario
 from django.views.decorators.http import require_GET, require_POST, require_http_methods
+from django.template.loader import render_to_string
 # TODO: Corrigir o validador (considera letras com acentos inválidas)
 from utils.validadores import checar_caracteres_especiais_e_numeros
 from utils.feedback import incluir_feedback
@@ -143,7 +145,7 @@ def validacao_email_registro(request):
     elif existente:
         status = 409
         resposta['status'] = 'inválido'
-        resposta['erro'] = 'Esse endereço já foi cadastrado'
+        resposta['erro'] = 'O e-mail digitado já foi cadastrado'
     else:
         status = 200
         resposta['status'] = 'válido'
@@ -206,6 +208,8 @@ def sair(request):
 
     return redirect(pagina_anterior)
 
+@require_GET
+@login_required(login_url='entrar', redirect_field_name='proximo')
 def perfil(request):
     pagina_anterior = request.GET.get('proximo')
 
@@ -214,4 +218,104 @@ def perfil(request):
 
     form = incluir_feedback(request)
 
-    return render(request, 'usuarios/perfil.html', {'form': form})
+    return render(request, 'usuarios/perfil.html', {'form': form, 'proximo': pagina_anterior})
+
+@require_POST
+@login_required(login_url='entrar', redirect_field_name='proximo')
+def dispor_secao_perfil(request):
+    secao = loads(request.body)['secao']
+
+    if secao == 'info':
+        html = render_to_string(
+            template_name='usuarios/parciais/_perfil-direita.html',
+            context={'secao': 'info', 'usuario': request.user },
+        )
+    elif secao == 'info-form':
+
+        print(secao)
+        html = render_to_string(
+            template_name='usuarios/parciais/_perfil-direita.html',
+            context={'secao': 'info-form', 'usuario': request.user },
+        )
+
+    return JsonResponse({'html': html}, safe=False)
+
+# Fetch API
+@require_POST
+@login_required(login_url='entrar', redirect_field_name='proximo')
+def alterar_perfil(request):
+    usuario = request.user
+    dados = loads(request.body)
+    alterado = False
+    contexto = {}
+
+    nome = dados['nome']
+    sobrenome = dados['sobrenome']
+    email = dados['email']
+    newsletter = dados['newsletter']
+
+    if nome != usuario.nome:
+        if checar_caracteres_especiais_e_numeros(nome):
+            return JsonResponse({
+                'field': 'nome',
+                'erro': 'Seu nome não pode conter caracteres especiais nem números'
+            }, status=409)
+        
+        usuario.nome = nome
+        alterado = True
+    
+    if sobrenome != usuario.sobrenome:
+        if checar_caracteres_especiais_e_numeros(sobrenome):
+            return JsonResponse({
+                'field': 'sobrenome',
+                'erro': 'Seu sobrenome não pode conter caracteres especiais nem números'
+            }, status=409)
+        elif sobrenome == nome:
+            return JsonResponse({
+                'field': 'sobrenome',
+                'erro': 'Seu sobrenome não pode ser igual ao seu nome'
+            }, status=409)
+
+        usuario.sobrenome = sobrenome
+        alterado = True
+
+    if email != usuario.email:
+        try:
+            existente = Usuario.objects.get(email=email)
+        except Usuario.DoesNotExist:
+            existente = False
+    
+        try:
+            valido = email_validator.validate_email(email)
+        except email_validator.EmailSyntaxError as e:
+            valido = False
+        except:
+            valido = False
+
+        if not valido:
+            return JsonResponse({
+                'field': 'email',
+                'erro': 'O e-mail digitado é inválido'
+            }, status=409)
+        elif existente:
+            return JsonResponse({
+                'field': 'email',
+                'erro': 'O e-mail digitado já foi cadastrado'
+            }, status=409)
+
+        usuario.email = email
+        # TODO: Reenviar e-mail de verificação quando usuário mudar seu e-mail
+        usuario.is_verified = False
+        alterado = True
+        contexto['email_alterado'] = 'true'
+
+    if newsletter != usuario.newsletter:
+        usuario.newsletter = newsletter
+        alterado = True
+
+    if alterado:
+        usuario.save()
+
+        contexto['mensagem'] = 'Dados alterados com sucesso'
+
+    return JsonResponse(contexto, status=200)

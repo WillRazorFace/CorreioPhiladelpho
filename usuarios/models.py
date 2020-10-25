@@ -13,6 +13,10 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(_('Endereço de e-mail'), unique=True)
     foto = models.ImageField(upload_to='perfis/%Y/%m/%d', blank=True, null=True, verbose_name='Foto de Perfil')
 
+    @property
+    def nome_completo(self):
+        return f'{self.nome} {self.sobrenome}'
+
     is_staff = models.BooleanField(default=False, verbose_name='Staff')
     is_active = models.BooleanField(default=True, verbose_name='Ativo')
     is_verified = models.BooleanField(default=False, verbose_name='Verificado')

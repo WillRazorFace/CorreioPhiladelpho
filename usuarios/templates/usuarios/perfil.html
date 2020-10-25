@@ -1,70 +1,55 @@
 {% extends 'base.html' %}
-{% load crispy_forms_tags %}
+{% load static %}
 
-{% block Título %}Perfil de {{ usuario.nome }}{% endblock %}
+{% block Título %}{{ request.user.nome_completo }}{% endblock %}
 
 {% block Conteúdo %}
-    <div class="row justify-content-center align-items-center">
-        <div class="col">
-            <div class="foto" style="background-image: url({{ usuario.foto.url }});"></div>
+    <main class="wrapper-perfil">
+        <div class="perfil-detalhes">
+            <div class="detalhes-esquerda">
+                <img src="{{ request.user.foto.url }}">
 
-            <div class="foto-botao">
-                <i class="fas fa-camera fa-2x"></i>
+                <p>Cadastrou-se em</p>
+                <small>{{ request.user.date_joined }}</small>
+
+                <p>Verificado</p>
+                <small id="is_verified">
+                    {% if request.user.is_verified %}
+                    Sim
+                    {% else %}
+                    Não
+                    {% endif %}
+                </small>
+
+                <p>Publicações curtidas</p>
+                <small>{{ request.user.posts_curtidos.count }}</small>
+
+                <p>Comentários no site</p>
+                <small>{{ request.user.comentarios.count }}</small>
             </div>
-        </div>
 
-        <div class="col">
-            <div class="card auth-card" style="border: none;">
-                <div class="card-body text-center">
-                    {% include 'parciais/_messages.html' %}
-                    <form method="POST" action="" enctype="multipart/form-data">
-                        {% csrf_token %}
+            <div class="detalhes-direita">
+                <div class="menu-mini-detalhes">
+                    <div id="info">Informações</div>
+                    <div id="comentarios">Comentários</div>
+                    <div id="pubs-curtidas">Publicações curtidas</div>
+                </div>
 
-                        {% for hidden_field in perfil.hidden_fields %}
-                            {{ hidden_field|as_crispy_field }}
-                        {% endfor %}
-                        
-                        <div class="form-row">
-                            <div class="form-group col-md-6 mb-0">
-                                {{ perfil.nome|as_crispy_field }}
-                            </div>
-
-                            <div class="form-group col-md-6 mb-0">
-                                {{ perfil.sobrenome|as_crispy_field }}
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            {{ perfil.email|as_crispy_field }}
-                        </div>
-                        
-                        <div class="form-group">
-                            {{ perfil.nome_de_usuario|as_crispy_field }}
-                        </div>
-                        
-                        <div class="form-row">
-                            <div class="form-group col-md-0 mb-0">
-                                {{ perfil.newsletter|as_crispy_field }}
-                            </div>
-                            
-                            <div class="form-group col-md-10 mb-0">
-                                <p>Cadastrado na nossa Newsletter</p>
-                            </div>
-                        </div>
-
-                        <div class="form-row">
-                            <div class="form-group col-md-0 mb-0">
-                                {{ perfil.is_verified|as_crispy_field }}
-                            </div>
-                            
-                            <div class="form-group col-md-10 mb-0">
-                                <p>Verificado</p>
-                            </div>
-                        </div>
-
-                    </form>
+                <div class="mut-perfil" id="perfil-direita-mutavel">
+                    {% include 'usuarios/parciais/_perfil-direita.html' %}
                 </div>
             </div>
         </div>
-    </div>
+    </main>
+{% endblock %}
+
+{% block javascript-adicional %}
+    <script src="{% static '/js/parciais/perfil.js' %}"></script>
+
+    <script>
+        var URL_DISPOR_SECAO_PERFIL = "{% url 'dispor-secao-perfil' %}";
+        var URL_ALTERAR_PERFIL = "{% url 'alterar-perfil' %}";
+        
+        var CSRFTOKEN = "{{ csrf_token }}";
+    </script>
 {% endblock %}

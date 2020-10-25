@@ -1,0 +1,150 @@
+.wrapper-perfil{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.perfil-detalhes{
+    display: grid;
+    grid-template-columns: 25% 75%;
+    @include box-shadow-card();
+    width: 70%;
+    @include rfs(1.25rem, border-radius);
+    @include margin-top(1.5rem);
+    background: #fafbfc;
+}
+
+.detalhes-esquerda, .menu-mini-detalhes{
+    background: white;
+}
+
+.detalhes-esquerda{
+    text-align: center;
+    box-shadow: 5px 0 5px -5px rgba(0, 0, 0, .7);
+    @include padding(0.625rem);
+    @include rfs(1.25rem, border-top-left-radius);
+    @include rfs(1.25rem, border-bottom-left-radius);
+
+    img{
+        @include rfs(0.625rem, border-radius);
+        border: 2px solid grey;
+    }
+
+    p{
+        @include font-size(1.125rem);
+        font-weight: bold;
+        @include margin-top(1.25rem);
+    }
+
+    small{
+        @include font-size(0.875rem);
+    }
+}
+
+.menu-mini-detalhes{
+    display: flex;
+    justify-content: center;
+    @include padding(1.25rem);
+    box-shadow: 0 5px 5px -5px #333;
+    @include rfs(1.25rem, border-top-right-radius);
+
+    div{
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    div + div{
+        @include margin-left(0.875rem);
+    }
+
+    .ativo{
+        color: $cor-padrao-claro;
+        font-weight: bold;
+        border-bottom: 2px solid $cor-padrao-claro;
+    }
+}
+
+.mut-perfil{
+    @include padding(0.625rem);
+    @include margin(0.625rem 0 0 0.625rem);
+}
+
+.informacoes{
+    p{
+        @include font-size(1.25rem);
+        font-weight: bold;
+    }
+
+    input{
+        @include font-size(1rem);
+        width: 100%;
+        @include padding(0.313rem);
+        @include rfs(0.313rem, border-radius);
+        outline: none;
+        border: 1px solid #ccc;
+        @include margin-bottom(0.5rem);
+        
+        &:disabled{
+            cursor: not-allowed;
+        }
+    }
+    
+    .checkbox-perfil-custom{
+        width: auto;
+        @include margin(0.313rem 0.313rem 0 0);
+
+        &:checked{
+            color: green;
+        }
+    }
+}
+
+#redefinicao{
+    @include margin-top(1.5rem);
+
+    strong{
+        display: block;
+    }
+}
+
+.botao-alterar-perfil{
+    display: flex;
+    justify-content: flex-end;
+
+    button{
+        background: transparent;
+        @include font-size(1rem);
+        outline: none;
+        border: 1px solid grey;
+        cursor: pointer;
+        @include padding(0.313rem);
+        @include rfs(0.313rem, border-radius);
+        background: linear-gradient(135deg, $cor-padrao-claro, #ed2123);
+        width: 100%;
+        @include margin-top(1rem);
+        color: white;
+        transition: all 0.3s ease;
+
+        &:hover{
+            background: $cor-padrao-escuro;
+        }
+    }
+}
+
+.erro-input-alterar-perfil{
+    border: 2px solid red !important;
+}
+
+.erro-div-alterar-perfil{
+    color: red;
+    font-weight: bold;
+    margin-bottom: 0.625rem;
+}
+
+.nao-dispor{
+    display: none;
+}
+
+.label-alterar-perfil-desabilitado{
+    color: grey;
+}

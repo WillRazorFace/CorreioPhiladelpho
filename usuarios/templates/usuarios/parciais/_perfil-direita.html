@@ -1,0 +1,41 @@
+{% if secao == 'info' %}
+    <div class="informacoes">
+        <div id="info-basicas">
+            <div class="nao-dispor" id="resultado-alterar-perfil"></div>
+
+            <form method="POST" action="" enctype="multipart/form-data" id="form-alterar-perfil">
+                <p class="label-alterar-perfil-desabilitado" id="label-nome">Nome</p>
+                <input id="nome" type="text" value="{{ usuario.nome }}" disabled>
+                <div id="erro-div-nome" class="erro-div-alterar-perfil nao-dispor"></div>
+
+                <p class="label-alterar-perfil-desabilitado" id="label-sobrenome">Sobrenome</p>
+                <input id="sobrenome" type="text" value="{{ usuario.sobrenome }}" disabled>
+                <div id="erro-div-sobrenome" class="erro-div-alterar-perfil nao-dispor"></div>
+
+                <p class="label-alterar-perfil-desabilitado" id="label-email">Endereço de e-mail</p>
+                <input id="email" type="text" value="{{ usuario.email }}" disabled>
+                <div id="erro-div-email" class="erro-div-alterar-perfil nao-dispor"></div>
+
+                <input  id="newsletter" class="checkbox-perfil-custom" type="checkbox" {% if usuario.newsletter %}checked{% endif %} disabled>
+                <strong id="label-newsletter" class="label-alterar-perfil-desabilitado">Cadastrado na Newsletter</strong>
+                
+                <div id="botao-alterar-perfil" class="botao-alterar-perfil">
+                    <button>
+                        <i class="fa fa-pencil" aria-hidden="true"></i> Alterar informações
+                    </button>
+                </div>
+
+                <div id="botao-salvar-perfil" class="botao-alterar-perfil nao-dispor">
+                    <button type="submit">
+                        <i class="fa fa-floppy-o" aria-hidden="true"></i> Salvar informações
+                    </button>
+                </div>
+            </form>
+
+            <div id="redefinicao">
+                <strong>Para alterar sua senha, clique aqui.</strong>
+                <strong>Para reenviar o e-mail de verificação, clique aqui.</strong>
+            </div>
+        </div>
+    </div>
+{% endif %}

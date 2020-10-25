@@ -11,4 +11,7 @@ urlpatterns = [
     path('registrar/validar-email', views.validacao_email_registro, name='validar-email'),
     path('registrar/validar-senha', views.validacao_senha_registro, name='validar-senha'),
     path('sair', views.sair, name='sair'),
+    path('perfil', views.perfil, name='perfil'),
+    path('perfil/dispor-secao-perfil', views.dispor_secao_perfil, name='dispor-secao-perfil'),
+    path('perfil/alterar-perfil', views.alterar_perfil, name='alterar-perfil'),
 ]
