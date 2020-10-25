@@ -7,15 +7,12 @@ from django.http import JsonResponse
 from django.template.loader import render_to_string
 from django.db.models import Q
 from django.views.decorators.http import require_GET, require_POST
+from utils.feedback import incluir_feedback
 from json import loads
 
 @require_GET
 def buscar(request):
-    if request.user.is_authenticated:
-        form = FeedbackFormLogado()
-    else:
-        form = FeedbackFormNaoLogado()
-    
+    form = incluir_feedback(request)
     termo = request.GET.get("p")
 
     return render(request, 'inicio/busca.html', {'form': form, 'termo': termo})
@@ -71,10 +68,7 @@ def salvar_feedback(request):
 
 @require_GET
 def index(request):
-    if request.user.is_authenticated:
-        form = FeedbackFormLogado()
-    else:
-        form = FeedbackFormNaoLogado()
+    form = incluir_feedback(request)
 
     # Retorna as 5 publicações com mais acessos
     populares = Post.objects.prefetch_related('categoria').order_by('-acessos')[:5]
@@ -85,18 +79,15 @@ def index(request):
 
 @require_GET
 def publicacao(request, slug: str):
+    form = incluir_feedback(request)
     post = get_object_or_404(Post, slug=slug)
     comentarios = post.comentarios.prefetch_related('usuario').filter(aprovado=True)
     form_comentario = ComentarioForm()
 
     if request.user.is_authenticated:
-        form = FeedbackFormLogado()
-
         comentarios = comentarios | post.comentarios.prefetch_related('usuario').filter(
             usuario=request.user
         ).filter(aprovado=False)
-    else:
-        form = FeedbackFormNaoLogado()
 
     # Adiciona um ao contador de visualizações
     post.acessos += 1

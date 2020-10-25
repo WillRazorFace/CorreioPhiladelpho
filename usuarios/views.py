@@ -7,7 +7,9 @@ from django.contrib import messages
 from .forms import LoginForm, CadastroForm
 from usuarios.models import Usuario
 from django.views.decorators.http import require_GET, require_POST, require_http_methods
+# TODO: Corrigir o validador (considera letras com acentos inválidas)
 from utils.validadores import checar_caracteres_especiais_e_numeros
+from utils.feedback import incluir_feedback
 from json import loads
 import email_validator
 
@@ -203,3 +205,13 @@ def sair(request):
     logout(request)
 
     return redirect(pagina_anterior)
+
+def perfil(request):
+    pagina_anterior = request.GET.get('proximo')
+
+    if not pagina_anterior:
+        pagina_anterior = '/'
+
+    form = incluir_feedback(request)
+
+    return render(request, 'usuarios/perfil.html', {'form': form})
