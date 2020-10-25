@@ -30,7 +30,7 @@
                 </ul>
             </li>
             {% else %}
-            <li class="painel-usuario-responsivo"><a href="#" title="Entrar"><i class="fa fa-user" aria-hidden="true"></i> Painel de Usuário</a>
+            <li class="painel-usuario-responsivo"><a href="#" title="Entrar"><i class="fa fa-user" aria-hidden="true"></i> {{ request.user.nome }}</a>
                 <ul class="dropdown">
                     <li><a href="">Notificações</a></li>
                     <li><a href="">Visualizar Perfil</a></li>
