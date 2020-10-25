@@ -6,6 +6,7 @@ from django.contrib.auth.password_validation import MinimumLengthValidator, Comm
 from django.core.exceptions import ValidationError
 from django.contrib import messages
 from .forms import LoginForm, CadastroForm
+from inicio.models import Comentario
 from usuarios.models import Usuario
 from django.views.decorators.http import require_GET, require_POST, require_http_methods
 from django.template.loader import render_to_string
@@ -230,12 +231,12 @@ def dispor_secao_perfil(request):
             template_name='usuarios/parciais/_perfil-direita.html',
             context={'secao': 'info', 'usuario': request.user },
         )
-    elif secao == 'info-form':
+    elif secao == 'comentarios':
+        comentarios = Comentario.objects.all().filter(usuario=request.user).order_by('-data')
 
-        print(secao)
         html = render_to_string(
             template_name='usuarios/parciais/_perfil-direita.html',
-            context={'secao': 'info-form', 'usuario': request.user },
+            context={'secao': 'comentarios', 'usuario': request.user, 'comentarios': comentarios},
         )
 
     return JsonResponse({'html': html}, safe=False)

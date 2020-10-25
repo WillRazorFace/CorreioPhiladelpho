@@ -1,5 +1,7 @@
+{% load humanize %}
+
 {% if secao == 'info' %}
-    <div class="informacoes">
+    <div class="informacoes-perfil">
         <div id="info-basicas">
             <div class="nao-dispor" id="resultado-alterar-perfil"></div>
 
@@ -38,4 +40,24 @@
             </div>
         </div>
     </div>
+{% elif secao == 'comentarios' %}
+    <ul class="comentarios-perfil">
+        {% if comentarios %}
+            {% for comentario in comentarios %}
+                <li class="comentario-perfil">
+                    <div class="publicacao"><a href="{% url 'publicacao' comentario.post.slug %}">{{ comentario.post }}</a></div>
+                    <div class="data">{{ comentario.data|date:"D, d M, Y" }}</div>
+                    <div class="conteudo">{{ comentario.conteudo }}</div>
+                    <div class="status">
+                        {% if comentario.aprovado %}
+                            <i class="fa fa-check aprovado" aria-hidden="true" title="Aprovado"></i>
+                        {% else %}
+                            <i class="fa fa-exclamation analise" aria-hidden="true" title="Em análise"></i>
+                        {% endif %}
+                    </div>
+                </li>
+            {% endfor %}
+        {% else %}
+        {% endif %}
+    </ul>
 {% endif %}
