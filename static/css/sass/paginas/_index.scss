@@ -23,10 +23,11 @@ body{
 
     .secao-bloco{
         width: 100%;
-        height: 2.5rem;
+        height: auto;
         background: linear-gradient(135deg, $cor-padrao-claro, #ed2123);
         @include box-shadow();
         @include rfs(0.625rem, border-radius);
+        @include padding(0.313rem);
         display: block;
 
         h3{
@@ -34,7 +35,6 @@ body{
             text-align: center;
             font-weight: 400;
             @include font-size(1.75rem);
-            @include margin(0.313rem);
         }
     }
 

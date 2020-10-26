@@ -245,13 +245,13 @@
 
 @include query(laptop){
     .perfil-detalhes{
-        width: 85vw;
+        width: 85%;
     }
 }
 
 @include query(tablet){
     .perfil-detalhes{
-        width: 100vw;
+        width: 100%;
         border-radius: 0;
     }
 
@@ -271,8 +271,9 @@
 
     .menu-mini-detalhes{
         width: 100vw;
-        @include font-size(00.875rem);
+        @include font-size(0.875rem);
         text-align: center;
+        @include padding(0.313rem);
 
         div + div{
             margin-left: 0.5rem;
