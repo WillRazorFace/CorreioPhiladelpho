@@ -2,8 +2,6 @@
 
 ![Badge](https://img.shields.io/badge/license-cps-red) ![Badge](https://img.shields.io/badge/status-quase--l%C3%A1-orange) ![Badge](https://img.shields.io/badge/python-3.6%20%7C%203.7%20%7C%203.8-blue)
 
-![Alt text](media/perfis/2020/09/06/webcam-toy-foto2.jpg?raw=true "Title")
-
 
 ## Visão Geral
 <p style = "text-align: justify">O Correio do Philadelpho é um Trabalho de Conclusão de Curso (TCC) feito pelos alunos da Etec Philadelpho Gouvêa Netto. O objetivo deste projeto é facilitar o acesso ao conhecimento de vários assuntos, desde eventos que acontecem naquela escola ou sobre temas científicos. Visamos minimizar os empecilhos que impedem o acesso a tais informações, como a dificuldade de textos que tratam sobre os assuntos ou a pouca divulgação dos mesmos. </P>
