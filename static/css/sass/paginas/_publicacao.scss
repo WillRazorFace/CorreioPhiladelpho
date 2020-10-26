@@ -50,6 +50,10 @@
     width: 70%;
     @include box-shadow-pub();
     @include padding(4.375rem);
+
+    .conteudo p{
+        text-align: justify !important;
+    }
 }
 
 .conteudo-wrapper{

@@ -1607,6 +1607,10 @@ body {
   }
 }
 
+.pub-post .conteudo p {
+  text-align: justify !important;
+}
+
 .conteudo-wrapper {
   min-height: 100%;
 }
