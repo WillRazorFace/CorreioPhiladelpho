@@ -186,3 +186,11 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'nareal460@gmail.com'
 EMAIL_HOST_PASSWORD = 'mtzika99'
+
+# Template próprio de login
+
+LOGIN_URL = '/usuarios/entrar'
+
+# Tempo que um link para redefinição de senha ficará ativo
+
+PASSWORD_RESET_TIMEOUT = 3600

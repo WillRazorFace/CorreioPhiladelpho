@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import JsonResponse, HttpResponse
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.password_validation import MinimumLengthValidator, CommonPasswordValidator, NumericPasswordValidator
+from django.contrib.auth.password_validation import MinimumLengthValidator, CommonPasswordValidator, NumericPasswordValidator, UserAttributeSimilarityValidator
 from django.core.exceptions import ValidationError
 from django.contrib import messages
 from .forms import LoginForm, CadastroForm
@@ -210,7 +210,7 @@ def sair(request):
     return redirect(pagina_anterior)
 
 @require_GET
-@login_required(login_url='entrar', redirect_field_name='proximo')
+@login_required(redirect_field_name='proximo')
 def perfil(request):
     pagina_anterior = request.GET.get('proximo')
 
@@ -222,7 +222,7 @@ def perfil(request):
     return render(request, 'usuarios/perfil.html', {'form': form, 'proximo': pagina_anterior})
 
 @require_POST
-@login_required(login_url='entrar', redirect_field_name='proximo')
+@login_required(redirect_field_name='proximo')
 def dispor_secao_perfil(request):
     secao = loads(request.body)['secao']
 
@@ -248,7 +248,7 @@ def dispor_secao_perfil(request):
 
 # Fetch API
 @require_POST
-@login_required(login_url='entrar', redirect_field_name='proximo')
+@login_required(redirect_field_name='proximo')
 def alterar_perfil(request):
     usuario = request.user
     dados = loads(request.body)
@@ -360,7 +360,68 @@ def validacao_email_recuperacao_senha(request):
 
 # Fetch API
 @require_POST
-def validacao_senha_recuperacao_senha(request):
-    print(loads(request.body))
+def validacao_senha_atual_redefinicao(request):
+    senha_atual = loads(request.body)['valor']
 
-    return HttpResponse(status=200)
+    if request.user.check_password(senha_atual):
+        return JsonResponse({'status': 'válido'}, status=200)
+
+    return JsonResponse({'status': 'inválido', 'erro': 'A senha digitada não é a sua atual'}, status=409)
+
+# Fetch API
+@require_POST
+def validacao_senha_redefinicao(request):
+    senha = loads(request.body)['valor']
+    resposta = {}
+
+    tamanho_minimo = MinimumLengthValidator(8)
+    numerica = NumericPasswordValidator()
+    comum = CommonPasswordValidator()
+    similar = UserAttributeSimilarityValidator(('nome', 'sobrenome', 'email'), max_similarity=0.7)
+
+    # Checando se a senha tem no mínimo 8 caracteres
+    try:
+        tamanho_minimo.validate(senha)
+    except ValidationError:
+        tamanho_minimo = False
+
+    # Checando se a senha é totalmente numérica
+    try:
+        numerica.validate(senha)
+    except ValidationError:
+        numerica = False
+
+    # Checando se a senha é comum
+    try:
+        comum.validate(senha)
+    except ValidationError:
+        comum = False
+
+    # Checando se a senha é similar a outras informações do usuário
+
+    try:
+        similar.validate(senha, request.user)
+    except ValidationError as e:
+        similar = False
+
+    if not tamanho_minimo:
+        status = 400
+        resposta['status'] = 'inválido'
+        resposta['erro'] = 'Sua senha deve conter pelo menos 8 caracteres'
+    elif not numerica:
+        status = 400
+        resposta['status'] = 'inválido'
+        resposta['erro'] = 'Sua senha não pode ser inteiramente numérica'
+    elif not comum:
+        status = 400
+        resposta['status'] = 'inválido'
+        resposta['erro'] = 'Essa senha é muito comum. Tente outra'
+    elif not similar:
+        status = 400
+        resposta['status'] = 'inválido'
+        resposta['erro'] = 'Essa senha é muito parecida com seu e-mail ou com seu nome'
+    else:
+        status = 200
+        resposta['status'] = 'válido'
+
+    return JsonResponse(resposta, status=status)

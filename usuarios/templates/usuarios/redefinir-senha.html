@@ -19,10 +19,19 @@
                 <a onclick="window.history.back();return false"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
             </div>
 
-            <h1>Digite sua nova senha</h1>
+            <h1>Redefinição de senha</h1>
 
             <form method="POST" action="" enctype="multipart/form-data">
                 {% csrf_token %}
+
+                <div class="input-custom">
+                    {{ form.old_password }}
+                    <label for="id_old_password" id="senha-label-atual">
+                        <span>Digite sua senha atual</span>
+                    </label>
+
+                    <div class="form-campo-invalido" id="invalido-senha-atual"></div>
+                </div>
 
                 <div class="input-custom">
                     {{ form.new_password1 }}
@@ -50,10 +59,11 @@
 
 {% block javascript-adicional %}
     <script>
-        var URL_VALIDAR_SENHA = "{% url 'validar-senha' %}";
+        var URL_VALIDAR_SENHA_ATUAL = "{% url 'validar-senha-atual-redefinicao' %}"
+        var URL_VALIDAR_SENHA = "{% url 'validar-senha-redefinicao' %}";
         
         var CSRFTOKEN = "{{ csrf_token }}";
     </script>
 
-    <script src="{% static '/js/parciais/redefinir-senha.js' %}"></script>
+    <script src="{% static '/js/parciais/redefinir-senha-usuario.js' %}"></script>
 {% endblock %}
