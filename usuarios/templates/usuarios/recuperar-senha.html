@@ -1,0 +1,52 @@
+{% extends 'usuarios/base-autenticacao.html' %}
+
+{% load static %}
+
+{% block Título %}Recuperar senha{% endblock %}
+
+{% block Conteúdo %}
+    <main class="wrapper-recuperar-senha">
+        <div class="logo-cp-auth-mobile">
+            <a href="{% url 'index' %}"><img src="{% static '/img/logo-cp-reduzido.svg' %}" alt="Ir para o início"></a>
+        </div>
+
+        <div class="form-recuperar-senha">
+            <div class="logo-cp-auth">
+                <a href="{% url 'index' %}"><img src="{% static '/img/logo-cp-reduzido-sem-bordas.svg' %}" alt=""></a>
+            </div>
+
+            <div class="voltar-auth">
+                <a onclick="window.history.back();return false"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+            </div>
+
+            <h1>Recuperar senha</h1>
+
+            <p><i>Insira o endereço de e-mail da sua conta. Enviaremos as instruções para a recuperação de senha.</i></p>
+
+            <form method="POST" action="" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <div class="input-custom">
+                    {{ form.email }}
+                    <label for="id_email" id="email-label">
+                        <span>Endereço de e-mail</span>
+                    </label>
+
+                    <div class="form-campo-invalido" id="invalido-email"></div>
+                </div>
+
+                <button type="submit" class="auth-button" id="botao-submit-email">Enviar e-mail</button>
+            </form>
+        </div>
+    </main>
+{% endblock %}
+
+{% block javascript-adicional %}
+    <script>
+        var URL_VALIDAR_EMAIL = "{% url 'validar-email-recuperacao-senha' %}";
+        
+        var CSRFTOKEN = "{{ csrf_token }}";
+    </script>
+
+    <script src="{% static '/js/parciais/recuperar-senha.js' %}"></script>
+{% endblock %}

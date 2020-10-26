@@ -134,10 +134,10 @@ def validacao_email_registro(request):
     
     try:
         valido = email_validator.validate_email(email)
-    except email_validator.EmailSyntaxError as e:
+    except email_validator.EmailSyntaxError:
         valido = False
     except:
-        valido = False
+        valido = True
     
     if not valido:
         status = 400
@@ -325,3 +325,42 @@ def alterar_perfil(request):
         contexto['mensagem'] = 'Dados alterados com sucesso'
 
     return JsonResponse(contexto, status=200)
+
+# Fetch API
+@require_POST
+def validacao_email_recuperacao_senha(request):
+    email = loads(request.body)['valor']
+    resposta = {}
+
+    try:
+        existente = Usuario.objects.get(email=email)
+    except Usuario.DoesNotExist:
+        existente = False
+    
+    try:
+        valido = email_validator.validate_email(email)
+    except email_validator.EmailSyntaxError:
+        valido = False
+    except:
+        valido = True
+
+    if not valido:
+        status = 409
+        resposta['status'] = 'inválido'
+        resposta['erro'] = 'O e-mail digitado não é válido'
+    elif not existente:
+        status = 409
+        resposta['status'] = 'inválido'
+        resposta['erro'] = 'O e-mail digitado não está cadastrado no site'
+    else:
+        status = 200
+        resposta['status'] = 'válido'
+
+    return JsonResponse(resposta, status=status)
+
+# Fetch API
+@require_POST
+def validacao_senha_recuperacao_senha(request):
+    print(loads(request.body))
+
+    return HttpResponse(status=200)

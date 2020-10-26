@@ -69,11 +69,12 @@ document.getElementById("form-registro").addEventListener("submit", function(eve
 
 const botao_submit = document.getElementById("botao-submit");
 
-let erros = {'nome': false,
-             'sobrenome': false,
-             'email': false,
-             'senha': false,
-             'senha_confirmacao': false,
+let erros = {
+    'nome': false,
+    'sobrenome': false,
+    'email': false,
+    'senha': false,
+    'senha_confirmacao': false,
 };
 
 let funcao_programada = false;

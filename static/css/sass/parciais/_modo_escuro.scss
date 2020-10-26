@@ -284,6 +284,10 @@
         }
     }
 
+    .logo-cp-auth-mobile{
+        background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.6));;
+    }
+
     // Template de perfil
 
     .perfil-detalhes{
@@ -356,6 +360,21 @@
 
         span{
             color: grey;
+        }
+    }
+
+    // Templates de recuperação de senha
+
+    .form-recuperar-senha{
+        background: #222020;
+
+        input{
+            background: #222020;
+            color: white;
+        }
+
+        p{
+            color: #ddd;
         }
     }
 }

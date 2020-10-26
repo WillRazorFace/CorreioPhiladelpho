@@ -1,0 +1,59 @@
+{% extends 'usuarios/base-autenticacao.html' %}
+
+{% load static %}
+
+{% block Título %}Recuperar senha{% endblock %}
+
+{% block Conteúdo %}
+    <main class="wrapper-recuperar-senha">
+        <div class="logo-cp-auth-mobile">
+            <a href="{% url 'index' %}"><img src="{% static '/img/logo-cp-reduzido.svg' %}" alt="Ir para o início"></a>
+        </div>
+
+        <div class="form-recuperar-senha">
+            <div class="logo-cp-auth">
+                <a href="{% url 'index' %}"><img src="{% static '/img/logo-cp-reduzido-sem-bordas.svg' %}" alt=""></a>
+            </div>
+
+            <div class="voltar-auth">
+                <a onclick="window.history.back();return false"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+            </div>
+
+            <h1>Digite sua nova senha</h1>
+
+            <form method="POST" action="" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <div class="input-custom">
+                    {{ form.new_password1 }}
+                    <label for="id_email" id="senha-label">
+                        <span>Digite sua nova senha</span>
+                    </label>
+
+                    <div class="form-campo-invalido" id="invalido-senha"></div>
+                </div>
+
+                <div class="input-custom">
+                    {{ form.new_password2 }}
+                    <label for="id_email" id="senha-label-confirmacao">
+                        <span>Confirme sua nova senha</span>
+                    </label>
+
+                    <div class="form-campo-invalido" id="invalido-senha-confirmacao"></div>
+                </div>
+
+                <button type="submit" class="auth-button" id="botao-submit-senha">Redefinir senha</button>
+            </form>
+        </div>
+    </main>
+{% endblock %}
+
+{% block javascript-adicional %}
+    <script>
+        var URL_VALIDAR_SENHA = "{% url 'validar-senha' %}";
+        
+        var CSRFTOKEN = "{{ csrf_token }}";
+    </script>
+
+    <script src="{% static '/js/parciais/redefinir-senha.js' %}"></script>
+{% endblock %}

@@ -268,7 +268,7 @@
         justify-content: center;
         width: 100%;
         @include padding(0.625rem);
-        background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.6));
+        background: linear-gradient(135deg, $cor-padrao-claro-4, $cor-padrao-claro-6);
 
         img{
             width: 50px;

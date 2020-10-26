@@ -1,0 +1,27 @@
+{% extends 'usuarios/base-autenticacao.html' %}
+
+{% load static %}
+
+{% block Título %}Recuperar senha{% endblock %}
+
+{% block Conteúdo %}
+    <main class="wrapper-recuperar-senha">
+        <div class="logo-cp-auth-mobile">
+            <a href="{% url 'index' %}"><img src="{% static '/img/logo-cp-reduzido.svg' %}" alt="Ir para o início"></a>
+        </div>
+
+        <div class="form-recuperar-senha">
+            <div class="logo-cp-auth">
+                <a href="{% url 'index' %}"><img src="{% static '/img/logo-cp-reduzido-sem-bordas.svg' %}" alt=""></a>
+            </div>
+
+            <div class="voltar-auth">
+                <a onclick="window.history.back();return false"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+            </div>
+
+            <h1>Instruções enviadas</h1>
+
+            <p><i>Cheque sua caixa de entrada. Caso não encontre nosso email lá procure na aba de spam/lixo eletrônico.</i></p>
+        </div>
+    </main>
+{% endblock %}
