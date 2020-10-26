@@ -90,21 +90,21 @@
         span{
             color: gray;
         }
+    }
+    
+    .pub-link{
+        color: $cor-padrao-claro-6;
 
-        .pub-link{
+        &:link{
             color: $cor-padrao-claro-6;
+        }
 
-            &:link{
-                color: $cor-padrao-claro-6;
-            }
+        &:hover{
+            color: $cor-padrao-claro-8;
+        }
 
-            &:hover{
-                color: $cor-padrao-claro-8;
-            }
-
-            &:visited{
-                color: $cor-padrao-claro-4;
-            }
+        &:visited{
+            color: $cor-padrao-claro-4;
         }
     }
 
