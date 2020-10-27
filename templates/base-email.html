@@ -1,0 +1,58 @@
+{% load static %}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+     	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+
+        <!--Fonte do site-->
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,500;1,700&display=swap" rel="stylesheet">
+
+        <!--Ícone do site-->
+        <title>{% block Título %}{% endblock %} | CP</title>
+    </head>
+
+    <body style="margin: 0; padding: 0;">
+        <table cellpadding="0" cellspacing="0" width="100%" style="border: 1px solid #cccccc;">
+            <tr>
+                <td>
+                    <table align="center" border="1" cellpadding="0" cellspacing="0" width="600" style="border-collapse: collapse;">
+                        <tr>
+                            <td>
+                                <img src="https://i.imgur.com/DkOKMww_d.webp?maxwidth=728&fidelity=grand" alt="Correio Philadelpho" width="600" height="100" style="display: block;" />
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td bgcolor="#ffffff" style="padding: 40px 30px 40px 30px;">
+                                <table cellpadding="0" cellspacing="0" width="100%">
+                                    <tr>
+                                        <td style="color: #5e0809; font-family: Roboto, sans-serif; font-size: 28px; text-align: center;">
+                                            <b>
+                                                {% block Chamada %}{% endblock %}
+                                            </b>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="color: #222020; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px; text-align: justify;">
+                                            {% block Conteúdo %}
+                                            {% endblock %}
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <img src="https://i.imgur.com/8oGbOwU_d.webp?maxwidth=728&fidelity=grand" alt="Correio Philadelpho" width="600" height="100" style="display: block;" />
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>

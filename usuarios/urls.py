@@ -24,7 +24,14 @@ urlpatterns = [
     path('redefinir-senha/validar-senha', views.validacao_senha_redefinicao, name='validar-senha-redefinicao'),
     path('redefinir-senha/redefinida', auth_views.PasswordChangeDoneView.as_view(template_name='usuarios/redefinir-senha-redefinida.html'), name='password_change_done'),
 
-    path('recuperar-senha', auth_views.PasswordResetView.as_view(template_name='usuarios/recuperar-senha.html'), name='recuperar-senha'),
+    path(
+        'recuperar-senha',
+        auth_views.PasswordResetView.as_view(
+            template_name='usuarios/recuperar-senha.html',
+            html_email_template_name='usuarios/email/recuperacao-de-senha.html',
+        ),
+        name='recuperar-senha'
+    ),
     path('recuperar-senha/validar-email', views.validacao_email_recuperacao_senha, name='validar-email-recuperacao-senha'),
     path('recuperar-senha/enviado', auth_views.PasswordResetDoneView.as_view(template_name='usuarios/recuperar-senha-enviado.html'), name='password_reset_done'),
     path('recuperar-senha/<uidb64>/<token>', auth_views.PasswordResetConfirmView.as_view(template_name='usuarios/recuperar-senha-form.html'), name='password_reset_confirm'),
