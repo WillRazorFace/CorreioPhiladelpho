@@ -49,8 +49,6 @@ document.getElementById("form-registro").addEventListener("submit", function(eve
                 window.location.href = REDIRECIONAR;
             }, 7000);
         } else {
-            document.getElementById("form-registro").reset();
-
             modal.classList.add("modal-erro");
             modal_titulo.innerHTML = "Algo deu errado";
             modal_icone.classList.add("fa-exclamation");

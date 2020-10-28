@@ -45,13 +45,19 @@
 
                 <div class="comentarios-container">
                     {% if request.user.is_authenticated %}
-                    <form method="POST" action="" id="form-comentario" class="formulario-comentar" onsubmit="enviarComentario(event, {{ post.id}})">
-                        {% csrf_token %}
+                        {% if request.user.is_verified %}
+                        <form method="POST" action="" id="form-comentario" class="formulario-comentar" onsubmit="enviarComentario(event, {{ post.id}})">
+                            {% csrf_token %}
 
-                        {{ form_comentario.conteudo }}
+                            {{ form_comentario.conteudo }}
 
-                        <button type="submit" class="botao-comentar">Comentar</button>
-                    </form>
+                            <button type="submit" class="botao-comentar">Comentar</button>
+                        </form>
+                        {% else %}
+                        <div class="entre-ou-cadastrese">
+                            <p>Ative sua conta para comentar. Caso necessário, solicite um e-mail de verificação em seu <a class="pub-link-comentario" href="{% url 'perfil' %}">perfil</a>.</p>
+                        </div>
+                        {% endif %}
                     {% else %}
                     <div class="entre-ou-cadastrese">
                         <p><a class="pub-link-comentario" href="{% url 'entrar' %}?proximo={{ request.path }}">Entre</a> ou <a class="pub-link-comentario" href="{% url 'registrar' %}?proximo={{ request.path }}">cadastre-se</a> para comentar.</p>

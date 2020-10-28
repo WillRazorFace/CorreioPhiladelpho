@@ -36,7 +36,7 @@
 
             <div id="redefinicao">
                 <strong>Para alterar sua senha, <a class="pub-link" href="{% url 'redefinir-senha' %}">clique aqui</a></strong>
-                <strong>Para reenviar o e-mail de verificação, clique aqui</strong>
+                <strong>Para reenviar o e-mail de verificação, <a href="#" class="pub-link" id="reenviar-email-ativacao-link">clique aqui</a></strong>
             </div>
         </div>
     </div>
@@ -59,9 +59,10 @@
             {% endfor %}
         </ul>
         {% else %}
+        <p style="text-align: center;">Você ainda não fez nenhum comentário</p>
         {% endif %}
 {% elif secao == 'pubs' %}
-    {% if usuario.posts_curtidos %}
+    {% if usuario.posts_curtidos.existis  %}
     <ul class="publicacoes-perfil">
         {% for post in usuario.posts_curtidos.all %}
             <li class="pub-curtida">
@@ -76,5 +77,6 @@
         {% endfor %}
     </div>
     {% else %}
+    <p style="text-align: center;">Você ainda não curtiu nenhuma publicação</p>
     {% endif %}
 {% endif %}

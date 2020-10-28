@@ -33,6 +33,8 @@ window.onload = function(){
                 let labelSobrenome = document.getElementById("label-sobrenome");
                 let labelEmail = document.getElementById("label-email");
                 let labelNewsletter = document.getElementById("label-newsletter");
+
+                let botaoReenviarEmailAtivacao = document.getElementById("reenviar-email-ativacao-link");
     
                 let dispor_erro = function(input, div, label, erro){
                     input.classList.add("erro-input-alterar-perfil");
@@ -156,6 +158,37 @@ window.onload = function(){
                                     resultadoAlterarPerfil.classList.add("nao-dispor");
                                 }, 5000);
                             })
+                        }
+                    })
+                })
+
+                botaoReenviarEmailAtivacao.addEventListener("click", () => {
+                    fetch(URL_REENVIAR_EMAIL_ATIVACAO).then((resposta) => {
+                        console.log(resposta.status);
+                        
+                        let modal = document.getElementById("modal-feedback");
+                        let modal_titulo = document.getElementById("modal-titulo");
+                        let modal_icone = document.getElementById("modal-icone");
+                        let modal_mensagem = document.getElementById("modal-mensagem");
+                        let modal_botao = document.getElementById("modal-botao");
+    
+                        let smallVerificado = document.getElementById("is_verified");
+
+                        if(resposta.status == 200){
+                            smallVerificado.innerText = "Não";
+    
+                            modal.classList.add("modal-aviso");
+                            modal_titulo.innerHTML = "Verifique seu e-mail";
+                            modal_icone.classList.add("fa-envelope");
+                            modal_mensagem.innerHTML = "Um e-mail de confirmação foi enviado para o seu endereço. Confirme-o para poder interagir com a plataforma.";
+    
+                            modal.style.display = "grid";
+    
+                            modal_botao.addEventListener("click", () => {
+                                modal.style.display = "none";
+                            })
+                        } else {
+                            console.log('eu');
                         }
                     })
                 })

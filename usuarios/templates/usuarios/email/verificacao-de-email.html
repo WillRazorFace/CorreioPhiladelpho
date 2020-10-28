@@ -1,0 +1,15 @@
+{% extends 'base-email.html' %}
+
+{% block Título %}Ativação de conta{% endblock %}
+
+{% block Chamada %}Verifique seu e-mail para poder interagir com a plataforma{% endblock %}
+
+{% block Conteúdo %}
+    Olá, {{ usuario.nome }}. Abaixo o link para a ativação de sua conta. Ativando sua conta você
+    poderá interagir totalmente com a plataforma Correio Philadelpho. Você pode solicitar outro e-mail
+    de verificação indo em seu perfil.
+
+    <p style="text-align: center;">
+        <a href="http://{{ dominio }}{% url 'ativar-conta' uidb64=uid token=token %}">Clique aqui para prosseguir para o link</a>
+    </p>
+{% endblock %}

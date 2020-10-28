@@ -32,9 +32,12 @@ document.getElementById("form-login").addEventListener("submit", function(event)
         headers: {"X-CSRFToken": CSRFTOKEN},
     }).then((resposta) => {
         if(resposta.status == 200){
+            div_erro_login.innerHTML = "";
+            div_erro_login.style.display = "none";
+
             remover_erro(email_field_login, email_label_login);
             remover_erro(senha_field_login, senha_label_login);
-
+            
             window.location.href = REDIRECIONAR_LOGIN;
         } else if(resposta.status == 404){
             div_erro_login.innerHTML = "E-mail ou senha incorretos";

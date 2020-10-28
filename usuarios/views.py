@@ -3,7 +3,11 @@ from django.http import JsonResponse, HttpResponse
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.password_validation import MinimumLengthValidator, CommonPasswordValidator, NumericPasswordValidator, UserAttributeSimilarityValidator
+from django.contrib.sites.shortcuts import get_current_site
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.utils.encoding import force_bytes, force_text
 from django.core.exceptions import ValidationError
+from django.core.mail import EmailMessage, send_mail
 from django.contrib import messages
 from .forms import LoginForm, CadastroForm
 from inicio.models import Comentario, Post
@@ -11,6 +15,7 @@ from usuarios.models import Usuario
 from django.views.decorators.http import require_GET, require_POST, require_http_methods
 from django.template.loader import render_to_string
 # TODO: Corrigir o validador (considera letras com acentos inválidas)
+from .tokens import GeradorDeToken
 from utils.validadores import checar_caracteres_especiais_e_numeros
 from utils.feedback import incluir_feedback
 from json import loads
@@ -81,6 +86,37 @@ def criar_usuario(request):
         email = form.cleaned_data.get('email')
 
         usuario = authenticate(request, email=email, password=senha)
+
+        # Envia o e-mail de verificação pro e-mail informado
+
+        template_verificacao_txt = render_to_string(
+            'usuarios/email/verificacao-de-email.txt',
+            {
+                'usuario': novo_usuario,
+                'dominio': get_current_site(request).domain,
+                'uid': urlsafe_base64_encode(force_bytes(novo_usuario.id)),
+                'token': GeradorDeToken().make_token(user=novo_usuario),
+            }
+        )
+
+        template_verificacao_html = render_to_string(
+            'usuarios/email/verificacao-de-email.html',
+            {
+                'usuario': novo_usuario,
+                'dominio': get_current_site(request).domain,
+                'uid': urlsafe_base64_encode(force_bytes(novo_usuario.id)),
+                'token': GeradorDeToken().make_token(user=novo_usuario),
+            }
+        )
+
+        send_mail(
+            'Ative sua conta',
+            template_verificacao_txt,
+            'naoresponda@philadelpho.com.br',
+            [email],
+            html_message=template_verificacao_html
+        )
+
         login(request, usuario)
 
         messages.warning(request, 'Confirme seu e-mail para interagir com a plataforma. As instruções foram enviadas a você.')
@@ -88,6 +124,63 @@ def criar_usuario(request):
         return HttpResponse(status=201)    
 
     return HttpResponse(status=409)
+
+# Fetch API
+@require_GET
+@login_required(redirect_field_name='proximo')
+def reenviar_email_ativacao(request):
+    request.user.is_verified = False
+    request.user.save()
+
+    template_verificacao_txt = render_to_string(
+        'usuarios/email/verificacao-de-email.txt',
+        {
+            'usuario': request.user,
+            'dominio': get_current_site(request).domain,
+            'uid': urlsafe_base64_encode(force_bytes(request.user.id)),
+            'token': GeradorDeToken().make_token(user=request.user),
+        }
+    )
+
+    template_verificacao_html = render_to_string(
+        'usuarios/email/verificacao-de-email.html',
+        {
+            'usuario': request.user,
+            'dominio': get_current_site(request).domain,
+            'uid': urlsafe_base64_encode(force_bytes(request.user.id)),
+            'token': GeradorDeToken().make_token(user=request.user),
+        }
+    )
+
+    send_mail(
+        'Ative sua conta',
+        template_verificacao_txt,
+        'naoresponda@philadelpho.com.br',
+        [request.user.email],
+        html_message=template_verificacao_html
+    )
+
+    return HttpResponse(status=200)
+
+@require_GET
+def ativar_conta(request, uidb64, token):
+    try:
+        uid = force_text(urlsafe_base64_decode(uidb64))
+        usuario = Usuario.objects.get(id=uid)
+    except(TypeError, ValueError, OverflowError, Usuario.DoesNotExist):
+        usuario = None
+    
+    if usuario is not None and GeradorDeToken().check_token(usuario, token):
+        usuario.is_verified = True
+        usuario.save()
+        
+        messages.success(request, f'Sua conta foi ativada. Bem-vindo, {usuario.nome}.')
+
+        return redirect('perfil')
+    else:
+        messages.error(request, 'Esse link de ativação é inválido.')
+
+        return redirect('index')
 
 #Fetch API
 @require_POST
@@ -310,8 +403,37 @@ def alterar_perfil(request):
             }, status=409)
 
         usuario.email = email
-        # TODO: Reenviar e-mail de verificação quando usuário mudar seu e-mail
         usuario.is_verified = False
+        usuario.save()
+
+        template_verificacao_txt = render_to_string(
+            'usuarios/email/verificacao-de-email.txt',
+            {
+                'usuario': usuario,
+                'dominio': get_current_site(request).domain,
+                'uid': urlsafe_base64_encode(force_bytes(usuario.id)),
+                'token': GeradorDeToken().make_token(user=usuario),
+            }
+        )
+
+        template_verificacao_html = render_to_string(
+            'usuarios/email/verificacao-de-email.html',
+            {
+                'usuario': usuario,
+                'dominio': get_current_site(request).domain,
+                'uid': urlsafe_base64_encode(force_bytes(usuario.id)),
+                'token': GeradorDeToken().make_token(user=usuario),
+            }
+        )
+
+        send_mail(
+            'Ative sua conta',
+            template_verificacao_txt,
+            'naoresponda@philadelpho.com.br',
+            [usuario.email],
+            html_message=template_verificacao_html
+        )
+
         alterado = True
         contexto['email_alterado'] = 'true'
 
