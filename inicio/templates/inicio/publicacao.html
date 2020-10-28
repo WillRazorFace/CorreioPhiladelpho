@@ -82,7 +82,7 @@
                                     {{ node.conteudo }}
                                 </div>
 
-                                {% if request.user.is_authenticated and node.aprovado == True %}
+                                {% if request.user.is_authenticated and request.user.is_verified and node.aprovado == True %}
                                 <button class="botao-resposta" id="responder-{{ node.id }}" onclick="abrirFormulario({{ node.id }})">Responder</button>
                                 {% endif %}
                             {% if not node.is_leaf_node %}
