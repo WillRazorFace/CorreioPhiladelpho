@@ -31,6 +31,8 @@ urlpatterns = [
         'recuperar-senha',
         auth_views.PasswordResetView.as_view(
             template_name='usuarios/recuperar-senha.html',
+            subject_template_name='usuarios/email/recuperacao-de-senha-subject.txt',
+            email_template_name='usuarios/email/recuperacao-de-senha.txt',
             html_email_template_name='usuarios/email/recuperacao-de-senha.html',
         ),
         name='recuperar-senha'

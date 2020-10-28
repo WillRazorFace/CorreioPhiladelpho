@@ -1,0 +1,7 @@
+{% autoescape off %}
+Olá, {{ user.nome }}. Abaixo o link requisitado para a recuperação de sua senha.
+O token estará disponível por uma hora, sendo necessário após isso requisitar outro caso ainda
+queira redefinir sua senha. Se não foi você que pediu por esse e-mail apenas ignore-o.
+
+{{ protocol }}://{{ domain }}{% url 'password_reset_confirm' uidb64=uid token=token %}
+{% endautoescape %}
