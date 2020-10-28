@@ -188,7 +188,16 @@ window.onload = function(){
                                 modal.style.display = "none";
                             })
                         } else {
-                            console.log('eu');
+                            modal.classList.add("modal-erro");
+                            modal_titulo.innerHTML = "Algo deu errado";
+                            modal_icone.classList.add("fa-exclamation");
+                            modal_mensagem.innerHTML = "Um erro aconteceu durante a requisição. Tente de novo. Se o problema continuar, contate o suporte."
+
+                            modal.style.display = "grid";
+
+                            modal_botao.addEventListener("click", () => {
+                                modal.style.display = "none";
+                            })
                         }
                     })
                 })
