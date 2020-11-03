@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'mptt',
     'inicio',
     'usuarios',
+    'professores',
     'sobre',
 ]
 
