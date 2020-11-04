@@ -7,6 +7,13 @@ from utils.imagens import redimensionar
 import random
 import string
 from django.utils.text import slugify
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
+from django.contrib.sites.shortcuts import get_current_site
+from django.conf import settings
+
 
 class Categoria(models.Model):
     nome = models.CharField(max_length=100, verbose_name='Nome')
@@ -29,7 +36,7 @@ class Post(models.Model):
     data = models.DateTimeField(default=timezone.now, verbose_name='Data de Postagem')
     categoria = models.ForeignKey(to=Categoria, on_delete=models.SET_NULL, null=True, verbose_name='Categoria')
     slug = models.SlugField(max_length=300, unique=True, blank=True, verbose_name='Slug')
-    curtidas = models.ManyToManyField(to=Usuario, related_name='posts_curtidos')
+    curtidas = models.ManyToManyField(to=Usuario, related_name='posts_curtidos', blank=True)
 
     def __str__(self) -> str:
         return self.titulo
@@ -50,6 +57,42 @@ class Post(models.Model):
     class Meta:
         verbose_name = 'Publicação'
         verbose_name_plural = 'Publicações'
+
+
+@receiver(post_save, sender=Post)
+def enviar_email_newsletter(sender, instance, created, **kwargs):
+    if created:
+        usuarios = Usuario.objects.all().filter(newsletter=True)
+        emails = []
+
+        for usuario in usuarios:
+            emails.append(usuario.email)
+
+        template_newsletter_txt = render_to_string(
+            'inicio/email/novo-post.txt',
+            {
+                'protocolo': getattr(settings, 'PROTOCOLO'),
+                'dominio': getattr(settings, 'DOMINIO'),
+                'post': instance,
+            }
+        )
+
+        template_newsletter_html = render_to_string(
+            'inicio/email/novo-post.html',
+            {
+                'protocolo': getattr(settings, 'PROTOCOLO'),
+                'dominio': getattr(settings, 'DOMINIO'),
+                'post': instance,
+            }
+        )
+
+        send_mail(
+            f'{instance.titulo} - Correio Philadelpho',
+            template_newsletter_txt,
+            'naoresponda@philadelpho.com.br',
+            emails,
+            html_message=template_newsletter_html
+        )
 
 
 class Comentario(MPTTModel):

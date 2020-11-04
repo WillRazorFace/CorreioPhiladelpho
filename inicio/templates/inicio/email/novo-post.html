@@ -1,0 +1,19 @@
+{% extends 'base-email.html' %}
+
+{% block Título %}{{ post.titulo }}{% endblock %}
+
+{% block Chamada %}{{ post.subtitulo }}{% endblock %}
+
+{% block Conteúdo %}
+    Há uma nova publicação no Correio ! Veja agora e fique por dentro de nosso conteúdo.
+    Clique abaixo no link para ser redirecionado.
+
+    <p style="text-align: center; margin-top: 15px;">
+        <a href="{{ protocolo }}://{{ dominio }}{% url 'publicacao' post.slug %}">Clique aqui para prosseguir para o link</a>
+    </p>
+
+    <p style="font-size: 12px;">
+        Você está recebendo esse e-mail pois está cadastrado em nossa newsletter.
+        Cheque seu perfil para mais informações.
+    </p>
+{% endblock %}

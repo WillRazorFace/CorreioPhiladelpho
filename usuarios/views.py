@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.shortcuts import render, redirect
 from django.http import JsonResponse, HttpResponse
 from django.contrib.auth import login, logout, authenticate
@@ -7,7 +8,7 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_text
 from django.core.exceptions import ValidationError
-from django.core.mail import EmailMessage, send_mail
+from django.core.mail import send_mail
 from django.contrib import messages
 from .forms import LoginForm, CadastroForm
 from inicio.models import Comentario, Post
@@ -93,7 +94,8 @@ def criar_usuario(request):
             'usuarios/email/verificacao-de-email.txt',
             {
                 'usuario': novo_usuario,
-                'dominio': get_current_site(request).domain,
+                'protocolo': getattr(settings, 'PROTOCOLO'),
+                'dominio': getattr(settings, 'DOMINIO'),
                 'uid': urlsafe_base64_encode(force_bytes(novo_usuario.id)),
                 'token': GeradorDeToken().make_token(user=novo_usuario),
             }
@@ -103,14 +105,15 @@ def criar_usuario(request):
             'usuarios/email/verificacao-de-email.html',
             {
                 'usuario': novo_usuario,
-                'dominio': get_current_site(request).domain,
+                'protocolo': getattr(settings, 'PROTOCOLO'),
+                'dominio': getattr(settings, 'DOMINIO'),
                 'uid': urlsafe_base64_encode(force_bytes(novo_usuario.id)),
                 'token': GeradorDeToken().make_token(user=novo_usuario),
             }
         )
 
         send_mail(
-            'Ative sua conta',
+            'Ative sua conta - Correio Philadelpho',
             template_verificacao_txt,
             'naoresponda@philadelpho.com.br',
             [email],

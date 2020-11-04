@@ -1,0 +1,7 @@
+{{ usuario.nome }}, há uma nova publicação no Correio ! Veja agora e fique por dentro de nosso conteúdo.
+Clique abaixo no link para ser redirecionado.
+
+{{ protocolo }}://{{ dominio }}{% url 'publicacao' post.slug %}
+
+Você está recebendo esse e-mail pois está cadastrado em nossa newsletter. Cheque seu perfil para mais
+informações.

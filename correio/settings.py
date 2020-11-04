@@ -27,7 +27,7 @@ SECRET_KEY = 'p_6(+6_q9=tlcj4(=#au1eoy!#)i%gdc51*2rz)d9*_l%o(=p!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+    'django.contrib.sites',
     'ckeditor',
     'ckeditor_uploader',
     'crispy_forms',
@@ -167,7 +168,7 @@ MPTT_ADMIN_LEVEL_INDENT = 20
 
 # Debug-toolbar
 INTERNAL_IPS = [
-    '127.0.0.1',
+    '127.0.0.1:8000',
 ]
 
 # Mensagens
@@ -195,3 +196,7 @@ LOGIN_URL = '/usuarios/entrar'
 # Tempo que um link para redefinição de senha ficará ativo
 
 PASSWORD_RESET_TIMEOUT = 3600
+
+PROTOCOLO = 'http'
+
+DOMINIO = ALLOWED_HOSTS[0]
