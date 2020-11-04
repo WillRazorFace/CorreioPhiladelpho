@@ -73,9 +73,9 @@ function enviarResposta(event, comentario_pai){
                     </div> \
                 </div>'
             );
-            event.target.reset();
+            event.target.remove();
         } else {
-            event.target.reset();
+            event.target.remove();
 
             modal.classList.add("modal-erro");
             modal_titulo.innerHTML = "Algo deu errado";
