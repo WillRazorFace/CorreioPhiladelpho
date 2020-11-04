@@ -19,7 +19,7 @@
                 <div id="erro-div-email" class="erro-div-alterar-perfil nao-dispor"></div>
 
                 <input  id="newsletter" class="checkbox-perfil-custom" type="checkbox" {% if usuario.newsletter %}checked{% endif %} disabled>
-                <strong id="label-newsletter" class="label-alterar-perfil-desabilitado">Cadastrado na Newsletter</strong>
+                <strong id="label-newsletter" class="label-alterar-perfil-desabilitado">Inscrito(a) na Newsletter</strong>
                 
                 <div id="botao-alterar-perfil" class="botao-alterar-perfil">
                     <button>
@@ -62,7 +62,7 @@
         <p style="text-align: center;">Você ainda não fez nenhum comentário</p>
         {% endif %}
 {% elif secao == 'pubs' %}
-    {% if usuario.posts_curtidos.existis  %}
+    {% if usuario.posts_curtidos.exists %}
     <ul class="publicacoes-perfil">
         {% for post in usuario.posts_curtidos.all %}
             <li class="pub-curtida">
