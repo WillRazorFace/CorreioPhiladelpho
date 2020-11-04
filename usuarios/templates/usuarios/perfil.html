@@ -37,6 +37,12 @@
                     <div id="info">Informações</div>
                     <div id="comentarios">Comentários</div>
                     <div id="pubs-curtidas">Publicações curtidas</div>
+
+                    {% if request.user.is_professor %}
+                    <div>
+                        <a href="#" title="Área do Professor" class="pub-link"><i class="fas fa-chalkboard-teacher" aria-hidden="true"></i> Área do Professor</a>
+                    </div>
+                    {% endif %}
                 </div>
 
                 <div class="mut-perfil" id="perfil-direita-mutavel">
