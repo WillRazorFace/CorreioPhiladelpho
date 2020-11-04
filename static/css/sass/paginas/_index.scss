@@ -325,6 +325,8 @@ body{
 
 @include query(smartphone){
     .conteudo-index{
+        @include padding(0.625rem);
+        
         .populares-wrapper{
             grid-template-columns: auto;
             grid-gap: 0;

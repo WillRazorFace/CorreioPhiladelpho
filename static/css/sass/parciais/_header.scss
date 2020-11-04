@@ -65,13 +65,17 @@
     }
 }
 
-.logo-cp{
+.logo-cp, .logo-cp-mobile{
     max-width: 150px;
 
     a{
         color: white;
         text-decoration: none;
     }
+}
+
+.logo-cp-mobile{
+    display: none;
 }
 
 .menu{
@@ -219,7 +223,7 @@
             display: none !important;
         }
 
-        .logo-cp{
+        .logo-cp, .logo-cp-mobile{
             grid-area: logo;
             max-width: 200px;
             padding: 0 0 0 20px;
@@ -298,6 +302,14 @@
                 width: 30px;
                 height: 5px;
             }
+        }
+
+        .logo-cp{
+            display: none;
+        }
+
+        .logo-cp-mobile{
+            display: block;
         }
 
         .toggle-fechar{

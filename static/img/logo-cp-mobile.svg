@@ -1,0 +1,16 @@
+<svg id="logo-cp" xmlns="http://www.w3.org/2000/svg" width="939.314" height="292.613" viewBox="0 0 1101.06 343">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        fill: #fff;
+      }
+
+      .cls-1 {
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <path id="Sigla" class="cls-1" d="M231.816,190.792q-31.761,0-51.8,24.7t-20.036,62.043q0,38.592,18.783,62.157t51.456,23.565q31.191,0,51-19.694L268.7,326.148q-12.638,16.623-36.088,16.621-21.516,0-35.12-17.7t-13.6-46.163q0-29.824,13.263-48.723t35.233-18.9q23.451,0,34.38,7.969l7.628-19.467q-15.369-8.991-42.577-8.993h0ZM347.023,297.347q64.206,0,64.206-56.238,0-48.607-72.63-48.61-5.352,0-31.192,1.139V360.414h22.768V296.208q12.978,1.14,16.848,1.139h0Zm-4.44-84.356q45.193,0,45.195,30.509,0,33.357-42.349,33.355-0.8,0-15.254-1.138V214.129a91.809,91.809,0,0,1,12.408-1.138h0Z" transform="translate(-96 -105)"/>
+  <rect id="Retângulo_Arredondado_Inferior" data-name="Retângulo Arredondado Inferior" class="cls-2" x="2" width="375" height="39" rx="10" ry="10"/>
+  <rect id="Retângulo_Arredondado_Superior" data-name="Retângulo Arredondado Superior" class="cls-2" y="304" width="375" height="39" rx="10" ry="10"/>
+</svg>
