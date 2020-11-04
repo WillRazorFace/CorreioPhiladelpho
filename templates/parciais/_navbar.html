@@ -38,7 +38,11 @@
                 </ul>
             </li>
             <li class="container-imagem-usuario">
-                <img src="{{ request.user.foto.url }}" alt="">
+                {% if request.user.foto %}
+                <img src="{{ request.user.foto.url }}" alt="Foto de usuário">
+                {% else %}
+                <img src="{% static 'img/usuario-anonimo.png' %}" alt="Foto de usuário">
+                {% endif %}
 
                 <ul class="dropdown">
                     <li><a href="">Notificações</a></li>

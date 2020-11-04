@@ -7,7 +7,11 @@
     <main class="wrapper-perfil">
         <div class="perfil-detalhes">
             <div class="detalhes-esquerda">
-                <img src="{{ request.user.foto.url }}">
+                {% if request.user.foto %}
+                <img src="{{ request.user.foto.url }}" alt="Foto de usuário">
+                {% else %}
+                <img src="{% static 'img/usuario-anonimo.png' %}" alt="Foto de usuário">
+                {% endif %}
 
                 <p>Cadastrou-se em</p>
                 <small>{{ request.user.date_joined }}</small>
