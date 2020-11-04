@@ -72,21 +72,31 @@
                             {% else %}
                             <li>
                             {% endif %}
-                                <div class="usuario">{{ node.usuario.nome}} {{ node.usuario.sobrenome }}</div>
-                                <div class="data">{{ node.data|naturalday }}</div>
-                                {% if node.aprovado == False %}
-                                <div class="usuario">(Em análise)</div>
-                                {% endif %}
+                                <div class="comentario-conteudo">
+                                    {% if node.usuario.foto %}
+                                    <div class="comentario-foto-usuario" style="background-image: url({{ node.usuario.foto.url }});"></div>
+                                    {% else %}
+                                    <div class="comentario-foto-usuario" style="background-image: url({% static 'img/usuario-anonimo.png' %});"></div>
+                                    {% endif %}
 
-                                <div class="comentario">
-                                    {{ node.conteudo }}
+                                    <div>
+                                        <div class="usuario">{{ node.usuario.nome}} {{ node.usuario.sobrenome }}</div>
+                                        <div class="data">{{ node.data|naturalday }}</div>
+                                        {% if node.aprovado == False %}
+                                        <div class="usuario">(Em análise)</div>
+                                        {% endif %}
+
+                                        <div class="conteudo">
+                                            {{ node.conteudo }}
+                                        </div>
+
+                                        {% if request.user.is_authenticated and request.user.is_verified and node.aprovado == True and node.level < 3 %}
+                                        <button class="botao-resposta" id="responder-{{ node.id }}" onclick="abrirFormulario({{ node.id }})">Responder</button>
+                                        {% endif %}
+                                {% if not node.is_leaf_node %}
+                                        <button class="ver-resp" id="mostrar-{{ node.id }}" onclick="abrir('respostas-de-{{ node.id }}')">Ver respostas</button>
+                                    </div>
                                 </div>
-
-                                {% if request.user.is_authenticated and request.user.is_verified and node.aprovado == True and node.level < 3 %}
-                                <button class="botao-resposta" id="responder-{{ node.id }}" onclick="abrirFormulario({{ node.id }})">Responder</button>
-                                {% endif %}
-                            {% if not node.is_leaf_node %}
-                            <button class="ver-resp" id="mostrar-{{ node.id }}" onclick="abrir('respostas-de-{{ node.id }}')">Ver respostas</button>
 
                             <ul class="respostas" id="respostas-de-{{ node.id }}">
                                 <li>{{ children }}</li>
