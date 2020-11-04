@@ -5,5 +5,5 @@ Olá, {{ usuario.nome }}. Abaixo o link para a ativação de sua conta. Ativando
 poderá interagir totalmente com a plataforma Correio Philadelpho. Você pode solicitar outro e-mail
 de verificação indo em seu perfil.
 
-http://{{ dominio }}{% url 'ativar-conta' uidb64=uid token=token %}
+{{ protocolo }}://{{ dominio }}{% url 'ativar-conta' uidb64=uid token=token %}
 {% endautoescape %}

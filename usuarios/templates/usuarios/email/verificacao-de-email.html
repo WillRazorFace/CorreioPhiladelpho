@@ -10,6 +10,6 @@
     de verificação indo em seu perfil.
 
     <p style="text-align: center;">
-        <a href="http://{{ dominio }}{% url 'ativar-conta' uidb64=uid token=token %}">Clique aqui para prosseguir para o link</a>
+        <a href="{{ protocolo }}://{{ dominio }}{% url 'ativar-conta' uidb64=uid token=token %}">Clique aqui para prosseguir para o link</a>
     </p>
 {% endblock %}
