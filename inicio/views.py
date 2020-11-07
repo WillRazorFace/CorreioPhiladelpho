@@ -84,6 +84,10 @@ def publicacao(request, slug: str):
     comentarios = post.comentarios.prefetch_related('usuario').filter(aprovado=True)
     form_comentario = ComentarioForm()
 
+    if not request.user.is_authenticated:
+        comentarios = post.comentarios.prefetch_related('usuario').filter(aprovado=True)
+    elif request.user.is_authenticated and request.user.is_professor:
+        comentarios = post.comentarios.prefetch_related('usuario')
     if request.user.is_authenticated:
         comentarios = comentarios | post.comentarios.prefetch_related('usuario').filter(
             usuario=request.user
