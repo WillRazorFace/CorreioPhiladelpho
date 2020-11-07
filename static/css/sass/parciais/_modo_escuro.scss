@@ -335,6 +335,8 @@
     }
 
     .comentario-perfil{
+        background: #222020;
+        
         .publicacao{
             a{
                 color: $cor-padrao-claro-6;
@@ -375,6 +377,30 @@
 
         p{
             color: #ddd;
+        }
+    }
+
+    // Template de Professor
+
+    .menu-professor{
+        .info-professor{
+            background: #222020;
+        }
+
+        .secoes{
+            background: #222020;
+        }
+
+        .conteudo{
+            .secao-conteudo{
+                background: #1a1818;
+
+                .publicacoes-professor{
+                    .pub-card{
+                        background: #222020 !important;
+                    }
+                }
+            }
         }
     }
 }
