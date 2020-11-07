@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block Título %}Painel do Professor{% endblock %}
+
+{% block Conteúdo %}
+    <main class="conteudo-painel-professor">
+        <div class="menu-professor">
+            <ul class="secoes">
+                <li class="ativo" id="botao-pubs">Suas publicações</li>
+                <li id="botao-comentarios">Comentários em análise</li>
+                <li><a href="{% url 'professor-escrever' %}">Nova publicação <i class="fas fa-pen"></i></a></li>
+            </ul>
+
+            <div class="conteudo" id="mut-conteudo">
+                <div class="info-professor" id="info-publicacoes">
+                    <i class="fas fa-clipboard" aria-hidden="true" title="Você tem {{ publicacoes.count }} publicações"></i> {{ publicacoes.count }}
+                    <i class="fas fa-eye" aria-hidden="true" title="Você tem {{ acessos }} acessos totais"></i> {{ qnt_acessos }}
+                </div>
+                
+                <div class="info-professor nao-dispor" id="info-comentarios">
+                    <i class="fas fa-comments" aria-hidden="true" title="Há um total de {{ comentarios }}comentários em suas publicações"></i> {{ qnt_comentarios }}
+                    <i class="fas fa-exclamation" aria-hidden="true" title="Há um total de {{ analise }} comentários em análise nas suas publicações"></i> {{ qnt_analise }}
+                </div>
+
+                <div class="info-professor nao-dispor" id="info-curtidas">
+                    <i class="fas fa-thumbs-up" aria-hidden="true" title="Há um total de {{ curtidas }} curtidas em suas publicações"></i> {{ qnt_curtidas }}
+                </div>
+                
+                <div class="secao-conteudo">
+                    <ul class="publicacoes-professor" id="secao-publicacoes">
+                        {% for publicacao in publicacoes %}
+                        <div class="pub-card">
+                            <div class="pub-img">
+                                <a href="{% url 'publicacao' publicacao.slug %}"><img src="{{ publicacao.foto.url }}"></a>
+                            </div>
+                
+                            <div class="pub-texto">
+                                <h1><a href="{% url 'publicacao' publicacao.slug %}" class="pub-link">{{ publicacao.titulo }}</a></h1>
+                                <p>{{ publicacao.subtitulo }}</p>
+                            </div>
+                
+                            <div class="pub-info">
+                                <span>{{ publicacao.data|naturalday|capfirst }}</span>
+                                <span id="visualizacoes"><i class="fa fa-eye" aria-hidden="true"></i> {{ publicacao.acessos }}</span><br/>
+                                <span>{{ publicacao.categoria }}</span><br/>
+                            </div>
+                
+                            <div class="pub-botao"><a href="{% url 'publicacao' publicacao.slug %}">Ler mais</a></div>
+                        </div>
+                        {% empty %}
+                        <div class="empty">
+                            Você ainda não tem publicações. Comece a escrever por <a class="pub-link" href="{% url 'professor-escrever' %}">aqui</a>
+                        </div>
+                        {% endfor %}
+                    </ul>
+                
+                    <ul class="comentarios-perfil nao-dispor" id="secao-comentarios">
+                        <div class="resultado-aprovar-deletar nao-dispor" id="resultado-aprovar-deletar"></div>
+                
+                        {% if qnt_analise == 0 %}
+                        <div class="empty">
+                            Não há novos comentários
+                        </div>
+                        {% else %}
+                            {% for publicacao in publicacoes %}
+                                {% for comentario in publicacao.comentarios.all %}
+                                    {% if comentario.aprovado == False %}
+                                    <li class="comentario-perfil" id="comentario-{{ comentario.id }}">
+                                        <div class="publicacao"><b>{{ comentario.usuario.nome_completo}}</b> em <a href="{% url 'publicacao' comentario.post.slug %}">{{ comentario.post }}</a></div>
+                                        <div class="data">{{ comentario.data|date:"D, d M, Y" }}</div>
+                                        <div class="conteudo">{{ comentario.conteudo }}</div>
+                                        <div class="acoes">
+                                            <i class="fa fa-check aprovar" aria-hidden="true" title="Aprovar" onclick="aprovar({{ comentario.id }})"></i>
+                                            <i class="fas fa-trash-alt deletar" aria-hidden="true" title="Deletar" onclick="deletar({{ comentario.id }})"></i>
+                                        </div>
+                                    </li>
+                                    {% endif %}
+                                {% endfor %}
+                            {% empty %}
+                            <div class="empty">
+                                Você ainda não tem publicações. Comece a escrever por <a class="pub-link" href="{% url 'professor-escrever' %}">aqui</a>
+                            </div>
+                            {% endfor %}
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
+
+{% block javascript-adicional %}
+    <script type="text/javascript">
+        var CSRFTOKEN = "{{ csrf_token }}";
+        var URL_APROVAR_COMENTARIO = "{% url 'aprovar-comentario' %}";
+        var URL_DELETAR_COMENTARIO = "{% url 'deletar-comentario' %}";
+    </script>
+
+    <script type="text/javascript" src="{% static '/js/parciais/professores.js' %}"></script>
+{% endblock %}
