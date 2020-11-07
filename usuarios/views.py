@@ -15,10 +15,10 @@ from inicio.models import Comentario, Post
 from usuarios.models import Usuario
 from django.views.decorators.http import require_GET, require_POST, require_http_methods
 from django.template.loader import render_to_string
-# TODO: Corrigir o validador (considera letras com acentos inválidas)
 from .tokens import GeradorDeToken
 from utils.validadores import checar_caracteres_especiais_e_numeros
 from utils.feedback import incluir_feedback
+from utils.redirecionamento import definir_url_anterior
 from json import loads
 import email_validator
 
@@ -28,10 +28,7 @@ def entrar(request):
         return redirect('index')
     
     form = LoginForm()
-    pagina_anterior = request.GET.get('proximo')
-
-    if not pagina_anterior:
-        pagina_anterior = '/'
+    pagina_anterior = definir_url_anterior(request)
 
     return render(request, 'usuarios/entrar.html', {'form': form, 'proximo': pagina_anterior})
 
@@ -65,10 +62,7 @@ def registrar(request):
         return redirect('index')
 
     form = CadastroForm()
-    pagina_anterior = request.GET.get('proximo')
-
-    if not pagina_anterior:
-        pagina_anterior = '/'
+    pagina_anterior = definir_url_anterior(request)
         
     return render(request, 'usuarios/criar.html', {'form': form, 'proximo': pagina_anterior})
 
@@ -296,10 +290,7 @@ def validacao_senha_registro(request):
     return JsonResponse(resposta, status=status)
 
 def sair(request):
-    pagina_anterior = request.GET.get('proximo')
-
-    if not pagina_anterior:
-        pagina_anterior = '/'
+    pagina_anterior = definir_url_anterior(request)
     
     logout(request)
 
@@ -308,10 +299,7 @@ def sair(request):
 @require_GET
 @login_required(redirect_field_name='proximo')
 def perfil(request):
-    pagina_anterior = request.GET.get('proximo')
-
-    if not pagina_anterior:
-        pagina_anterior = '/'
+    pagina_anterior = definir_url_anterior(request)
 
     form = incluir_feedback(request)
 
