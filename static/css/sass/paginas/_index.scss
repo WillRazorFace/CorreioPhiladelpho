@@ -38,103 +38,6 @@ body{
         }
     }
 
-    .pub-card{
-        width: 100%;
-        @include padding(1.25rem);
-        background: white;
-        @include box-shadow-card;
-        display: grid;
-        grid-template-columns: 1fr 3fr;
-        grid-template-areas:
-            "imagem info"
-            "imagem texto"
-            "imagem botao"
-        ;
-        @include rfs(0.625rem, border-radius);
-        @include margin-top(1.25rem);
-
-        .pub-img{
-            grid-area: imagem;
-            text-align: center;
-            width: 300px;
-            max-height: 200px;
-            @include rfs(0.625rem, border-radius);
-            overflow: hidden;
-
-            img{
-                @include rfs(0.625rem, border-radius);
-                width: 100%;
-                max-height: 200px;
-                object-fit: cover;
-                transition: all 0.5s;
-
-                &:hover{
-                    cursor: pointer;
-                    transform: scale(1.1);
-                }
-
-                &::before{
-                    content: '';
-                    width: 100%;
-                    height: 100%;
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    @include rfs(0.625rem, border-radius);
-                }    
-            }
-        }
-
-        .pub-texto{
-            grid-area: texto;
-
-            h1{
-                @include margin-left(1.25rem);
-                @include font-size(1.25rem);
-            }
-
-            p{
-                text-justify: center;
-                @include margin-top(0.625rem);
-                @include font-size(1rem);
-                @include margin-left(1.25rem);
-                grid-area: subtitulo;
-            }
-        }
-
-        .pub-info{
-            @include margin-left(1.25rem);
-            @include margin-bottom(0.625rem);
-            @include font-size(0.9rem);
-            grid-area: info;
-            font-style: italic;
-            line-height: 1.6;
-            color: rgba(0, 0, 0, .7);
-        }
-
-        .pub-botao{
-            grid-area: botao;
-            margin-left: auto;
-            display: inline-block;
-            background: linear-gradient(135deg, $cor-padrao-claro, $cor-padrao-claro-6);
-            @include rfs(0.313rem, border-radius);
-            @include padding(0.625rem);
-            cursor: pointer;
-            max-height: 39px !important;
-            transition: 0.3s ease;
-
-            &:hover{
-                background: $cor-padrao-claro-4;
-                @include font-size(1.1rem);
-            }
-
-            a{
-                color: white;
-                text-decoration: none;
-            }
-        }
-    }
-
     .populares-wrapper{
         display: grid;
         grid-template-columns: auto;
@@ -263,6 +166,103 @@ body{
     @include margin-left(0.313rem);
 }
 
+.pub-card{
+    width: 100%;
+    @include padding(1.25rem);
+    background: white;
+    @include box-shadow-card;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-template-areas:
+        "imagem info"
+        "imagem texto"
+        "imagem botao"
+    ;
+    @include rfs(0.625rem, border-radius);
+    @include margin-top(1.25rem);
+
+    .pub-img{
+        grid-area: imagem;
+        text-align: center;
+        width: 300px;
+        max-height: 200px;
+        @include rfs(0.625rem, border-radius);
+        overflow: hidden;
+
+        img{
+            @include rfs(0.625rem, border-radius);
+            width: 100%;
+            max-height: 200px;
+            object-fit: cover;
+            transition: all 0.5s;
+
+            &:hover{
+                cursor: pointer;
+                transform: scale(1.1);
+            }
+
+            &::before{
+                content: '';
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                top: 0;
+                left: 0;
+                @include rfs(0.625rem, border-radius);
+            }    
+        }
+    }
+
+    .pub-texto{
+        grid-area: texto;
+
+        h1{
+            @include margin-left(1.25rem);
+            @include font-size(1.25rem);
+        }
+
+        p{
+            text-justify: center;
+            @include margin-top(0.625rem);
+            @include font-size(1rem);
+            @include margin-left(1.25rem);
+            grid-area: subtitulo;
+        }
+    }
+
+    .pub-info{
+        @include margin-left(1.25rem);
+        @include margin-bottom(0.625rem);
+        @include font-size(0.9rem);
+        grid-area: info;
+        font-style: italic;
+        line-height: 1.6;
+        color: rgba(0, 0, 0, .7);
+    }
+
+    .pub-botao{
+        grid-area: botao;
+        margin-left: auto;
+        display: inline-block;
+        background: linear-gradient(135deg, $cor-padrao-claro, $cor-padrao-claro-6);
+        @include rfs(0.313rem, border-radius);
+        @include padding(0.625rem);
+        cursor: pointer;
+        max-height: 39px !important;
+        transition: 0.3s ease;
+
+        &:hover{
+            background: $cor-padrao-claro-4;
+            @include font-size(1.1rem);
+        }
+
+        a{
+            color: white;
+            text-decoration: none;
+        }
+    }
+}
+
 // Media Queries
 
 @include query(laptop){
@@ -283,42 +283,40 @@ body{
 }
 
 @include query(tablet){
-    .conteudo-index{
-        .pub-card{
-            grid-template-columns: 100%;
-            grid-template-areas:
-                "imagem"
-                "info"
-                "texto"
-                "botao"
-            ;
+    .pub-card{
+        grid-template-columns: 100%;
+        grid-template-areas:
+            "imagem"
+            "info"
+            "texto"
+            "botao"
+        ;
 
-            .pub-img{
-                width: 100%;
-            }
+        .pub-img{
+            width: 100%;
+        }
 
-            .pub-info{
-                @include margin-top(1.25rem);
+        .pub-info{
+            @include margin-top(1.25rem);
+            text-align: center;
+        }
+
+        .pub-texto{
+            h1{
+                margin-left: 0;
                 text-align: center;
             }
 
-            .pub-texto{
-                h1{
-                    margin-left: 0;
-                    text-align: center;
-                }
-
-                p{
-                    margin-left: 0;
-                    text-align: center;
-                }
-            }
-
-            .pub-botao{
-                max-height: 50px !important;
-                @include margin-top(1.25rem);
+            p{
+                margin-left: 0;
                 text-align: center;
             }
+        }
+
+        .pub-botao{
+            max-height: 50px !important;
+            @include margin-top(1.25rem);
+            text-align: center;
         }
     }
 }
