@@ -223,7 +223,6 @@
 }
 
 .respostas{
-    display: none;
     @include margin-left(3.75rem);
 }
 
@@ -285,7 +284,21 @@
 }
 
 .novo{
+    display: grid;
+    grid-template-columns: 7% auto;
     @include margin-bottom(0.875rem);
+
+    .comentario-foto-usuario{
+        max-width: 50px;
+        width: 90%;
+        min-width: 90%;
+        height: 50px;
+        border-radius: 20%;
+        border: 1px solid #aaa;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
 
     .usuario, .data{
         display: inline-block;
@@ -297,6 +310,10 @@
     
     .data{
         color: #606060;
+    }
+
+    .conteudo{
+        word-break: break-all;
     }
 }
 
