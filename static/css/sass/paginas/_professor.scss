@@ -1,0 +1,175 @@
+.conteudo-painel-professor{
+    display: grid;
+    grid-template-columns: auto;
+    @include padding(2.5rem 0);
+}
+
+.menu-professor{
+    width: 85%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 20% auto;
+
+    .conteudo{
+        width: 100%;
+        @include box-shadow-pub();
+        @include rfs(0 0.625rem 0.625rem 0, border-radius);
+        background: white;
+
+        .secao-conteudo{
+            max-height: 500px;
+            min-height: 500px;
+            overflow: auto;
+            @include padding(1.25rem);
+            word-break: break-all;
+
+            .comentarios-perfil{
+                max-height: none;
+                @include padding(1.25rem 0);
+                
+                .publicacao, .data{
+                    @include margin-top(0.313rem);
+                }
+
+                .conteudo{
+                    background: none;
+                    box-shadow: none;
+                }
+            }
+        }
+    }
+
+    .secoes{
+        z-index: 1;
+        color: white;
+        background: linear-gradient(135deg, $cor-padrao-claro, $cor-padrao-claro-6);
+        box-shadow: 0 5px 5px -5px #333;
+        text-align: center;
+        @include rfs(0.625rem 0 0 0.625rem, border-radius);
+        position: relative;
+
+        .ativo{
+            background: $cor-padrao-claro-6;
+        }
+
+        li{
+            @include padding(0.625rem);
+            cursor: pointer;
+
+            &:first-child{
+                @include rfs(0.625rem 0 0 0, border-radius);
+            }
+
+            &:last-child{
+                background: $cor-padrao-claro;
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+            }
+
+            &:hover{
+                background: $cor-padrao-claro-6;
+            }
+        }
+    }
+}
+
+.info-professor{
+    @include font-size(1.25rem);
+    background: $cor-padrao-claro-4;
+    text-align: center;
+    color: white;
+    @include padding(0.4875rem);
+    @include rfs(0 0.625rem 0 0, border-radius);
+}
+
+.empty{
+    font-size: 1.125rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.resultado-aprovar-deletar{
+    @include margin-bottom(1.25rem);
+}
+
+.acoes{
+    position: absolute;
+    right: 0;
+    top: -0.875rem;
+
+    .aprovar, .deletar{
+        color: white;
+        cursor: pointer;
+        border-radius: 50%;
+    }
+
+    .aprovar{
+        font-size: 1.25rem;
+        padding: 3px;
+        background: #0da14b;
+
+        &:hover{
+            background: green;
+        }
+    }
+
+    .deletar{
+        font-size: 1rem;
+        padding: 5px;
+        background: red;
+
+        &:hover{
+            background: rgb(209, 4, 4);
+        }
+    }
+}
+
+// Media Queries
+
+@include query(laptop){
+
+}
+
+@include query(tablet){
+    .menu-professor{
+        width: 90%;
+    }
+}
+
+@include query(smartphone){
+    .menu-professor{
+        width: 100%;
+        grid-template-columns: auto;
+
+        .secoes{
+            border-radius: 0;
+            box-shadow: none;
+
+            li{
+                &:first-child{
+                    border-radius: 0;
+                }
+            }
+        }
+
+        .conteudo{
+            .secao-conteudo{
+                .comentarios-perfil{
+                    .data{
+                        margin-top: 0;
+                    }
+                }
+            }
+        }
+    }
+
+    .info-professor{
+        box-shadow: 0 5px 5px -5px rgba(0,0,0,0.7);
+        border-radius: 0;
+    }
+}
+
+@include query(tela-grande){
+
+}
