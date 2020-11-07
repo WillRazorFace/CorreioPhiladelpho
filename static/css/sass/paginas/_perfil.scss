@@ -157,28 +157,36 @@
     max-height: 350px;
     overflow: auto;
 
+    li{
+        @include rfs(0.625rem, border-radius);
+        @include padding(0.313rem);
+    }
+
     li + li {
         @include margin-top(0.625rem);
     }
 }
 
 .comentarios-perfil{
-    li + li{
-        @include margin-top(0.625rem);
-        border-top: 2px solid grey;
+    li{
+        background: white;
+        @include box-shadow-card();
     }
+
+    @include padding(0.625rem);
 }
 
 .comentario-perfil{
     display: grid;
+    position: relative;
     grid-template-columns: 3fr 1fr;
     grid-template-areas:
-        "publicacao" "data"
-        "conteudo" "aprovado"
+        "publicacao data"
+        "conteudo conteudo"
     ;
 
     .publicacao{
-        max-width: 43ch;
+        grid-area: publicacao;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -194,26 +202,41 @@
     }
 
     .data{
+        grid-area: data;
         display: flex;
         justify-content: center;
         color: grey;
     }
 
     .conteudo{
+        grid-area: conteudo;
         word-break: break-all;
     }
 
+    .status, .analise{
+        color: white;
+    }
+
     .status{
+        position: absolute;
+        top: -0.625rem;
+        right: -0.313rem;
         display: flex;
         justify-content: center;
+        font-size: 1.675rem;
     }
 
     .analise{
-        color: #d6a512;
+        background: #d6a512;
+        width: 25px;
+        text-align: center;
+        border-radius: 50%;
+        opacity: 100%;
     }
 
     .aprovado{
-        color: #0da14b;
+        background: #0da14b;
+        border-radius: 50%;
     }
 }
 
@@ -289,8 +312,30 @@
     }
 
     .comentario-perfil{
+        grid-template-columns: auto;
+        grid-template-areas:
+            "publicacao"
+            "data"
+            "conteudo"
+        ;
+
+        .publicacao{
+            @include font-size(1.25rem);
+            text-overflow: inherit;
+            white-space: inherit;
+        }
+
+        .data, .conteudo{
+            @include font-size(1.125rem);
+        }
+
         .data{
-            @include font-size(0.875rem);
+            justify-content: right;
+        }
+
+        .status{
+            top: -0.875rem;
+            right: -0.625rem;
         }
     }
 }

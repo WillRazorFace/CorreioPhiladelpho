@@ -27,10 +27,10 @@ function fecharFormulario(){
 function abrir(id){
     var respostas = document.getElementById(id);
 
-    if(respostas.style.display == "none" || respostas.style.display == ""){
-        respostas.style.display = "block";
+    if(respostas.classList.contains("nao-dispor")){
+        respostas.classList.remove("nao-dispor");
     } else {
-        respostas.style.display = "none";
+        respostas.classList.add("nao-dispor");
     }
 }
 
@@ -62,17 +62,26 @@ function enviarResposta(event, comentario_pai){
         headers:  {"X-CSRFToken": CSRFTOKEN},
     }).then((resposta) => {
         if(resposta.status == 201){
-            event.target.insertAdjacentHTML(
-                "afterend",
-                '<div class="novo novo-resposta analise"> \
-                    <div class="usuario">Você</div> \
-                    <div class="data">agora mesmo</div> \
-                    <div class="usuario">(Enviado para análise)</div> \
-                    <div class="comentario">\
-                        ' + formResposta.get('conteudo') + ' \
+            let respostas = document.getElementById("respostas-de-" + comentario_pai);
+
+            respostas.insertAdjacentHTML(
+                "afterbegin",
+                '<li class="novo analise"> \
+                    <div class="comentario-foto-usuario" style="background-image: url(' + FOTO_USUARIO_ATUAL + ');"></div> \
+                    \
+                    <div> \
+                        <div class="usuario">Você</div> \
+                        <div class="data">agora mesmo</div> \
+                        <div class="usuario">(Enviado para análise)</div> \
+                        <div class="comentario">\
+                            ' + formResposta.get('conteudo') + ' \
+                        </div> \
                     </div> \
-                </div>'
+                </li>'
             );
+
+            respostas.classList.remove("nao-dispor")
+
             event.target.remove();
         } else {
             event.target.remove();
@@ -114,11 +123,15 @@ function enviarComentario(event, post){
             event.target.insertAdjacentHTML(
                 "afterend",
                 '<div class="novo analise"> \
-                    <div class="usuario">Você</div> \
-                    <div class="data">agora mesmo</div> \
-                    <div class="usuario">(Enviado para análise)</div> \
-                    <div class="comentario">\
-                        ' + formComentario.get('conteudo') + ' \
+                    <div class="comentario-foto-usuario" style="background-image: url(' + FOTO_USUARIO_ATUAL + ');"></div> \
+                    \
+                    <div> \
+                        <div class="usuario">Você</div> \
+                        <div class="data">agora mesmo</div> \
+                        <div class="usuario">(Enviado para análise)</div> \
+                        <div class="comentario">\
+                            ' + formComentario.get('conteudo') + ' \
+                        </div> \
                     </div> \
                 </div>'
             );
