@@ -40,7 +40,7 @@
 
                     {% if request.user.is_professor %}
                     <div>
-                        <a href="#" title="Área do Professor" class="pub-link"><i class="fas fa-chalkboard-teacher" aria-hidden="true"></i> Área do Professor</a>
+                        <a href="{% url 'professor-geral' %}" title="Área do Professor" class="pub-link"><i class="fas fa-chalkboard-teacher" aria-hidden="true"></i> Área do Professor</a>
                     </div>
                     {% endif %}
                 </div>
