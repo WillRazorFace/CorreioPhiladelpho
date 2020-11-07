@@ -7,6 +7,7 @@ urlpatterns = [
     path('admin/', admin.site.urls, name='admin'),
     path('', include('inicio.urls'), name='inicio'),
     path('usuarios/', include('usuarios.urls'), name='usuarios'),
+    path('professor/', include('professores.urls'), name='professores'),
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('sobre/', include('sobre.urls'), name='sobre'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
