@@ -80,7 +80,7 @@
                                     {% endif %}
 
                                     <div>
-                                        <div class="usuario">{{ node.usuario.nome}} {{ node.usuario.sobrenome }}</div>
+                                        <div class="usuario">{{ node.usuario.nome_completo }}</div>
                                         <div class="data">{{ node.data|naturalday }}</div>
                                         {% if node.aprovado == False %}
                                         <div class="usuario">(Em análise)</div>
@@ -98,7 +98,7 @@
                                     </div>
                                 </div>
 
-                            <ul class="respostas" id="respostas-de-{{ node.id }}">
+                            <ul class="respostas nao-dispor" id="respostas-de-{{ node.id }}">
                                 <li>{{ children }}</li>
                             </ul>
                             {% endif %}
@@ -123,6 +123,11 @@
         var URL_CURTIR_POST = "{% url 'curtir-post' %}";
         var POST_ATUAL = "{{ post.slug }}";
         var USUARIO_ATUAL = {{ request.user.id }};
+        {% if request.user.foto %}
+        var FOTO_USUARIO_ATUAL = "{{ request.user.foto.url }}";
+        {% else %}
+        var FOTO_USUARIO_ATUAL = "{% static '/img/usuario-anonimo.png' %}"";
+        {% endif %}
     </script>
 
     <script type="text/javascript" src="{% static '/js/parciais/barra-de-leitura.js' %}"></script>
