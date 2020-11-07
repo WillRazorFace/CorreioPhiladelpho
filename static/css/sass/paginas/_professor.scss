@@ -150,6 +150,11 @@
                 &:first-child{
                     border-radius: 0;
                 }
+
+                &:last-child{
+                    position: inherit;
+                    bottom: inherit;
+                }
             }
         }
 
