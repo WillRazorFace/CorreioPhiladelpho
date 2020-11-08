@@ -83,3 +83,41 @@ class ComentarioForm(forms.ModelForm):
     class Meta:
         model = models.Comentario
         fields = ('conteudo', 'post', 'usuario')
+
+
+class PostForm(forms.ModelForm):
+    categorias = models.Categoria.objects.all()
+
+    categorias = ((categoria.id, categoria.nome) for categoria in categorias)
+
+    def __init__(self, *args, **kwargs):
+        super(PostForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_show_labels = False
+
+    titulo = forms.CharField(
+        required=True,
+        widget=forms.TextInput(attrs={'placeholder': 'Título'}),
+        max_length=100,
+    )
+
+    subtitulo = forms.CharField(
+        required=True,
+        widget=forms.TextInput(attrs={'placeholder': 'Subtítulo'}),
+        max_length=300,
+    )
+
+    foto = forms.ImageField(
+        required=False,
+        widget=forms.FileInput(attrs={'hidden': 'hidden'}),
+        help_text='Foto que será exibida em seu perfil',
+    )
+
+    categoria = forms.ChoiceField(
+        required=True,
+        choices=categorias,
+    )
+    
+    class Meta:
+        model = models.Post
+        fields = ('titulo', 'subtitulo', 'conteudo', 'foto', 'categoria')

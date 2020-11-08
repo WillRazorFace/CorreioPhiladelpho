@@ -1,7 +1,74 @@
-.conteudo-painel-professor{
+.conteudo-painel-professor, .conteudo-escrever-professor{
     display: grid;
     grid-template-columns: auto;
     @include padding(2.5rem 0);
+}
+
+.conteudo-escrever-professor{
+    @include margin-top(3.125rem);
+}
+
+.form-post{
+    @include padding(2rem);
+    @include box-shadow-card();
+    @include rfs(0.313rem, border-radius);
+    position: relative;
+    background: white;
+    width: 75%;
+    margin: 0 auto;
+
+    h1{
+        text-align: center;
+        @include margin(2.5rem 0 2.5rem 0);
+    }
+
+    p{
+        @include margin-top(0.313rem);
+        @include font-size(1.125rem);
+        color: gray;
+        text-align: center;
+    }
+
+    .input-imagem-custom{
+        @include margin-top(3rem);
+    }
+
+    .auth-button{
+        @include margin-top(1.25rem);
+    }
+}
+
+.label-custom{
+    color: grey;
+    display: block;
+    opacity: 1;
+    @include font-size(0.938rem);
+    transform: translateY(-0.375rem);
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.ckeditor-rich-text-field{
+    @include margin-bottom(1.25rem);
+}
+
+.select-custom{
+    select{
+        box-shadow: none;
+        outline: none;
+        border-radius: 0;
+        border-color: grey;
+        border-width: 2px;
+        border-style: none none solid none;
+        width: 100%;
+        @include font-size(1rem);
+        transition: all 0.3s ease;
+        @include padding(0.125rem);
+
+        option:checked{
+            display: none;
+        }
+    }
 }
 
 .menu-professor{

@@ -156,8 +156,8 @@ CKEDITOR_UPLOAD_PATH = 'ckeditor/'
 CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': 'full',
+        'width': '100%',
         'height': 300,
-        'width': 1000,
     },
 }
 

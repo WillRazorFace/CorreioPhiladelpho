@@ -1,11 +1,13 @@
 from django.shortcuts import render
 from utils.feedback import incluir_feedback
 from utils.professores import professor_requerido
+from utils.redirecionamento import definir_url_anterior
 from django.views.decorators.http import require_GET, require_POST
 from django.http import HttpResponse
 from inicio.models import Comentario
 from json import loads
 from inicio.models import Post
+from inicio.forms import PostForm
 
 @require_GET
 @professor_requerido
@@ -40,8 +42,10 @@ def geral(request):
 @professor_requerido
 def escrever(request):
     form = incluir_feedback(request)
+    form_post = PostForm()
+    proximo = definir_url_anterior(request)
 
-    return render(request, 'professores/escrever.html', {'form': form})
+    return render(request, 'professores/escrever.html', {'form': form, 'form_post': form_post, 'proximo': proximo})
 
 @require_POST
 @professor_requerido

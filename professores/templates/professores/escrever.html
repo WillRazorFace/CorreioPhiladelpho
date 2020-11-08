@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block Título %}Escrever{% endblock %}
+
+{% block Conteúdo %}
+    <main class="conteudo-escrever-professor">
+        <div class="form-post">
+            <div class="logo-cp-auth">
+                <a href="/"><img src="/static/img/logo-cp-reduzido-sem-bordas.svg" alt=""></a>
+            </div>
+
+            <div class="voltar-auth">
+                <a href="{{ proximo }}">
+                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                </a>
+            </div>
+
+            <h1>Nova publicação</h1>
+
+            <form method="POST" action enctype="multipart/form-data" id="form-post">
+                {% csrf_token %}
+
+                <div class="input-custom">
+                    {{ form_post.titulo }}
+                    <label for="titulo" id="titulo-label">
+                        <span>Título</span>
+                    </label>
+                </div>
+
+                <div class="input-custom">
+                    {{ form_post.subtitulo }}
+                    <label for="subtitulo" id="subtitulo-label">
+                        <span>Subtítulo</span>
+                    </label>
+                </div>
+
+                <label class="label-custom">
+                    Conteúdo
+                </label>
+                {{ form_post.media }}
+                <div class="ckeditor-rich-text-field">
+                    {{ form_post.conteudo }}
+                </div>
+
+                <label class="label-custom">
+                    Categoria
+                </label>
+                <div class="select-custom">
+                    {{ form_post.categoria }}
+                </div>
+                <p>Categoria da publicação. Utilizada para melhorar a pesquisa dos usuários.</p>
+
+                <div class="input-imagem-custom">
+                    {{ form.foto }}
+                    <button type="button" class="custom-file-input-button" id="foto-perfil-input">Selecionar Imagem</button>
+                    <span class="custom-file-input-text" id="foto-perfil-texto">Nenhuma imagem selecionada</span>
+                </div>
+                <p>Imagem que será exibida na publicação</p>
+
+                <button type="submit" class="auth-button" id="botao-submit">Publicar</button>
+            </form>
+        </div>
+    </main>
+{% endblock %}
+
+{% block javascript-adicional %}
+    <script type="text/javascript">
+        var CSRFTOKEN = "{{ csrf_token }}";
+    </script>
+
+    <script type="text/javascript" src="{% static '/js/parciais/professores.js' %}"></script>
+{% endblock %}}
