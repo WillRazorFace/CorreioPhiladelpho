@@ -2,7 +2,7 @@ from django.db import models
 from usuarios.models import Usuario
 from django.utils import timezone
 from mptt.models import MPTTModel, TreeForeignKey
-from ckeditor_uploader.fields import RichTextUploadingField
+from tinymce.models import HTMLField
 from utils.imagens import redimensionar
 import random
 import string
@@ -30,7 +30,7 @@ class Post(models.Model):
     usuario = models.ForeignKey(to=Usuario, on_delete=models.SET_NULL, null=True, verbose_name='Usuário')
     titulo = models.CharField(max_length=100, verbose_name='Título')
     subtitulo = models.CharField(max_length=300, verbose_name='Sub-título')
-    conteudo = RichTextUploadingField(verbose_name='Conteúdo')
+    conteudo = HTMLField(verbose_name='Conteúdo')
     acessos = models.IntegerField(verbose_name='Acessos', default=0)
     foto = models.ImageField(upload_to='posts/%Y/%m/%d', blank=True, null=True, verbose_name='Imagem')
     data = models.DateTimeField(default=timezone.now, verbose_name='Data de Postagem')
