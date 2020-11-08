@@ -24,17 +24,17 @@
 
     p{
         @include margin-top(0.313rem);
-        @include font-size(1.125rem);
+        @include font-size(1rem);
         color: gray;
         text-align: center;
     }
 
     .input-imagem-custom{
-        @include margin-top(3rem);
+        @include margin-top(2.5rem);
     }
 
     .auth-button{
-        @include margin-top(1.25rem);
+        @include margin-top(2.5rem);
     }
 }
 
@@ -202,6 +202,10 @@
     .menu-professor{
         width: 90%;
     }
+
+    .form-post{
+        width: 90%;
+    }
 }
 
 @include query(smartphone){
@@ -239,6 +243,10 @@
     .info-professor{
         box-shadow: 0 5px 5px -5px rgba(0,0,0,0.7);
         border-radius: 0;
+    }
+
+    .form-post{
+        width: 100%;
     }
 }
 
