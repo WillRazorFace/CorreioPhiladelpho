@@ -221,11 +221,6 @@
     
     .form-login{
         background: #222020;
-
-        input{
-            background: #222020;
-            color: white;
-        } 
     }
 
     @include query(smartphone){
@@ -239,11 +234,6 @@
     .form-registro{
         background: #222020;
 
-        input{
-            background: #222020;
-            color: white;
-        }
-
         p{
             color: #ddd;
         }
@@ -251,6 +241,9 @@
 
     .input-custom{
         input{
+            background: #222020;
+            color: white;
+
             &:focus + label,
             &:not(:placeholder-shown) + label{
                 color: #aaa;
@@ -380,7 +373,7 @@
         }
     }
 
-    // Template de Professor
+    // Templates de Professor
 
     .menu-professor{
         .info-professor{
@@ -401,6 +394,17 @@
                     }
                 }
             }
+        }
+    }
+
+    .form-post{
+        background: #222020;
+    }
+
+    .select-custom{
+        select{
+            background: #222020;
+            color: white;
         }
     }
 }
