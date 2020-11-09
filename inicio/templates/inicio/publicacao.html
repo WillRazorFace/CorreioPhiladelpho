@@ -118,7 +118,7 @@
 {% endblock %}
 
 {% block javascript-adicional %}
-    <script>
+    <script type="text/javascript">
         var URL_ENVIAR_COMENTARIO = "{% url 'comentario' %}";
         var URL_CURTIR_POST = "{% url 'curtir-post' %}";
         var POST_ATUAL = "{{ post.slug }}";
@@ -126,7 +126,7 @@
         {% if request.user.foto %}
         var FOTO_USUARIO_ATUAL = "{{ request.user.foto.url }}";
         {% else %}
-        var FOTO_USUARIO_ATUAL = "{% static '/img/usuario-anonimo.png' %}"";
+        var FOTO_USUARIO_ATUAL = "{% static '/img/usuario-anonimo.png' %}";
         {% endif %}
     </script>
 
