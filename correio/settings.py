@@ -40,8 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
-    'ckeditor',
-    'ckeditor_uploader',
+    'tinymce',
     'crispy_forms',
     'debug_toolbar',
     'mptt',
@@ -148,17 +147,16 @@ AUTH_USER_MODEL = 'usuarios.Usuario'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-# Upload da mídia de comentários e posts
+# TinyMCE
 
-CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
-CKEDITOR_UPLOAD_PATH = 'ckeditor/'
-
-CKEDITOR_CONFIGS = {
-    'default': {
-        'toolbar': 'full',
-        'width': '100%',
-        'height': 300,
-    },
+TINYMCE_DEFAULT_CONFIG = {
+    'cleanup_on_startup': True,
+    'image_caption': True,
+    'image_advtab': True,
+    'custom_undo_redo_levels': 20,
+    'plugins': 'link autolink autosave code codesample image imagetools media fullscreen preview',
+    'width': '100%',
+    'height': 300,
 }
 
 # Identação dos models MPTT na área administrativa
