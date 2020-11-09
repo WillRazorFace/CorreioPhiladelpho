@@ -6,6 +6,8 @@ const senha_label_login = document.getElementById("label-password-login");
 
 const div_erro_login = document.getElementById("div-erro-login");
 
+const botaoSubmit = document.getElementById("botao-submit-login");
+
 let dispor_erro = function(field, label){
     field.style.borderColor = "red";
     
@@ -22,6 +24,10 @@ let remover_erro = function(field, label){
 
 document.getElementById("form-login").addEventListener("submit", function(event){
     event.preventDefault();
+    
+    botaoSubmit.disabled = true;
+    botaoSubmit.innerText = "";
+    botaoSubmit.innerHTML = '<div class="spinner"></div>';
 
     let formLogin = new FormData(document.getElementById("form-login"));
     let div_erro_login = document.getElementById("div-erro-login");
@@ -40,6 +46,10 @@ document.getElementById("form-login").addEventListener("submit", function(event)
             
             window.location.href = REDIRECIONAR_LOGIN;
         } else if(resposta.status == 404){
+            botaoSubmit.disabled = false;
+            botaoSubmit.innerHTML = "";
+            botaoSubmit.innerText = "Entrar";
+
             div_erro_login.innerHTML = "E-mail ou senha incorretos";
             div_erro_login.style.display = "block";
 

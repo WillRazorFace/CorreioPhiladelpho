@@ -183,6 +183,20 @@
     }
 }
 
+.spinner{
+    height: 2rem;
+    width: 2rem;
+    border-radius: 50%;
+    margin: 0 auto;
+    border: 8px solid rgba(0, 0, 0, 0.5);
+    border-left-color: $cor-padrao-escuro;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin{
+    to {transform: rotate(360deg);}
+}
+
 // Input customizado de imagem
 
 .input-imagem-custom{

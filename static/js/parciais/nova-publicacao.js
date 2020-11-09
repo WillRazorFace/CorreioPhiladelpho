@@ -13,13 +13,16 @@ const divErroSubtitulo = document.getElementById('invalido-subtitulo');
 const divErroConteudo = document.getElementById('invalido-conteudo');
 const divErroCategoria = document.getElementById('invalido-categoria');
 
+const botaoSubmit = document.getElementById("botao-submit");
+
 document.querySelector("#form-post").addEventListener("submit", (event) => {
+    botaoSubmit.disabled = true;
+    botaoSubmit.innerText = "";
+    botaoSubmit.innerHTML = '<div class="spinner"></div>';
+    
     event.preventDefault();
     formPublicacao = new FormData(document.getElementById("form-post"));
-
     formPublicacao.append('usuario', USUARIO_ATUAL);
-
-    console.log(formPublicacao);
 
     campoTitulo.style.borderColor = "";
     campoSubtitulo.style.borderColor = "";
@@ -50,6 +53,10 @@ document.querySelector("#form-post").addEventListener("submit", (event) => {
         headers: {"X-CSRFToken": CSRFTOKEN},
     }).then((resposta) => {
         if(resposta.status == 409){
+            botaoSubmit.disabled = false;
+            botaoSubmit.innerHTML = "";
+            botaoSubmit.innerText = "Publicar";
+
             resposta.json().then((dados) => {
                 erros = dados["erros"];
 
@@ -67,7 +74,7 @@ document.querySelector("#form-post").addEventListener("submit", (event) => {
                     divErroCampo.innerText = erros[erro];
                 }
             })
-        } else if(resposta.status == 200){
+        } else if(resposta.status == 201){
             resposta.json().then((dados) => {
                 window.location.href = dados['url'];
             })

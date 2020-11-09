@@ -21,6 +21,10 @@ input_imagem.addEventListener("change", function() {
 document.getElementById("form-registro").addEventListener("submit", function(event){
     event.preventDefault();
 
+    botao_submit.disabled = true;
+    botao_submit.innerText = "";
+    botao_submit.innerHTML = '<div class="spinner"></div>';
+
     let formRegistro = new FormData(document.getElementById("form-registro"));
     let modal = document.getElementById("modal-registro");
     let modal_titulo = document.getElementById("modal-titulo");
@@ -49,6 +53,10 @@ document.getElementById("form-registro").addEventListener("submit", function(eve
                 window.location.href = REDIRECIONAR;
             }, 7000);
         } else {
+            botao_submit.innerHTML = "";
+            botao_submit.innerText = "Cadastrar-se";
+            botao_submit.disabled = false;
+
             modal.classList.add("modal-erro");
             modal_titulo.innerHTML = "Algo deu errado";
             modal_icone.classList.add("fa-exclamation");
