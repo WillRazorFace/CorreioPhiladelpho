@@ -92,6 +92,8 @@ class PostForm(forms.ModelForm):
         self.helper = FormHelper()
         self.helper.form_show_labels = False
 
+    usuario = forms.ModelChoiceField(queryset=Usuario.objects.all())
+    
     titulo = forms.CharField(
         required=True,
         widget=forms.TextInput(attrs={'placeholder': 'Título'}),
@@ -122,4 +124,4 @@ class PostForm(forms.ModelForm):
         
     class Meta:
         model = models.Post
-        fields = ('titulo', 'subtitulo', 'conteudo', 'foto', 'categoria')
+        fields = ('usuario', 'titulo', 'subtitulo', 'conteudo', 'foto', 'categoria')

@@ -17,6 +17,10 @@ document.querySelector("#form-post").addEventListener("submit", (event) => {
     event.preventDefault();
     formPublicacao = new FormData(document.getElementById("form-post"));
 
+    formPublicacao.append('usuario', USUARIO_ATUAL);
+
+    console.log(formPublicacao);
+
     campoTitulo.style.borderColor = "";
     campoSubtitulo.style.borderColor = "";
     campoConteudo.style.borderColor = "";

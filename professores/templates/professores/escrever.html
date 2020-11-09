@@ -80,6 +80,7 @@
     <script type="text/javascript">
         var CSRFTOKEN = "{{ csrf_token }}";
         var URL_SALVAR_PUBLICACAO = "{% url 'salvar-publicacao' %}";
+        var USUARIO_ATUAL = {{ request.user.id }};
     </script>
 
     <script type="text/javascript" src="{% static '/js/parciais/nova-publicacao.js' %}"></script>
