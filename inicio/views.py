@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
+from django.core.exceptions import ObjectDoesNotExist
 from .forms import FeedbackFormNaoLogado, FeedbackFormLogado, ComentarioForm, RespostaForm
 from .models import Post, Feedback, Comentario
 from django.shortcuts import HttpResponse
@@ -84,11 +85,16 @@ def publicacao(request, slug: str):
     comentarios = post.comentarios.prefetch_related('usuario').filter(aprovado=True)
     form_comentario = ComentarioForm()
 
+    try:
+        professor = request.user.is_professor
+    except ObjectDoesNotExist:
+        professor = False
+
     if not request.user.is_authenticated:
         comentarios = post.comentarios.prefetch_related('usuario').filter(aprovado=True)
-    elif request.user.is_authenticated and request.user.is_professor:
+    elif request.user.is_authenticated and professor:
         comentarios = post.comentarios.prefetch_related('usuario')
-    if request.user.is_authenticated:
+    elif request.user.is_authenticated:
         comentarios = comentarios | post.comentarios.prefetch_related('usuario').filter(
             usuario=request.user
         ).filter(aprovado=False)
