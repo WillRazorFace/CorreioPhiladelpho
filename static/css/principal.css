@@ -2,6 +2,20 @@ html, body {
   height: 100%;
 }
 
+::-webkit-scrollbar-track {
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: grey;
+  border-radius: 20px;
+}
+
 .modo-escuro {
   background: rgba(0, 0, 0, 0.8);
   color: white;
