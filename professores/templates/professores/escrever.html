@@ -26,11 +26,13 @@
             <form method="POST" action enctype="multipart/form-data" id="form-post">
                 {% csrf_token %}
 
-                <div class="input-custom">
+                <div class="input-custom" style="margin-bottom: 1.875rem;">
                     {{ form_post.titulo }}
                     <label for="titulo" id="titulo-label">
                         <span>Título</span>
                     </label>
+
+                    <div class="form-campo-invalido" id="invalido-titulo"></div>
                 </div>
 
                 <div class="input-custom">
@@ -38,9 +40,11 @@
                     <label for="subtitulo" id="subtitulo-label">
                         <span>Subtítulo</span>
                     </label>
+
+                    <div class="form-campo-invalido" id="invalido-subtitulo"></div>
                 </div>
 
-                <label class="label-custom">
+                <label class="label-custom" id="conteudo-label">
                     Conteúdo
                 </label>
                 {{ form_post.media }}
@@ -48,16 +52,19 @@
                     {{ form_post.conteudo }}
                 </div>
 
-                <label class="label-custom">
+                <div class="form-campo-invalido" id="invalido-conteudo"></div>
+
+                <label class="label-custom" id="categoria-label">
                     Categoria
                 </label>
                 <div class="select-custom">
                     {{ form_post.categoria }}
                 </div>
+                <div class="form-campo-invalido" id="invalido-categoria"></div>
                 <p>Categoria da publicação. Utilizada para melhorar a pesquisa dos usuários.</p>
 
                 <div class="input-imagem-custom">
-                    {{ form.foto }}
+                    {{ form_post.foto }}
                     <button type="button" class="custom-file-input-button" id="foto-perfil-input">Selecionar Imagem</button>
                     <span class="custom-file-input-text" id="foto-perfil-texto">Nenhuma imagem selecionada</span>
                 </div>
@@ -72,7 +79,8 @@
 {% block javascript-adicional %}
     <script type="text/javascript">
         var CSRFTOKEN = "{{ csrf_token }}";
+        var URL_SALVAR_PUBLICACAO = "{% url 'salvar-publicacao' %}";
     </script>
 
-    <script type="text/javascript" src="{% static '/js/parciais/professores.js' %}"></script>
+    <script type="text/javascript" src="{% static '/js/parciais/nova-publicacao.js' %}"></script>
 {% endblock %}}

@@ -100,7 +100,7 @@
 }
 
 .form-campo-invalido{
-    @include margin-bottom(0.625rem);
+    @include margin-bottom(1.25rem);
     @include font-size(0.875rem);
     color: rgb(226, 8, 8);
     display: none;

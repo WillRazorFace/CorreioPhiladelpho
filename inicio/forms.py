@@ -4,6 +4,7 @@ from django import forms
 from mptt.forms import TreeNodeChoiceField
 from crispy_forms.helper import FormHelper
 from email_validator import validate_email
+from tinymce.widgets import TinyMCE
 
 
 class FeedbackFormNaoLogado(forms.ModelForm):
@@ -86,10 +87,6 @@ class ComentarioForm(forms.ModelForm):
 
 
 class PostForm(forms.ModelForm):
-    categorias = models.Categoria.objects.all()
-
-    categorias = ((categoria.id, categoria.nome) for categoria in categorias)
-
     def __init__(self, *args, **kwargs):
         super(PostForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
@@ -107,17 +104,22 @@ class PostForm(forms.ModelForm):
         max_length=300,
     )
 
+    conteudo = forms.CharField(
+        required=True,
+        widget=TinyMCE(attrs={'class':'custom-tinymce', 'id': 'id_conteudo'}),
+    )
+
     foto = forms.ImageField(
         required=False,
         widget=forms.FileInput(attrs={'hidden': 'hidden'}),
-        help_text='Foto que será exibida em seu perfil',
+        help_text='Imagem que será exibida na publicação',
     )
 
-    categoria = forms.ChoiceField(
-        required=True,
-        choices=categorias,
+    categoria = forms.ModelChoiceField(
+        queryset=models.Categoria.objects.all(),
+        empty_label=None,
     )
-    
+        
     class Meta:
         model = models.Post
         fields = ('titulo', 'subtitulo', 'conteudo', 'foto', 'categoria')

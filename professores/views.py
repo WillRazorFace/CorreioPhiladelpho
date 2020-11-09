@@ -3,7 +3,9 @@ from utils.feedback import incluir_feedback
 from utils.professores import professor_requerido
 from utils.redirecionamento import definir_url_anterior
 from django.views.decorators.http import require_GET, require_POST
-from django.http import HttpResponse
+from django.urls import reverse
+from django.http import HttpResponse, JsonResponse
+from django.contrib import messages
 from inicio.models import Comentario
 from json import loads
 from inicio.models import Post
@@ -46,6 +48,24 @@ def escrever(request):
     proximo = definir_url_anterior(request)
 
     return render(request, 'professores/escrever.html', {'form': form, 'form_post': form_post, 'proximo': proximo})
+
+@require_POST
+@professor_requerido
+def salvar_publicacao(request):
+    form = PostForm(data=request.POST, files=request.FILES)
+
+    if not form.is_valid():
+        erros = form.errors.get_json_data()
+        erros = {campo:mensagem[0]['message'] for (campo, mensagem) in erros.items()}
+
+        return JsonResponse({'erros': erros}, status=409)
+    else:
+        publicacao = form.save()
+        url_nova_publicacao = reverse('publicacao', args={publicacao.slug})
+
+        messages.success(request, f'"{ publicacao.titulo }" publicada com sucesso')
+
+        return JsonResponse({'url': url_nova_publicacao}, status=200)
 
 @require_POST
 @professor_requerido
