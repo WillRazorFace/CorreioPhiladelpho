@@ -10,7 +10,7 @@
             <ul class="secoes">
                 <li class="ativo" id="botao-pubs">Suas publicações</li>
                 <li id="botao-comentarios">Comentários em análise</li>
-                <li><a href="{% url 'professor-escrever' %}">Nova publicação <i class="fas fa-pen"></i></a></li>
+                <li><a href="{% url 'professor-escrever' %}?proximo={{ request.path }}">Nova publicação <i class="fas fa-pen"></i></a></li>
             </ul>
 
             <div class="conteudo" id="mut-conteudo">
