@@ -65,7 +65,7 @@ def salvar_publicacao(request):
 
         messages.success(request, f'"{ publicacao.titulo }" publicada com sucesso')
 
-        return JsonResponse({'url': url_nova_publicacao}, status=200)
+        return JsonResponse({'url': url_nova_publicacao}, status=201)
 
 @require_POST
 @professor_requerido
