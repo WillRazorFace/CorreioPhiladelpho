@@ -30,7 +30,7 @@ class Post(models.Model):
     usuario = models.ForeignKey(to=Usuario, on_delete=models.SET_NULL, null=True, verbose_name='Usuário')
     titulo = models.CharField(max_length=100, verbose_name='Título')
     subtitulo = models.CharField(max_length=300, verbose_name='Sub-título')
-    conteudo = HTMLField(verbose_name='Conteúdo')
+    conteudo = HTMLField(verbose_name='Conteúdo', blank=False, null=False)
     acessos = models.IntegerField(verbose_name='Acessos', default=0)
     foto = models.ImageField(upload_to='posts/%Y/%m/%d', blank=True, null=True, verbose_name='Imagem')
     data = models.DateTimeField(default=timezone.now, verbose_name='Data de Postagem')

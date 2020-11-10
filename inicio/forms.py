@@ -107,8 +107,7 @@ class PostForm(forms.ModelForm):
     )
 
     conteudo = forms.CharField(
-        required=True,
-        widget=TinyMCE(attrs={'class':'custom-tinymce', 'id': 'id_conteudo'}),
+        widget=TinyMCE(attrs={}),
     )
 
     foto = forms.ImageField(

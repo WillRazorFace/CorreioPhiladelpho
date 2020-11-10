@@ -101,3 +101,9 @@ input_imagem.addEventListener("change", function() {
         texto_customizado.innerHTML = "Nenhuma imagem selecionada";
     }
 })
+
+// Contornando o bug do TinyMCE
+
+window.onload = () => {
+    campoConteudo.value = "";
+}
