@@ -23,7 +23,7 @@
 
     .input-custom{
         width: 50%;
-        
+
         input{
             background: transparent;
             @include padding(0.313rem);
@@ -34,21 +34,6 @@
                 color: black;
             }
         }
-    }
-}
-
-.input-pesquisa{
-    width: 100%;
-    border: 1px solid #aaa;
-    @include padding(0.313rem);
-    @include font-size(1.125rem);
-    font-family: 'Roboto', sans-serif;
-    @include rfs(0.625rem, border-radius);
-    outline: none;
-    color: gray;
-    
-    &:focus{
-        color: black;
     }
 }
 
@@ -213,6 +198,10 @@
         .select-custom {
             width: 70%;
         }
+
+        .input-custom{
+            width: 70%;
+        }
     }
 
     .conteudo-pesquisa{
@@ -264,6 +253,14 @@
     .caixa-de-pesquisa{
         .select-custom {
             width: 100%;
+        }
+
+        .input-custom{
+            width: 100%;
+
+            label{
+                @include font-size(0.8rem);
+            }
         }
     }
 }
