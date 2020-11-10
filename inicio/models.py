@@ -16,7 +16,7 @@ from django.conf import settings
 
 
 class Categoria(models.Model):
-    nome = models.CharField(max_length=100, verbose_name='Nome')
+    nome = models.CharField(max_length=100, verbose_name='Nome', unique=True)
 
     def __str__(self) -> str:
         return self.nome
