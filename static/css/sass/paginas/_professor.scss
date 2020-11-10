@@ -90,6 +90,10 @@
             @include padding(1.25rem);
             word-break: break-all;
 
+            .pub-card{
+                position: relative;
+            }
+
             .comentarios-perfil{
                 max-height: none;
                 @include padding(1.25rem 0);
@@ -165,7 +169,7 @@
     right: 0;
     top: -0.875rem;
 
-    .aprovar, .deletar{
+    .aprovar, .deletar, .alterar{
         color: white;
         cursor: pointer;
         border-radius: 50%;
@@ -178,6 +182,15 @@
 
         &:hover{
             background: green;
+        }
+    }
+
+    .alterar{
+        background: #d6a512;
+        padding: 5px;
+
+        &:hover{
+            background: #b98f11;
         }
     }
 

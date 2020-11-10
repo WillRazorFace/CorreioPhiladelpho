@@ -30,8 +30,15 @@
                 
                 <div class="secao-conteudo">
                     <ul class="publicacoes-professor" id="secao-publicacoes">
+                        <div class="resultado-aprovar-deletar nao-dispor" id="resultado-editar-deletar"></div>
+
                         {% for publicacao in publicacoes %}
-                        <div class="pub-card">
+                        <div class="pub-card" id="publicacao-{{ publicacao.slug }}">
+                            <div class="acoes">
+                                <i class="fas fa-edit alterar" aria-hidden="true" title="Alterar"></i>
+                                <i class="fas fa-trash-alt deletar" aria-hidden="true" title="Deletar" onclick="mostrarMensagemDeletarPublicacao('{{ publicacao.slug }}')"></i>
+                            </div>
+
                             <div class="pub-img">
                                 <a href="{% url 'publicacao' publicacao.slug %}"><img src="{{ publicacao.foto.url }}"></a>
                             </div>
@@ -96,6 +103,7 @@
         var CSRFTOKEN = "{{ csrf_token }}";
         var URL_APROVAR_COMENTARIO = "{% url 'aprovar-comentario' %}";
         var URL_DELETAR_COMENTARIO = "{% url 'deletar-comentario' %}";
+        var URL_DELETAR_PUBLICACAO = "{% url 'excluir-publicacao' %}";
     </script>
 
     <script type="text/javascript" src="{% static '/js/parciais/professores.js' %}"></script>

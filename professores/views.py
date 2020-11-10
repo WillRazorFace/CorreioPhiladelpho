@@ -10,6 +10,7 @@ from inicio.models import Comentario
 from json import loads
 from inicio.models import Post
 from inicio.forms import PostForm
+from django.core.exceptions import ObjectDoesNotExist
 
 @require_GET
 @professor_requerido
@@ -66,6 +67,19 @@ def salvar_publicacao(request):
         messages.success(request, f'"{ publicacao.titulo }" publicada com sucesso')
 
         return JsonResponse({'url': url_nova_publicacao}, status=201)
+
+@require_POST
+@professor_requerido
+def excluir_publicacao(request):
+    slug = loads(request.body)['slug']
+
+    try:
+        post = Post.objects.get(slug=slug)
+        post.delete()
+
+        return HttpResponse(status=204)
+    except ObjectDoesNotExist:
+        return HttpResponse(status=409)
 
 @require_POST
 @professor_requerido

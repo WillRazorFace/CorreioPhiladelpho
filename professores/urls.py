@@ -7,4 +7,5 @@ urlpatterns = [
     path('deletar-comentario', views.deletar_comentario, name='deletar-comentario'),
     path('escrever', views.escrever, name='professor-escrever'),
     path('salvar-publicacao', views.salvar_publicacao, name='salvar-publicacao'),
+    path('excluir-publicacao', views.excluir_publicacao, name='excluir-publicacao'),
 ]
