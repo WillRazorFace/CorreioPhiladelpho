@@ -96,7 +96,7 @@
 
             .comentarios-perfil{
                 max-height: none;
-                @include padding(1.25rem 0);
+                @include padding(1.25rem);
                 
                 .publicacao, .data{
                     @include margin-top(0.313rem);
