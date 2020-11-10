@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block Título %}Pesquisar{% endblock %}
+
+{% block Conteúdo %}
+    <main class="conteudo-pesquisa">
+        <div class="wrapper-pesquisa">
+            <div class="caixa-de-pesquisa">
+                <select id="select-categoria">
+                    {% for categoria in categorias %}
+                        {% if categoria_url == categoria.nome %}
+                        <option value="{{ categoria.nome }}" selected>{{ categoria.nome }}</option>
+                        {% else %}
+                        <option value="{{ categoria.nome }}">{{ categoria.nome }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+         </div>
+
+         <div id="conteudo-mutavel">
+                {% include 'inicio/parciais/_listagem-publicacoes.html' %}
+         </div>
+    </main>
+{% endblock %}
+
+{% block javascript-adicional %}
+    <script>
+        var POSTS_BUSCA_URL = "{% url 'buscar-posts-categoria-api' %}";
+    </script>
+    <script type="text/javascript" src="{% static '/js/parciais/pesquisa-ajax-publicacao.js' %}"></script>
+{% endblock %}
