@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from utils.feedback import incluir_feedback
 from utils.professores import professor_requerido
 from utils.redirecionamento import definir_url_anterior
@@ -9,7 +9,7 @@ from django.contrib import messages
 from inicio.models import Comentario
 from json import loads
 from inicio.models import Post
-from inicio.forms import PostForm
+from inicio.forms import PostForm, PostForm
 from django.core.exceptions import ObjectDoesNotExist
 
 @require_GET
@@ -52,7 +52,7 @@ def escrever(request):
 
 @require_POST
 @professor_requerido
-def salvar_publicacao(request):
+def criar_publicacao(request):
     form = PostForm(data=request.POST, files=request.FILES)
 
     if not form.is_valid():
@@ -84,6 +84,43 @@ def excluir_publicacao(request):
             return HttpResponse(status=401)
     except ObjectDoesNotExist:
         return HttpResponse(status=409)
+
+@require_GET
+@professor_requerido
+def alterar_publicacao(request, slug: str):
+    publicacao = get_object_or_404(Post, slug=slug)
+    proximo = definir_url_anterior(request)
+
+    if publicacao.usuario != request.user:
+        messages.error(request, 'Você não pode alterar essa publicação. Não foi você quem a escreveu.')
+
+        return redirect(proximo)
+
+    foto = publicacao.foto.url
+    form = incluir_feedback(request)
+    form_post = PostForm(instance=publicacao)
+    url_salvar = reverse('salvar-publicacao', args={publicacao.slug})
+
+    return render(request, 'professores/alterar.html', {'form': form, 'form_post': form_post, 'foto': foto, 'proximo': proximo, 'url_salvar': url_salvar})
+
+@require_POST
+@professor_requerido
+def salvar_publicacao(request, slug: str):
+    publicacao = get_object_or_404(Post, slug=slug)
+    form = PostForm(data=request.POST, files=request.FILES, instance=publicacao)
+
+    if not form.is_valid():
+        erros = form.errors.get_json_data()
+        erros = {campo:mensagem[0]['message'] for (campo, mensagem) in erros.items()}
+
+        return JsonResponse({'erros': erros}, status=409)
+    else:
+        publicacao = form.save()
+        url_nova_publicacao = reverse('publicacao', args={publicacao.slug})
+
+        messages.success(request, f'"{ publicacao.titulo }" alterada com sucesso')
+
+        return JsonResponse({'url': url_nova_publicacao}, status=200)
 
 @require_POST
 @professor_requerido

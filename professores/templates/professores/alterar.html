@@ -21,7 +21,7 @@
                 </a>
             </div>
 
-            <h1>Nova publicação</h1>
+            <h1>Editar Publicação</h1>
 
             <form method="POST" action enctype="multipart/form-data" id="form-post">
                 {% csrf_token %}
@@ -68,9 +68,9 @@
                     <button type="button" class="custom-file-input-button" id="foto-perfil-input">Selecionar Imagem</button>
                     <span class="custom-file-input-text" id="foto-perfil-texto">Nenhuma imagem selecionada</span>
                 </div>
-                <p>Imagem que será exibida na publicação</p>
+                <p>Se nenhuma outra imagem for selecionada, a atual permanecerá</p>
 
-                <button type="submit" class="auth-button" id="botao-submit">Publicar</button>
+                <button type="submit" class="auth-button" id="botao-submit">Salvar</button>
             </form>
         </div>
     </main>
@@ -79,9 +79,10 @@
 {% block javascript-adicional %}
     <script type="text/javascript">
         var CSRFTOKEN = "{{ csrf_token }}";
-        var URL_CRIAR_PUBLICACAO = "{% url 'criar-publicacao' %}";
+        var URL_SALVAR_PUBLICACAO = "{{ url_salvar }}";
         var USUARIO_ATUAL = {{ request.user.id }};
+        var IMAGEM_ATUAL_PUBLICACAO = "{{ foto }}";
     </script>
 
-    <script type="text/javascript" src="{% static '/js/parciais/nova-publicacao.js' %}"></script>
+    <script type="text/javascript" src="{% static '/js/parciais/alterar-publicacao.js' %}"></script>
 {% endblock %}}

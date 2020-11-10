@@ -35,7 +35,7 @@
                         {% for publicacao in publicacoes %}
                         <div class="pub-card" id="publicacao-{{ publicacao.slug }}">
                             <div class="acoes">
-                                <i class="fas fa-edit alterar" aria-hidden="true" title="Alterar"></i>
+                                <a href="{% url 'alterar-publicacao' publicacao.slug %}?proximo={{ request.path }}"><i class="fas fa-edit alterar" aria-hidden="true" title="Alterar"></i></a>
                                 <i class="fas fa-trash-alt deletar" aria-hidden="true" title="Deletar" onclick="mostrarMensagemDeletarPublicacao('{{ publicacao.slug }}')"></i>
                             </div>
 
