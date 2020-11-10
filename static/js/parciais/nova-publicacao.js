@@ -47,7 +47,7 @@ document.querySelector("#form-post").addEventListener("submit", (event) => {
     divErroCategoria.innerText = "";
     divErroCategoria.style.display = "none";
 
-    fetch(URL_SALVAR_PUBLICACAO, {
+    fetch(URL_CRIAR_PUBLICACAO, {
         method: "POST",
         body: formPublicacao,
         headers: {"X-CSRFToken": CSRFTOKEN},
