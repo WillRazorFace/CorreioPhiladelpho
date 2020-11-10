@@ -20,13 +20,28 @@
             @include font-size(1.5rem);
         }
     }
+
+    .input-custom{
+        width: 50%;
+        
+        input{
+            background: transparent;
+            @include padding(0.313rem);
+            @include font-size(1rem);
+            color: gray;
+
+            &:focus{
+                color: black;
+            }
+        }
+    }
 }
 
 .input-pesquisa{
     width: 100%;
     border: 1px solid #aaa;
     @include padding(0.313rem);
-    @include font-size(1.5rem);
+    @include font-size(1.125rem);
     font-family: 'Roboto', sans-serif;
     @include rfs(0.625rem, border-radius);
     outline: none;

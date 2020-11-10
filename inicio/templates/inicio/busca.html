@@ -7,11 +7,17 @@
     <main class="conteudo-pesquisa">
         <div class="wrapper-pesquisa">
             <div class="caixa-de-pesquisa">
+                <div class="input-custom">   
                 {% if termo %}
                     <input id="campo-de-pesquisa" type="text" value="{{ termo }}" class="input-pesquisa" placeholder="Digite para pesquisar">
                 {% else %}
-                    <input id="campo-de-pesquisa" type="text" class="input-pesquisa" placeholder="Digite para pesquisar">
+                    <input id="campo-de-pesquisa" type="text" class="input-pesquisa" placeholder="Digite para pesquisar nas publicações">
                 {% endif %}
+                    <label for="subtitulo" id="pesquisa-label">
+                        <span>Digite para pesquisar nas publicações</span>
+                    </label>
+                    <div class="form-campo-invalido" id="invalido-pesquisa"></div>
+                </div>
             </div>
          </div>
 
