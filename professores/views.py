@@ -75,9 +75,13 @@ def excluir_publicacao(request):
 
     try:
         post = Post.objects.get(slug=slug)
-        post.delete()
 
-        return HttpResponse(status=204)
+        if post.usuario == request.user:
+            post.delete()
+
+            return HttpResponse(status=204)
+        else:
+            return HttpResponse(status=401)
     except ObjectDoesNotExist:
         return HttpResponse(status=409)
 

@@ -156,6 +156,17 @@ const deletarPublicacao = function(slug){
             modal_botao.addEventListener("click", () => {
                 modal.style.display = "none";
             })
+        } else if(resposta.status == 401){
+            modal.className = "modal-wrapper modal-erro";
+            modal_titulo.innerHTML = "Não autorizado";
+            modal_icone.className = "fa fa-4x fa-exclamation";
+            modal_mensagem.innerHTML = "A publicação que você está tentando excluir pertence a outro usuário."
+
+            modal.style.display = "grid";
+
+            modal_botao.addEventListener("click", () => {
+                modal.style.display = "none";
+            })
         }
     })
 }
