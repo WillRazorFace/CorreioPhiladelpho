@@ -7,15 +7,20 @@
     <main class="conteudo-pesquisa">
         <div class="wrapper-pesquisa">
             <div class="caixa-de-pesquisa">
-                <select id="select-categoria">
-                    {% for categoria in categorias %}
-                        {% if categoria_url == categoria.nome %}
-                        <option value="{{ categoria.nome }}" selected>{{ categoria.nome }}</option>
-                        {% else %}
-                        <option value="{{ categoria.nome }}">{{ categoria.nome }}</option>
-                        {% endif %}
-                    {% endfor %}
-                </select>
+                <div class="select-custom">
+                    <label class="label-custom" id="categoria-label">
+                        Categoria
+                    </label>
+                    <select class="select-pesquisa" id="select-categoria">
+                        {% for categoria in categorias %}
+                            {% if categoria_url == categoria.nome %}
+                            <option value="{{ categoria.nome }}" selected>{{ categoria.nome }}</option>
+                            {% else %}
+                            <option value="{{ categoria.nome }}">{{ categoria.nome }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </div>
             </div>
          </div>
 
