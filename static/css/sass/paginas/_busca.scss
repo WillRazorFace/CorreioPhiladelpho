@@ -49,7 +49,7 @@
 .resultados-termo{
     width: 50%;
     height: fit-content;
-    @include padding(0.313rem);
+    @include padding(0.625rem);
     background: linear-gradient(135deg, $cor-padrao-claro, #ed2123);
     @include box-shadow();
     @include rfs(0.625rem, border-radius);

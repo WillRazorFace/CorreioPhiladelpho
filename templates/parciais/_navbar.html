@@ -58,8 +58,9 @@
             </li>
             {% endif %}
 
-            <li><a href="#" title="Divulgação Científica"><i class="fa fa-book" aria-hidden="true"></i> Divulgação Científica</a></li>
-            <li><a href="#" title="Eventos"><i class="fa fa-calendar-o" aria-hidden="true"></i> Eventos</a></li>
+            <li><a href="{% url 'publicacoes' %}?categoria=Divulgação Científica" title="Divulgação Científica"><i class="fa fa-book" aria-hidden="true"></i> Divulgação Científica</a></li>
+            <li><a href="{% url 'publicacoes' %}?categoria=Eventos" title="Eventos"><i class="fa fa-calendar-o" aria-hidden="true"></i> Eventos</a></li>
+            <li><a href="{% url 'publicacoes' %}?categoria=Vestibular" title="Vestibular"><i class="fa fa-address-book" aria-hidden="true"></i> Vestibular</a></li>
 
             {% if request.user.is_professor %}
             <li><a href="{% url 'professor-geral' %}" title="Painel do Professor"><i class="fas fa-chalkboard-teacher" aria-hidden="true"></i> Painel do Professor</a></li>
