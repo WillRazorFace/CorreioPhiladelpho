@@ -20,7 +20,7 @@ $amarelo-aviso: #d6a512;
 .modal{
     background: white;
     width: 500px;
-    height: 300px;
+    height: fit-content;
     @include rfs(0.625rem, border-radius);
 
     p{
@@ -71,6 +71,14 @@ $amarelo-aviso: #d6a512;
     @include margin-bottom(1rem);
 }
 
+.modal-botao-confirmar{
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+    @include padding(0.625rem);
+    @include rfs(0.625rem, border-radius);
+}
+
 .modal-sucesso{
     .modal-header{
         background: $verde-sucesso;
@@ -78,6 +86,14 @@ $amarelo-aviso: #d6a512;
 
     .modal-icone{
         color: $verde-sucesso;
+    }
+
+    .modal-botao-confirmar{
+        background: $verde-sucesso;
+
+        &:hover{
+            background: rgb(62, 110, 110);
+        }
     }
 }
 
@@ -89,6 +105,14 @@ $amarelo-aviso: #d6a512;
     .modal-icone{
         color: $vermelho-erro;
     }
+
+    .modal-botao-confirmar{
+        background: $vermelho-erro;
+
+        &:hover{
+            background: rgb(177, 16, 16);
+        }
+    }
 }
 
 .modal-aviso{
@@ -98,6 +122,14 @@ $amarelo-aviso: #d6a512;
 
     .modal-icone{
         color: $amarelo-aviso;
+    }
+
+    .modal-botao-confirmar{
+        background: $amarelo-aviso;
+
+        &:hover{
+            background: #a87c0c;
+        }
     }
 }
 // Media Queries

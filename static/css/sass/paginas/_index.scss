@@ -1,13 +1,13 @@
 body{
     background-color: white;
 }
+
 .conteudo-index{
     grid-area: conteudo;
     @include padding(1.25rem);
     display: grid;
     grid-template-columns: auto 300px;
     grid-template-areas:
-        "carousel carousel"
         "publicacoes populares"
     ;
     grid-gap: 20px;
@@ -20,46 +20,6 @@ body{
 
     .popular{
         grid-area: populares;
-    }
-
-    .carousel{
-        grid-area: carousel;
-
-        .container-carousel{
-            width: 100%;
-            height: 70vh;
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-        }
-
-        #introducao{
-            width: 50vw;
-            height: 80%;
-
-            #categorias{
-                display: flex;
-                overflow-x: auto;
-                scroll-snap-type: x mandatory;
-                -webkit-overflow-scrolling: touch;
-                scroll-behavior: smooth;
-
-                .categoria{
-                    flex: none;
-                    width: 100%;
-                    height: 370px;
-                    scroll-snap-align: start;
-                    pointer-events: none;
-
-                    img{
-                        width: 100%;
-                        height: 100%;
-                        object-fit: cover;
-                    }
-                }
-            }
-        }
     }
 
     .secao-bloco{

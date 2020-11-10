@@ -8,6 +8,23 @@
 </head>
 
 <body>
+    <div class="modal-wrapper" id="modal-feedback">
+        <div class="modal">
+            <div class="modal-header">
+                <h1 id="modal-titulo"></h1>
+                <button id="modal-botao">x</button>
+            </div>
+
+            <div class="modal-icone">
+                <i class="fa fa-4x" aria-hidden="true" id="modal-icone"></i>
+            </div>
+
+            <p id="modal-mensagem"></p>
+
+            <div id="modal-botao-confirmar" class="modal-botao-confirmar nao-dispor"></div>
+        </div>
+    </div>
+    
     <div class="container">
         {% include 'parciais/_navbar.html' %}
         
@@ -26,22 +43,6 @@
         {% block javascript-adicional %}{% endblock %}
         <script src="https://use.fontawesome.com/f222674066.js"></script>
     </div>
-
-    <div class="modal-wrapper" id="modal-feedback">
-        <div class="modal">
-            <div class="modal-header">
-                <h1 id="modal-titulo"></h1>
-                <button id="modal-botao">x</button>
-            </div>
-
-            <div class="modal-icone">
-                <i class="fa fa-4x" aria-hidden="true" id="modal-icone"></i>
-            </div>
-
-            <p id="modal-mensagem"></p>
-        </div>
-    </div>
-
 </body>
 
 </html>
