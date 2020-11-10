@@ -2,7 +2,7 @@
 
 {% load static %}
 
-{% block Título %}Escrever{% endblock %}
+{% block Título %}Alterar Publicação{% endblock %}
 
 {% block Conteúdo %}
     <main class="conteudo-escrever-professor">
@@ -48,7 +48,7 @@
                     Conteúdo
                 </label>
                 {{ form_post.media }}
-                <div class="ckeditor-rich-text-field">
+                <div class="tinymce-rich-text-field">
                     {{ form_post.conteudo }}
                 </div>
 
