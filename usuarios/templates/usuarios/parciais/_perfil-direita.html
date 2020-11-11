@@ -1,10 +1,10 @@
 {% load humanize %}
 
 {% if secao == 'info' %}
+    <div class="alert sucesso nao-dispor" id="resultado-alterar-perfil"></div>
+    
     <div class="informacoes-perfil">
         <div id="info-basicas">
-            <div class="nao-dispor" id="resultado-alterar-perfil"></div>
-
             <form method="POST" action="" enctype="multipart/form-data" id="form-alterar-perfil">
                 <p class="label-alterar-perfil-desabilitado" id="label-nome">Nome</p>
                 <input id="nome" type="text" value="{{ usuario.nome }}" disabled>

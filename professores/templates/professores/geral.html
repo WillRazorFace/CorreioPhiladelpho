@@ -30,7 +30,7 @@
                 
                 <div class="secao-conteudo">
                     <ul class="publicacoes-professor" id="secao-publicacoes">
-                        <div class="resultado-aprovar-deletar nao-dispor" id="resultado-editar-deletar"></div>
+                        <div class="alert sucesso resultado-aprovar-deletar nao-dispor" id="resultado-editar-deletar"></div>
 
                         {% for publicacao in publicacoes %}
                         <div class="pub-card" id="publicacao-{{ publicacao.slug }}">
@@ -64,7 +64,7 @@
                     </ul>
                 
                     <ul class="comentarios-perfil nao-dispor" id="secao-comentarios">
-                        <div class="resultado-aprovar-deletar nao-dispor" id="resultado-aprovar-deletar"></div>
+                        <div class="alert sucesso resultado-aprovar-deletar nao-dispor" id="resultado-aprovar-deletar"></div>
                 
                         {% if qnt_analise == 0 %}
                         <div class="empty">
