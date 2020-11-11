@@ -8,10 +8,18 @@
         <div class="perfil-detalhes">
             <div class="detalhes-esquerda">
                 {% if request.user.foto %}
-                <img src="{{ request.user.foto.url }}" alt="Foto de usuário">
+                <img src="{{ request.user.foto.url }}" alt="Foto de usuário" id="foto-usuario">
                 {% else %}
-                <img src="{% static 'img/usuario-anonimo.png' %}" alt="Foto de usuário">
+                <img src="{% static 'img/usuario-anonimo.png' %}" alt="Foto de usuário" id="foto-usuario">
                 {% endif %}
+
+                <div class="trocar-foto">
+                    <form method="POST" action="" enctype="multipart/form-data" id="form-trocar-foto">
+                        {{ form_foto.foto }}
+                        <button type="button" id="trocar-foto-botao">Alterar Foto</button>
+                        <button type="submit" class="nao-dispor" id="trocar-foto-submit">Clique para alterar</button>
+                    </form>
+                </div>
 
                 <p>Cadastrou-se em</p>
                 <small>{{ request.user.date_joined }}</small>
@@ -59,6 +67,7 @@
     <script>
         var URL_DISPOR_SECAO_PERFIL = "{% url 'dispor-secao-perfil' %}";
         var URL_ALTERAR_PERFIL = "{% url 'alterar-perfil' %}";
+        var URL_ALTERAR_FOTO_DE_PERFIL = "{% url 'alterar-foto-de-perfil' %}";
         var URL_REENVIAR_EMAIL_ATIVACAO = "{% url 'reenviar-email-ativacao' %}";
         
         var CSRFTOKEN = "{{ csrf_token }}";
