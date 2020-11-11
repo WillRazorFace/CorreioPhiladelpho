@@ -170,11 +170,11 @@ INTERNAL_IPS = [
 
 # Mensagens
 MESSAGE_TAGS = {
-    constants.ERROR: 'alert-danger',
-    constants.WARNING: 'alert-warning',
-    constants.DEBUG: 'alert-info',
-    constants.SUCCESS: 'alert-success',
-    constants.INFO: 'alert-info',
+    constants.ERROR: 'erro',
+    constants.WARNING: 'aviso',
+    constants.DEBUG: 'informacao',
+    constants.SUCCESS: 'sucesso',
+    constants.INFO: 'informacao',
 }
 
 # Envio de emails
@@ -196,4 +196,4 @@ PASSWORD_RESET_TIMEOUT = 3600
 
 PROTOCOLO = 'http'
 
-DOMINIO = ALLOWED_HOSTS[0]
+DOMINIO = ALLOWED_HOSTS[0] + ':8000'

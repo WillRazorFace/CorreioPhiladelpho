@@ -4,7 +4,6 @@ from django.http import JsonResponse, HttpResponse
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.password_validation import MinimumLengthValidator, CommonPasswordValidator, NumericPasswordValidator, UserAttributeSimilarityValidator
-from django.contrib.sites.shortcuts import get_current_site
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_text
 from django.core.exceptions import ValidationError
@@ -133,7 +132,8 @@ def reenviar_email_ativacao(request):
         'usuarios/email/verificacao-de-email.txt',
         {
             'usuario': request.user,
-            'dominio': get_current_site(request).domain,
+            'protocolo': getattr(settings, 'PROTOCOLO'),
+            'dominio': getattr(settings, 'DOMINIO'),
             'uid': urlsafe_base64_encode(force_bytes(request.user.id)),
             'token': GeradorDeToken().make_token(user=request.user),
         }
@@ -143,7 +143,8 @@ def reenviar_email_ativacao(request):
         'usuarios/email/verificacao-de-email.html',
         {
             'usuario': request.user,
-            'dominio': get_current_site(request).domain,
+            'protocolo': getattr(settings, 'PROTOCOLO'),
+            'dominio': getattr(settings, 'DOMINIO'),
             'uid': urlsafe_base64_encode(force_bytes(request.user.id)),
             'token': GeradorDeToken().make_token(user=request.user),
         }
