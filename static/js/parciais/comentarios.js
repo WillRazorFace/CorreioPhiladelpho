@@ -45,6 +45,12 @@ formularioComentar.addEventListener("click", () => {
 function enviarResposta(event, comentario_pai){
     event.preventDefault();
 
+    let botaoComentar = document.getElementsByClassName("botao-comentar")[1];
+
+    console.log(botaoComentar);
+
+    botaoComentar.disabled = true;
+
     let formResposta = new FormData(event.target);
     let modal = document.getElementById("modal-feedback");
     let modal_titulo = document.getElementById("modal-titulo");
@@ -61,6 +67,8 @@ function enviarResposta(event, comentario_pai){
         body: formResposta,
         headers:  {"X-CSRFToken": CSRFTOKEN},
     }).then((resposta) => {
+        botaoComentar.disabled = false;
+
         if(resposta.status == 201){
             let respostas = document.getElementById("respostas-de-" + comentario_pai);
 
@@ -103,6 +111,10 @@ function enviarResposta(event, comentario_pai){
 function enviarComentario(event, post){
     event.preventDefault();
 
+    let botaoComentar = document.getElementsByClassName("botao-comentar")[0]
+
+    botaoComentar.disabled = true;
+
     let formComentario = new FormData(event.target);
     let modal = document.getElementById("modal-feedback");
     let modal_titulo = document.getElementById("modal-titulo");
@@ -119,6 +131,8 @@ function enviarComentario(event, post){
         body: formComentario,
         headers:  {"X-CSRFToken": CSRFTOKEN},
     }).then((resposta) => {
+        botaoComentar.disabled = false;
+
         if(resposta.status == 201){
             event.target.insertAdjacentHTML(
                 "afterend",
