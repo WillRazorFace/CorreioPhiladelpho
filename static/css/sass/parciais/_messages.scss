@@ -1,0 +1,30 @@
+$verde-sucesso: #0da14b;
+$vermelho-erro: #ff0019;
+$amarelo-aviso: #d6a512;
+
+@keyframes slide-down-message{
+    0% {height: 0%;}
+    5% {height: 100%;}
+    95% {height: 100%; opacity: 100%;}
+    100% {height: 0%; opacity: 0;}
+}
+
+.alert{
+    width: 100%;
+    color: white;
+    @include rfs(0 0 0.625rem 0.625rem, border-radius);
+    @include padding(0.625rem);
+    animation: slide-down-message 5s forwards;
+}
+
+.sucesso{
+    background: $verde-sucesso;
+}
+
+.erro{
+    background: $vermelho-erro;
+}
+
+.aviso{
+    background: $amarelo-aviso;
+}
