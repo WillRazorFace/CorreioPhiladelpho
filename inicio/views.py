@@ -15,29 +15,59 @@ from json import loads
 def buscar(request):
     form = incluir_feedback(request)
     termo = request.GET.get("p")
+    categoria = request.GET.get("categoria")
 
-    return render(request, 'inicio/busca.html', {'form': form, 'termo': termo})
+    contexto = {
+        'form': form,
+        'termo': termo
+    }
+
+    if categoria:
+        categoria = Categoria.objects.get(nome=categoria)
+        publicacoes = Post.objects.all().filter(categoria=categoria.id)
+
+        contexto['categoria_url'] = categoria.nome
+    else:
+        publicacoes = Post.objects.all()
+
+        contexto['categoria_url'] = None
+    
+    categorias = Categoria.objects.all()
+
+    contexto['categorias'], contexto['publicacoes'] = categorias, publicacoes
+
+    return render(request, 'inicio/busca.html', contexto)
 
 # Fetch API
 @require_GET
 def buscar_posts(request):
     termo = request.GET.get("p")
+    categoria = request.GET.get("categoria")
 
     if termo:
-        posts = Post.objects.filter(Q(titulo__icontains=termo) | Q(subtitulo__icontains=termo) | Q(conteudo__icontains=termo))
+        if categoria != 'Todas':
+            categoria = Categoria.objects.get(nome=categoria)
+
+            publicacoes = Post.objects.filter(Q(titulo__icontains=termo) | Q(subtitulo__icontains=termo) | Q(conteudo__icontains=termo), categoria=categoria.id)
+        else:
+            publicacoes = Post.objects.filter(Q(titulo__icontains=termo) | Q(subtitulo__icontains=termo) | Q(conteudo__icontains=termo))
     else:
-        posts = None
-    
-    if posts:
-        if posts.exists():
-            contexto = {'posts': posts, 'termo': termo}
+        if categoria != 'Todas':
+            categoria = Categoria.objects.get(nome=categoria)
+            publicacoes = Post.objects.all().filter(categoria=categoria.id)
+        else:
+            publicacoes = Post.objects.all()
+
+    if publicacoes:
+        if publicacoes.exists():
+            contexto = {'publicacoes': publicacoes, 'termo': termo}
         else:
             contexto = {'termo': termo, 'resultado': 'Nada encontrado'}
     else:
         if termo:
             contexto = {'termo': termo, 'resultado': 'Nada encontrado'}
         else:
-            contexto = {}
+            contexto = {'resultado': 'Nada encontrado'}
 
 
     html = render_to_string(
@@ -112,51 +142,6 @@ def publicacao(request, slug: str):
     }
 
     return render(request, 'inicio/publicacao.html', contexto)
-
-@require_GET
-def publicacoes(request):
-    form = incluir_feedback(request)
-    termo = request.GET.get("categoria")
-
-    if termo:
-        categoria = Categoria.objects.get(nome=termo)
-    else:
-        categoria = Categoria.objects.get(nome='Divulgação Científica')
-    
-    categorias = Categoria.objects.all()
-    publicacoes = Post.objects.all().filter(categoria=categoria.id)
-
-    return render(request, 'inicio/publicacoes.html', {'form': form, 'termo': termo, 'categoria_url': categoria.nome, 'categorias': categorias, 'publicacoes': publicacoes})
-
-# Fetch API
-@require_GET
-def buscar_posts_por_categoria(request):
-    termo = request.GET.get("p")
-    categoria = Categoria.objects.get(nome=termo)
-
-    if termo:
-        posts = Post.objects.all().filter(categoria=categoria.id)
-    else:
-        posts = None
-    
-    if posts:
-        if posts.exists():
-            contexto = {'posts': posts, 'termo': termo}
-        else:
-            contexto = {'termo': termo, 'resultado': 'Nenhuma publicação encontrada'}
-    else:
-        if termo:
-            contexto = {'termo': termo, 'resultado': 'Nenhuma publicação encontrada'}
-        else:
-            contexto = {}
-
-
-    html = render_to_string(
-        template_name='inicio/parciais/_listagem-publicacoes.html',
-        context=contexto,
-    )
-    
-    return JsonResponse({'html': html})
 
 #Fetch API
 @require_POST

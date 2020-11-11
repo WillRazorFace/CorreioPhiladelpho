@@ -7,23 +7,32 @@
     <main class="conteudo-pesquisa">
         <div class="wrapper-pesquisa">
             <div class="caixa-de-pesquisa">
-                <div class="input-custom">   
-                {% if termo %}
+                <div class="container-pesquisa">
+                    <div class="select-custom">
+                        <select class="select-pesquisa" id="select-categoria">
+                            <option value="Todas">Todas</option>
+                            {% for categoria in categorias %}
+                                {% if categoria_url == categoria.nome %}
+                                <option value="{{ categoria.nome }}" selected>{{ categoria.nome }}</option>
+                                {% else %}
+                                <option value="{{ categoria.nome }}">{{ categoria.nome }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    {% if termo %}
                     <input id="campo-de-pesquisa" type="text" value="{{ termo }}" class="input-pesquisa" placeholder="Digite para pesquisar">
-                {% else %}
+                    {% else %}
                     <input id="campo-de-pesquisa" type="text" class="input-pesquisa" placeholder="Digite para pesquisar nas publicações">
-                {% endif %}
-                    <label for="subtitulo" id="pesquisa-label">
-                        <span>Digite para pesquisar nas publicações</span>
-                    </label>
-                    <div class="form-campo-invalido" id="invalido-pesquisa"></div>
+                    {% endif %}
                 </div>
             </div>
-         </div>
+        </div>
 
-         <div id="conteudo-mutavel">
-                {% include 'inicio/parciais/_pesquisa-posts.html' %}
-         </div>
+        <div id="conteudo-mutavel">
+            {% include 'inicio/parciais/_pesquisa-posts.html' %}
+        </div>
     </main>
 {% endblock %}
 

@@ -4,31 +4,28 @@
 <div class="resultados-termo">
     <h3>Resultados para "{{ termo }}"</h3>
 </div>
-{% else %}
 {% endif %}
 
 <div class="wrapper-posts-pesquisa">
-    {% if posts %}
-    {% for post in posts %}
+    {% for publicacao in publicacoes %}
     <div class="pub-card-pesquisa">
         <div class="pub-img-pesquisa">
-            <a href="{% url 'publicacao' post.slug %}"><img src="{{ post.foto.url }}"></a>
+            <a href="{% url 'publicacao' publicacao.slug %}"><img src="{{ publicacao.foto.url }}"></a>
         </div>
 
         <div class="pub-texto-pesquisa">
-            <h1><a href="{% url 'publicacao' post.slug %}" class="pub-link-pesquisa">{{ post.titulo }}</a></h1>
-            <p>{{ post.subtitulo }}</p>
+            <h1><a href="{% url 'publicacao' publicacao.slug %}" class="pub-link-pesquisa">{{ publicacao.titulo }}</a></h1>
+            <p>{{ publicacao.subtitulo }}</p>
         </div>
 
         <div class="pub-info-pesquisa">
-            <span>{{ post.data|naturalday|capfirst }}</span><br/>
-            <span>{{ post.categoria }}</span>
+            <span>{{ publicacao.data|naturalday|capfirst }}</span><br/>
+            <span>{{ publicacao.categoria }}</span>
         </div>
 
-        <div class="pub-botao-pesquisa"><a href="{% url 'publicacao' post.slug %}">Ler mais</a></div>
+        <div class="pub-botao-pesquisa"><a href="{% url 'publicacao' publicacao.slug %}">Ler mais</a></div>
     </div>
+    {% empty %}
+    <p>{{ resultado }}</p>
     {% endfor %}
-    {% else %}
-        <p>{{ resultado }}</p>
-    {% endif %}
 </div>

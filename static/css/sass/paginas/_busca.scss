@@ -8,9 +8,32 @@
     position: relative;
     display: flex;
 
+    .container-pesquisa{
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+        grid-template-areas:
+            "select input"
+        ;
+
+        select{
+            grid-area: select;
+        }
+
+        input{
+            color: white;
+            grid-area: input;
+            @include padding(0.313rem);
+            @include font-size(1.25rem);
+            outline: none;
+            background: transparent;
+            border-width: 2px;
+            border-color: gray;
+            border-style: none none solid none;
+        }
+    }
+
     .select-custom{
-        width: 50%;
-        
         .label-custom{
             @include font-size(1.25rem);
         }
@@ -21,20 +44,7 @@
         }
     }
 
-    .input-custom{
-        width: 50%;
 
-        input{
-            background: transparent;
-            @include padding(0.313rem);
-            @include font-size(1rem);
-            color: gray;
-
-            &:focus{
-                color: black;
-            }
-        }
-    }
 }
 
 .wrapper-pesquisa{
@@ -48,6 +58,7 @@
 
 .resultados-termo{
     width: 50%;
+    word-break: break-all;
     height: fit-content;
     @include padding(0.625rem);
     background: linear-gradient(135deg, $cor-padrao-claro, #ed2123);
@@ -194,16 +205,6 @@
 }
 
 @include query(tablet){
-    .caixa-de-pesquisa{
-        .select-custom {
-            width: 70%;
-        }
-
-        .input-custom{
-            width: 70%;
-        }
-    }
-
     .conteudo-pesquisa{
         @include padding(1.25rem 2.5rem 0);
     }
@@ -250,19 +251,7 @@
 }
 
 @include query(smartphone){
-    .caixa-de-pesquisa{
-        .select-custom {
-            width: 100%;
-        }
 
-        .input-custom{
-            width: 100%;
-
-            label{
-                @include font-size(0.8rem);
-            }
-        }
-    }
 }
 
 @include query(tela-grande){
