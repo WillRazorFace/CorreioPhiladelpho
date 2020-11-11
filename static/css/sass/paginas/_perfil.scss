@@ -14,6 +14,31 @@
     background: #fafbfc;
 }
 
+.trocar-foto{
+    @include margin-top(0.313rem);
+
+    button{
+        @include padding(0.313rem);
+        width: 100%;
+        background: $cor-padrao-claro-6;
+        color: white;
+        outline: none;
+        border: none;
+        border: 1px solid gray;
+        @include rfs(0.313rem, border-radius);
+        cursor: pointer;
+        transition: all 0.1s ease;
+
+        &:focus{
+            outline: none;
+        }
+
+        &:hover{
+            background: $cor-padrao-claro;
+        }
+    }
+}
+
 .detalhes-esquerda, .menu-mini-detalhes{
     background: white;
 }

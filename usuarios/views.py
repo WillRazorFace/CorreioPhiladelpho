@@ -10,7 +10,7 @@ from django.utils.encoding import force_bytes, force_text
 from django.core.exceptions import ValidationError
 from django.core.mail import send_mail
 from django.contrib import messages
-from .forms import LoginForm, CadastroForm
+from .forms import LoginForm, CadastroForm, TrocarImagemDePerfilForm
 from inicio.models import Comentario, Post
 from usuarios.models import Usuario
 from django.views.decorators.http import require_GET, require_POST, require_http_methods
@@ -302,8 +302,21 @@ def perfil(request):
     pagina_anterior = definir_url_anterior(request)
 
     form = incluir_feedback(request)
+    form_foto = TrocarImagemDePerfilForm()
 
-    return render(request, 'usuarios/perfil.html', {'form': form, 'proximo': pagina_anterior})
+    return render(request, 'usuarios/perfil.html', {'form': form, 'form_foto': form_foto, 'proximo': pagina_anterior})
+
+@require_POST
+@login_required(redirect_field_name='proximo')
+def alterar_foto_de_perfil(request):
+    form = TrocarImagemDePerfilForm(data=request.POST, files=request.FILES, instance=request.user)
+
+    if form.is_valid():
+        usuario = form.save()
+
+        return JsonResponse({'nova-foto': usuario.foto.url}, status=200)
+
+    return HttpResponse(status=409)
 
 @require_POST
 @login_required(redirect_field_name='proximo')

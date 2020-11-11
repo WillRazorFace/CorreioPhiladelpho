@@ -4,6 +4,65 @@ window.onload = function(){
     const comentariosSecaoMenu = document.getElementById("comentarios");
     const publicacoesSecaoMenu = document.getElementById("pubs-curtidas");
 
+    // Input customizado para trocar a foto de perfil
+
+    const botaoTrocarFoto = document.getElementById("trocar-foto-botao");
+    const botaoSubmitTrocarFoto = document.getElementById("trocar-foto-submit")
+    const inputImagem = document.getElementById("id_foto");
+    const formTrocarFoto = document.getElementById("form-trocar-foto");
+    const fotoUsuario = document.getElementById("foto-usuario");
+
+    botaoTrocarFoto.addEventListener("click", () => {
+        inputImagem.click();
+    })
+
+    inputImagem.addEventListener("change", () => {
+        if(inputImagem.value){
+            botaoTrocarFoto.classList.add("nao-dispor");
+            botaoSubmitTrocarFoto.classList.remove("nao-dispor");
+        }
+    })
+
+    formTrocarFoto.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        form = new FormData(formTrocarFoto);
+
+        fetch(URL_ALTERAR_FOTO_DE_PERFIL, {
+            method: "POST",
+            body: form,
+            headers: {"X-CSRFToken": CSRFTOKEN},
+        }).then((resposta) => {
+            if(resposta.status == 200){
+                resposta.json().then((dados) => {
+                    fotoUsuario.src = dados["nova-foto"];
+
+                    botaoSubmitTrocarFoto.classList.add("nao-dispor");
+                    botaoTrocarFoto.classList.remove("nao-dispor");
+                })
+            } else {
+                let modal = document.getElementById("modal-feedback");
+                let modal_titulo = document.getElementById("modal-titulo");
+                let modal_icone = document.getElementById("modal-icone");
+                let modal_mensagem = document.getElementById("modal-mensagem");
+                let modal_botao = document.getElementById("modal-botao");
+    
+                let smallVerificado = document.getElementById("is_verified");
+
+                modal.classList.add("modal-erro");
+                modal_titulo.innerHTML = "Algo deu errado";
+                modal_icone.classList.add("fa-exclamation");
+                modal_mensagem.innerHTML = "Um erro aconteceu durante a requisição. Tente de novo. Se o problema continuar, contate o suporte."
+
+                modal.style.display = "grid";
+
+                modal_botao.addEventListener("click", () => {
+                    modal.style.display = "none";
+                })
+            }
+        })
+    })
+
     let secaoInformacoes = function(){
         fetch(URL_DISPOR_SECAO_PERFIL, {
             method: "POST",
@@ -117,6 +176,10 @@ window.onload = function(){
                                 inputSobrenome.disabled = true;
                                 inputEmail.disabled = true;
                                 inputNewsletter.disabled = true;
+
+                                remover_erro(inputNome, erroDivNome, labelNome);
+                                remover_erro(inputSobrenome, erroDivSobrenome, labelSobrenome);
+                                remover_erro(inputEmail, erroDivEmail, labelEmail);
     
                                 labelNome.classList.add("label-alterar-perfil-desabilitado");
                                 labelSobrenome.classList.add("label-alterar-perfil-desabilitado");

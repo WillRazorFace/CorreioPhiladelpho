@@ -145,3 +145,14 @@ class CadastroForm(forms.ModelForm):
     class Meta:
         model = Usuario
         fields = ('nome', 'sobrenome', 'email', 'password', 'foto', 'newsletter')
+
+
+class TrocarImagemDePerfilForm(forms.ModelForm):
+    foto = forms.ImageField(
+        required=False,
+        widget=forms.FileInput(attrs={'hidden': 'hidden'}),
+    )
+
+    class Meta:
+        model = Usuario
+        fields = ('foto',)

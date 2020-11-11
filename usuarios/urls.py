@@ -21,6 +21,7 @@ urlpatterns = [
     path('perfil', views.perfil, name='perfil'),
     path('perfil/dispor-secao-perfil', views.dispor_secao_perfil, name='dispor-secao-perfil'),
     path('perfil/alterar-perfil', views.alterar_perfil, name='alterar-perfil'),
+    path('perfil/alterar-foto-de-perfil', views.alterar_foto_de_perfil, name='alterar-foto-de-perfil'),
 
     path('redefinir-senha', auth_views.PasswordChangeView.as_view(template_name='usuarios/redefinir-senha.html'), name='redefinir-senha'),
     path('redefinir-senha/validar-senha-atual', views.validacao_senha_atual_redefinicao, name='validar-senha-atual-redefinicao'),
