@@ -2,6 +2,7 @@ const emailField = document.getElementById("id_email");
 const emailLabel = document.getElementById("email-label");
 const divErroEmail = document.getElementById("invalido-email");
 const botaoSubmitEmail = document.getElementById("botao-submit-email");
+const formRecuperarSenha = document.getElementById("form-recuperar-senha");
 
 let erros = {
     'senha': false,
@@ -83,4 +84,10 @@ emailField.addEventListener("keyup", () => {
 
         botaoSubmitEmail.disabled = false;
     }
+})
+
+formRecuperarSenha.addEventListener("submit", () => {
+    botaoSubmitEmail.disabled = true;
+    botaoSubmitEmail.innerText = "";
+    botaoSubmitEmail.innerHTML = '<div class="spinner"></div>';
 })

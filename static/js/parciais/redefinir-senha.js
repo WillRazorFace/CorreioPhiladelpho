@@ -5,6 +5,7 @@ const senhaLabelConfirmacao = document.getElementById("senha-label-confirmacao")
 const divErroSenha = document.getElementById("invalido-senha");
 const divErroSenhaConfirmacao = document.getElementById("invalido-senha-confirmacao");
 const botaoSubmitSenha = document.getElementById("botao-submit-senha");
+const formRecuperarSenha = document.getElementById("form-recuperar-senha");
 
 let erros = {
     'senha': false,
@@ -99,4 +100,10 @@ senhaConfirmacaoField.addEventListener("keyup", () => {
         dispor_erro(senhaConfirmacaoField, senhaLabelConfirmacao, divErroSenhaConfirmacao, "As senhas devem ser idênticas");
         manipular_botao('senha_confirmacao', true);
     }
+})
+
+formRecuperarSenha.addEventListener("submit", () => {
+    botaoSubmitSenha.disabled = true;
+    botaoSubmitSenha.innerText = "";
+    botaoSubmitSenha.innerHTML = '<div class="spinner"></div>';
 })
