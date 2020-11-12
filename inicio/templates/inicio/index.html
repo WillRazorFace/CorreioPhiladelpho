@@ -5,6 +5,53 @@
 {% block Título %}Página Inicial{% endblock %}
 
 {% block Conteúdo %}
+    <div class="wrapper-carrossel" id="wrapper-carrossel">
+        <div class="carrossel" id="carrossel">
+            <div class="item ativo" style="background-image: url({% static '/img/carrossel/carrossel-1.jpg' %});">
+                <div class="container">
+                    <div class="texto">
+                        <h1>Vestibulinho Etec 2020</h1>
+                        <p>Entenda a alteração vestibulinho devido a pandemia</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item" style="background-image: url({% static '/img/carrossel/carrossel-2.webp' %});">
+                <div class="container">
+                    <div class="texto">
+                        <h1>Programação pós-pandemia</h1>
+                        <p>Confira o esquema de ações pós-pandemia neste artigo único</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item" style="background-image: url({% static '/img/carrossel/carrossel-3.jpg' %});">
+                <div class="container">
+                    <div class="texto">
+                        <h1>Atividades online</h1>
+                        <p>Veja o que tem a dizer o diretor da escola a respeito das recentes atividades online</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item" style="background-image: url({% static '/img/carrossel/carrossel-4.jpg' %});">
+                <div class="container">
+                    <div class="texto">
+                        <h1>Correio Philadelpho e Biblioteca</h1>
+                        <p>Um projeto para todos</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="controles">
+            <div class="anterior" id="carrossel-anterior"><i class="fas fa-caret-left fa-2x"></i></div>
+            <div class="proximo" id="carrossel-proximo"><i class="fas fa-caret-right fa-2x"></i></div>
+        </div>
+
+        <div class="pontos-indicadores" id="pontos-indicadores"></div>
+    </div>
+
     <main class="conteudo-index">
         <div class="publicacoes">
             <div class="secao-bloco">
@@ -55,4 +102,8 @@
             </div>
         </div>
     </main>
+{% endblock %}
+
+{% block javascript-adicional %}
+    <script type="text/javascript" src="{% static '/js/parciais/carrossel.js' %}"></script>
 {% endblock %}

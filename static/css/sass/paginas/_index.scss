@@ -2,6 +2,153 @@ body{
     background-color: white;
 }
 
+// Carrossel
+
+@keyframes slide{
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+@keyframes slide-texto{
+    0% {opacity: 0; transform: translateY(-100%);}
+    100% {opacity: 1; transform: translateY(0);}
+}
+
+.wrapper-carrossel{
+    height: 70vh;
+    position: relative;
+
+    .controles{
+        .anterior, .proximo{
+            position: absolute;
+            z-index: 2;
+            top: 50%;
+            height: 2.5rem;
+            width: 2.5rem;
+            @include margin-top(-1.25rem);
+            color: white;
+            background: $cor-padrao-claro;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.2s;
+
+            &:hover{
+                background: $cor-padrao-claro-6;
+                transform: scale(1.1);
+            }
+        }
+
+        .anterior{
+            left: 0;
+            @include rfs(0 0.625rem 0.625rem 0, border-radius);
+        }
+
+        .proximo{
+            right: 0;
+            @include rfs(0.625rem 0 0 0.625rem, border-radius);
+        }
+    }
+
+    .pontos-indicadores{
+        position: absolute;
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        bottom: 1.875rem;
+        z-index: 2;
+        cursor: pointer;
+
+        div{
+            display: inline-block;
+            width: 1.563rem;
+            height: 1.563rem;
+            color: white;
+            background: transparent;
+            border: 2px solid #ccc;
+            border-radius: 50%;
+            transition: 0.2s;
+            @include box-shadow();
+
+            & + div{
+                @include margin-left(0.625rem);
+            }
+
+            &:hover{
+                transform: scale(1.1);
+            }
+        }
+
+        .ativo{
+            border: inherit;
+            cursor: default;
+            background: $cor-padrao-claro-6;
+        }
+    }
+}
+
+.carrossel{
+    .item{
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        z-index: 1;
+        display: none;
+        animation: slide 1s ease;
+        overflow: hidden;
+    }
+
+    .ativo{
+        display: flex;
+
+        .texto{
+            h1{
+                animation: slide-texto .5s ease forwards;
+                animation-delay: 1s;
+            }
+
+            p{
+                animation: slide-texto .5s ease forwards;
+                animation-delay: 1.2s;
+            }
+        }
+    }
+
+    .container{
+        margin: auto;
+
+        .texto{
+            h1{
+                text-align: center;
+                color: white;
+                text-shadow: 4px 5px 7px black;
+                @include font-size(2.813rem);
+                margin: 0;
+                opacity: 0;              
+            }
+
+            p{
+                text-align: center;
+                color:rgb(238, 238, 238);
+                font-weight: bolder;
+                text-shadow: 4px 5px 7px black;
+                text-align: center;
+                @include font-size(1.25rem);
+                opacity: 0;
+            }
+        }
+    }
+}
+
+// Conteúdo
+
 .conteudo-index{
     grid-area: conteudo;
     @include padding(1.25rem);
@@ -329,6 +476,12 @@ body{
         .populares-wrapper{
             grid-template-columns: auto;
             grid-gap: 0;
+        }
+    }
+
+    .wrapper-carrossel{
+        .controles{
+            display: none;
         }
     }
 }
