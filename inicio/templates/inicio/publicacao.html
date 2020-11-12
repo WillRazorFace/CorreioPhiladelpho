@@ -68,9 +68,9 @@
                         <ul class="comentarios">
                         {% recursetree comentarios %}
                             {% if node.aprovado == False %}
-                            <li class="analise">
+                            <li class="analise" id="comentario-{{ node.id }}">
                             {% else %}
-                            <li>
+                            <li id="comentario-{{ node.id }}">
                             {% endif %}
                                 <div class="comentario-conteudo">
                                     {% if node.usuario.foto %}
@@ -79,7 +79,7 @@
                                     <div class="comentario-foto-usuario" style="background-image: url({% static 'img/usuario-anonimo.png' %});"></div>
                                     {% endif %}
 
-                                    <div>
+                                    <div id="dentro-conteudo-{{ node.id }}">
                                         <div class="usuario">{{ node.usuario.nome_completo }}</div>
                                         <div class="data">{{ node.data|naturalday }}</div>
                                         {% if node.aprovado == False %}
@@ -98,11 +98,11 @@
                                     </div>
                                 </div>
 
-                            <ul class="respostas nao-dispor" id="respostas-de-{{ node.id }}">
-                                <li>{{ children }}</li>
-                            </ul>
-                            {% endif %}
-                            </li>   
+                                <ul class="respostas nao-dispor" id="respostas-de-{{ node.id }}">
+                                    <li>{{ children }}</li>
+                                </ul>
+                                {% endif %}
+                                </li>   
                         {% endrecursetree %}
                         </ul>
                     {% else %}

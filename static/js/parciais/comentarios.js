@@ -47,8 +47,6 @@ function enviarResposta(event, comentario_pai){
 
     let botaoComentar = document.getElementsByClassName("botao-comentar")[1];
 
-    console.log(botaoComentar);
-
     botaoComentar.disabled = true;
 
     let formResposta = new FormData(event.target);
@@ -70,6 +68,26 @@ function enviarResposta(event, comentario_pai){
         botaoComentar.disabled = false;
 
         if(resposta.status == 201){
+            if(document.body.contains(document.getElementById('respostas-de-' + comentario_pai))){
+                let respostas = document.getElementById("respostas-de-" + comentario_pai);
+            } else {
+                let comentarioPai = document.getElementById("comentario-" + comentario_pai);
+                let insideBotaoVer = document.getElementById("dentro-conteudo-" + comentario_pai);
+
+                let botaoVer = document.createElement("button");
+                botaoVer.setAttribute("class", "ver-resp");
+                botaoVer.setAttribute("id", "mostrar-" + comentario_pai);
+                botaoVer.setAttribute("onclick", "abrir('respostas-de-" + comentario_pai + "')");
+                botaoVer.innerText = "Ver respostas";
+
+                let respostas = document.createElement("ul");
+                respostas.setAttribute("class", "respostas");
+                respostas.setAttribute("id", "respostas-de-" + comentario_pai);
+
+                insideBotaoVer.appendChild(botaoVer);
+                comentarioPai.appendChild(respostas);
+            }
+            
             let respostas = document.getElementById("respostas-de-" + comentario_pai);
 
             respostas.insertAdjacentHTML(
