@@ -98,6 +98,10 @@ wrapperCarrossel.addEventListener("mouseout", () => {
 })
 
 function resetarTimer(){
-    clearInterval(timer);
+    for(i=0; i<10000; i++)
+    {
+        window.clearInterval(i);
+    }
+
     timer = setInterval(autoMudar, 10000);
 }
