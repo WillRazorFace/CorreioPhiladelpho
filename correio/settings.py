@@ -167,6 +167,7 @@ TINYMCE_DEFAULT_CONFIG = {
                   aligncenter alignjustify | indent outdent | bullist numlist table |
                   | link image media | codesample |''',
     'content_style': 'p { text-indent: 40px; }',
+    'fontsize_formats': '10pt 12pt 14pt'
 }
 
 # Identação dos models MPTT na área administrativa
