@@ -24,9 +24,22 @@ body{
     }
 }
 
-.container{
+.container, .container-index{
     display: grid;
     grid-template-columns: auto;
+}
+
+.container{
+    grid-template-areas:
+        "navegacao"
+        "avisos-navegacao"
+        "conteudo"
+        "avisos-rodape"
+        "rodape"
+    ;
+}
+
+.container-index{
     grid-template-areas:
         "navegacao"
         "carrossel"
