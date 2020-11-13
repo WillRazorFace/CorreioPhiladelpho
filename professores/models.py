@@ -8,6 +8,13 @@ class Professor(models.Model):
     def __str__(self):
         return f'{self.usuario.nome} {self.usuario.sobrenome}'
 
+    def save(self, *args, **kwargs) -> None:
+        super().save(*args, **kwargs)
+
+        if self.usuario.is_verified == False:
+            self.usuario.is_verified = True
+            self.usuario.save()
+
     class Meta:
         verbose_name = 'Professor'
         verbose_name_plural = 'Professores'
