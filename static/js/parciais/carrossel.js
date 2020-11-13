@@ -90,7 +90,10 @@ proximo.addEventListener("click", () => {
 })
 
 wrapperCarrossel.addEventListener("mouseover", () => {
-    clearInterval(timer);
+    for(i=0; i<10000; i++)
+    {
+        window.clearInterval(i);
+    }
 })
 
 wrapperCarrossel.addEventListener("mouseout", () => {
