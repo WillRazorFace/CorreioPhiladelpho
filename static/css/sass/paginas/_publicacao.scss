@@ -19,6 +19,8 @@
 
 .pub-hero{
     background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
     min-height: 70vh;
     display: flex;
     justify-content: center;
@@ -49,15 +51,18 @@
     background: white;
     width: 70%;
     @include box-shadow-pub();
-    @include padding(4.375rem);
+    @include padding(3.125rem);
 
     .conteudo p{
         text-align: justify !important;
+        @include rfs(2.5rem, text-indent);
+        @include margin-bottom(1.25rem);
     }
 }
 
 .conteudo-wrapper{
     min-height: 100%;
+    word-break: break-word;
 }
 
 .divisao{
@@ -342,7 +347,7 @@
 
 @include query(smartphone){
     .pub-post{
-        @include padding(1.25rem);
+        @include padding(0.875rem);
     }
 
     .comentarios{
