@@ -53,10 +53,16 @@
     @include box-shadow-pub();
     @include padding(3.125rem);
 
-    .conteudo p{
-        text-align: justify !important;
-        @include rfs(2.5rem, text-indent);
-        @include margin-bottom(1.25rem);
+    .conteudo {
+        p{
+            text-align: justify !important;
+            @include rfs(2.5rem, text-indent);
+            @include margin-bottom(1.25rem);
+        }
+
+        li{
+            @include rfs(2.5rem, text-indent);
+        }
     }
 }
 
