@@ -303,6 +303,14 @@
             }
         }
 
+        .menu{
+            li{
+                a{
+                    @include font-size(1rem);
+                }
+            }
+        }
+
         .logo-cp{
             display: none;
         }

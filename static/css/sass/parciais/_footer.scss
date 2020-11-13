@@ -204,7 +204,15 @@
 }
 
 @include query(smartphone){
+    .rodape{
+        p{
+            @include font-size(1rem);
+        }
 
+        li{
+            @include font-size(0.875rem);
+        }
+    }
 }
 
 @include query(tela-grande){
