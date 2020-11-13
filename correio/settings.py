@@ -157,7 +157,7 @@ TINYMCE_DEFAULT_CONFIG = {
     'image_advtab': True,
     'custom_undo_redo_levels': 20,
     'plugins': '''spellchecker link autolink autosave code codesample image imagetools media
-                fullscreen preview contextmenu lists hr table pagebreak insertdatetime
+                fullscreen preview lists hr table pagebreak insertdatetime
                 nonbreaking directionality searchreplace wordcount visualblocks visualchars
                 charmap print anchor pagebreak''',
     'width': '100%',
@@ -166,7 +166,6 @@ TINYMCE_DEFAULT_CONFIG = {
                   fontsizeselect  | forecolor backcolor | alignleft alignright |
                   aligncenter alignjustify | indent outdent | bullist numlist table |
                   | link image media | codesample |''',
-    'contextmenu': 'formats | link image',
     'content_style': 'p { text-indent: 40px; }',
 }
 

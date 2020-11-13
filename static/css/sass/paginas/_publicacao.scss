@@ -63,6 +63,15 @@
 .conteudo-wrapper{
     min-height: 100%;
     word-break: break-word;
+
+    a{
+        text-decoration: none;
+        color: $cor-padrao-claro;
+
+        &:hover{
+            color: $cor-padrao-escuro;
+        }
+    }
 }
 
 .divisao{
