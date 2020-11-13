@@ -73,11 +73,7 @@
                             <li id="comentario-{{ node.id }}">
                             {% endif %}
                                 <div class="comentario-conteudo">
-                                    {% if node.usuario.foto %}
-                                    <div class="comentario-foto-usuario" style="background-image: url({{ node.usuario.foto.url }});"></div>
-                                    {% else %}
-                                    <div class="comentario-foto-usuario" style="background-image: url({% static 'img/usuario-anonimo.png' %});"></div>
-                                    {% endif %}
+                                    <div class="comentario-foto-usuario" style="background-image: url({{ node.usuario.obterFoto }});"></div>
 
                                     <div id="dentro-conteudo-{{ node.id }}">
                                         <div class="usuario">{{ node.usuario.nome_completo }}</div>

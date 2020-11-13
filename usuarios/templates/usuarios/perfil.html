@@ -7,11 +7,7 @@
     <main class="wrapper-perfil">
         <div class="perfil-detalhes">
             <div class="detalhes-esquerda">
-                {% if request.user.foto %}
-                <img src="{{ request.user.foto.url }}" alt="Foto de usuário" id="foto-usuario">
-                {% else %}
-                <img src="{% static 'img/usuario-anonimo.png' %}" alt="Foto de usuário" id="foto-usuario">
-                {% endif %}
+                <img src="{{ request.user.obterFoto }}" alt="Foto de usuário" id="foto-usuario">
 
                 <div class="trocar-foto">
                     <form method="POST" action="" enctype="multipart/form-data" id="form-trocar-foto">

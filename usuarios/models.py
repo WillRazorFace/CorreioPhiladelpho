@@ -5,6 +5,7 @@ from django.utils.translation import gettext_lazy as _
 from django.utils import timezone
 from .managers import GerenciadorDeUsuario
 from utils.imagens import redimensionar
+from django.templatetags.static import static
 
 
 class Usuario(AbstractBaseUser, PermissionsMixin):
@@ -27,6 +28,12 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
     REQUIRED_FIELDS = ['nome', 'sobrenome']
 
     objects = GerenciadorDeUsuario()
+
+    def obterFoto(self) -> str:
+        if not self.foto:
+            return static('/img/usuario-anonimo.png')
+
+        return self.foto.url
 
     def __str__(self) -> str:
         return f'{self.nome} {self.sobrenome} - {self.email}'
