@@ -415,6 +415,16 @@
     .label-custom{
         color: #aaa;
     }
+
+    // Template de busca
+
+    .caixa-de-pesquisa{
+        .container-pesquisa{
+            input{
+                color: white;
+            }
+        }
+    }
 }
 
 // Switch para modo escuro

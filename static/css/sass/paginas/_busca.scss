@@ -21,7 +21,6 @@
         }
 
         input{
-            color: white;
             grid-area: input;
             @include padding(0.313rem);
             @include font-size(1.25rem);
@@ -251,7 +250,25 @@
 }
 
 @include query(smartphone){
-
+    .caixa-de-pesquisa{
+        .select-custom{
+            select{
+                @include font-size(1rem);
+            }
+        }
+        
+        .container-pesquisa{
+            grid-template-columns: auto;
+            grid-template-areas:
+                "categoria"
+                "input"
+            ;
+            
+            input{
+                @include font-size(1rem);
+            }
+        }
+    }
 }
 
 @include query(tela-grande){
