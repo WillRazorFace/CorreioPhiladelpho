@@ -14,17 +14,19 @@
     }
 
     .container-imagem-usuario{
-        width: 30px;
-        height: 30px;
+        max-width: 1.875rem;
+        min-width: 1.875rem;
+        max-height: 1.875rem;
+        min-height: 1.875rem;
+        border-radius: 20%;
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
 
         &:hover{
             .dropdown{
                 display: inline-block;
             }
-        }
-
-        img{
-            border-radius: 50%;
         }
 
         .dropdown{

@@ -29,7 +29,7 @@
             </li>
             
             {% if not request.user.is_authenticated %}
-            <li><a href="#" title="Entrar"><i class="fa fa-user" aria-hidden="true"></i> Painel de Usuário</a>
+            <li><a href="#" title="Painel de Usuário"><i class="fa fa-user" aria-hidden="true"></i> Painel de Usuário</a>
                 <ul class="dropdown">
                     <li><a href="{% url 'entrar' %}?proximo={{ request.path }}">Entrar</a></li>
                     <li><a href="{% url 'registrar' %}?proximo={{ request.path }}">Registrar</a></li>
@@ -43,13 +43,8 @@
                     <li><a href="{% url 'sair' %}?proximo={{ request.path }}">Sair</a></li>
                 </ul>
             </li>
-            <li class="container-imagem-usuario">
-                {% if request.user.foto %}
-                <img src="{{ request.user.foto.url }}" alt="Foto de usuário">
-                {% else %}
-                <img src="{% static 'img/usuario-anonimo.png' %}" alt="Foto de usuário">
-                {% endif %}
 
+            <li class="container-imagem-usuario" style="background-image: url({{ post.usuario.obterFoto }});">
                 <ul class="dropdown">
                     <li><a href="">Notificações</a></li>
                     <li><a href="{% url 'perfil' %}">Visualizar Perfil</a></li>
