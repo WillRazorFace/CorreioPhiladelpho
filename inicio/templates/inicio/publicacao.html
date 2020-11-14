@@ -16,22 +16,37 @@
 
         <div class="pub-post" id="conteudo-pub">
             <div class="conteudo-wrapper">
+                <div class="contribuidor">
+                    <img src="{{ post.usuario.obterFoto }}" title="Ver mais de {{ post.usuario.nome_completo }}" alt="Imagem do contribuidor">
+                </div>
+
                 <div class="conteudo">
                     {{ post.conteudo|safe }}
 
-                    {% if request.user.is_authenticated %}
-                    <div class="botao-curtir-wrapper">
-                        {% if post in request.user.posts_curtidos.all %}
-                        <div class="botao-curtir curtido" id="botao-curtir">
-                            <i title="Curtido" class="fa fa-thumbs-o-up fa-2x" aria-hidden="true"></i>
-                        </div>
-                        {% else %}
-                        <div class="botao-curtir" id="botao-curtir">
-                            <i title="Curtir" id="icone-curtir" class="fa fa-thumbs-o-up fa-2x" aria-hidden="true"></i>
+                    <div class="info-curtir-wrapper">
+                        {% if request.user.is_authenticated %}
+                        <div class="botao-curtir-wrapper">
+                            {% if post in request.user.posts_curtidos.all %}
+                            <div class="botao-curtir curtido" id="botao-curtir">
+                                <i title="Curtido" id="icone-curtir" class="fa fa-thumbs-o-up fa-2x" aria-hidden="true"></i>
+                            </div>
+                            {% else %}
+                            <div class="botao-curtir" id="botao-curtir">
+                                <i title="Curtir" id="icone-curtir" class="fa fa-thumbs-o-up fa-2x" aria-hidden="true"></i>
+                            </div>
+                            {% endif %}
+                            <span id="quant-likes">{{ post.curtidas.count }}</span>
                         </div>
                         {% endif %}
+                        <div class="info-wrapper">
+                            <i class="fas fa-clock fa-2x" title="Data de postagem"></i> {{ post.data|date:"M d, Y" }}
+                            <i class="fas fa-eye fa-2x" title="Quantidade de acessos"></i> {{ post.acessos }}
+                        </div>
+
+                        <div class="contribuidor-info">
+                            <img src="{{ post.usuario.obterFoto }}" title="Ver mais de {{ post.usuario.nome_completo }}" alt="Imagem do contribuidor">
+                        </div>
                     </div>
-                    {% endif %}
                 </div>
             </div>
 

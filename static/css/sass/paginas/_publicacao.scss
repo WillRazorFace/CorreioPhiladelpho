@@ -43,6 +43,48 @@
     }
 }
 
+.info-curtir-wrapper{
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-template-areas:
+        "info curtir"
+    ;
+
+    .botao-curtir-wrapper{
+        grid-area: curtir;
+    }
+
+    .contribuidor-info{
+        display: none;
+        top: -1.5rem;
+        right: -1.25rem;
+        position: absolute;
+
+        img{
+            border: 1px solid #ccc;
+            flex-direction: flex-end;
+            max-width: 3.75rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: .2s ease;
+
+            &:hover{
+                border-radius: 10%;
+            }
+        }
+    }
+
+    .info-wrapper{
+        grid-area: info;
+        display: flex;
+        align-items: center;
+
+        i + i{
+            @include margin-left(1rem);
+        }
+    }
+}
+
 .pub-post{
     position: relative;
     margin: 0 auto;
@@ -52,6 +94,25 @@
     width: 70%;
     @include box-shadow-pub();
     @include padding(3.125rem);
+
+    .contribuidor{
+        top: -1.5rem;
+        right: -1.25rem;
+        position: absolute;
+
+        img{
+            flex-direction: flex-end;
+            max-width: 3.75rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: .2s ease;
+            border: 1px solid #ccc;
+
+            &:hover{
+                border-radius: 10%;
+            }
+        }
+    }
 
     .conteudo {
         p{
@@ -357,6 +418,32 @@
         box-shadow: none;
         border-radius: 0;
         @include padding(2.5rem);
+
+        .contribuidor{
+            display: none;
+        }
+    }
+
+    .info-curtir-wrapper{
+        grid-template-columns: 1fr 3fr 1fr;
+        grid-template-areas:
+            "contribuidor info curtir"
+        ;
+
+        .contribuidor-info{
+            display: initial;
+            position: initial;
+            grid-area: contribuidor;
+
+            img{
+                height: 100%;
+                max-width: 3.25rem;
+            }
+        }
+
+        .info-wrapper{
+            justify-content: flex-end;
+        }
     }
 }
 
@@ -374,6 +461,17 @@
             .comentario-foto-usuario{
                 height: 35px;
             }
+        }
+    }
+
+    .info-curtir-wrapper{
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+            "contribuidor curtir"
+        ;
+
+        .info-wrapper{
+            display: none;
         }
     }
 }

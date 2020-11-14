@@ -1,5 +1,14 @@
 const botaoLike = document.getElementById("botao-curtir");
 const iconeCurtir = document.getElementById("icone-curtir");
+const quantLikes = document.getElementById("quant-likes");
+
+function atualizarLikes(ativado){
+    if (ativado){
+        quantLikes.innerText = parseInt(quantLikes.innerText) + 1;
+    } else {
+        quantLikes.innerText = parseInt(quantLikes.innerText) - 1;
+    }
+}
 
 botaoLike.addEventListener("click", () => {
     if(botaoLike.classList.contains('curtido')){
@@ -30,6 +39,7 @@ botaoLike.addEventListener("click", () => {
             }
         })
 
+        atualizarLikes(false)
         botaoLike.classList.remove("curtido");
         iconeCurtir.title = "Curtir";
     } else {
@@ -60,6 +70,7 @@ botaoLike.addEventListener("click", () => {
             }
         })
 
+        atualizarLikes(true);
         botaoLike.classList.add('curtido');
         iconeCurtir.title = "Curtido";
     }
