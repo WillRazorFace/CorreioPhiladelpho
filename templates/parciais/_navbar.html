@@ -38,15 +38,13 @@
             {% else %}
             <li class="painel-usuario-responsivo"><a href="#" title="Entrar"><i class="fa fa-user" aria-hidden="true"></i> {{ request.user.nome }}</a>
                 <ul class="dropdown">
-                    <li><a href="">Notificações</a></li>
                     <li><a href="{% url 'perfil' %}">Visualizar Perfil</a></li>
                     <li><a href="{% url 'sair' %}?proximo={{ request.path }}">Sair</a></li>
                 </ul>
             </li>
 
-            <li class="container-imagem-usuario" style="background-image: url({{ post.usuario.obterFoto }});">
+            <li class="container-imagem-usuario" style="background-image: url({{ request.user.obterFoto }});">
                 <ul class="dropdown">
-                    <li><a href="">Notificações</a></li>
                     <li><a href="{% url 'perfil' %}">Visualizar Perfil</a></li>
                     <li><a href="{% url 'sair' %}?proximo={{ request.path }}">Sair</a></li>
                 </ul>
