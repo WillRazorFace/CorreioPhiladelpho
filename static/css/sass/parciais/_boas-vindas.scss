@@ -1,0 +1,122 @@
+.boas-vindas-wrapper{
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    position: fixed;
+    background: rgba(0, 0, 0, .7);
+    z-index: 100000;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+    border: none;
+}
+
+.boas-vindas-container{
+    width: 70vw;
+    position: relative;
+    height: fit-content;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    @include box-shadow-card();
+    @include rfs(1.25rem, border-radius);
+    @include padding(1.25rem);
+
+
+    .texto{
+        text-align: center;
+        
+        p{
+            @include font-size(1.25rem);
+        }
+    }
+
+    img{
+        @include margin-bottom(3rem);
+        width: 100%;
+        @include rfs(1rem, border-radius);
+    }
+
+    .proximo, .fechar, .anterior{
+        position: absolute;
+        background: linear-gradient(135deg, $cor-padrao-claro, #ed2123);
+        color: white;
+        border-radius: 50%;
+        @include padding(0.625rem);
+        cursor: pointer;
+        transition: .2s ease;
+
+        &:hover{
+            transform: scale(1.1);
+        }
+    }
+
+    .botoes{
+        @include margin-top(1.25rem);
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-areas:
+            "proximo fechar anterior"
+        ;
+        grid-gap: 1.25rem;
+    }
+
+    .fechar{
+        grid-area: fechar;
+        top: -1.25rem;
+        right: -1.25rem;
+    }
+
+    .proximo, .anterior{
+        top: 45%;
+    }
+
+    .anterior{
+        grid-area: anterior;
+        right: -1.5rem;
+    }
+
+    .proximo{
+        grid-area: proximo;
+        left: -1.5rem;
+    }
+}
+
+@include query(tela-grande){
+
+}
+
+@include query(laptop){
+
+}
+
+@include query(tablet){
+    .boas-vindas-container{
+        border-radius: initial;
+        width: 100vw;
+
+        .proximo, .fechar, .anterior{
+            position: initial;
+        }
+    }
+}
+
+@include query(smartphone){
+    .boas-vindas-container{
+        @include padding(0.625rem);
+        
+        .texto{
+            h2{
+                @include font-size(1.25rem);
+            }
+
+            p{
+                @include font-size(1rem);
+            }
+        }
+    }
+}

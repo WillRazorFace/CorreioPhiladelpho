@@ -54,7 +54,7 @@
         <div class="pontos-indicadores" id="pontos-indicadores"></div>
     </div>
 
-    <main class="conteudo-index">
+    <main class="conteudo-index" id="conteudo-index">
         <div class="publicacoes">
             <div class="secao-bloco">
                 <h3>Publicações Recentes</h3>
@@ -107,5 +107,19 @@
 {% endblock %}
 
 {% block javascript-adicional %}
-    <script type="text/javascript" src="{% static '/js/parciais/carrossel.js' %}"></script>
+    <script type="text/javascript" src="{% static '/js/parciais/carrossel.js' %}"></script>]
+    
+    <script>
+        if(! localStorage.boasVindasIndex){
+            var IMAGEM_1 = "{% static '/img/boas-vindas/index/logo-cp.jpg' %}";
+            var IMAGEM_2 = "{% static '/img/boas-vindas/index/pesquisa.jpg' %}";
+            var IMAGEM_3 = "{% static '/img/boas-vindas/index/categorias.jpg' %}";
+            var IMAGEM_4 = "{% static '/img/boas-vindas/index/modo-escuro.jpg' %}";
+            var IMAGEM_5 = "{% static '/img/boas-vindas/index/secoes.jpg' %}";
+            var IMAGEM_6 = "{% static '/img/boas-vindas/index/usuario.jpg' %}";
+            var IMAGEM_7 = "{% static '/img/boas-vindas/index/feedback.jpg' %}";
+        }
+    </script>
+
+    <script type="text/javascript" src="{% static '/js/parciais/boas-vindas-index.js' %}"></script>
 {% endblock %}
