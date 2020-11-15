@@ -38,12 +38,10 @@
     @include padding(1.25rem);
     @include margin-top(200px);
 
-    // .resumo, .links, .feedback{
-    //     @include margin-top(1.125rem);
-    // }
-    // .resumo, .links{
-    //     @include margin-left(1.125rem);
-    // }
+    .creditos{
+        border: 1px solid black;
+        @include margin-top(11.1rem);
+    }
 
     .resumo{
         h5{
@@ -158,6 +156,10 @@
         @include padding-bottom(1.25rem);
         grid-gap: 0;
 
+        .creditos{
+            display: none;
+        }
+        
         .resumo, .links, .feedback{
             @include margin-left(0);
         }
