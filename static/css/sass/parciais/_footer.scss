@@ -39,8 +39,7 @@
     @include margin-top(200px);
 
     .creditos{
-        border: 1px solid black;
-        @include margin-top(11.1rem);
+        @include margin-top(1rem);
     }
 
     .resumo{

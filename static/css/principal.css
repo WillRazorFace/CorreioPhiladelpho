@@ -934,14 +934,7 @@ body img {
 }
 
 .rodape .creditos {
-  border: 1px solid black;
-  margin-top: calc(2.235rem + 11.82vw);
-}
-
-@media (min-width: 1200px) {
-  .rodape .creditos {
-    margin-top: 11.1rem;
-  }
+  margin-top: 1rem;
 }
 
 .rodape .resumo h5 {
