@@ -5,6 +5,7 @@ from .forms import FeedbackFormNaoLogado, FeedbackFormLogado, ComentarioForm, Re
 from .models import Post, Feedback, Comentario, Categoria
 from django.shortcuts import HttpResponse
 from django.http import JsonResponse
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.template.loader import render_to_string
 from django.db.models import Q
 from django.views.decorators.http import require_GET, require_POST
@@ -14,8 +15,9 @@ from json import loads
 @require_GET
 def buscar(request):
     form = incluir_feedback(request)
-    termo = request.GET.get("p")
-    categoria = request.GET.get("categoria")
+    termo = request.GET.get('t')
+    categoria = request.GET.get('categoria')
+    pagina = request.GET.get('p', 1)
 
     contexto = {
         'form': form,
@@ -24,11 +26,29 @@ def buscar(request):
 
     if categoria:
         categoria = Categoria.objects.get(nome=categoria)
-        publicacoes = Post.objects.all().filter(categoria=categoria.id)
+        publicacoes = Post.objects.all().filter(categoria=categoria.id).order_by('-data')
+
+        paginator = Paginator(publicacoes, 10)
+
+        try:
+            publicacoes = paginator.page(pagina)
+        except PageNotAnInteger:
+            publicacoes = paginator.page(1)
+        except EmptyPage:
+            publicacoes = paginator.page(paginator.num_pages)
 
         contexto['categoria_url'] = categoria.nome
     else:
-        publicacoes = Post.objects.all()
+        publicacoes = Post.objects.all().order_by('-data')
+
+        paginator = Paginator(publicacoes, 5)
+
+        try:
+            publicacoes = paginator.page(pagina)
+        except PageNotAnInteger:
+            publicacoes = paginator.page(1)
+        except EmptyPage:
+            publicacoes = paginator.page(paginator.num_pages)
 
         contexto['categoria_url'] = None
     
@@ -41,25 +61,35 @@ def buscar(request):
 # Fetch API
 @require_GET
 def buscar_posts(request):
-    termo = request.GET.get("p")
-    categoria = request.GET.get("categoria")
+    termo = request.GET.get('t')
+    categoria = request.GET.get('categoria')
+    pagina = request.GET.get('p', 1)
 
     if termo:
         if categoria != 'Todas':
             categoria = Categoria.objects.get(nome=categoria)
 
-            publicacoes = Post.objects.filter(Q(titulo__icontains=termo) | Q(subtitulo__icontains=termo) | Q(conteudo__icontains=termo), categoria=categoria.id)
+            publicacoes = Post.objects.filter(Q(titulo__icontains=termo) | Q(subtitulo__icontains=termo) | Q(conteudo__icontains=termo), categoria=categoria.id).order_by('-data')
         else:
-            publicacoes = Post.objects.filter(Q(titulo__icontains=termo) | Q(subtitulo__icontains=termo) | Q(conteudo__icontains=termo))
+            publicacoes = Post.objects.filter(Q(titulo__icontains=termo) | Q(subtitulo__icontains=termo) | Q(conteudo__icontains=termo)).order_by('-data')
     else:
         if categoria != 'Todas':
             categoria = Categoria.objects.get(nome=categoria)
-            publicacoes = Post.objects.all().filter(categoria=categoria.id)
+            publicacoes = Post.objects.all().filter(categoria=categoria.id).order_by('-data')
         else:
-            publicacoes = Post.objects.all()
+            publicacoes = Post.objects.all().order_by('-data')
 
     if publicacoes:
         if publicacoes.exists():
+            paginator = Paginator(publicacoes, 5)
+
+            try:
+                publicacoes = paginator.page(pagina)
+            except PageNotAnInteger:
+                publicacoes = paginator.page(1)
+            except EmptyPage:
+                publicacoes = paginator.page(paginator.num_pages)
+
             contexto = {'publicacoes': publicacoes, 'termo': termo}
         else:
             contexto = {'termo': termo, 'resultado': 'Nada encontrado'}
@@ -104,7 +134,7 @@ def index(request):
     # Retorna as 5 publicações com mais acessos
     populares = Post.objects.prefetch_related('categoria').order_by('-acessos')[:5]
 
-    posts = Post.objects.prefetch_related('categoria').all().order_by('-id')
+    posts = Post.objects.prefetch_related('categoria').all().order_by('-data')[:10]
 
     return render(request, 'inicio/index.html', {'form': form, 'posts': posts, 'populares': populares})
 

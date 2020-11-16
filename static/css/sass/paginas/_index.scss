@@ -163,6 +163,32 @@ body{
 
     .publicacoes{
         grid-area: publicacoes;
+
+        .ver-todas{
+            @include margin-top(1.25rem);
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+
+            div{
+                background: linear-gradient(135deg, $cor-padrao-claro, $cor-padrao-claro-6);
+                @include rfs(0.313rem, border-radius);
+                @include padding(0.625rem);
+                cursor: pointer;
+                max-height: 39px !important;
+                transition: 0.3s ease;
+
+                &:hover{
+                    background: $cor-padrao-claro-4;
+                    @include font-size(1.1rem);
+                }
+
+                a{
+                    color: white;
+                    text-decoration: none;
+                }
+            }
+        }
     }
 
     .popular{

@@ -29,3 +29,27 @@
     <p>{{ resultado }}</p>
     {% endfor %}
 </div>
+
+{% if publicacoes.has_other_pages %}
+    <ul class="paginacao">
+        {% if publicacoes.has_previous %}
+        <li onclick="mudarPagina({{ publicacoes.previous_number_page }})"><i class="fas fa-caret-left"></i></li>
+        {% else %}
+        <li class="desabilitado"><i class="fas fa-caret-left"></i></li>
+        {% endif %}
+
+        {% for pagina in publicacoes.paginator.page_range %}
+            {% if publicacoes.number == pagina %}
+            <li class="ativo">{{ pagina }}</li>
+            {% else %}
+            <li onclick="mudarPagina({{ pagina }})">{{ pagina }}</li>
+            {% endif %}
+        {% endfor %}
+
+        {% if publicacoes.has_next %}
+        <li onclick="mudarPagina({{ publicacoes.next_page_number }})"><i class="fas fa-caret-right"></i></li>
+        {% else %}
+        <li class="desabilitado"><i class="fas fa-caret-right"></i></li>
+        {% endif %}
+    </ul>
+{% endif %}

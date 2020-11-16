@@ -1,0 +1,42 @@
+.paginacao{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+
+    li{
+        @include font-size(1.5rem);
+        color: white;
+        background: $cor-padrao-claro-6;
+        @include padding(0.625rem);
+        border: 1px solid $cor-padrao-escuro;
+        cursor: pointer;
+
+        &:hover{
+            background: $cor-padrao-claro;
+        }
+
+        &:first-child{
+            @include rfs(0.625rem 0 0 0.625rem, border-radius);
+        }
+
+        &:last-child{
+            @include rfs(0 0.625rem 0.625rem 0, border-radius);
+        }
+    }
+
+    .ativo{
+        background: $cor-padrao-claro-4;
+    }
+
+    .desabilitado{
+        color: grey;
+        background: #ccc;
+        border: 1px solid #aaa;
+        cursor: not-allowed;;
+
+        &:hover{
+            background: #ccc;
+        }
+    }
+}

@@ -80,6 +80,10 @@
                 <div class="pub-botao"><a href="{% url 'publicacao' post.slug %}">Ler mais</a></div>
             </div>
             {% endfor %}
+
+            <div class="ver-todas">
+                <div><a href="{% url 'buscar' %}">Ver todas <i class="fas fa-arrow-right"></i></a></div>
+            </div>
         </div>
 
         <div class="popular">
