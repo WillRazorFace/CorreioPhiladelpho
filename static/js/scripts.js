@@ -108,6 +108,7 @@ const modoEscuroStorage = localStorage.getItem("modoEscuro");
 
 if (modoEscuroStorage){
     document.body.classList.add('modo-escuro');
+    document.querySelector("link[rel='icon']").href = "/static/icons/favicon-dark.ico";
 
     modoEscuro.checked = true;
 }
@@ -117,9 +118,12 @@ modoEscuro.addEventListener('click', () => {
 
     if (document.body.classList.contains('modo-escuro')){
         localStorage.setItem("modoEscuro", true);
+        document.querySelector("link[rel='icon']").href = "/static/icons/favicon-dark.ico";
+
         return;
     }
 
+    document.querySelector("link[rel='icon']").href = "/static/icons/favicon.ico";
     localStorage.removeItem("modoEscuro");
 })
 
